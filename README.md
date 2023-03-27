@@ -36,6 +36,7 @@ StoryLite provides a familiar UI that is easy to use and customize to each team'
   and/or fixes for Vue, Svelte, Solid, and others is welcome via PRs.
 - No support for MDX files, to keep the project simple, but adding support via PRs is welcome as long as it doesn't
   add too much complexity.
+- Changes to the config file will require a full server restart at the moment.
 
 ## Usage
 
