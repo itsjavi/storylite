@@ -1,0 +1,15 @@
+version: '3.8'
+volumes:
+  node_modules:
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: ./.devcontainer/Dockerfile
+      target: universal
+    command: ['turbo', 'run', 'dev']
+    ports:
+      - '7707:7707'
+    volumes:
+      - './:/workspaces/storylite'
+      - node_modules:/workspaces/storylite/node_modules/ # do not mount host's node_modules, use container's instead

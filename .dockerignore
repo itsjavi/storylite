@@ -1,0 +1,8 @@
+.next/
+.turbo/
+build/
+dist/
+node_modules/
+packages/
+public/
+.history/

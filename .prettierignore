@@ -1,0 +1,17 @@
+# Ignore artifacts:
+pnpm-lock.yaml
+pnpm-workspace.yaml
+build/
+dist/
+.next/*
+coverage/
+.coverage/
+node_modules/
+public/
+.ignore/
+.turbo/
+.vercel/
+.local/
+.history/
+.pnpm-store/
+.v8-compile-*

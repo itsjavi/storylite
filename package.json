@@ -1,0 +1,49 @@
+{
+  "name": "storylite",
+  "version": "0.0.0",
+  "private": true,
+  "repository": "git@github.com:itsjavi/storylite.git",
+  "license": "MIT",
+  "author": "Javi Aguilar https://itsjavi.com",
+  "scripts": {
+    "build": "turbo run build",
+    "changelog": "changeset",
+    "changeset": "changeset",
+    "dev": "turbo run dev --no-deps --no-cache --parallel",
+    "format": "pnpm format:packages && pnpm format:code && pnpm lint:fix",
+    "format:code": "prettier --write \"**/*.{cjs,js,jsx,ts,tsx,json,yml,yaml,css,scss,md,mdx}\"",
+    "format:packages": "sort-package-json \"package.json\" \"packages/*/package.json\"",
+    "postinstall": "pnpm format:packages",
+    "lint": "eslint --cache \"./packages/*/src/**/*.{ts,tsx}\" --max-warnings=0",
+    "lint:fix": "eslint --fix \"./packages/*/src/**/*.{ts,tsx}\"",
+    "prepare": "husky install",
+    "pretty": "pnpm format",
+    "release": "pnpm run build && changeset publish",
+    "test": "turbo run test --concurrency=1",
+    "test:coverage": "turbo run test:coverage --concurrency=1",
+    "typecheck": "turbo run typecheck --concurrency=1",
+    "version": "changeset version && pnpm install --no-frozen-lockfile && pnpm run format"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "^0.4.8",
+    "@changesets/cli": "^2.26.1",
+    "@commitlint/cli": "^17.5.0",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "prettier": "^2.8.7",
+    "pretty-quick": "^3.1.3",
+    "sort-package-json": "^2.4.1",
+    "turbo": "^1.8.5",
+    "typescript": "^4.9.5 || ^5.0.2"
+  },
+  "packageManager": "pnpm@8.0.0",
+  "engines": {
+    "node": ">=18.5.0"
+  }
+}

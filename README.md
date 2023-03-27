@@ -1,15 +1,11 @@
 # storylite
 
-StoryLite is a modern, lightweight tool for developing and managing design systems and components, inspired by the
-popular StoryBook UI and built on top of Vite⚡️.
-
-It offers a streamlined and user-friendly experience, allowing individuals and teams to quickly create, test, and
-iterate on their UI components in isolation, to ensure consistency across the application.
-
-StoryLite is specially created for small projects that don't need all the features and complexity of a full-blown
-StoryBook setup, but having a familiar UI.
-
----
+<p>
+  <a href="https://npmjs.com/package/@storylite/storylite"><img src="https://img.shields.io/npm/v/@storylite/storylite.svg" alt="npm package"></a>
+  <a href="https://github.com/itsjavi/storylite/actions/workflows/ci.yml"><img src="https://github.com/itsjavi/storylite/actions/workflows/ci.yml/badge.svg?branch=main" alt="build status"></a>
+  <!--<a href="https://itsjavi.com/storylite?sandbox"><img src="https://img.shields.io/badge/Stackblitz-sandbox-orange" alt="stackblitz"></a>-->
+  <a href="https://itsjavi.com/storylite"><img src="https://img.shields.io/badge/Documentation-🚀-black" alt="homepage"></a>
+</p>
 
 StoryLite is a modern and lightweight tool for developing and managing design systems and components. It is inspired by
 the popular StoryBook UI and built on top of Vite⚡️, offering a streamlined and user-friendly experience.
@@ -19,6 +15,8 @@ ensure consistency across the application.
 
 Designed for small projects that don't require all the features and complexity of a full-blown StoryBook setup,
 StoryLite provides a familiar UI that is easy to use and customize to each team's unique needs.
+
+![StoryLite](./packages/docs/screenshot.png)
 
 ## Features
 
@@ -30,7 +28,7 @@ StoryLite provides a familiar UI that is easy to use and customize to each team'
 
 ## Limitations
 
-- Currently there is no support for things such as "auto docs", "code snippets", "knobs", "controls", "actions"
+- Currently, there is no support for things such as "auto docs", "code snippets", "knobs", "controls", "actions"
   or "events".
 - It has only been tested with React components, but it should work with any framework that Vite supports. Support
   and/or fixes for Vue, Svelte, Solid, and others is welcome via PRs.
@@ -48,13 +46,13 @@ To install StoryLite, simply run one of the following commands:
 
 ```bash
 # Using npm
-npm install -D storylite
+npm install -D @storylite/storylite
 
 # Using yarn
-yarn add -D storylite
+yarn add -D @storylite/storylite
 
 # Using pnpm
-pnpm add -D storylite
+pnpm add -D @storylite/storylite
 ```
 
 ## Roadmap
@@ -62,18 +60,38 @@ pnpm add -D storylite
 ### Features
 
 - [ ] Addons:
-    - [ ] Different responsive sizes + custom size
-    - [ ] Zoom in/out
-    - [ ] Accessibility
+  - [ ] Different responsive sizes + custom size
+  - [ ] Zoom in/out
+  - [ ] Accessibility
 - [ ] Create `packages/examples` package
-    - [ ] Try out with React, Vue, Svelte, Solid, and Qwik.
+  - [ ] Try out with React, Vue, Svelte, Solid, and Qwik.
 
 ### Technical
 
 - [ ] Provide documentation (`packages/docs`)
-    - [ ] Use Nextra https://nextra.site/
-    - [ ] Host in GitHub Pages (build and deploy via GitHub Actions)
+  - [ ] Use Nextra https://nextra.site/
+  - [ ] Host in GitHub Pages (build and deploy via GitHub Actions)
 - [ ] Better handling of the iframes
 - [ ] Better addons API
 - [ ] Use redux-toolkit
 - [ ] Better mobile experience (specially for sidebars and toolbars)
+
+## Contributing
+
+Contributions are welcome! Please read the [contributing guidelines](./CONTRIBUTING.md) before submitting a PR.
+
+## License
+
+[MIT License](./LICENSE)
+
+## Acknowledgements
+
+Inspired by:
+
+- [StoryBook](https://storybook.js.org/)
+- [Ladle](https://ladle.dev/)
+
+Built with:
+
+- [Vite](https://vitejs.dev/)
+- [React](https://react.dev/)

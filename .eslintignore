@@ -1,0 +1,12 @@
+**/node_modules/
+**/.turbo/
+dist/*
+build/*
+.next/*
+.devcontainer/
+.vscode/
+**/public/
+**/.cache
+.local/
+.vercel/
+.history/

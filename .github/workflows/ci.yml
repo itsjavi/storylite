@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    # To use Remote Caching, uncomment the next lines and follow the steps of https://turbo.build/repo/docs/ci/github-actions
+    #    env:
+    #      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+    #      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
+    #      TURBO_REMOTE_ONLY: true
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 8
+
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      #      - name: Install playwright
+      #        run: pnpm playwright install chromium
+
+      - name: Eslint
+        run: pnpm lint
+
+      - name: Typescript
+        run: pnpm typecheck
+
+      - name: Build
+        run: pnpm build
+
+      - name: Test
+        run: pnpm test:coverage
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          file: ./packages/*/coverage/*.json
