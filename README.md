@@ -63,6 +63,7 @@ pnpm add -D @storylite/storylite
   - [ ] Different responsive sizes + custom size
   - [ ] Zoom in/out
   - [ ] Accessibility
+- [ ] Multiple resizable viewports (side by side)
 - [ ] Create `packages/examples` package
   - [ ] Try out with React, Vue, Svelte, Solid, and Qwik.
 
@@ -74,6 +75,8 @@ pnpm add -D @storylite/storylite
 - [ ] Better handling of the iframes
 - [ ] Better addons API
 - [ ] Use redux-toolkit
+- [ ] SSR/SSG support
+- [ ] Stories format compatible with Storybook (backwards compatible with SB v6 and v7)
 - [ ] Better mobile experience (specially for sidebars and toolbars)
 
 ## Contributing

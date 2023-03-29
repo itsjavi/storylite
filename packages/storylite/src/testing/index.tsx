@@ -1,7 +1,8 @@
 import { cleanup, render, RenderOptions } from '@testing-library/react'
 import { afterEach } from 'vitest'
 
-import { ReactElement } from 'react'
+import React, { ReactElement } from 'react'
+import { BrowserRouter } from 'react-router-dom'
 
 afterEach(() => {
   cleanup()
@@ -10,7 +11,9 @@ afterEach(() => {
 const renderWithProviders = (ui: ReactElement, options: RenderOptions = {}) =>
   render(ui, {
     // add provider(s) here if needed:
-    wrapper: ({ children }) => children,
+    wrapper: ({ children }) => {
+      return <BrowserRouter>{children}</BrowserRouter>
+    },
     ...options,
   })
 

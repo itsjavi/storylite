@@ -1,0 +1,35 @@
+html,
+body {
+  position: relative;
+  display: block;
+  padding: 0;
+  margin: 0;
+  border: none;
+  color: #000;
+  background: none;
+  font-size: 16px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+  /*noinspection CssInvalidPropertyValue*/
+  min-height: -webkit-fill-available;
+  min-height: 100dvh;
+}
+
+html[data-color-scheme='dark'],
+html[data-color-scheme='dark'] body {
+  color: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-color-scheme='auto'],
+  html[data-color-scheme='auto'] body {
+    color: #fff;
+  }
+}

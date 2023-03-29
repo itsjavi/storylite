@@ -1,0 +1,168 @@
+/**
+* 2023's Modern CSS Reset
+*
+* @author https://github.com/Andy-set-studio (Original author)
+* @author https://github.com/itsjavi (Author of this repository)
+*
+* @source https://github.com/itsjavi/modern-css-reset
+*/
+
+/* Define some variables that can be easily replaced later by other stylesheets */
+:root {
+  --font-sans--default: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-mono--default: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+    'Courier New', monospace;
+  --font-size--default: 16px;
+  --line-height--default: 1.5;
+  --color-link--default: #1fa7fd;
+}
+
+/* Set box sizing rules for all elements */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Apply default font family and size to root element, to ease the use of rem units */
+html {
+  font-family: var(--font-sans--default);
+  font-size: var(--font-size--default);
+  tab-size: 4;
+  -webkit-text-size-adjust: 100%; /* prevent fonts on WebKit to look too small */
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+  min-height: 100vh;
+  min-height: 100dvh; /* dynamic viewport height */
+  /* text-rendering: optimizeSpeed; */ /* this has poor performance FCP on some devices */
+  line-height: var(--line-height--default);
+}
+
+/* Remove margins and paddings */
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: var(--color-link--default);
+}
+
+/* Set a nicer mono font */
+pre,
+code,
+kbd,
+samp {
+  font-size: inherit;
+  font-family: var(--font-mono--default);
+}
+
+/* abbrs with titles should have underline */
+abbr[title] {
+  text-decoration: underline dotted;
+}
+
+/* Make HRs to be consistent with current font color */
+hr {
+  height: 0;
+  color: inherit;
+  border-top-width: 1px;
+  border-color: currentColor;
+}
+
+/* Make media elements easier to work with */
+svg,
+canvas,
+video,
+img,
+picture {
+  max-width: 100%;
+  height: auto; /* preserve aspect-ratio */
+  display: block;
+}
+
+/* Make iframes look nicer */
+iframe,
+embed,
+object {
+  max-width: 100%;
+  display: block;
+  border: none;
+}
+
+/* Make tables look nicer */
+table {
+  text-indent: 0;
+  border-color: inherit;
+  border-collapse: collapse;
+  max-width: 100%;
+}
+
+/* Inherit fonts and line height for inputs and buttons, remove text transforms and margins */
+[role='button'],
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-transform: none;
+  margin: 0;
+  border-radius: 0;
+}
+
+/* Remove background images and borders from buttons */
+[role='button'],
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  appearance: auto;
+  background-image: none;
+  border: none;
+}
+
+/* Make sure that elements with the hidden attribute are not shown https://www.w3schools.com/tags/att_hidden.asp */
+*[hidden] {
+  display: none !important;
+}
+
+/* Remove all animations and transitions for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  html:focus-within {
+    scroll-behavior: auto !important;
+  }
+}

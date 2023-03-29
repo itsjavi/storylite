@@ -1,0 +1,33 @@
+.Title {
+  padding: 1.2rem 0.8rem;
+  font-weight: bold;
+  color: var(--theme-font-color-title);
+  background-color: var(--theme-bg-color-title);
+  font-size: 1.2rem;
+  line-height: 1rem;
+  letter-spacing: -1px;
+  text-align: left;
+}
+
+.Title svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.Title h1,
+.Title h2,
+.Title h3 {
+  font-size: inherit;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.Title a {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+  line-height: 1rem;
+  /*font-size: 0.85rem;*/
+  /*line-height: 1.15rem;*/
+}

@@ -1,0 +1,17 @@
+.Layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  background: var(--theme-bg-color);
+  color: var(--theme-font-color);
+  min-height: 100vh;
+  /*noinspection CssInvalidPropertyValue*/
+  min-height: -webkit-fill-available;
+  min-height: 100dvh;
+}
+
+.Main {
+  position: relative;
+  box-sizing: border-box;
+  min-height: 100vh;
+}

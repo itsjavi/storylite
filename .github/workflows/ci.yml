@@ -44,11 +44,11 @@ jobs:
       - name: Eslint
         run: pnpm lint
 
-      - name: Typescript
-        run: pnpm typecheck
-
       - name: Build
         run: pnpm build
+
+      - name: Check Types
+        run: pnpm typecheck
 
       - name: Test
         run: pnpm test:coverage

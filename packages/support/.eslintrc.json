@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/eslintrc.json",
+  "extends": ["../../.eslintrc.json", "plugin:react/recommended"],
+  "rules": {
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-key": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}

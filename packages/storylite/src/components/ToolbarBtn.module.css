@@ -1,0 +1,30 @@
+.Btn,
+a.Btn {
+  border-radius: 0;
+  /*border: 1px solid var(--theme-border-color);*/
+  border: none;
+  background: var(--theme-bg-color-toolbar);
+  color: inherit;
+  padding: 0;
+  margin-left: 15px;
+  min-width: 1.6rem;
+  min-height: 1.6rem;
+  text-align: center;
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.Btn svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  display: inline;
+  vertical-align: middle;
+}
+
+.Btn:hover,
+.Active {
+  color: var(--theme-color-primary);
+}

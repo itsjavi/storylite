@@ -1,0 +1,115 @@
+.Sidebar {
+  position: relative;
+  padding: 0;
+  background: var(--theme-bg-color-panel);
+  color: var(--theme-font-color-panel);
+  border-right: 1px solid var(--theme-border-color);
+  transition: width 0.2s ease-in-out;
+  transition-property: width, margin;
+  width: 0;
+  overflow: hidden;
+  pointer-events: none;
+  margin-left: -100px;
+  margin-right: 100px;
+}
+
+.Sidebar[data-open='true'] {
+  width: 220px;
+  pointer-events: unset;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+html[data-color-scheme='dark'] .Sidebar {
+  border-color: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-color-scheme='auto'] .Sidebar {
+    border-color: transparent;
+  }
+}
+
+.Content {
+  position: relative;
+  min-width: 220px;
+}
+
+.Title {
+  position: relative;
+}
+
+/* MENU NAV */
+
+.Nav {
+  /*margin-top: 1px;*/
+}
+
+.Nav ul,
+.Nav li {
+  position: relative;
+  display: block;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ListBtn {
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  color: inherit;
+  display: flex;
+  text-decoration: none;
+  transition: background-color 0.2s linear;
+  cursor: pointer;
+}
+
+.ListBtn .Text,
+.ListBtn .Icon,
+.ListBtn .Icon svg {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.ListBtn .Text {
+  white-space: nowrap; /* Prevents the text from breaking into multiple lines */
+  overflow: hidden; /* Hides any overflowing text */
+  text-overflow: ellipsis; /* Shows an ellipsis at the end of the block */
+}
+
+.ListBtn .Icon {
+  margin-right: 5px;
+}
+
+.ListBtn .Icon svg {
+  width: 12px;
+  height: 12px;
+}
+
+.ListBtn:hover {
+  background-color: rgba(0, 0, 0, 0.07);
+}
+
+html[data-color-scheme='dark'] .ListBtn:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+html[data-color-scheme='dark'] .Active .ListBtn:hover,
+.Active .ListBtn {
+  background-color: var(--theme-color-primary);
+  text-decoration: none;
+  color: #fff;
+}
+
+.WithNestedList .NestedList .ListBtn {
+  padding-left: 2rem;
+}
+
+.NestedList .Icon {
+  color: var(--theme-color-primary);
+}
+
+.NestedList .Active .Icon {
+  color: inherit;
+}

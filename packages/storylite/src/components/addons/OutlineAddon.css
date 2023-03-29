@@ -1,0 +1,19 @@
+#stories_Canvas[data-outlines-visible='true'] > section > * {
+  outline: 1px solid #ff8059;
+  outline-offset: 2px;
+}
+
+#stories_Canvas[data-outlines-visible='true'] > section > * > * {
+  outline: 1px solid #70cc3a;
+  outline-offset: 1px;
+}
+
+#stories_Canvas[data-outlines-visible='true'] > section > * > * > * {
+  outline: 1px solid #ef73f6;
+  outline-offset: 0;
+}
+
+#stories_Canvas[data-outlines-visible='true'] > section > * > * > * > * {
+  outline: 1px solid #49c7de;
+  outline-offset: -1px;
+}

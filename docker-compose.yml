@@ -7,7 +7,7 @@ services:
       context: .
       dockerfile: ./.devcontainer/Dockerfile
       target: universal
-    command: ['turbo', 'run', 'dev']
+    command: ['pnpm', 'dev']
     ports:
       - '7707:7707'
     volumes:
