@@ -9,7 +9,7 @@
   "scripts": {
     "build": "vite build",
     "dev": "PORT=${STORYLITE_PORT:-7707} vite",
-    "preview": "vite preview",
+    "preview": "vite preview --port ${STORYLITE_PREVIEW_PORT:-13030}",
     "test": "vitest --run",
     "test:coverage": "vitest run --coverage",
     "test:ui": "pnpm test:coverage && open coverage/index.html && vitest --ui --open",

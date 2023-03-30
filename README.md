@@ -3,8 +3,9 @@
 <p>
   <a href="https://npmjs.com/package/@storylite/storylite"><img src="https://img.shields.io/npm/v/@storylite/storylite.svg" alt="npm package"></a>
   <a href="https://github.com/itsjavi/storylite/actions/workflows/ci.yml"><img src="https://github.com/itsjavi/storylite/actions/workflows/ci.yml/badge.svg?branch=main" alt="build status"></a>
+  <a href="https://app.codecov.io/gh/itsjavi/storylite"><img src="https://img.shields.io/codecov/c/github/itsjavi/storylite" alt="code coverage"></a>
   <!--<a href="https://itsjavi.com/storylite?sandbox"><img src="https://img.shields.io/badge/Stackblitz-sandbox-orange" alt="stackblitz"></a>-->
-  <a href="https://itsjavi.com/storylite"><img src="https://img.shields.io/badge/Documentation-🚀-black" alt="homepage"></a>
+  <a href="https://itsjavi.com/storylite"><img src="https://img.shields.io/badge/Documentation-📖-lightgray" alt="homepage"></a>
 </p>
 
 StoryLite is a modern and lightweight tool for developing and managing design systems and components. It is inspired by

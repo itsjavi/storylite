@@ -11,14 +11,11 @@ jobs:
     name: Build and Test
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
-    # To use Remote Caching, uncomment the next lines and follow the steps of https://turbo.build/repo/docs/ci/github-actions
-    #    env:
-    #      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-    #      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
-    #      TURBO_REMOTE_ONLY: true
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os:
+          - ubuntu-latest
+    #          - windows-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v3
@@ -38,9 +35,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      #      - name: Install playwright
-      #        run: pnpm playwright install chromium
-
       - name: Eslint
         run: pnpm lint
 
@@ -50,10 +44,27 @@ jobs:
       - name: Check Types
         run: pnpm typecheck
 
-      - name: Test
+      - name: Run Unit Tests
         run: pnpm test:coverage
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         with:
-          file: ./packages/*/coverage/*.json
+          files: ./packages/storylite/coverage/coverage-final.json,./packages/support/coverage/coverage-final.json
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Install playwright browsers
+        run: |
+          cd packages/e2e
+          pnpm exec playwright install --with-deps
+
+      - name: Run e2e tests
+        run: pnpm -r test:e2e
+
+      - name: Save Playwright report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: playwright-report
+          path: packages/e2e/playwright-report/
+          retention-days: 30

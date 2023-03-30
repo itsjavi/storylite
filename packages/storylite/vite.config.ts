@@ -35,6 +35,7 @@ export default defineConfig({
     // since parsing CSS is slow
     css: true,
     coverage: {
+      all: true,
       provider: 'istanbul',
     },
   },
