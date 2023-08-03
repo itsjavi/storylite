@@ -6,7 +6,7 @@
   "devDependencies": {
     "@types/node": "^18.15.11",
     "@vitest/coverage-c8": "^0.29.8",
-    "glob": "^9.3.2",
+    "glob": "^10.0.0",
     "typescript": "^5.0.2",
     "vite": "^4.2.1",
     "vite-tsconfig-paths": "^4.0.7",
