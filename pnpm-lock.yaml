@@ -107,8 +107,8 @@ importers:
   packages/storylite:
     dependencies:
       lucide-react:
-        specifier: ^0.129.0
-        version: 0.129.0(react@18.2.0)
+        specifier: ^0.263.0
+        version: 0.263.0(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -4193,8 +4193,8 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
-  /lucide-react@0.129.0(react@18.2.0):
-    resolution: {integrity: sha512-kGEZ+pOk9FLKsCr4luL4HYqr23lQdVbmN+3cgTj0Ye6s95FED3CX/DNzB3o8/TimgNmKKw+iq+g3mnTbtS7/ew==}
+  /lucide-react@0.263.0(react@18.2.0):
+    resolution: {integrity: sha512-F+rHswbbI1xuDZ/OzofiJZJVlBPOIYVVST705cPdRLImJ5aOJNXYaFBPNo3qdUV0iEG/4nZeiUtLSHO2qU2ISw==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
