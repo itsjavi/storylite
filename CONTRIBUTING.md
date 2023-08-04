@@ -17,12 +17,6 @@ Install the dependencies after forking and cloning the repository
 pnpm install
 ```
 
-> **NOTE:** this project has a [VS Code Devcontainer](https://code.visualstudio.com/docs/remote/containers)
-> configuration which enables development in a Docker container, as well as
-> on [GitHub Codespaces](https://code.visualstudio.com/docs/remote/codespaces). This is a great option if you want to
-> contribute to the project, but don't necessarily want to install this project's toolset and dependencies globally on
-> your computer.
-
 ## Developing
 
 The main `@storylite/storylite` package can be found in `packages/storylite`. You can quickly test and debug your

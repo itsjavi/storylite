@@ -1,9 +1,3 @@
 {
-  "recommendations": [
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "visualstudioexptteam.vscodeintellicode",
-    "visualstudioexptteam.vscodeintellicode-completions",
-    "visualstudioexptteam.intellicode-api-usage-examples"
-  ]
+  "recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"]
 }
