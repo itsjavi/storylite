@@ -18,7 +18,7 @@ EXPOSE 24678
 
 # ------------------------------------------------
 
-FROM node:18-bullseye as universal
+FROM node:20-bullseye as universal
 
 # env vars
 ENV HOME /home/codespace
