@@ -1,7 +1,5 @@
 import { Maximize2, Minimize2 } from 'lucide-react'
-
 import { useState } from 'react'
-
 import ToolbarBtn from '../ToolbarBtn'
 
 function FullScreenAddon() {

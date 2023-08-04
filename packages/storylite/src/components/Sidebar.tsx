@@ -1,10 +1,7 @@
 import { Bookmark, MinusSquare, PlusSquare } from 'lucide-react'
-
 import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-
 import { ElementIds, StoryMeta, StoryModule, StoryModulesMapValue } from '@/types'
-
 import storyMap from '../lib/storyMap'
 import styles from './Sidebar.module.css'
 

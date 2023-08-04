@@ -1,6 +1,5 @@
 import { cleanup, render, RenderOptions } from '@testing-library/react'
 import { afterEach } from 'vitest'
-
 import React, { ReactElement } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 

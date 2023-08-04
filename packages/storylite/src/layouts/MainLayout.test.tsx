@@ -1,5 +1,4 @@
 import { render, screen } from '@/testing'
-
 import App from './MainLayout'
 
 describe('MainLayout', () => {

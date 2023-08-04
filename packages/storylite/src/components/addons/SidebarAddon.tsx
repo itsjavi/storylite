@@ -1,7 +1,5 @@
 import { Sidebar } from 'lucide-react'
-
 import { useState } from 'react'
-
 import { ElementIds } from '../../types'
 import ToolbarBtn from '../ToolbarBtn'
 

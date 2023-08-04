@@ -1,8 +1,6 @@
 import userStyles from 'storylite-user-styles-sandbox'
-
 import React from 'react'
 import { useSearchParams } from 'react-router-dom'
-
 import globalStyles from '../styles/reset-sandbox.css?inline'
 import { ElementIds } from '../types'
 import styles from './SandboxLayout.module.css'

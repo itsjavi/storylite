@@ -5,7 +5,6 @@ import {
   LoaderFunction,
   RouterProvider,
 } from 'react-router-dom'
-
 import MainLayout from './layouts/MainLayout'
 import Error404, { Layout as ErrorLayout } from './pages/404'
 

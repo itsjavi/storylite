@@ -60,7 +60,7 @@ export function classVariants<T extends VariantSchema>(
     }
 
     const variantsDefined = Object.fromEntries(
-      Object.entries(variants).filter(([k, v]) => v !== undefined)
+      Object.entries(variants).filter(([, v]) => v !== undefined)
     )
 
     const sortedVariantKeys = Object.keys(variantsDefined).sort()

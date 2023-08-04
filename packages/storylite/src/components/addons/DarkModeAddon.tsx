@@ -1,11 +1,7 @@
 import { Moon } from 'lucide-react'
-
 import { useEffect } from 'react'
-
 import { useBrowserStorage } from '@storylite/support/dist/react'
-
 import { ColorScheme } from '@/types'
-
 import ToolbarBtn from '../ToolbarBtn'
 
 function DarkModeAddon() {

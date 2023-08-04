@@ -1,5 +1,4 @@
 import { afterAll, describe, expect, it } from 'vitest'
-
 import { arrayShuffle } from './arrayShuffle'
 
 Math.random = vi

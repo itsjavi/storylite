@@ -1,7 +1,5 @@
 import { useSearchParams } from 'react-router-dom'
-
 import { StoryMeta } from '@/types'
-
 import DarkModeAddon from './addons/DarkModeAddon'
 import FullScreenAddon from './addons/FullScreenAddon'
 import GridAddon from './addons/GridAddon'

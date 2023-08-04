@@ -1,5 +1,4 @@
 import React from 'react'
-
 import ErrorLayout from '../layouts/ErrorLayout'
 import styles from './404.module.css'
 

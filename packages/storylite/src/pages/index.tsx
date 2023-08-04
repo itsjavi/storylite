@@ -1,5 +1,4 @@
 import React from 'react'
-
 import StoryFrame from '@/components/StoryFrame'
 import MainLayout from '@/layouts/MainLayout'
 

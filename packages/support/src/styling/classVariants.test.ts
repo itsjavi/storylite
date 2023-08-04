@@ -1,5 +1,4 @@
 import { vi } from 'vitest'
-
 import { classVariants } from './classVariants'
 
 describe('classVariants', () => {

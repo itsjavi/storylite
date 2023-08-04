@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { ElementIds } from '@/types'
-
 import styles from './StoryFrame.module.css'
 
 type StoryFrameProps = {

@@ -1,13 +1,8 @@
 import './GridAddon.css'
-
 import { Grid } from 'lucide-react'
-
 import React, { useEffect } from 'react'
-
 import { useBrowserStorage } from '@storylite/support/dist/react'
-
 import { ElementIds } from '@/types'
-
 import ToolbarBtn from '../ToolbarBtn'
 
 export default function GridAddon() {
