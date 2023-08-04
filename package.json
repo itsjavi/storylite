@@ -9,7 +9,7 @@
     "build": "turbo run build",
     "changelog": "changeset",
     "changeset": "changeset",
-    "dev": "pnpm install && turbo run dev --no-deps --no-cache --parallel --concurrency 15",
+    "dev": "pnpm install && pnpm build && turbo run dev --no-deps --no-cache --parallel --concurrency 15",
     "format": "pnpm format:packages && pnpm format:code && pnpm lint:fix",
     "format:code": "prettier --write \"**/*.{cjs,js,jsx,ts,tsx,json,yml,yaml,css,scss,md,mdx}\"",
     "format:packages": "sort-package-json \"package.json\" \"packages/*/package.json\"",

@@ -1,9 +1,9 @@
-import './GridAddon.css'
 import { Grid } from 'lucide-react'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useBrowserStorage } from '@storylite/support/dist/react'
 import { ElementIds } from '@/types'
 import ToolbarBtn from '../ToolbarBtn'
+import './GridAddon.css'
 
 export default function GridAddon() {
   const { value: addonValue, setValue: setAddonValue } = useBrowserStorage<{ enabled: boolean }>(
