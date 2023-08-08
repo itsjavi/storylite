@@ -1,5 +1,5 @@
 declare module 'storylite-user-stories' {
-  import { StoryModulesMap } from './'
+  import { StoryModulesMap } from '@/types'
   const userStories: StoryModulesMap
   export default userStories
 }

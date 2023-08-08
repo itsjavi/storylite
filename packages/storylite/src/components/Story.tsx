@@ -1,16 +1,21 @@
 import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 
+import storyMap from 'storylite-user-stories'
+
 import { ElementIds, StoryComponent, StoryMeta, StoryModule } from '@/types'
 
-import storyMap from '../lib/storyMap'
-import styles from './Story.module.css'
 import Toolbar from './Toolbar'
 
 export function Story({ story, exportName }: { story: string; exportName: string }): JSX.Element {
   const notFound = (
     <StorySandbox story={story}>
-      <h3>NO STORIES FOUND</h3>
+      <h3>
+        Story not found:{' '}
+        <var>
+          {story}.{exportName}
+        </var>
+      </h3>
     </StorySandbox>
   )
   const storyMapData = storyMap.get(story)
@@ -54,7 +59,7 @@ function createStorySandboxWrapper(
       // const title = Comp.storyTitle || Comp.displayName || compName
 
       return (
-        <section key={i} className={styles.Section}>
+        <section key={i} className={'Section'}>
           <Comp />
         </section>
       )
@@ -85,11 +90,11 @@ export function StorySandbox({
   const toolbarStyles = showToolbar ? {} : { display: 'none' }
 
   return (
-    <div className={`${styles.Story} ${isStandalone ? styles.Standalone : ``}`}>
-      <header className={styles.Header} style={toolbarStyles}>
+    <div className={`${'Story'} ${isStandalone ? 'StandaloneStory' : ``}`}>
+      <header className={'Header'} style={toolbarStyles}>
         <Toolbar story={story} storyMeta={metadata} />
       </header>
-      <div id={ElementIds.StoryCanvas} className={styles.Canvas}>
+      <div id={ElementIds.StoryCanvas} className={'Canvas'}>
         {children === undefined && <p>Loading story...</p>}
         {children !== undefined && children}
       </div>

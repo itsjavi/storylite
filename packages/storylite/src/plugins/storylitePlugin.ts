@@ -6,7 +6,11 @@ import { Plugin } from 'vite'
 
 import { StoryLiteUserConfig } from '@/types'
 
-const storyliteConfigFile: string = path.resolve(process.cwd(), 'storylite.config.ts')
+const storyliteConfigFileBase = path.resolve(process.cwd(), 'storylite.config')
+const storyliteConfigFile: string =
+  ['.ts', '.tsx', '.js', '.jsx', '.cjs', '.mjs']
+    .map(ext => storyliteConfigFileBase + ext)
+    .find(file => existsSync(file)) || storyliteConfigFileBase + '.ts'
 const configFileExists = existsSync(storyliteConfigFile)
 
 if (
@@ -19,13 +23,15 @@ if (
   })
 }
 
-const storyliteConfigFileJs = storyliteConfigFile.replace(/\.tsx?$/, '.js')
+const storyliteConfigFileJs = storyliteConfigFile
+  .replace(/\.tsx?$/, '.js')
+  .replace(/\.[cm]js$/, '.cjs')
 
 const defaultConfig: StoryLiteUserConfig = {
-  stories: path.join(process.cwd(), 'stories/**/*.stories.tsx'),
+  stories: 'stories/**/*.stories.tsx',
   defaultStory: 'index',
   title: 'StoryLite',
-  styles: {
+  styleImports: {
     ui: [],
     sandbox: [],
   },
@@ -94,13 +100,12 @@ const moduleNames = {
 const storylitePlugin = async (): Promise<Plugin> => {
   const { config: storyliteConfig, code: storyliteConfigImportCode } = await getStoryLiteConfig()
   // Define the file pattern to match
-  const pattern = storyliteConfig.stories
   const moduleIds = Object.values(moduleNames)
 
   return {
     name: 'import-stories',
     config: async () => {
-      return storyliteConfig.vite
+      return storyliteConfig.viteConfig
     },
     resolveId(id) {
       if (moduleIds.includes(id)) {
@@ -109,16 +114,32 @@ const storylitePlugin = async (): Promise<Plugin> => {
 
       return null // otherwise, return null to let Vite handle the import as usual
     },
+
     async load(id) {
       if (id === moduleNames.userStories) {
         // the returned code can only be JS
         return `
+          const createStoryMap = (stories) => {
+            const sortedStories = Object.entries(stories)
+              .sort(([aName], [bName]) => aName.localeCompare(bName))
+              .sort(([, { default: aStory }], [, { default: bStory }]) => {
+                const aPriority = aStory?.priority || 0;
+                const bPriority = bStory?.priority || 0;
+                return bPriority - aPriority;
+              });
           
-          import { createStoryMap } from '@/lib/createStoryMap';
+            const storyMap = new Map(sortedStories.map(([path, module]) => {
+              const baseName = path.split('/').pop().replace(/\.stories\.tsx$/, '');
+              const meta = module.default || { title: baseName.split('_').join(' ') };
+              return [baseName, { module, meta }];
+            }));
           
-          console.log('import.meta.glob', '/${pattern}');
+            return storyMap;
+          };
           
-          const storyMap = createStoryMap(import.meta.glob('/${pattern}', {eager: true}));
+          console.log('import.meta.glob', '/${storyliteConfig.stories}');
+          
+          const storyMap = createStoryMap(import.meta.glob('/${storyliteConfig.stories}', {eager: true}));
           
           console.dir(Array.from(storyMap.entries()));
           
@@ -131,13 +152,13 @@ const storylitePlugin = async (): Promise<Plugin> => {
       }
 
       if (id === moduleNames.userUiStyles) {
-        const cssFiles = storyliteConfig.styles?.ui || []
+        const cssFiles = storyliteConfig.styleImports?.ui || []
 
         return createCssBundleCode(cssFiles)
       }
 
       if (id === moduleNames.userSandboxStyles) {
-        const cssFiles = storyliteConfig.styles?.sandbox || []
+        const cssFiles = storyliteConfig.styleImports?.sandbox || []
 
         return createCssBundleCode(cssFiles)
       }
@@ -146,20 +167,5 @@ const storylitePlugin = async (): Promise<Plugin> => {
     },
   }
 }
-
-// https://vitejs.dev/config/
-// export default defineConfig({
-//   plugins: [storylitePlugin(), react()],
-//   server: {
-//     port: 7707,
-//     host: '0.0.0.0',
-//   },
-//   resolve: {
-//     alias: {
-//       '@/': './src/',
-//       '@/*': './src/*',
-//     },
-//   },
-// })
 
 export default storylitePlugin

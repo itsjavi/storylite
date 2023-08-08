@@ -3,49 +3,56 @@
   "version": "0.0.0",
   "description": "",
   "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.cjs"
+    },
+    "./plugins": {
+      "types": "./dist/plugins.d.ts",
+      "import": "./dist/plugins.js",
+      "default": "./dist/plugins.cjs"
+    },
+    "./dist/plugins": {
+      "types": "./dist/plugins.d.ts",
+      "import": "./dist/plugins.js",
+      "default": "./dist/plugins.cjs"
+    },
+    "./dist/index.css": "./dist/index.css"
+  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "storylite": "./bin/server.cjs"
+  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "vite build",
-    "dev": "PORT=${STORYLITE_PORT:-7707} vite",
+    "build": "tsup",
+    "dev": "tsup --watch --clean",
     "lint": "eslint --max-warnings=10 .",
     "lint-fix": "eslint --fix .",
     "prepublishOnly": "pnpm run build",
-    "preview": "vite preview --port ${STORYLITE_PREVIEW_PORT:-13030}",
     "publint-check": "pnpm publint",
-    "test": "vitest --run",
-    "test:coverage": "vitest run --coverage",
-    "test:ui": "pnpm test:coverage && open coverage/index.html && vitest --ui --open",
-    "test:watch": "vitest",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@r1stack/coding-style": "^0.1.0",
+    "glob": "^10.3.3",
     "lucide-react": "^0.265.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.14.2"
+    "react-router-dom": "^6.14.2",
+    "vite": "^4.4.9"
   },
   "devDependencies": {
-    "@swc/core": "^1.3.74",
-    "@testing-library/jest-dom": "^5.17.0",
-    "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.4.3",
-    "@types/jsdom": "^21.1.1",
     "@types/node": "^20.4.8",
     "@types/react": "^18.2.18",
     "@types/react-dom": "^18.2.7",
-    "@types/testing-library__jest-dom": "^5.14.9",
-    "@vitejs/plugin-react": "^4.0.4",
-    "@vitejs/plugin-react-swc": "^3.3.2",
-    "@vitest/coverage-istanbul": "^0.34.1",
-    "@vitest/ui": "^0.34.1",
-    "glob": "^10.3.3",
-    "jsdom": "^22.1.0",
     "publint": "^0.2.0",
-    "typescript": "^5.1.6",
-    "vite": "^4.4.9",
-    "vite-plugin-dts": "^3.5.1",
-    "vitest": "^0.34.1"
+    "tsup": "^7.2.0",
+    "typescript": "^5.1.6"
   }
 }

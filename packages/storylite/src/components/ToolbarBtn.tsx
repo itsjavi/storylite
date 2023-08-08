@@ -1,6 +1,4 @@
-import React, { HTMLAttributes } from 'react'
-
-import styles from './ToolbarBtn.module.css'
+import { HTMLAttributes } from 'react'
 
 type AddonToolbarBtnProps = {
   isActive?: boolean
@@ -16,13 +14,13 @@ export default function ToolbarBtn({
   target,
   ...rest
 }: AddonToolbarBtnProps) {
-  const activeClass = isActive ? styles.Active : ''
+  const activeClass = isActive ? 'Active' : ''
   const userClassName = className ? className : ''
 
   if (href !== undefined) {
     return (
       <a
-        className={`${styles.Btn} ${activeClass} ${userClassName}`}
+        className={`${'Btn'} ${activeClass} ${userClassName}`}
         href={href}
         target={target}
         {...rest}
@@ -33,7 +31,7 @@ export default function ToolbarBtn({
   }
 
   return (
-    <button className={`${styles.Btn} ${activeClass} ${userClassName}`} {...rest}>
+    <button className={`${'Btn'} ${activeClass} ${userClassName}`} {...rest}>
       {children}
     </button>
   )

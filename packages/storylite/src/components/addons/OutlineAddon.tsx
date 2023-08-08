@@ -1,5 +1,3 @@
-import './OutlineAddon.css'
-
 import { useEffect } from 'react'
 
 import { BoxSelect as Icon } from 'lucide-react'

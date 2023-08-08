@@ -30,23 +30,54 @@ html[data-color-scheme='dark'] .Sidebar {
   }
 }
 
-.Content {
+.Sidebar .Content {
   position: relative;
   min-width: 220px;
 }
 
-.Title {
+.Sidebar .Title {
   position: relative;
+}
+
+/* TITLE */
+.SidebarTitle {
+  padding: 1.2rem 0.8rem;
+  font-weight: bold;
+  color: var(--theme-font-color-SidebarTitle);
+  background-color: var(--theme-bg-color-SidebarTitle);
+  font-size: 1.2rem;
+  line-height: 1rem;
+  letter-spacing: -1px;
+  text-align: left;
+}
+
+.SidebarTitle svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.SidebarTitle h1,
+.SidebarTitle h2,
+.SidebarTitle h3 {
+  font-size: inherit;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.SidebarTitle a {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+  line-height: 1rem;
+  /*font-size: 0.85rem;*/
+  /*line-height: 1.15rem;*/
 }
 
 /* MENU NAV */
 
-.Nav {
-  /*margin-top: 1px;*/
-}
-
-.Nav ul,
-.Nav li {
+.SidebarNav ul,
+.SidebarNav li {
   position: relative;
   display: block;
   list-style: none;
@@ -54,7 +85,7 @@ html[data-color-scheme='dark'] .Sidebar {
   margin: 0;
 }
 
-.ListBtn {
+.SidebarNav .ListBtn {
   all: unset;
   appearance: none;
   padding: 0.5rem 1rem;
@@ -67,51 +98,51 @@ html[data-color-scheme='dark'] .Sidebar {
   cursor: pointer;
 }
 
-.ListBtn .Text,
-.ListBtn .Icon,
-.ListBtn .Icon svg {
+.SidebarNav .ListBtn .Text,
+.SidebarNav .ListBtn .Icon,
+.SidebarNav .ListBtn .Icon svg {
   vertical-align: middle;
   display: inline-block;
 }
 
-.ListBtn .Text {
+.SidebarNav .ListBtn .Text {
   white-space: nowrap; /* Prevents the text from breaking into multiple lines */
   overflow: hidden; /* Hides any overflowing text */
   text-overflow: ellipsis; /* Shows an ellipsis at the end of the block */
 }
 
-.ListBtn .Icon {
+.SidebarNav .ListBtn .Icon {
   margin-right: 5px;
 }
 
-.ListBtn .Icon svg {
+.SidebarNav .ListBtn .Icon svg {
   width: 12px;
   height: 12px;
 }
 
-.ListBtn:hover {
+.SidebarNav .ListBtn:hover {
   background-color: rgba(0, 0, 0, 0.07);
 }
 
-html[data-color-scheme='dark'] .ListBtn:hover {
+html[data-color-scheme='dark'] .SidebarNav .ListBtn:hover {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-html[data-color-scheme='dark'] .Active .ListBtn:hover,
-.Active .ListBtn {
+html[data-color-scheme='dark'] .SidebarNav .Active .ListBtn:hover,
+.SidebarNav .Active .ListBtn {
   background-color: var(--theme-color-primary);
   text-decoration: none;
   color: #fff;
 }
 
-.WithNestedList .NestedList .ListBtn {
+.SidebarNav .WithNestedList .NestedList .ListBtn {
   padding-left: 2rem;
 }
 
-.NestedList .Icon {
+.SidebarNav .NestedList .Icon {
   color: var(--theme-color-primary);
 }
 
-.NestedList .Active .Icon {
+.SidebarNav .NestedList .Active .Icon {
   color: inherit;
 }

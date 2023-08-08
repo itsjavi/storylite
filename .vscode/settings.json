@@ -7,7 +7,7 @@
   "jest.jestCommandLine": "node_modules/.bin/jest",
   "jest.disabledWorkspaceFolders": ["packages"],
   "files.exclude": {
-    "*/*/node_modules": true,
+    "*/*/node_modules": false,
     "**/.git": true,
     "**/.svn": true,
     "**/.hg": true,
@@ -16,7 +16,7 @@
     "**/Thumbs.db": true,
     "**/.turbo": true,
     "**/.vercel": true,
-    "**/dist": true
+    "**/dist": false
   },
   "editor.codeActionsOnSave": {
     "source.addMissingImports": true,

@@ -1,5 +1,5 @@
 {
-  "name": "@storylite/examples-vue",
-  "version": "0.0.0",
-  "private": true
+  "name": "storylite-examples-vue",
+  "private": true,
+  "description": "Vue is not yet supported by StoryLite"
 }

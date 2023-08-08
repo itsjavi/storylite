@@ -7,7 +7,7 @@ const storyLiteConfig = {
   title: 'StoryLite',
   styles: {
     ui: [],
-    sandbox: ['@pkg/core/css/variables.css', '@pkg/core/css/reset.css', '@pkg/core/css/index.css'],
+    sandbox: [],
   },
 }
 

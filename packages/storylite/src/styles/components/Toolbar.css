@@ -1,0 +1,52 @@
+.Toolbar {
+  position: relative;
+  padding: 0.75rem 0.5rem;
+  background: var(--theme-bg-color-toolbar);
+  color: var(--theme-font-color-toolbar);
+  border-bottom: 1px solid var(--theme-border-color-muted);
+  font-family: var(--theme-font-family-sans);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+html[data-color-scheme='dark'] .Toolbar {
+  border-color: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-color-scheme='auto'] .Toolbar {
+    border-color: transparent;
+  }
+}
+
+.Toolbar .Btn,
+.Toolbar a.Btn {
+  border-radius: 0;
+  /*border: 1px solid var(--theme-border-color);*/
+  border: none;
+  background: var(--theme-bg-color-toolbar);
+  color: inherit;
+  padding: 0;
+  margin-left: 15px;
+  min-width: 1.6rem;
+  min-height: 1.6rem;
+  text-align: center;
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.Toolbar .Btn svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  display: inline;
+  vertical-align: middle;
+}
+
+.Toolbar .Btn:hover,
+.Toolbar .Active {
+  color: var(--theme-color-primary);
+}

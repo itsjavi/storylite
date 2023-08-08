@@ -1,7 +1,5 @@
 import { ElementIds } from '@/types'
 
-import styles from './StoryFrame.module.css'
-
 type StoryFrameProps = {
   story?: string
   exportName?: string
@@ -12,6 +10,6 @@ export default function StoryFrame({ story, exportName }: StoryFrameProps) {
     story === undefined ? '/sandbox/dashboard' : `/sandbox/stories/${story}/${exportName || ''}`
 
   return (
-    <iframe title="StoryFrame" id={ElementIds.Iframe} className={styles.Frame} src={iframeSrc} />
+    <iframe title="StoryFrame" id={ElementIds.Iframe} className={'StoryFrame'} src={iframeSrc} />
   )
 }

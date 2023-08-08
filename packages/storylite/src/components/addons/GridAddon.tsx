@@ -7,8 +7,6 @@ import { ElementIds } from '@/types'
 import { useBrowserStorage } from '../../hooks/useBrowserStorage'
 import ToolbarBtn from '../ToolbarBtn'
 
-import './GridAddon.css'
-
 export default function GridAddon() {
   const { value: addonValue, setValue: setAddonValue } = useBrowserStorage<{ enabled: boolean }>(
     'pixel-grid',

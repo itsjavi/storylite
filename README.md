@@ -5,7 +5,7 @@
   <a href="https://github.com/itsjavi/storylite/actions/workflows/ci.yml"><img src="https://github.com/itsjavi/storylite/actions/workflows/ci.yml/badge.svg?branch=main" alt="build status"></a>
   <a href="https://app.codecov.io/gh/itsjavi/storylite"><img src="https://img.shields.io/codecov/c/github/itsjavi/storylite" alt="code coverage"></a>
   <!--<a href="https://itsjavi.com/storylite?sandbox"><img src="https://img.shields.io/badge/Stackblitz-sandbox-orange" alt="stackblitz"></a>-->
-  <a href="https://itsjavi.com/storylite"><img src="https://img.shields.io/badge/Documentation-📖-lightgray" alt="homepage"></a>
+  <a href="https://www.jsdocs.io/package/@storylite/storylite"><img src="https://img.shields.io/badge/API%20Reference-📖-blue" alt="homepage"></a>
 </p>
 
 StoryLite is a modern and lightweight tool for developing and managing design systems and components. It is inspired by
@@ -17,44 +17,35 @@ ensure consistency across the application.
 Designed for small projects that don't require all the features and complexity of a full-blown StoryBook setup,
 StoryLite provides a familiar UI that is easy to use and customize to each team's unique needs.
 
-![StoryLite](./packages/storylite/screenshot.png)
+![StoryLite](https://raw.githubusercontent.com/itsjavi/storylite/main/packages/storylite/screenshot.png)
 
 ## Features
 
 - Lightweight and customizable, with a minimal set of dependencies.
-- Small project that can be used either as a template or as a standalone server.
 - Addons system with the basics (dark mode, viewport size, grid, outline, fullscreen, etc.).
-- Customizable via `storylite.config.js` file (or `.ts`).
+- HMR support.
 - Supports `.stories.jsx` and `.stories.tsx` stories.
-
-## Limitations
-
-- Currently, there is no support for things such as "auto docs", "code snippets", "knobs", "controls", "actions"
-  or "events".
-- It has only been tested with React components, but it should work with any framework that Vite supports. Support
-  and/or fixes for Vue, Svelte, Solid, and others is welcome via PRs.
-- No support for MDX files, to keep the project simple, but adding support via PRs is welcome as long as it doesn't
-  add too much complexity.
-- Changes to the config file will require a full server restart at the moment.
-
-## Usage
-
-(WIP)
 
 ## Installation
 
-To install StoryLite, simply run one of the following commands:
+To install StoryLite, simply run one of the following commands in the project where you want
+to define the stories:
 
 ```bash
 # Using npm
-npm install -D @storylite/storylite
+npm install -D @storylite/storylite vite
 
 # Using yarn
-yarn add -D @storylite/storylite
+yarn add -D @storylite/storylite vite
 
 # Using pnpm
-pnpm add -D @storylite/storylite
+pnpm add -D @storylite/storylite vite
 ```
+
+> You also need `vite` as a devDependency.
+
+For the next steps, please check the [example React](./packages/examples/react) directory
+to learn how to integrate it in your project.
 
 ## Roadmap
 
@@ -65,8 +56,10 @@ pnpm add -D @storylite/storylite
   - [ ] Zoom in/out
   - [ ] Accessibility
 - [ ] Multiple resizable viewports (side by side)
-- [ ] Create `packages/examples` package
-  - [ ] Try out with React, Vue, Svelte, Solid, and Qwik.
+- [-] Create `packages/examples` packages
+  - [x] Support React
+  - [ ] Support other frameworks like Vue, Svelte, Solid, and Qwik.
+- Customizable components (props, styles, etc.)
 
 ### Technical
 
@@ -76,9 +69,21 @@ pnpm add -D @storylite/storylite
 - [ ] Better handling of the iframes
 - [ ] Better addons API
 - [ ] Use redux-toolkit
-- [ ] SSR/SSG support
+- [ ] SSR/SSG frameworks support (Next, Astro, etc)
 - [ ] Stories format compatible with Storybook (backwards compatible with SB v6 and v7)
 - [ ] Better mobile experience (specially for sidebars and toolbars)
+- [ ] Use Panda CSS
+- [ ] Bundle entirely with `tsup`
+
+## Current Limitations
+
+- Currently, there is no support for things such as "auto docs", "code snippets", "knobs", "controls", "actions"
+  or "events".
+- It has only been tested with React components, but it could potentially work with any framework that Vite supports. Support
+  and/or fixes for Vue, Svelte, Solid, and others is welcome via PRs.
+- No support for MDX files, to keep the project simple, but adding support via PRs is welcome as long as it doesn't
+  add too much complexity.
+- Changes to the config file will require a full server restart at the moment.
 
 ## Contributing
 

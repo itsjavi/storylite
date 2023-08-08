@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import { Bookmark, MinusSquare, PlusSquare } from 'lucide-react'
+import storyMap from 'storylite-user-stories'
 
 import { ElementIds, StoryMeta, StoryModule, StoryModulesMapValue } from '@/types'
-
-import storyMap from '../lib/storyMap'
-import styles from './Sidebar.module.css'
 
 type SidebarProps = {
   title: React.ReactNode
@@ -26,9 +24,9 @@ export default function Sidebar({ title, ...rest }: SidebarProps) {
   const { story, export_name } = useParams()
 
   return (
-    <div id={ElementIds.Sidebar} className={styles.Sidebar} data-open="true" {...rest}>
-      <div className={styles.Content}>
-        <div className={styles.Title}>{title}</div>
+    <div id={ElementIds.Sidebar} className={'Sidebar'} data-open="true" {...rest}>
+      <div className={'Content'}>
+        <div className={'Title'}>{title}</div>
         <SidebarNav currentStoryName={story} currentExportName={export_name} />
       </div>
     </div>
@@ -43,7 +41,7 @@ function SidebarNav({
   currentExportName?: string
 }): JSX.Element {
   return (
-    <nav className={styles.Nav}>
+    <nav className={'SidebarNav'}>
       <ul>
         {Array.from<[string, StoryModulesMapValue]>(storyMap).map(([storyName, storyData], i) => {
           return (
@@ -79,15 +77,15 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
 
   if (exports.length === 1) {
     const firstStoryExport = storyData.module[exports[0]]
-    const classes = [storyName === currentStoryName ? styles.Active : ''].join(' ')
+    const classes = [storyName === currentStoryName ? 'Active' : ''].join(' ')
     const title = firstStoryExport.storyTitle || storyData.meta.title || storyName
     const tooltip = title.length >= minTooltipLength ? title : undefined
 
     return (
       <li className={classes} title={tooltip}>
-        <Link to={`/stories/${storyName}/${exports[0]}`} className={styles.ListBtn}>
-          <i className={styles.Icon}>{icon}</i>
-          <span className={styles.Text}>{title}</span>
+        <Link to={`/stories/${storyName}/${exports[0]}`} className={'ListBtn'}>
+          <i className={'Icon'}>{icon}</i>
+          <span className={'Text'}>{title}</span>
         </Link>
       </li>
     )
@@ -103,14 +101,10 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
   const tooltip = title.length >= minTooltipLength ? title : undefined
 
   return (
-    <li className={styles.WithNestedList} title={tooltip}>
-      <button
-        type="button"
-        className={styles.ListBtn}
-        onClick={() => setShowMenu(!shouldShowSubmenu)}
-      >
-        <i className={styles.Icon}>{icon}</i>
-        <span className={styles.Text}>{title}</span>
+    <li className={'WithNestedList'} title={tooltip}>
+      <button type="button" className={'ListBtn'} onClick={() => setShowMenu(!shouldShowSubmenu)}>
+        <i className={'Icon'}>{icon}</i>
+        <span className={'Text'}>{title}</span>
       </button>
       {shouldShowSubmenu && nestedList}
     </li>
@@ -121,25 +115,22 @@ function SidebarNestedList(props: SidebarItemBaseProps): JSX.Element {
   const { storyName, storyData, currentExportName } = props
 
   return (
-    <ul className={styles.NestedList}>
+    <ul className={'NestedList'}>
       {Object.keys(storyData.module)
         .filter(exportName => exportName !== 'default')
         .map((exportName, i) => {
           const exportFn = storyData.module[exportName]
-          const classes = [
-            exportName === currentExportName ? styles.Active : '',
-            styles.InnerList,
-          ].join(' ')
+          const classes = [exportName === currentExportName ? 'Active' : '', 'InnerList'].join(' ')
           const title = exportFn.storyTitle || exportName
           const tooltip = title.length >= minTooltipLength ? title : undefined
 
           return (
             <li key={i} className={classes} title={tooltip}>
-              <Link to={`/stories/${storyName}/${exportName}`} className={styles.ListBtn}>
-                <i className={styles.Icon}>
+              <Link to={`/stories/${storyName}/${exportName}`} className={'ListBtn'}>
+                <i className={'Icon'}>
                   <Bookmark />
                 </i>
-                <span className={styles.Text}>{title}</span>
+                <span className={'Text'}>{title}</span>
               </Link>
             </li>
           )

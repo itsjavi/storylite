@@ -8,6 +8,10 @@ import {
 
 import MainLayout from './layouts/MainLayout'
 import Error404, { Layout as ErrorLayout } from './pages/404'
+import * as IndexPage from './pages/index'
+import * as SandboxDashboardPage from './pages/sandbox/dashboard'
+import * as SandboxExportedStory from './pages/sandbox/stories/$story/$export_name'
+import * as ExportedStory from './pages/stories/$story/$export_name'
 
 type PageType = {
   default?: React.FC
@@ -27,7 +31,17 @@ type RouteType = {
   status?: number
 }
 
-const pages = import.meta.glob('./pages/**/*.tsx', { eager: true }) as Record<string, PageType>
+// const pages = import.meta.glob('./pages/**/*.tsx', { eager: true }) as Record<string, PageType>
+const pages: Record<string, PageType> = {
+  './pages/sandbox/stories/$story/$export_name.tsx': SandboxExportedStory,
+  './pages/sandbox/dashboard.tsx': SandboxDashboardPage,
+  './pages/stories/$story/$export_name.tsx': ExportedStory,
+  './pages/404.tsx': {
+    default: Error404,
+    Layout: ErrorLayout,
+  },
+  './pages/index.tsx': IndexPage,
+}
 
 const routes: RouteType[] = []
 for (const path of Object.keys(pages)) {

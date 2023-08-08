@@ -23,7 +23,7 @@ module.exports = {
       parserOptions: {
         project: [
           path.resolve(__dirname, './packages/*/tsconfig.json'),
-          path.resolve(__dirname, './tooling/*/tsconfig.json'),
+          path.resolve(__dirname, './packages/examples/*/tsconfig.json'),
         ],
       },
     },

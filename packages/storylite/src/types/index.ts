@@ -12,11 +12,11 @@ export enum ElementIds {
 
 export type StoryLiteUserConfig = {
   title?: React.ReactNode
-  stories?: string | string[]
+  stories?: string
   defaultStory: string
   addons?: StoryAddonList
-  vite?: UserConfig
-  styles?: {
+  viteConfig?: UserConfig
+  styleImports?: {
     ui: string[]
     sandbox: string[]
   }

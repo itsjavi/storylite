@@ -9,7 +9,6 @@ import OpenStoryAddon from './addons/OpenStoryAddon'
 import OutlineAddon from './addons/OutlineAddon'
 import ResponsiveAddon from './addons/ResponsiveAddon'
 import SidebarAddon from './addons/SidebarAddon'
-import styles from './Toolbar.module.css'
 
 type AddonToolbarProps = { story?: string; storyMeta?: StoryMeta }
 
@@ -18,7 +17,7 @@ export default function Toolbar({ story }: AddonToolbarProps) {
   const isStandalone = searchParams.has('standalone')
 
   return (
-    <div className={styles.Toolbar}>
+    <div className={'Toolbar'}>
       <section>
         <SidebarAddon />
         <DarkModeAddon />
