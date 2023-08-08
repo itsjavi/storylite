@@ -10,6 +10,6 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.36.2",
-    "@types/node": "^20.4.7"
+    "@types/node": "^20.4.8"
   }
 }
