@@ -7,13 +7,14 @@ import { ElementIds, StoryComponent, StoryMeta, StoryModule } from '@/types'
 
 import Toolbar from './Toolbar'
 
-export function Story({ story, exportName }: { story: string; exportName: string }): JSX.Element {
+export function Story({ story, exportName }: { story: string; exportName?: string }): JSX.Element {
   const notFound = (
-    <StorySandbox story={story}>
+    <StorySandbox story={story} exportName={exportName}>
       <h3>
         Story not found:{' '}
         <var>
-          {story}.{exportName}
+          {story}
+          {exportName ? `.${exportName}` : '.?'}
         </var>
       </h3>
     </StorySandbox>
@@ -24,8 +25,15 @@ export function Story({ story, exportName }: { story: string; exportName: string
     return notFound
   }
 
-  if (exportName.match(/^[A-Z]/) && typeof storyMapData.module[exportName] === 'function') {
-    const StorySandboxWrapper = createStorySandboxWrapper(story, exportName, storyMapData.module)
+  const defaultExportName = Object.keys(storyMapData.module).filter(key => key !== 'default')[0]
+  const _exportName = exportName ?? defaultExportName
+
+  if (!_exportName) {
+    return notFound
+  }
+
+  if (_exportName.match(/^[A-Z]/) && typeof storyMapData.module[_exportName] === 'function') {
+    const StorySandboxWrapper = createStorySandboxWrapper(story, _exportName, storyMapData.module)
 
     return <StorySandboxWrapper />
   }
@@ -45,19 +53,12 @@ function createStorySandboxWrapper(
   }
 
   const components: [string, StoryComponent][] = []
-  // const componentNames = getStoryComponentNames(storyExport)
   const metadata = storyExport.default || {}
-
-  // for (const key of componentNames) {
-  //   components.push([key, storyExport[key]])
-  // }
 
   components.push([exportName, storyExport[exportName]])
 
   const StoryWrapper = () => {
     const stories = components.map(([, Comp], i) => {
-      // const title = Comp.storyTitle || Comp.displayName || compName
-
       return (
         <section key={i} className={'Section'}>
           <Comp />
@@ -66,7 +67,7 @@ function createStorySandboxWrapper(
     })
 
     return (
-      <StorySandbox story={story} metadata={metadata}>
+      <StorySandbox story={story} exportName={exportName} metadata={metadata}>
         {stories}
       </StorySandbox>
     )
@@ -77,10 +78,12 @@ function createStorySandboxWrapper(
 
 export function StorySandbox({
   story,
+  exportName,
   metadata,
   children,
 }: {
   story: string
+  exportName?: string
   metadata?: StoryMeta
   children?: React.ReactNode
 }) {
@@ -92,7 +95,7 @@ export function StorySandbox({
   return (
     <div className={`${'Story'} ${isStandalone ? 'StandaloneStory' : ``}`}>
       <header className={'Header'} style={toolbarStyles}>
-        <Toolbar story={story} storyMeta={metadata} />
+        <Toolbar story={story} exportName={exportName} storyMeta={metadata} />
       </header>
       <div id={ElementIds.StoryCanvas} className={'Canvas'}>
         {children === undefined && <p>Loading story...</p>}
@@ -101,20 +104,3 @@ export function StorySandbox({
     </div>
   )
 }
-
-// function getStoryComponentNames(storyExport: any): string[] {
-//   if (!storyExport) {
-//     return []
-//   }
-//
-//   const exports = Object.getOwnPropertyNames(storyExport)
-//   const componentNames: string[] = []
-//
-//   for (const key of exports) {
-//     if (key.match(/^[A-Z]/) && typeof storyExport[key] === 'function') {
-//       componentNames.push(key)
-//     }
-//   }
-//
-//   return componentNames
-// }

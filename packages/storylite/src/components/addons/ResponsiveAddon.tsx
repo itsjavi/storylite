@@ -17,7 +17,9 @@ function ResponsiveAddon() {
     const parentIframe = window.parent.document.getElementById(ElementIds.Iframe)
 
     if (!parentIframe) {
-      throw new Error(`#${ElementIds.Iframe} iframe element not found on window.parent.document`)
+      console.warn(`#${ElementIds.Iframe} iframe element not found on window.parent.document`)
+
+      return
     }
 
     parentIframe.style.width = newWidth
@@ -40,6 +42,15 @@ function ResponsiveAddon() {
       _update(addonValue)
     }
   }, [addonValue])
+
+  if (!window.parent.document) {
+    return null
+  }
+
+  const parentIframe = window.parent.document.getElementById(ElementIds.Iframe)
+  if (!parentIframe) {
+    return null
+  }
 
   return (
     <ToolbarBtn

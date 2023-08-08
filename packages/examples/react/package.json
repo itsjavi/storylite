@@ -6,7 +6,8 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite --port=7707",
-    "preview": "vite preview",
+    "preview": "vite build && vite preview",
+    "preview-static": "vite build && open http://localhost:8080 && npx -y http-server ./dist",
     "storylite": "open http://localhost:7707 && vite --port=7707"
   },
   "dependencies": {

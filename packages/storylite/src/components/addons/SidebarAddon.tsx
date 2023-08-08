@@ -12,6 +12,11 @@ function SidebarAddon() {
     return null
   }
 
+  const parentIframe = window.parent.document.getElementById(ElementIds.Iframe)
+  if (!parentIframe) {
+    return null
+  }
+
   const _handleToggle = () => {
     const parentDoc = window.parent.document
     const sidebar = parentDoc.getElementById(ElementIds.Sidebar)

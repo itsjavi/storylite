@@ -10,9 +10,9 @@ import OutlineAddon from './addons/OutlineAddon'
 import ResponsiveAddon from './addons/ResponsiveAddon'
 import SidebarAddon from './addons/SidebarAddon'
 
-type AddonToolbarProps = { story?: string; storyMeta?: StoryMeta }
+type AddonToolbarProps = { story?: string; exportName?: string; storyMeta?: StoryMeta }
 
-export default function Toolbar({ story }: AddonToolbarProps) {
+export default function Toolbar({ story, exportName }: AddonToolbarProps) {
   const [searchParams] = useSearchParams()
   const isStandalone = searchParams.has('standalone')
 
@@ -27,7 +27,7 @@ export default function Toolbar({ story }: AddonToolbarProps) {
       </section>
       <section>
         <FullScreenAddon />
-        <OpenStoryAddon story={story} />
+        <OpenStoryAddon story={story} exportName={exportName} />
       </section>
     </div>
   )

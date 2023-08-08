@@ -1,5 +1,11 @@
 # @storylite/storylite
 
+## 0.1.2
+
+### Patch Changes
+
+- fix: router has now fully static site support. fix navigation.
+
 ## 0.1.1
 
 ### Patch Changes
