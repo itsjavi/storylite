@@ -1,4 +1,5 @@
 import { act, renderHook } from '@testing-library/react'
+
 import { useBrowserStorage } from './useBrowserStorage'
 
 describe('useBrowserStorage', () => {

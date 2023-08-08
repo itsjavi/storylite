@@ -1,7 +1,9 @@
 import { execSync } from 'node:child_process'
 import { existsSync } from 'node:fs'
 import path from 'node:path'
+
 import { Plugin } from 'vite'
+
 import { StoryLiteUserConfig } from '@/types'
 
 const storyliteConfigFile: string = path.resolve(process.cwd(), 'storylite.config.ts')

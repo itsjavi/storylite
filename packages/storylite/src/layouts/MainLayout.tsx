@@ -1,5 +1,7 @@
-import userStyles from 'storylite-user-styles-ui'
 import React from 'react'
+
+import userStyles from 'storylite-user-styles-ui'
+
 import Sidebar from '../components/Sidebar'
 import SidebarTitle from '../components/SidebarTitle'
 import globalStyles from '../styles/reset-main.css?inline'

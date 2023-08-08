@@ -1,8 +1,12 @@
-import { Grid } from 'lucide-react'
 import { useEffect } from 'react'
-import { useBrowserStorage } from '@storylite/support/dist/react'
+
+import { Grid } from 'lucide-react'
+
 import { ElementIds } from '@/types'
+
+import { useBrowserStorage } from '../../hooks/useBrowserStorage'
 import ToolbarBtn from '../ToolbarBtn'
+
 import './GridAddon.css'
 
 export default function GridAddon() {
@@ -10,7 +14,7 @@ export default function GridAddon() {
     'pixel-grid',
     {
       enabled: false,
-    }
+    },
   )
 
   const updateClass = (value: boolean): void => {

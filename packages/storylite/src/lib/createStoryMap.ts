@@ -51,6 +51,6 @@ export const createStoryMap = (stories: StoryImportGlob): StoryModulesMap => {
           meta,
         },
       ]
-    })
+    }),
   )
 }

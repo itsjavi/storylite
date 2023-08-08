@@ -1,6 +1,8 @@
 import React from 'react'
 import { useSearchParams } from 'react-router-dom'
+
 import { ElementIds, StoryComponent, StoryMeta, StoryModule } from '@/types'
+
 import storyMap from '../lib/storyMap'
 import styles from './Story.module.css'
 import Toolbar from './Toolbar'
@@ -29,7 +31,7 @@ export function Story({ story, exportName }: { story: string; exportName: string
 function createStorySandboxWrapper(
   story: string,
   exportName: string,
-  storyExport: StoryModule
+  storyExport: StoryModule,
 ): React.FC<any> {
   if (!storyExport) {
     return function NullStory() {

@@ -1,7 +1,10 @@
-import { Bookmark, MinusSquare, PlusSquare } from 'lucide-react'
 import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
+
+import { Bookmark, MinusSquare, PlusSquare } from 'lucide-react'
+
 import { ElementIds, StoryMeta, StoryModule, StoryModulesMapValue } from '@/types'
+
 import storyMap from '../lib/storyMap'
 import styles from './Sidebar.module.css'
 
@@ -101,10 +104,14 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
 
   return (
     <li className={styles.WithNestedList} title={tooltip}>
-      <span className={styles.ListBtn} onClick={() => setShowMenu(!shouldShowSubmenu)}>
+      <button
+        type="button"
+        className={styles.ListBtn}
+        onClick={() => setShowMenu(!shouldShowSubmenu)}
+      >
         <i className={styles.Icon}>{icon}</i>
         <span className={styles.Text}>{title}</span>
-      </span>
+      </button>
       {shouldShowSubmenu && nestedList}
     </li>
   )

@@ -1,8 +1,12 @@
 import './OutlineAddon.css'
+
+import { useEffect } from 'react'
+
 import { BoxSelect as Icon } from 'lucide-react'
-import React, { useEffect } from 'react'
-import { useBrowserStorage } from '@storylite/support/dist/react'
+
 import { ElementIds } from '@/types'
+
+import { useBrowserStorage } from '../../hooks/useBrowserStorage'
 import ToolbarBtn from '../ToolbarBtn'
 
 export default function OutlineAddon() {
@@ -10,7 +14,7 @@ export default function OutlineAddon() {
     'outlined-elements',
     {
       enabled: false,
-    }
+    },
   )
 
   const updateClass = (value: boolean): void => {

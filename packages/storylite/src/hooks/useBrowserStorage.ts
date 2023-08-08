@@ -9,7 +9,7 @@ type UseBrowserStorageResult<T> = {
 export function useBrowserStorage<T>(
   key: string,
   initialValue: T,
-  driver: Storage = localStorage
+  driver: Storage = localStorage,
 ): UseBrowserStorageResult<T> {
   const initialize = (key: string) => {
     const item = driver.getItem(key)
@@ -40,7 +40,7 @@ export function useBrowserStorage<T>(
         return resolvedValue
       })
     },
-    [key, setState]
+    [key, setState],
   )
 
   const resetValue = useCallback(() => {

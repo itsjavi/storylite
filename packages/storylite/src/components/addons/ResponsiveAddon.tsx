@@ -1,13 +1,16 @@
-import { Smartphone } from 'lucide-react'
 import { useEffect } from 'react'
-import { useBrowserStorage } from '@storylite/support/dist/react'
+
+import { Smartphone } from 'lucide-react'
+
 import { ElementIds } from '@/types'
+
+import { useBrowserStorage } from '../../hooks/useBrowserStorage'
 import ToolbarBtn from '../ToolbarBtn'
 
 function ResponsiveAddon() {
   const { value: addonValue, setValue: setAddonValue } = useBrowserStorage(
     'responsive-width',
-    '100%'
+    '100%',
   )
 
   const _update = (newWidth: string): void => {

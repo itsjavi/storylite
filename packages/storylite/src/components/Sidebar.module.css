@@ -55,6 +55,8 @@ html[data-color-scheme='dark'] .Sidebar {
 }
 
 .ListBtn {
+  all: unset;
+  appearance: none;
   padding: 0.5rem 1rem;
   font-size: 0.8rem;
   line-height: 1rem;

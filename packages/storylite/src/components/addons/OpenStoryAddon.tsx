@@ -1,4 +1,5 @@
 import { ExternalLink } from 'lucide-react'
+
 import ToolbarBtn from '../ToolbarBtn'
 
 export default function OpenStoryAddon({ story }: { story?: string }) {

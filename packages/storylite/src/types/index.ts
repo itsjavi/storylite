@@ -1,5 +1,6 @@
-import { UserConfig } from 'vite'
 import React from 'react'
+
+import { UserConfig } from 'vite'
 
 export enum ElementIds {
   MainGlobalStyles = 'stories_mainLayoutGlobalStyles',

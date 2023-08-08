@@ -1,13 +1,16 @@
-import { Moon } from 'lucide-react'
 import { useEffect } from 'react'
-import { useBrowserStorage } from '@storylite/support/dist/react'
+
+import { Moon } from 'lucide-react'
+
 import { ColorScheme } from '@/types'
+
+import { useBrowserStorage } from '../../hooks/useBrowserStorage'
 import ToolbarBtn from '../ToolbarBtn'
 
 function DarkModeAddon() {
   const { value: colorScheme, setValue: setColorScheme } = useBrowserStorage(
     'color-scheme',
-    ColorScheme.Light
+    ColorScheme.Light,
   )
 
   const updateHtmlAttribute = (colorScheme: ColorScheme): void => {
