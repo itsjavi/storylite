@@ -1,7 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/eslintrc.json",
-  "extends": ["../../.eslintrc.json", "plugin:react/recommended"],
+  "extends": ["../../.eslintrc.js"],
   "rules": {
+    "@typescript-eslint/no-explicit-any": "off",
     "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-key": "warn"

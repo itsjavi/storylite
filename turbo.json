@@ -1,20 +1,24 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["package.json", "yarn.lock", "eslintrc.json", "tsconfig.json"],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["build/**", ".next/**", "!.next/cache/**"],
-      "outputMode": "new-only"
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
-    "typecheck": {
-      "outputMode": "new-only"
+    "lint": {
+      "dependsOn": ["^build", "build"]
+    },
+    "lint-fix": {
+      "dependsOn": ["^build", "build"]
+    },
+    "type-check": {
+      "dependsOn": ["^build", "build"]
+    },
+    "publint-check": {
+      "dependsOn": []
     },
     "test": {
-      "dependsOn": ["^build"]
-    },
-    "test:coverage": {
-      "dependsOn": ["^build"],
+      "dependsOn": ["^build", "build"],
       "outputs": ["coverage/**"]
     },
     "dev": {

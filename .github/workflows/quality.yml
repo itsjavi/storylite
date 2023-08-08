@@ -1,0 +1,51 @@
+name: Quality Checks
+
+env:
+  NODE_VERSION: '>=18.5.0'
+  PNPM_VERSION: 8.6
+
+on:
+  push:
+    branches:
+      - 'main'
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: checkCodeQuality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checkCodeQuality:
+    name: 'Lint, Build & Test'
+    runs-on: ubuntu-latest
+    steps:
+      # -------------- Setup
+      - uses: actions/checkout@v3
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: ${{ env.PNPM_VERSION }}
+          run_install: false
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: https://npm.pkg.github.com
+          cache: 'pnpm'
+          cache-dependency-path: './pnpm-lock.yaml'
+
+      - run: pnpm install --frozen-lockfile
+      # -------------- end of setup
+
+      - run: pnpm prettier-check
+      - run: pnpm lint
+      - run: pnpm publint
+      - run: pnpm build
+      - run: pnpm test:ci
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
+        with:
+          directory: ./
+          token: ${{ secrets.CODECOV_TOKEN }}

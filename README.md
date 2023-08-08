@@ -17,7 +17,7 @@ ensure consistency across the application.
 Designed for small projects that don't require all the features and complexity of a full-blown StoryBook setup,
 StoryLite provides a familiar UI that is easy to use and customize to each team's unique needs.
 
-![StoryLite](./packages/docs/screenshot.png)
+![StoryLite](./packages/storylite/screenshot.png)
 
 ## Features
 

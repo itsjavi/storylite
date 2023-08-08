@@ -1,7 +1,39 @@
 {
+  "editor.wordWrapColumn": 100,
+  "editor.rulers": [100],
+  "editor.fontSize": 14,
+  "files.autoSave": "onFocusChange",
+  "testing.automaticallyOpenPeekView": "failureInVisibleDocument",
+  "jest.jestCommandLine": "node_modules/.bin/jest",
+  "jest.disabledWorkspaceFolders": ["packages"],
+  "files.exclude": {
+    "*/*/node_modules": true,
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/.turbo": true,
+    "**/.vercel": true,
+    "**/dist": true
+  },
   "editor.codeActionsOnSave": {
     "source.addMissingImports": true,
     "source.organizeImports": true,
     "source.fixAll.eslint": true
+  },
+  "[markdown]": {
+    "editor.fontSize": 14,
+    "editor.lineHeight": 18,
+    "editor.wordWrap": "off",
+    "editor.wordWrapColumn": 100,
+    "editor.lineNumbers": "off",
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "on",
+      "other": "on"
+    },
+    "editor.minimap.enabled": true
   }
 }
