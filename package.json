@@ -23,6 +23,7 @@
     "prettier-check": "prettier --check .",
     "prettier-fix": "prettier --write .",
     "pretty": "pnpm run format",
+    "preview": "pnpm build && npx -y http-server ./packages/examples/react/dist",
     "publint": "turbo publint-check",
     "test": "jest --passWithNoTests",
     "test:ci": "jest --ci --passWithNoTests --coverage",
