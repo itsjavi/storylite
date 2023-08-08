@@ -4,15 +4,18 @@
   "description": "Storylite example integration with React",
   "type": "module",
   "scripts": {
+    "build": "vite build",
+    "dev": "vite --port=7707",
+    "preview": "vite preview",
     "storylite": "open http://localhost:7707 && vite --port=7707"
   },
   "dependencies": {
+    "@storylite/storylite": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.2"
   },
   "devDependencies": {
-    "@storylite/storylite": "workspace:*",
     "@types/react": "^18.2.18",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react-swc": "^3.3.2",

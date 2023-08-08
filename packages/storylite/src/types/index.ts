@@ -1,7 +1,5 @@
 import React from 'react'
 
-import { UserConfig } from 'vite'
-
 export enum ElementIds {
   MainGlobalStyles = 'stories_mainLayoutGlobalStyles',
   SandboxGlobalStyles = 'stories_sandboxLayoutGlobalStyles',
@@ -15,7 +13,6 @@ export type StoryLiteUserConfig = {
   stories?: string
   defaultStory: string
   addons?: StoryAddonList
-  viteConfig?: UserConfig
   styleImports?: {
     ui: string[]
     sandbox: string[]

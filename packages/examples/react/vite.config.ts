@@ -13,5 +13,12 @@ export default defineConfig({
     port: Number(process.env.PORT || 0) || 7707,
     host: '0.0.0.0',
   },
-  plugins: [storylitePlugin(), react()],
+  plugins: [
+    storylitePlugin({
+      title: 'StoryLite - React', // Sidebar title
+      stories: 'stories/**/*.stories.tsx', // relative to the CWD
+      defaultStory: 'index', // index page file prefix, e.g. index = index.stories.tsx
+    }),
+    react(),
+  ],
 })

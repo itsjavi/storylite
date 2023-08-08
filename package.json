@@ -14,7 +14,7 @@
     "changeset.apply": "changeset version && pnpm i --no-frozen-lockfile && git add .",
     "changeset.release": "pnpm build && pnpm publint && changeset publish",
     "clear-cache": "rm -rf packages/*/.turbo && rm -rf packages/*/.next && jest --clearCache",
-    "dev": "turbo run dev --no-deps --no-cache --parallel --concurrency 20",
+    "dev": "turbo run build && turbo run dev --no-deps --no-cache --parallel --concurrency 20",
     "format": "pnpm lint-fix && pnpm prettier-fix",
     "postinstall": "pnpm format && pnpm build",
     "lint": "turbo lint",

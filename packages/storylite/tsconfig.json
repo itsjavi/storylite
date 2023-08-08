@@ -21,7 +21,7 @@
       "@/": ["./src/"],
       "@/*": ["./src/*"]
     },
-    "types": ["node", "@testing-library/jest-dom", "vitest/globals"]
+    "types": ["node"]
   },
   "include": ["src", "*.ts"]
 }

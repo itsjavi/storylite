@@ -23,9 +23,6 @@
   },
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
-  "bin": {
-    "storylite": "./bin/server.cjs"
-  },
   "files": [
     "dist"
   ],

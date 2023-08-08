@@ -9,6 +9,5 @@ Basic setup of StoryLite with React:
 - app.tsx
 - index.html
 - package.json
-- storylite.config.ts
 - tsconfig.json
 - vite.config.ts

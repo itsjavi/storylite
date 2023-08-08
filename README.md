@@ -23,7 +23,8 @@ StoryLite provides a familiar UI that is easy to use and customize to each team'
 
 - Lightweight and customizable, with a minimal set of dependencies.
 - Addons system with the basics (dark mode, viewport size, grid, outline, fullscreen, etc.).
-- HMR support.
+- HMR (Hot Module Reload) support when story files change.
+- SSG (Static Site Generation) support.
 - Supports `.stories.jsx` and `.stories.tsx` stories.
 
 ## Installation
