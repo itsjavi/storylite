@@ -24,12 +24,9 @@
     "prettier-fix": "prettier --write .",
     "pretty": "pnpm run format",
     "publint": "turbo publint-check",
-    "test": "turbo test",
-    "test.jest": "jest",
-    "test:ci": "turbo test:coverage",
-    "test:ci.jest": "jest --ci --coverage",
-    "test:coverage": "turbo test:coverage",
-    "test:coverage.jest": "jest --coverage",
+    "test": "jest --passWithNoTests",
+    "test:ci": "jest --ci --passWithNoTests --coverage",
+    "test:coverage": "jest --passWithNoTests --coverage",
     "type-check": "turbo type-check"
   },
   "lint-staged": {
