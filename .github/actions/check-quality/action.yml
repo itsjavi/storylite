@@ -3,8 +3,17 @@ description: 'Checks code quality: prettier, linters, build and test'
 runs:
   using: 'composite'
   steps:
-    - run: pnpm prettier-check
-    - run: pnpm lint
-    - run: pnpm publint
-    - run: pnpm build
-    - run: pnpm test:ci
+    - shell: bash
+      run: pnpm prettier-check
+
+    - shell: bash
+      run: pnpm lint
+
+    - shell: bash
+      run: pnpm publint
+
+    - shell: bash
+      run: pnpm build
+
+    - shell: bash
+      run: pnpm test:ci
