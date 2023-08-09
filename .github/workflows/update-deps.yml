@@ -16,6 +16,8 @@ jobs:
   updateDependencies:
     name: 'Update dependencies'
     runs-on: ubuntu-latest
+    outputs:
+      pending_git_changes: ${{ steps.compare_changes.outputs.pending_git_changes }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -33,7 +35,8 @@ jobs:
       - name: Compare Changes
         id: compare_changes
         run: |
-          changes=$(git diff --name-only HEAD~1)
+          git status
+          changes=$(git diff --name-only HEAD~0)
           echo "Changed Files: $changes"
           if [[ -n "$changes" ]]; then
             echo "pending_git_changes=yes" >> "$GITHUB_OUTPUT"
