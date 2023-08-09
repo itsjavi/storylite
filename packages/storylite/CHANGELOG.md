@@ -1,5 +1,11 @@
 # @storylite/storylite
 
+## 0.1.3
+
+### Patch Changes
+
+- better dependency definitions
+
 ## 0.1.2
 
 ### Patch Changes
