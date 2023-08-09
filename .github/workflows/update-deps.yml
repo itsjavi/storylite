@@ -24,12 +24,18 @@ jobs:
       - name: 'Check code quality'
         uses: ./.github/actions/check-quality
 
-      - name: 'Prepare git'
+      - name: Compare Changes
+        id: compare_changes
         run: |
-          git config --global user.email "noreply@github.com"
-          git config --global user.name "Github Actions"
-          git branch -u origin/main main
+          changes=$(git diff --name-only HEAD~1)
+          echo "pending_git_changes=${changes}" >> "$GITHUB_OUTPUT"
 
+  createPullRequest:
+    name: 'Update dependencies'
+    runs-on: ubuntu-latest
+    needs: [updateDependencies]
+    if: ${{ needs.updateDependencies.outputs.pending_git_changes != '' }}
+    steps:
       - name: Install jq
         run: |
           sudo apt-get update
