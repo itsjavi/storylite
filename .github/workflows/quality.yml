@@ -21,6 +21,8 @@ jobs:
     name: 'Lint, Build & Test'
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+
       - name: 'Setup project'
         uses: ./.github/actions/setup-project
 

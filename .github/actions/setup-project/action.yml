@@ -3,8 +3,6 @@ description: 'Sets up project and its dependencies'
 runs:
   using: 'composite'
   steps:
-    - uses: actions/checkout@v3
-
     - uses: pnpm/action-setup@v2
       with:
         version: ${{ env.PNPM_VERSION }}
