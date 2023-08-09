@@ -34,7 +34,9 @@ jobs:
         id: compare_changes
         run: |
           changes=$(git diff --name-only HEAD~1)
-          echo "pending_git_changes=${changes}" >> "$GITHUB_OUTPUT"
+          changes=$(git diff --name-only HEAD~1)
+          IFS=$'\n' read -rd '' -a changed_files <<< "$changes"
+          echo "pending_git_changes=${changed_files[*]}" >> "$GITHUB_OUTPUT"
 
   createPullRequest:
     name: 'Create Pull Request'
