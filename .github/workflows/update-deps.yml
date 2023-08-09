@@ -18,7 +18,7 @@ jobs:
     name: 'Update dependencies'
     runs-on: ubuntu-latest
     outputs:
-      pending_git_changes: ${{ steps.compare_changes.outputs.pending_git_changes }}
+      has_changes: ${{ steps.git_diff.outputs.has_changes }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -34,34 +34,26 @@ jobs:
         uses: ./.github/actions/check-quality
 
       - name: Compare Changes
-        id: compare_changes
+        id: git_diff
         run: |
           git status
           changes=$(git diff --name-only HEAD~0)
           echo "Changed Files: $changes"
           if [[ -n "$changes" ]]; then
-            echo "pending_git_changes=yes" >> "$GITHUB_OUTPUT"
+            echo "has_changes=yes" >> "$GITHUB_OUTPUT"
           else
-            echo "pending_git_changes=" >> "$GITHUB_OUTPUT"
+            echo "has_changes=" >> "$GITHUB_OUTPUT"
           fi
 
-  createPullRequest:
-    name: 'Create Pull Request'
-    runs-on: ubuntu-latest
-    needs: [updateDependencies]
-    if: ${{ needs.updateDependencies.outputs.pending_git_changes != '' }}
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
       - name: Install jq
+        if: ${{ steps.git_diff.outputs.has_changes == 'yes' }}
         run: |
           sudo apt-get update
           sudo apt-get install -y jq
 
       - name: Check for existing PR
         id: check_open_pr
+        if: ${{ steps.git_diff.outputs.has_changes == 'yes' }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -70,7 +62,7 @@ jobs:
 
       - name: Create PR if not exists
         id: create_pr
-        if: ${{ steps.check_open_pr.outputs.pr_number == 0 }}
+        if: ${{ steps.git_diff.outputs.has_changes == 'yes' && steps.check_open_pr.outputs.pr_number == 0 }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
