@@ -7,6 +7,9 @@ runs:
       run: pnpm prettier-check
 
     - shell: bash
+      run: pnpm type-check
+
+    - shell: bash
       run: pnpm lint
 
     - shell: bash

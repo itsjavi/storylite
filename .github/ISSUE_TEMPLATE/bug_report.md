@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve StoryLite
+about: Create a report to help us improve this project
 title: ''
 labels: needs triage
 assignees: ''
@@ -12,16 +12,10 @@ A clear and concise description of what the bug is.
 
 **Reproduction**
 
-Please, try to reproduce your issue with [Stackblitz](https://stackblitz.com/) or similar. Your issue will get much
-higher priority since it can be triaged efficiently.
+Please, try to reproduce your issue with [Stackblitz](https://stackblitz.com/) or similar.
+Your issue will get much higher priority since it can be triaged efficiently.
 
 Alternatively, create a repository reproducing the issue.
-Or describe steps to reproduce and copy+paste the output from:
-
-```sh
-pnpm storylite serve
-pnpm storylite build
-```
 
 **Environment**
 
