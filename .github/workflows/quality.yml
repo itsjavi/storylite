@@ -21,29 +21,12 @@ jobs:
     name: 'Lint, Build & Test'
     runs-on: ubuntu-latest
     steps:
-      # -------------- Setup
-      - uses: actions/checkout@v3
+      - name: 'Setup project'
+        uses: ./.github/actions/setup-project
 
-      - uses: pnpm/action-setup@v2
-        with:
-          version: ${{ env.PNPM_VERSION }}
-          run_install: false
+      - name: 'Check code quality'
+        uses: ./.github/actions/check-quality
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          registry-url: https://npm.pkg.github.com
-          cache: 'pnpm'
-          cache-dependency-path: './pnpm-lock.yaml'
-
-      - run: pnpm install --frozen-lockfile
-      # -------------- end of setup
-
-      - run: pnpm prettier-check
-      - run: pnpm lint
-      - run: pnpm publint
-      - run: pnpm build
-      - run: pnpm test:ci
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
         with:

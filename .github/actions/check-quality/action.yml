@@ -1,0 +1,10 @@
+name: 'Check code quality'
+description: 'Checks code quality: prettier, linters, build and test'
+runs:
+  using: 'composite'
+  steps:
+    - run: pnpm prettier-check
+    - run: pnpm lint
+    - run: pnpm publint
+    - run: pnpm build
+    - run: pnpm test:ci
