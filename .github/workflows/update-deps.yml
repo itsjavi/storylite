@@ -79,9 +79,9 @@ jobs:
           git config --global user.name "Github Actions"
           git branch -u origin/main main
           # Create branch, commit and PR
-          branch_name="update-deps/$(date +'%Y%m%d%H%M%S')"
+          branch_name="update-deps/$(date +'%Y%m%d-%H%M%S')"
           git checkout -b $branch_name
-          gir add -A
+          git add -A
           git commit -m "chore: update dependencies"
           git push origin $branch_name
           gh pr create --title "chore: update dependencies 🪄" --base main --head $branch_name --label "update-deps"
