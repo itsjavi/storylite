@@ -36,21 +36,49 @@
     "publint-check": "pnpm publint",
     "type-check": "tsc --noEmit"
   },
-  "dependencies": {
-    "@r1stack/coding-style": "^0.1.0",
-    "glob": "^10.3.3",
+  "devDependencies": {
+    "@r1stack/coding-style": "^0.2.1",
+    "@types/node": "^20.4.9",
+    "@types/react": "^18.2.19",
+    "@types/react-dom": "^18.2.7",
     "lucide-react": "^0.265.0",
+    "publint": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.14.2",
+    "tsup": "^7.2.0",
+    "typescript": "^5.1.6",
     "vite": "^4.4.9"
   },
-  "devDependencies": {
-    "@types/node": "^20.4.8",
+  "peerDependencies": {
+    "@types/node": "^20.4.9",
     "@types/react": "^18.2.19",
     "@types/react-dom": "^18.2.7",
-    "publint": "^0.2.0",
-    "tsup": "^7.2.0",
-    "typescript": "^5.1.6"
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.2",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9"
+  },
+  "peerDependenciesMeta": {
+    "@vitejs/plugin-react-swc": {
+      "optional": false
+    },
+    "react": {
+      "optional": false
+    },
+    "react-dom": {
+      "optional": false
+    },
+    "react-router-dom": {
+      "optional": false
+    },
+    "typescript": {
+      "optional": false
+    },
+    "vite": {
+      "optional": false
+    }
   }
 }
