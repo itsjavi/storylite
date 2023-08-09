@@ -8,12 +8,18 @@ on:
     - cron: 0 16 * * * # every day at 16pm
   workflow_dispatch:
 
+concurrency:
+  group: updateDependencies-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   updateDependencies:
     name: 'Update dependencies'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0 # fetch all history so that git diff can compare against HEAD~1
 
       - name: 'Setup project'
         uses: ./.github/actions/setup-project
@@ -31,7 +37,7 @@ jobs:
           echo "pending_git_changes=${changes}" >> "$GITHUB_OUTPUT"
 
   createPullRequest:
-    name: 'Update dependencies'
+    name: 'Create Pull Request'
     runs-on: ubuntu-latest
     needs: [updateDependencies]
     if: ${{ needs.updateDependencies.outputs.pending_git_changes != '' }}
@@ -61,4 +67,4 @@ jobs:
           gir add -A
           git commit -m "chore: update dependencies"
           git push origin $branch_name
-          gh pr create --title "chore: update dependencies" --base main --head $branch_name --label "update-deps"
+          gh pr create --title "chore: update dependencies 🪄" --base main --head $branch_name --label "update-deps"
