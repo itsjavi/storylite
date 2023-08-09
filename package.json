@@ -16,7 +16,7 @@
     "clear-cache": "rm -rf packages/*/.turbo && rm -rf packages/*/.next && jest --clearCache",
     "dev": "turbo run build && turbo run dev --no-deps --no-cache --parallel --concurrency 20",
     "format": "pnpm lint-fix && pnpm prettier-fix",
-    "postinstall": "pnpm format && pnpm build",
+    "postinstall": "pnpm build",
     "lint": "turbo lint",
     "lint-fix": "turbo lint-fix",
     "prepare": "husky install",

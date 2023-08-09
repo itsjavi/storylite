@@ -64,7 +64,7 @@ jobs:
         id: create_pr
         if: ${{ steps.git_diff.outputs.has_changes == 'yes' && steps.check_open_pr.outputs.pr_number == 0 }}
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ github.token }} # make sure your GITHUB_TOKEN has PR creation permissions under "Workflow Permissions" of your repo Actions settings
         run: |
           # Prepare git
           git config --global user.email "noreply@github.com"
