@@ -1,7 +1,8 @@
 name: Update dependencies
 
 env:
-  NODE_VERSION: 18
+  NODE_VERSION: '>=18.5.0'
+  PNPM_VERSION: 8.6
 
 on:
   schedule:
@@ -57,6 +58,8 @@ jobs:
 
       - name: Check for existing PR
         id: check_open_pr
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           pr_number=$(gh pr list --state open --label "update-deps" --json number --jq '.[0].number')
           echo "pr_number=${pr_number:-0}" >> "$GITHUB_OUTPUT"
@@ -64,6 +67,8 @@ jobs:
       - name: Create PR if not exists
         id: create_pr
         if: ${{ steps.check_open_pr.outputs.pr_number == 0 }}
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           # Prepare git
           git config --global user.email "noreply@github.com"
