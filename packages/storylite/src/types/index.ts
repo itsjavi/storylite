@@ -7,7 +7,7 @@ export type StoryLitePluginConfig = {
 export type StoryLiteAppConfig = {
   title: React.ReactNode
   defaultStory: string
-  stylesheets: string[]
+  // stylesheets: string[]
   // addons: StoryAddonList
 }
 

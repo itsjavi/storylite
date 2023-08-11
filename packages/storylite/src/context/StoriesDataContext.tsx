@@ -47,7 +47,7 @@ export const useStoryliteStories = (): StoryModulesMap => {
 const defaultConfig: StoryLiteAppConfig = {
   title: 'Storylite',
   defaultStory: 'index',
-  stylesheets: [],
+  // stylesheets: [],
 }
 
 export const StoryliteDataProvider = ({

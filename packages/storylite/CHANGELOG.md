@@ -1,6 +1,17 @@
 # @storylite/storylite
 
-## 0.1.4
+## 0.2.0
+
+### Breaking Changes
+
+- big refactoring to use context instead of virtual modules.
+- fixes stories resolution and the issues with the virtual modules being bundled.
+- changed: renamed `StoryLiteRouter` -> `StoryLiteApp`
+- changed: plugin config now only accepts the `stories` option, which is the relative glob path to the stories.
+- changed: `StoryLiteApp` now requires a `stories` prop, which the modules map of the stories, you can load them
+  dynamically with `import stories from 'virtual:storylite-stories'`
+  (make sure you import it in the ts config types as `"@storylite/storylite/dist/virtual-modules.d.ts"`)
+  and Vite with the StoryLite plugin will take care of the rest. Check the react examples for more info.
 
 ### Patch Changes
 

@@ -13,7 +13,6 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
       config={{
         title: 'My Storylite',
         defaultStory: 'index',
-        stylesheets: [],
       }}
     />
   </React.StrictMode>,
