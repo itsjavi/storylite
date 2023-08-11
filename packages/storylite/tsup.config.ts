@@ -17,6 +17,6 @@ export default defineConfig([
     minify: false,
     skipNodeModulesBundle: true,
     external: ['node_modules'],
-    onSuccess: 'cp ../../README.md ./dist/README.md && cp ../../LICENSE ./dist/LICENSE',
+    onSuccess: 'cp ../../README.md ./README.md && cp ../../LICENSE ./LICENSE',
   },
 ])
