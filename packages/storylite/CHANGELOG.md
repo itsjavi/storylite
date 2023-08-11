@@ -1,5 +1,11 @@
 # @storylite/storylite
 
+## 0.1.4
+
+### Patch Changes
+
+- update react-router-dom to 6.15.0
+
 ## 0.1.3
 
 ### Patch Changes
