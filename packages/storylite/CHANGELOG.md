@@ -1,5 +1,11 @@
 # @storylite/storylite
 
+## 0.2.2
+
+### Patch Changes
+
+- [`bb3d34a`](https://github.com/itsjavi/storylite/commit/bb3d34a17d59af3890f785a4471202664bb85be2) Thanks [@itsjavi](https://github.com/itsjavi)! - minor changes
+
 ## 0.2.1
 
 ### Patch Changes
