@@ -45,7 +45,7 @@ pnpm add -D @storylite/storylite vite
 
 > You also need `vite` as a devDependency.
 
-For the next steps, please check the [example React](./packages/examples/react) directory
+For the next steps, please check the [example React](https://github.com/itsjavi/storylite/tree/main/packages/examples/react) directory
 to learn how to integrate it in your project.
 
 ## Roadmap
@@ -57,7 +57,7 @@ to learn how to integrate it in your project.
   - [ ] Zoom in/out
   - [ ] Accessibility
 - [ ] Multiple resizable viewports (side by side)
-- [-] Create `packages/examples` packages
+- [ ] Create `packages/examples` packages
   - [x] Support React
   - [ ] Support other frameworks like Vue, Svelte, Solid, and Qwik.
 - Customizable components (props, styles, etc.)
@@ -69,7 +69,7 @@ to learn how to integrate it in your project.
   - [ ] Host in GitHub Pages (build and deploy via GitHub Actions)
 - [ ] Better handling of the iframes
 - [ ] Better addons API
-- [ ] Use redux-toolkit
+- [ ] Use redux-toolkit or similar (Zustand?)
 - [ ] SSR/SSG frameworks support (Next, Astro, etc)
 - [ ] Stories format compatible with Storybook (backwards compatible with SB v6 and v7)
 - [ ] Better mobile experience (specially for sidebars and toolbars)
@@ -84,15 +84,14 @@ to learn how to integrate it in your project.
   and/or fixes for Vue, Svelte, Solid, and others is welcome via PRs.
 - No support for MDX files, to keep the project simple, but adding support via PRs is welcome as long as it doesn't
   add too much complexity.
-- Changes to the config file will require a full server restart at the moment.
 
 ## Contributing
 
-Contributions are welcome! Please read the [contributing guidelines](./CONTRIBUTING.md) before submitting a PR.
+Contributions are welcome! Please read the [contributing guidelines](https://github.com/itsjavi/storylite/tree/main/CONTRIBUTING.md) before submitting a PR.
 
 ## License
 
-[MIT License](./LICENSE)
+[MIT License](https://github.com/itsjavi/storylite/tree/main/LICENSE)
 
 ## Acknowledgements
 

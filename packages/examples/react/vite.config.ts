@@ -15,7 +15,7 @@ export default defineConfig({
   },
   plugins: [
     storylitePlugin({
-      stories: 'stories/**/*.stories.tsx', // relative to the CWD
+      stories: 'stories/**/*.stories.tsx', // relative to process.cwd()
     }),
     react(),
   ],
