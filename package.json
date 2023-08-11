@@ -11,8 +11,7 @@
   "scripts": {
     "build": "turbo build",
     "changeset": "changeset",
-    "changeset.apply": "changeset version && pnpm i --no-frozen-lockfile && git add .",
-    "changeset.bump": "pn changeset && pn changeset.apply",
+    "changeset.apply": "git add -A && changeset version",
     "changeset.publish": "pnpm changeset.release",
     "changeset.release": "pnpm build && pnpm publint && changeset publish",
     "clear-cache": "rm -rf packages/*/.turbo && rm -rf packages/*/.next && jest --clearCache",
