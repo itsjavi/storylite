@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
 import { Bookmark, MinusSquare, PlusSquare } from 'lucide-react'
-import storyMap from 'storylite-user-stories'
 
+import { useStoryliteStories } from '@/context/StoriesDataContext'
 import { ElementIds, StoryMeta, StoryModule, StoryModulesMapValue } from '@/types'
 
 type SidebarProps = {
@@ -17,8 +17,6 @@ type SidebarItemBaseProps = {
   currentStoryName?: string
   currentExportName?: string
 }
-
-const minTooltipLength = 16
 
 export default function Sidebar({ title, ...rest }: SidebarProps) {
   const { story, export_name } = useParams()
@@ -40,10 +38,12 @@ function SidebarNav({
   currentStoryName?: string
   currentExportName?: string
 }): JSX.Element {
+  const stories = useStoryliteStories()
+
   return (
     <nav className={'SidebarNav'}>
       <ul>
-        {Array.from<[string, StoryModulesMapValue]>(storyMap).map(([storyName, storyData], i) => {
+        {Array.from<[string, StoryModulesMapValue]>(stories).map(([storyName, storyData], i) => {
           return (
             <SidebarListItem
               key={i}
@@ -79,7 +79,7 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
     const firstStoryExport = storyData.module[exports[0]]
     const classes = [storyName === currentStoryName ? 'Active' : ''].join(' ')
     const title = firstStoryExport.storyTitle || storyData.meta.title || storyName
-    const tooltip = title.length >= minTooltipLength ? title : undefined
+    const tooltip = typeof title === 'string' ? title : undefined
 
     return (
       <li className={classes} title={tooltip}>
@@ -98,7 +98,7 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
     />
   )
   const title = storyData.meta.title || storyName
-  const tooltip = title.length >= minTooltipLength ? title : undefined
+  const tooltip = typeof title === 'string' ? title : undefined
 
   return (
     <li className={'WithNestedList'} title={tooltip}>
@@ -122,7 +122,7 @@ function SidebarNestedList(props: SidebarItemBaseProps): JSX.Element {
           const exportFn = storyData.module[exportName]
           const classes = [exportName === currentExportName ? 'Active' : '', 'InnerList'].join(' ')
           const title = exportFn.storyTitle || exportName
-          const tooltip = title.length >= minTooltipLength ? title : undefined
+          const tooltip = typeof title === 'string' ? title : undefined
 
           return (
             <li key={i} className={classes} title={tooltip}>

@@ -1,33 +1,15 @@
 import React from 'react'
 
-export enum ElementIds {
-  MainGlobalStyles = 'stories_mainLayoutGlobalStyles',
-  SandboxGlobalStyles = 'stories_sandboxLayoutGlobalStyles',
-  Iframe = 'stories_Iframe',
-  Sidebar = 'stories_Sidebar',
-  StoryCanvas = 'stories_Canvas',
+export type StoryLitePluginConfig = {
+  stories: string
 }
 
-export type StoryLiteUserConfig = {
-  title?: React.ReactNode
-  stories?: string
+export type StoryLiteAppConfig = {
+  title: React.ReactNode
   defaultStory: string
-  addons?: StoryAddonList
-  styleImports?: {
-    ui: string[]
-    sandbox: string[]
-  }
+  stylesheets: string[]
+  // addons: StoryAddonList
 }
-
-export type StoryLiteUserConfigExport = Required<StoryLiteUserConfig>
-
-export enum ColorScheme {
-  Light = 'light',
-  Dark = 'dark',
-  Auto = 'auto',
-}
-
-export type StoryImportPaths = [string, string][]
 
 export enum StoryAddon {
   DarkMode = 'DarkMode',
@@ -48,7 +30,7 @@ export type StoryAddonSettings = {
   onClick?: () => void
 }
 
-export type StoryAddonList = (StoryAddon | [StoryAddon, StoryAddonSettings] | StoryAddonSettings)[]
+// export type StoryAddonList = (StoryAddon | [StoryAddon, StoryAddonSettings] | StoryAddonSettings)[]
 
 export type StoryComponent<P = any> = React.FC<P> & {
   args?: any
@@ -57,10 +39,10 @@ export type StoryComponent<P = any> = React.FC<P> & {
 }
 
 export type StoryMeta = {
-  title?: string
-  icon?: JSX.Element
-  addons?: StoryAddonList
+  title?: React.ReactNode
+  icon?: React.ReactNode
   priority?: number
+  // addons?: StoryAddonList
 }
 
 export type StoryModule<P = any> = {
@@ -70,5 +52,18 @@ export type StoryModule<P = any> = {
 }
 
 export type StoryModulesMapValue = { module: StoryModule; meta: StoryMeta }
-export type StoryImportGlob = Record<string, StoryModule>
 export type StoryModulesMap = Map<string, StoryModulesMapValue>
+
+export enum ElementIds {
+  MainGlobalStyles = 'stories_mainLayoutGlobalStyles',
+  SandboxGlobalStyles = 'stories_sandboxLayoutGlobalStyles',
+  Iframe = 'stories_Iframe',
+  Sidebar = 'stories_Sidebar',
+  StoryCanvas = 'stories_Canvas',
+}
+
+export enum ColorScheme {
+  Light = 'light',
+  Dark = 'dark',
+  Auto = 'auto',
+}

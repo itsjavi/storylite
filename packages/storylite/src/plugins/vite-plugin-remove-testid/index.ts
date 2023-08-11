@@ -2,7 +2,7 @@ import { Plugin } from 'vite'
 
 function removeTestIdsPlugin(enabled = true): Plugin {
   return {
-    name: 'remove-test-ids',
+    name: 'vite-plugin-remove-testid',
     transform(code, id) {
       if (enabled && (id.endsWith('ts') || id.endsWith('tsx'))) {
         code.match(/data-testid=".*?"/g)?.forEach(match => {

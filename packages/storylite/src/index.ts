@@ -1,7 +1,7 @@
 import './styles/index.css'
 
-import StoryLiteRouter from './router'
+import StoryLiteApp from './app'
 
 export * from './types'
 
-export { StoryLiteRouter }
+export { StoryLiteApp }

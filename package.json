@@ -12,6 +12,7 @@
     "build": "turbo build",
     "changeset": "changeset",
     "changeset.apply": "changeset version && pnpm i --no-frozen-lockfile && git add .",
+    "changeset.publish": "pnpm changeset.release",
     "changeset.release": "pnpm build && pnpm publint && changeset publish",
     "clear-cache": "rm -rf packages/*/.turbo && rm -rf packages/*/.next && jest --clearCache",
     "dev": "turbo run build && turbo run dev --no-deps --no-cache --parallel --concurrency 20",

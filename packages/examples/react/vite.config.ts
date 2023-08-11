@@ -15,9 +15,7 @@ export default defineConfig({
   },
   plugins: [
     storylitePlugin({
-      title: 'StoryLite - React', // Sidebar title
       stories: 'stories/**/*.stories.tsx', // relative to the CWD
-      defaultStory: 'index', // index page file prefix, e.g. index = index.stories.tsx
     }),
     react(),
   ],

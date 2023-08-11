@@ -1,13 +1,14 @@
 import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import storyMap from 'storylite-user-stories'
-
+import { useStoryliteStories } from '@/context/StoriesDataContext'
 import { ElementIds, StoryComponent, StoryMeta, StoryModule } from '@/types'
 
 import Toolbar from './Toolbar'
 
 export function Story({ story, exportName }: { story: string; exportName?: string }): JSX.Element {
+  const stories = useStoryliteStories()
+
   const notFound = (
     <StorySandbox story={story} exportName={exportName}>
       <h3>
@@ -19,7 +20,7 @@ export function Story({ story, exportName }: { story: string; exportName?: strin
       </h3>
     </StorySandbox>
   )
-  const storyMapData = storyMap.get(story)
+  const storyMapData = stories.get(story)
 
   if (!storyMapData) {
     return notFound

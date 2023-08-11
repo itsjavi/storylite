@@ -3,6 +3,7 @@
   "include": ["stories", "src", "*.ts", "*.tsx"],
   "compilerOptions": {
     "jsx": "react-jsx",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "types": ["node", "react", "react-dom", "@storylite/storylite/dist/virtual-modules.d.ts"]
   }
 }

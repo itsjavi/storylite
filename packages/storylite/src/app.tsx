@@ -1,6 +1,7 @@
 import React from 'react'
 import { ActionFunction, createHashRouter, LoaderFunction, RouterProvider } from 'react-router-dom'
 
+import { StoryliteDataContext } from './context/StoriesDataContext'
 import MainLayout from './layouts/MainLayout'
 import Error404, { Layout as ErrorLayout } from './pages/404'
 import * as IndexPage from './pages/index'
@@ -8,6 +9,7 @@ import * as SandboxDashboardPage from './pages/sandbox/dashboard'
 import * as SandboxStoryIndex from './pages/sandbox/stories/$story'
 import * as SandboxExportedStory from './pages/sandbox/stories/$story/$export_name'
 import * as ExportedStory from './pages/stories/$story/$export_name'
+import { StoryLiteAppConfig, StoryModulesMap } from './types'
 
 type PageType = {
   default?: React.FC
@@ -99,8 +101,12 @@ const router = createHashRouter(
   })),
 )
 
-const Router = () => {
-  return <RouterProvider router={router} />
+const StoryLiteApp = (props: { config?: StoryLiteAppConfig; stories: StoryModulesMap }) => {
+  return (
+    <StoryliteDataContext.Provider value={{ config: props.config, stories: props.stories }}>
+      <RouterProvider router={router} />
+    </StoryliteDataContext.Provider>
+  )
 }
 
-export default Router
+export default StoryLiteApp
