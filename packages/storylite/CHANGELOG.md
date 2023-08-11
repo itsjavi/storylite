@@ -1,5 +1,13 @@
 # @storylite/storylite
 
+## 0.2.1
+
+### Patch Changes
+
+- [`a8501c9`](https://github.com/itsjavi/storylite/commit/a8501c9da45f5456398f3a0bf407d4e16c76240b) Thanks [@itsjavi](https://github.com/itsjavi)! - chore: better dependencies definition
+
+- [`9279eb4`](https://github.com/itsjavi/storylite/commit/9279eb4a0659cd390b3d99aa923ec2750f1d374c) Thanks [@itsjavi](https://github.com/itsjavi)! - chore: better dependencies definition
+
 ## 0.2.0
 
 ### Breaking Changes
