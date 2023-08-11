@@ -10,7 +10,7 @@
   "author": "Javi Aguilar https://itsjavi.com",
   "scripts": {
     "build": "turbo build",
-    "changeset": "changeset",
+    "changeset": "changeset && git push",
     "changeset.apply": "git add -A && changeset version",
     "changeset.publish": "pnpm changeset.release",
     "changeset.release": "pnpm build && pnpm publint && changeset publish",
