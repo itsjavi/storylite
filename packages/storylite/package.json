@@ -1,7 +1,7 @@
 {
   "name": "@storylite/storylite",
   "version": "0.2.0",
-  "description": "A lightweight alternative to StoryBook, built on top of Vite⚡️",
+  "description": "A lightweight alternative to StoryBook, built on top of Vite⚡️. This package contains the React app.",
   "license": "MIT",
   "type": "module",
   "exports": {
@@ -9,16 +9,6 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.cjs"
-    },
-    "./plugins": {
-      "types": "./dist/plugins.d.ts",
-      "import": "./dist/plugins.js",
-      "default": "./dist/plugins.cjs"
-    },
-    "./dist/plugins": {
-      "types": "./dist/plugins.d.ts",
-      "import": "./dist/plugins.js",
-      "default": "./dist/plugins.cjs"
     },
     "./dist/index.css": "./dist/index.css"
   },

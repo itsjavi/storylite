@@ -1,0 +1,4 @@
+{
+  "extends": "@r1stack/coding-style/tsconfig/base.json",
+  "include": ["src", "*.ts"]
+}

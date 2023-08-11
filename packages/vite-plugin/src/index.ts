@@ -1,6 +1,8 @@
 import { Plugin } from 'vite'
 
-import { StoryLitePluginConfig } from '@/types'
+export type StoryLitePluginConfig = {
+  stories: string
+}
 
 const storiesVirtualModuleId = 'virtual:storylite-stories'
 const resolvedStoriesVirtualModuleId = '\0virtual:storylite-stories'

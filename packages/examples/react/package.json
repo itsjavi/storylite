@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "@storylite/storylite": "workspace:*",
+    "@storylite/vite-plugin": "workspace:*",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react-swc": "^3.3.2",

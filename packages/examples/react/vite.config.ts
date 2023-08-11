@@ -4,7 +4,7 @@
  * @see https://vitejs.dev/config
  */
 
-import { storylitePlugin } from '@storylite/storylite/dist/plugins'
+import storylitePlugin from '@storylite/vite-plugin'
 import react from '@vitejs/plugin-react-swc'
 import { defineConfig } from 'vite'
 

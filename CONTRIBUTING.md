@@ -21,10 +21,10 @@ pnpm install
 
 ## Developing
 
-The main `@storylite/storylite` package can be found in `packages/storylite`.
+The main packages are `ui` and `vite-plugin`, and can be found in `packages/*`.
 
-You can quickly test and debug your changes in `@storylite/storylite` by running `packages/example`
-(it's a playground project with demos in many frameworks to try out storylite):
+You can quickly build and preview your changes by running the `dev` command
+(it will also start the React example project):
 
 ```sh
 pnpm dev
@@ -63,7 +63,7 @@ If possible, your changes should be also documented.
 
 StoryLite uses [changesets](https://github.com/changesets/changesets) to manage the changelog and releases.
 
-If you are changing `@storylite/storylite` you need to
+Commit to `main` that comes from a PR, should
 [add a changeset](https://github.com/changesets/changesets/blob/main/docs/adding-a-changeset.md)
 (or you will be asked to do so in your PR):
 
@@ -71,7 +71,7 @@ If you are changing `@storylite/storylite` you need to
 pnpm changeset
 ```
 
-You will be asked to select the scope (pick `@storylite/storylite`) and version (patch, minor, major).
+You will be asked to select the scope and version (patch, minor, major).
 Then you should add a summary of the changes in the following format:
 
 - WHAT the change is
