@@ -34,13 +34,13 @@ to define the stories:
 
 ```bash
 # Using npm
-npm install -D @storylite/storylite vite
+npm install -D @storylite/storylite vite @storylite/vite-plugin
 
 # Using yarn
-yarn add -D @storylite/storylite vite
+yarn add -D @storylite/storylite vite @storylite/vite-plugin
 
 # Using pnpm
-pnpm add -D @storylite/storylite vite
+pnpm add -D @storylite/storylite vite @storylite/vite-plugin
 ```
 
 > You also need `vite` as a devDependency.
