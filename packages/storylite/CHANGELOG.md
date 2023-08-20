@@ -1,5 +1,11 @@
 # @storylite/storylite
 
+## 0.3.0
+
+### Minor Changes
+
+- 6c34e8e: breaking: split ui from vite plugin
+
 ## 0.2.0
 
 ### Breaking Changes

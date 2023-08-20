@@ -1,6 +1,6 @@
 {
   "name": "@storylite/vite-plugin",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A lightweight alternative to StoryBook, built on top of Vite⚡️",
   "license": "MIT",
   "type": "module",
