@@ -1,6 +1,5 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.3.0/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "itsjavi/storylite", "summary": "" }],
   "commit": false,
   "fixed": [],
   "linked": [],
