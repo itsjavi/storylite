@@ -9,10 +9,6 @@ import react from '@vitejs/plugin-react-swc'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  server: {
-    port: Number(process.env.PORT || 0) || 7707,
-    host: '0.0.0.0',
-  },
   plugins: [
     storylitePlugin({
       stories: 'stories/**/*.stories.tsx', // relative to process.cwd()
