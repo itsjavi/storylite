@@ -35,8 +35,5 @@ export default defineConfig([
     minify: false,
     skipNodeModulesBundle: true,
     external: ['node_modules'],
-    onSuccess: ['sleep 2', 'cp ./src/virtual-modules.d.ts ./dist/virtual-modules.d.ts'].join(
-      ' && ',
-    ),
   },
 ])

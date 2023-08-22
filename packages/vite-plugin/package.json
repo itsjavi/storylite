@@ -30,8 +30,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup",
-    "dev": "sleep 10 && tsup --watch --clean",
+    "build": "tsup --clean",
+    "dev": "tsup --watch",
     "lint": "eslint --max-warnings=10 .",
     "lint-fix": "eslint --fix .",
     "prepublishOnly": "pnpm run build",

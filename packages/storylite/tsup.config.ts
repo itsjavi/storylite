@@ -35,6 +35,5 @@ export default defineConfig([
     minify: false,
     skipNodeModulesBundle: true,
     external: ['node_modules'],
-    onSuccess: ['sleep 2'].join(' && '),
   },
 ])

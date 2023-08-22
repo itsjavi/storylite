@@ -11,11 +11,11 @@
   "scripts": {
     "build": "turbo build",
     "clear-cache": "rm -rf packages/*/.turbo && rm -rf packages/*/.next && jest --clearCache",
-    "dev": "turbo run build && sleep 2 && turbo run dev --no-deps --no-cache --parallel --concurrency 20",
+    "dev": "turbo run build && turbo run dev --no-deps --no-cache --parallel --concurrency 20",
     "format": "pnpm lint-fix && pnpm prettier-fix",
     "hooks:pre-commit": "pnpm lint-staged",
     "hooks:pre-push": "pnpm run quality-checks",
-    "postinstall": "pnpm lint-staged",
+    "postinstall": "pnpm lint-staged || echo 'lint-staged failed on postinstall'",
     "lint": "turbo lint -- --max-warnings=0",
     "lint-fix": "turbo lint-fix",
     "prepare": "husky install",
