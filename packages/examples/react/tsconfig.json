@@ -4,6 +4,6 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
-    "types": ["node", "react", "react-dom", "@storylite/vite-plugin/dist/virtual-modules.d.ts"]
+    "types": ["node", "react", "react-dom", "@storylite/vite-plugin/virtual"]
   }
 }
