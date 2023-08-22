@@ -1,3 +1,10 @@
 {
-  "recommendations": ["esbenp.prettier-vscode", "dbaeumer.vscode-eslint"]
+  "recommendations": [
+    "vsls-contrib.codetour",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "yoavbls.pretty-ts-errors",
+    "orta.vscode-jest",
+    "github.vscode-github-actions"
+  ]
 }

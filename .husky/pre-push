@@ -1,9 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-pnpm prettier-check
-pnpm type-check
-pnpm lint
-pnpm publint
-pnpm build
-pnpm test:ci
+pnpm hooks:pre-push

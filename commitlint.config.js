@@ -35,7 +35,7 @@ module.exports = {
       'always',
       [
         'general',
-        'release',
+        'releases',
         'deps',
         'config',
         'setup',
