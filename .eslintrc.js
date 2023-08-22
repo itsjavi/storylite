@@ -22,8 +22,8 @@ module.exports = {
       files: ['*.ts', '*.tsx', '*.mts'],
       parserOptions: {
         project: [
-          path.resolve(__dirname, './packages/*/tsconfig.json'),
-          path.resolve(__dirname, './packages/examples/*/tsconfig.json'),
+          path.resolve(__dirname, './packages/**/tsconfig.json'),
+          path.resolve(__dirname, './packages/examples/**/tsconfig.json'),
         ],
       },
     },
