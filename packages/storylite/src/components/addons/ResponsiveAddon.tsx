@@ -17,7 +17,8 @@ function ResponsiveAddon() {
     const parentIframe = window.parent.document.getElementById(ElementIds.Iframe)
 
     if (!parentIframe) {
-      console.warn(`#${ElementIds.Iframe} iframe element not found on window.parent.document`)
+      // eslint-disable-next-line no-console
+      console.error(`#${ElementIds.Iframe} iframe element not found on window.parent.document`)
 
       return
     }

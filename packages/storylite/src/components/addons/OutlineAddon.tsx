@@ -18,6 +18,7 @@ export default function OutlineAddon() {
   const updateClass = (value: boolean): void => {
     const element = document.getElementById(ElementIds.StoryCanvas)
     if (element === null) {
+      // eslint-disable-next-line no-console
       console.error(`Element #${ElementIds.StoryCanvas} not found`)
 
       return

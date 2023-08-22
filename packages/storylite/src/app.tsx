@@ -82,11 +82,6 @@ routes.push({
   Layout: ErrorLayout,
 })
 
-console.log(
-  'Routes: ',
-  routes.map(({ path }) => path),
-)
-
 const router = createHashRouter(
   routes.map(({ Component, Layout, ErrorBoundary, ...rest }) => ({
     ...rest,
