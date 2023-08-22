@@ -1,3 +1,9 @@
+const fs = require('fs')
+
+const folderNamesUnderPackages = fs
+  .readdirSync('./packages')
+  .filter(file => fs.statSync(`./packages/${file}`).isDirectory())
+
 /**
  * @type {import('@commitlint/types').UserConfig}
  */
@@ -18,10 +24,26 @@ module.exports = {
         'fix',
         'perf',
         'refactor',
-        'release',
         'revert',
         'style',
         'test',
+      ],
+    ],
+    'scope-empty': [2, 'never'],
+    'scope-enum': [
+      2,
+      'always',
+      [
+        'general',
+        'release',
+        'deps',
+        'config',
+        'setup',
+        'readme',
+        'tools',
+        'workflow',
+        // packages:
+        ...folderNamesUnderPackages,
       ],
     ],
   },

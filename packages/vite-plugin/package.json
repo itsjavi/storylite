@@ -42,9 +42,9 @@
     "vite": "^4.4.9"
   },
   "devDependencies": {
-    "@r1stack/coding-style": "^0.3.0",
+    "@r1stack/coding-style": "^0.3.7",
     "@types/node": "^20.5.1",
-    "publint": "^0.2.1",
+    "publint": "^0.2.2",
     "tsup": "^7.2.0",
     "typescript": "^5.1.6"
   }

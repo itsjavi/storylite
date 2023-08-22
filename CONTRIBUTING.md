@@ -15,10 +15,36 @@ npm install -g pnpm@8
 
 ## Developing
 
-To get started, use the Quick Start guide found in the [README](README.md) to install dependencies
-and start the dev server.
-
 The different packages can be found in `packages/*`, and that's where you'll be mainly working.
+
+### Quick Start
+
+Here are the basic commands you'll need to get started:
+
+```sh
+
+# Install dependencies
+pnpm install
+
+# Start the dev server
+pnpm dev
+
+# Build dist files
+pnpm build
+
+# Run tests
+pnpm test
+
+# Lint
+pnpm lint
+
+# Format
+pnpm format
+
+# Type check
+pnpm type-check
+
+```
 
 ## Testing
 

@@ -74,7 +74,7 @@ jobs:
           branch_name="update-deps/$(date +'%Y%m%d-%H%M%S')"
           git checkout -b $branch_name
           git add -A
-          git commit -m "chore: update dependencies"
+          git commit -m "chore(deps): update to latest versions"
           git push origin $branch_name
           gh pr create --title "chore: update dependencies 🪄" --base main --head $branch_name --label "update-deps" \
             --body "This PR updates all package dependencies to their latest version. Please review the changes and merge if everything looks good."

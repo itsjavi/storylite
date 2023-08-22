@@ -1,0 +1,31 @@
+name: Publish Releases
+
+env:
+  NODE_VERSION: '>=18.5.0'
+  PNPM_VERSION: 8.6
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*.*.*'
+
+concurrency:
+  group: publishReleases-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  publishReleases:
+    name: 'Publish releases'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: 'Setup project'
+        uses: ./.github/actions/setup-project
+
+      - name: Publish pending releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          pnpm exec changelogen gh release
