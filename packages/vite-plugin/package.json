@@ -35,7 +35,7 @@
     "lint": "eslint --max-warnings=10 .",
     "lint-fix": "eslint --fix .",
     "prepublishOnly": "pnpm run build",
-    "publint-check": "pnpm publint",
+    "publint-check": "pnpm run build && pnpm publint",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
