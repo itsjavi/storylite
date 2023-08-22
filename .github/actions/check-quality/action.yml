@@ -13,10 +13,10 @@ runs:
       run: pnpm lint
 
     - shell: bash
-      run: pnpm publint
+      run: pnpm build
 
     - shell: bash
-      run: pnpm build
+      run: pnpm publint
 
     - shell: bash
       run: pnpm test:ci
