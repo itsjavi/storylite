@@ -36,7 +36,7 @@
     "version:publish": "pnpm run version:publish-gh-refs && pnpm run version:publish-npm",
     "version:publish-gh-refs": "git push && git push -n --tags",
     "version:publish-gh-releases": ".scripts/tag-release-gh.sh",
-    "version:publish-npm": "pnpm -r exec pnpm publish"
+    "version:publish-npm": "pnpm -r --filter='@storylite/*' exec pnpm publish"
   },
   "lint-staged": {
     "*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}": [
