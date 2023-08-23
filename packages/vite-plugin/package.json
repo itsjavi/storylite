@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@r1stack/coding-style": "^0.3.7",
-    "@types/node": "^20.5.2",
+    "@types/node": "^20.5.3",
     "publint": "^0.2.2",
     "tsup": "^7.2.0",
     "typescript": "^5.1.6"
