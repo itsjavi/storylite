@@ -1,3 +1,33 @@
+## v0.4.0
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.3.1...v0.4.0)
+
+### 🩹 Fixes
+
+- **workflow:** Quality checks fail after updated script ([d41690d](https://github.com/itsjavi/storylite/commit/d41690d))
+- **tools:** Publint broken on CI ([f0e64a2](https://github.com/itsjavi/storylite/commit/f0e64a2))
+
+### 💅 Refactors
+
+- **vite-plugin:** Rework build process and rename virtual imports ([0d77a69](https://github.com/itsjavi/storylite/commit/0d77a69))
+
+### 📖 Documentation
+
+- **readme:** Simplify contents ([74c8487](https://github.com/itsjavi/storylite/commit/74c8487))
+
+### 🏡 Chore
+
+- **tools:** Avoid to release examples as npm pkgs ([41922a8](https://github.com/itsjavi/storylite/commit/41922a8))
+- **tools:** Avoid to release examples as npm pkgs ([4f59718](https://github.com/itsjavi/storylite/commit/4f59718))
+- **tools:** Standarize scripts between @itsjavi repos ([a23a760](https://github.com/itsjavi/storylite/commit/a23a760))
+- **examples:** Open on vite dev, change port to 7007 to follow SB port pattern ([4f9e8cb](https://github.com/itsjavi/storylite/commit/4f9e8cb))
+- **tools:** Better webcontainers compatibility ([4a3fb5b](https://github.com/itsjavi/storylite/commit/4a3fb5b))
+- **vite-plugin:** Bundle the additional dts in the main index.d.ts file ([7d7c5d7](https://github.com/itsjavi/storylite/commit/7d7c5d7))
+
+### ❤️ Contributors
+
+- Javi Aguilar
+
 ## v0.3.1
 
 ### 🚀 Enhancements
