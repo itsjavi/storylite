@@ -1,4 +1,13 @@
+import fs from 'node:fs'
+import path from 'node:path'
+
 import { defineConfig } from 'tsup'
+
+const extraDts = ['src/virtual-modules.d.ts']
+  .map(filename => {
+    return fs.readFileSync(path.join(__dirname, filename), 'utf-8')
+  })
+  .join('\n')
 
 export default defineConfig([
   {
@@ -27,8 +36,9 @@ export default defineConfig([
         preserveSymlinks: true,
         // Ensure we can parse the latest code
         target: 'ESNext',
-        types: ['node'],
+        types: ['node', './src/virtual-modules.d.ts'],
       },
+      footer: `\n${extraDts}\n`,
     },
     sourcemap: true,
     splitting: true,
