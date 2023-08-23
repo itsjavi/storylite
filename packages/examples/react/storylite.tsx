@@ -4,7 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 import { StoryLiteApp } from '@storylite/storylite'
-import stories from 'virtual:storylite-stories'
+import stories from '@storylite/vite-plugin:stories'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

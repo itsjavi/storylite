@@ -35,5 +35,6 @@ export default defineConfig([
     minify: false,
     skipNodeModulesBundle: true,
     external: ['node_modules'],
+    onSuccess: ['cp ../../README.md ./README.md'].join(' && '),
   },
 ])

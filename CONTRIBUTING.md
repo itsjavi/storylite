@@ -4,14 +4,9 @@ Thanks for your interest to contribute to this project. Please take a moment and
 
 ## Repository
 
-This project is a monorepo using turbo and pnpm workspaces. We use Node v18 or v20.
-The package manager used to install and link dependencies must be [pnpm v8](https://pnpm.io/).
-
-It can be installed as:
-
-```sh
-npm install -g pnpm@8
-```
+- We use Node v18 or v20 and the `pnpm` package manager.
+- This project is a monorepo using `turbo` and `pnpm` workspaces.
+- We use [Convention Commits](https://www.conventionalcommits.org/en/v1.0.0/) for our commit messages.
 
 ## Developing
 
@@ -35,14 +30,20 @@ pnpm build
 # Run tests
 pnpm test
 
+# Run tests with coverage
+pnpm test:coverage
+
 # Lint
 pnpm lint
 
-# Format
+# Format (prettier + eslint --fix)
 pnpm format
 
 # Type check
 pnpm type-check
+
+# Run all quality checks (prettier-check, type-check, lint, build, publint, test)
+pnpm quality-checks
 
 ```
 

@@ -1,13 +1,13 @@
-import fs from 'node:fs'
-import path from 'node:path'
+// import fs from 'node:fs'
+// import path from 'node:path'
 
 import { defineConfig } from 'tsup'
 
-const extraDts = ['src/virtual-modules.d.ts']
-  .map(filename => {
-    return fs.readFileSync(path.join(__dirname, filename), 'utf-8')
-  })
-  .join('\n')
+// const extraDts = ['src/stories.d.ts']
+//   .map(filename => {
+//     return fs.readFileSync(path.join(__dirname, filename), 'utf-8')
+//   })
+//   .join('\n')
 
 export default defineConfig([
   {
@@ -20,6 +20,7 @@ export default defineConfig([
     ignoreWatch: ['**/dist/**', '**/node_modules/**', '*.test.ts'],
     clean: true,
     dts: {
+      // resolve: true,
       compilerOptions: {
         // Ensure ".d.ts" modules are generated
         declaration: true,
@@ -36,14 +37,20 @@ export default defineConfig([
         preserveSymlinks: true,
         // Ensure we can parse the latest code
         target: 'ESNext',
-        types: ['node', './src/virtual-modules.d.ts'],
+        types: ['node'],
       },
-      footer: `\n${extraDts}\n`,
+      // footer: `\n${extraDts}\n`,
     },
     sourcemap: true,
     splitting: true,
     minify: false,
     skipNodeModulesBundle: true,
     external: ['node_modules'],
+    onSuccess: [
+      // Hack! wait for DTS to be generated :( -> https://github.com/egoist/tsup/issues/700
+      'sleep 2', // DTS needs around 0.5s to be generated, so 2s should be enough
+      'cp ./src/virtual-modules.d.ts ./dist/virtual-modules.d.ts',
+      'cp ./src/virtual-modules.d.ts ./dist/virtual-modules.d.cts',
+    ].join(' && '),
   },
 ])

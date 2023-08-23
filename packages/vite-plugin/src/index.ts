@@ -4,8 +4,8 @@ export type StoryLitePluginConfig = {
   stories: string
 }
 
-const storiesVirtualModuleId = 'virtual:storylite-stories'
-const resolvedStoriesVirtualModuleId = '\0virtual:storylite-stories'
+const storiesVirtualModuleId = '@storylite/vite-plugin:stories'
+const resolvedStoriesVirtualModuleId = '\0@storylite/vite-plugin:stories'
 
 const defaultConfig: StoryLitePluginConfig = {
   stories: 'stories/**/*.stories.tsx', // this is relative to the process.cwd()
