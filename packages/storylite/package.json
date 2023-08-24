@@ -29,8 +29,8 @@
     "type-check": "tsc --noEmit"
   },
   "devDependencies": {
-    "@r1stack/coding-style": "^0.3.7",
-    "@types/node": "^20.5.3",
+    "@r1stack/coding-style": "^0.4.1",
+    "@types/node": "^20.5.4",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "lucide-react": "^0.268.0",
