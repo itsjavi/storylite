@@ -1,10 +1,10 @@
+import { useStoryLiteConfig } from '@/app/context/StoriesDataContext'
 import { Story } from '@/components/Story'
-import { useStoryliteConfig } from '@/context/StoriesDataContext'
 
 import SandboxLayout from '../../layouts/SandboxLayout'
 
 export default function StoryPage() {
-  const config = useStoryliteConfig()
+  const config = useStoryLiteConfig()
 
   return <Story story={config.defaultStory || 'index'} exportName={'Main'} />
 }

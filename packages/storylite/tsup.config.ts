@@ -8,8 +8,7 @@ export default defineConfig([
     outDir: './dist',
     format: ['esm', 'cjs'],
     target: 'es2020',
-    ignoreWatch: ['**/dist/**', '**/node_modules/**', '*.test.ts'],
-    clean: true,
+    ignoreWatch: ['**/dist/**', '**/node_modules/**', '*.test.*'],
     dts: {
       compilerOptions: {
         // Ensure ".d.ts" modules are generated
@@ -36,5 +35,18 @@ export default defineConfig([
     skipNodeModulesBundle: true,
     external: ['node_modules'],
     onSuccess: ['cp ../../README.md ./README.md'].join(' && '),
+  },
+  {
+    entry: {
+      index: './src/styles/index.css',
+    },
+    outDir: './dist',
+    format: ['esm'],
+    ignoreWatch: ['**/dist/**', '**/node_modules/**', '*.test.*'],
+    sourcemap: true,
+    splitting: false,
+    minify: false,
+    skipNodeModulesBundle: true,
+    external: ['node_modules'],
   },
 ])

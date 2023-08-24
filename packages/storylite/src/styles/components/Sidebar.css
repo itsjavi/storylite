@@ -85,6 +85,11 @@ html[data-color-scheme='dark'] .Sidebar {
   margin: 0;
 }
 
+.SidebarNav li {
+  display: flex;
+  flex-direction: column;
+}
+
 .SidebarNav .ListBtn {
   all: unset;
   appearance: none;

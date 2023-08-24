@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 
 import { Bookmark, MinusSquare, PlusSquare } from 'lucide-react'
 
-import { useStoryliteStories } from '@/context/StoriesDataContext'
+import { useStoryLiteStories } from '@/app/context/StoriesDataContext'
 import { ElementIds, StoryMeta, StoryModule, StoryModulesMapValue } from '@/types'
 
 type SidebarProps = {
@@ -38,7 +38,7 @@ function SidebarNav({
   currentStoryName?: string
   currentExportName?: string
 }): JSX.Element {
-  const stories = useStoryliteStories()
+  const stories = useStoryLiteStories()
 
   return (
     <nav className={'SidebarNav'}>
@@ -63,17 +63,15 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
   const { storyName, storyData, currentStoryName, currentExportName } = props
   const exports = Object.keys(storyData.module).filter(exportName => exportName !== 'default')
   const [showMenu, setShowMenu] = useState<undefined | boolean>(undefined)
+  const hasMultipleExports = exports.length > 1
 
   const fallbackShowMenu = storyName === currentStoryName
-  const shouldShowSubmenu = showMenu !== undefined ? showMenu : fallbackShowMenu
+  const shouldShowSubmenu =
+    hasMultipleExports && (showMenu !== undefined ? showMenu : fallbackShowMenu)
 
-  const icon = storyData.meta.icon ? (
-    storyData.meta.icon
-  ) : shouldShowSubmenu ? (
-    <MinusSquare />
-  ) : (
-    <PlusSquare />
-  )
+  const collapsableIcon = shouldShowSubmenu ? <MinusSquare /> : <PlusSquare />
+  const defaultIcon = hasMultipleExports ? collapsableIcon : <Bookmark />
+  const icon = storyData.meta.icon ? storyData.meta.icon : defaultIcon
 
   if (exports.length === 1) {
     const firstStoryExport = storyData.module[exports[0]]

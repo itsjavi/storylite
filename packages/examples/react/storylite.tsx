@@ -1,4 +1,4 @@
-import '@storylite/storylite/dist/index.css'
+import '@storylite/storylite/styles.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <StoryLiteApp
       stories={stories}
       config={{
-        title: 'My Storylite',
+        title: ' ⚡️ StoryLite React',
         defaultStory: 'index',
       }}
     />

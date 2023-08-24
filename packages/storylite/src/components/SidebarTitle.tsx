@@ -1,17 +1,13 @@
 import { Link } from 'react-router-dom'
 
-import { Library } from 'lucide-react'
-
-import { useStoryliteConfig } from '@/context/StoriesDataContext'
+import { useStoryLiteConfig } from '@/app/context/StoriesDataContext'
 
 export default function SidebarTitle() {
-  const config = useStoryliteConfig()
+  const config = useStoryLiteConfig()
 
   return (
     <div className={'SidebarTitle'}>
-      <Link to={'/'}>
-        <Library style={{ verticalAlign: 'middle' }} /> {config.title}
-      </Link>
+      <Link to={'/'}>{config.title}</Link>
     </div>
   )
 }

@@ -1,7 +1,7 @@
 {
   "name": "storylite-examples-react",
   "private": true,
-  "description": "Storylite example integration with React",
+  "description": "StoryLite example integration with React",
   "type": "module",
   "scripts": {
     "build": "vite build",

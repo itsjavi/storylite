@@ -1,13 +1,13 @@
 import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 
-import { useStoryliteStories } from '@/context/StoriesDataContext'
+import { useStoryLiteStories } from '@/app/context/StoriesDataContext'
 import { ElementIds, StoryComponent, StoryMeta, StoryModule } from '@/types'
 
 import Toolbar from './Toolbar'
 
 export function Story({ story, exportName }: { story: string; exportName?: string }): JSX.Element {
-  const stories = useStoryliteStories()
+  const stories = useStoryLiteStories()
 
   const notFound = (
     <StorySandbox story={story} exportName={exportName}>
