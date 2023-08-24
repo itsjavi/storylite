@@ -1,16 +1,9 @@
-export * from './components'
-export * from './config'
-export * from './core'
-export * from './legacy'
-export * from './modules'
-export * from './parameters'
-export * from './story'
-export * from './ui'
-
 /*
 The new version of the API, provides a set of interoperable features with Storybook,
 such as: decorators, args, parameters, play function, loaders, and more.
 */
+
+import { Story } from './story'
 
 // /**
 //  * StoryLite Story Metadata object for default exports.
@@ -28,3 +21,13 @@ such as: decorators, args, parameters, play function, loaders, and more.
 // export const myComponent = () => <MyComponent />
 // will be converted to:
 // My Component
+
+export type SLModuleExport = Story<any> | any
+
+export type SLModule = {
+  [key: string]: SLModuleExport
+} & {
+  default?: SLModuleExport
+}
+
+export type SLModuleMap = Map<string, SLModule>
