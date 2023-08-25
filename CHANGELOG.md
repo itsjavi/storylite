@@ -1,3 +1,19 @@
+## v0.5.1
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.5.0...v0.5.1)
+
+### 🩹 Fixes
+
+- **ui:** Adjust some wrong styles ([b09c0ac](https://github.com/itsjavi/storylite/commit/b09c0ac))
+
+### 🏡 Chore
+
+- **tools:** Fix publish script ([bf2911e](https://github.com/itsjavi/storylite/commit/bf2911e))
+
+### ❤️ Contributors
+
+- Javi Aguilar
+
 ## v0.5.0
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.4.0...v0.5.0)
