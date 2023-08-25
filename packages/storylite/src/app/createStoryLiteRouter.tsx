@@ -1,22 +1,22 @@
 import React from 'react'
 import { ActionFunction, createHashRouter, LoaderFunction } from 'react-router-dom'
 
-import MainLayout from '../layouts/MainLayout'
+import TopFrameLayout from '../components/layouts/TopFrameLayout'
 // import all pages manually (we are not in the Vite context here, so we cannot use import.meta.glob)
 import Error404, { Layout as ErrorLayout } from '../pages/404'
+import * as SandboxDashboardPage from '../pages/iframe/dashboard'
+import * as SandboxStoryIndex from '../pages/iframe/stories/$story'
+import * as SandboxExportedStory from '../pages/iframe/stories/$story/$export_name'
 import * as IndexPage from '../pages/index'
-import * as SandboxDashboardPage from '../pages/sandbox/dashboard'
-import * as SandboxStoryIndex from '../pages/sandbox/stories/$story'
-import * as SandboxExportedStory from '../pages/sandbox/stories/$story/$export_name'
 import * as ExportedStory from '../pages/stories/$story/$export_name'
 import { PageType, RouteType } from '../types/app'
 
 export function createStoryLiteRouter(): ReturnType<typeof createHashRouter> {
   // const pages = import.meta.glob('./pages/**/*.tsx', { eager: true }) as Record<string, PageType>
   const pages: Record<string, PageType> = {
-    './pages/sandbox/stories/$story/$export_name.tsx': SandboxExportedStory,
-    './pages/sandbox/stories/$story/index.tsx': SandboxStoryIndex,
-    './pages/sandbox/dashboard.tsx': SandboxDashboardPage,
+    './pages/iframe/stories/$story/$export_name.tsx': SandboxExportedStory,
+    './pages/iframe/stories/$story/index.tsx': SandboxStoryIndex,
+    './pages/iframe/dashboard.tsx': SandboxDashboardPage,
     './pages/stories/$story/$export_name.tsx': ExportedStory,
     './pages/index.tsx': IndexPage,
     './pages/404.tsx': {
@@ -44,7 +44,7 @@ export function createStoryLiteRouter(): ReturnType<typeof createHashRouter> {
     routes.push({
       path: fileName === 'index' ? '/' : `/${normalizedPathName.toLowerCase()}`,
       Component: page.default,
-      Layout: page.Layout || MainLayout,
+      Layout: page.Layout || TopFrameLayout,
       loader: page.loader as unknown as LoaderFunction | undefined,
       action: page.action as unknown as ActionFunction | undefined,
       ErrorBoundary: page.ErrorBoundary as unknown as React.FC,
