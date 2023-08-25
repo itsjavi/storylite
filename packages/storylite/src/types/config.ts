@@ -12,6 +12,7 @@ export type SLAppComponentProps = {
   title: SLNode
   icon?: SLNode
   defaultStory: string
+  iframeProps?: Omit<Record<string, any>, 'src'>
   // stylesheets: string[]
   // addons: StoryAddonList
 }

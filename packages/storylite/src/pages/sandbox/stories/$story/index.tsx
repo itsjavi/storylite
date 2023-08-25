@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom'
 
-import { Story } from '@/components/Story'
+import { CanvasIframeBody } from '@/components/canvas/CanvasIframeBody'
 
 import SandboxLayout from '../../../../layouts/SandboxLayout'
 
@@ -8,10 +8,10 @@ export default function StoryPage() {
   const { story } = useParams()
 
   if (!story) {
-    return <div>Error: story is empty</div>
+    return <div>Error: story route segment is empty</div>
   }
 
-  return <Story story={story} />
+  return <CanvasIframeBody story={story} />
 }
 
 export const Layout = SandboxLayout

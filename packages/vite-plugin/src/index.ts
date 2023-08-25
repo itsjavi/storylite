@@ -48,7 +48,7 @@ const storylitePlugin = (userConfig?: StoryLitePluginConfig): Plugin => {
           
           const storyMap = createStoryMap(import.meta.glob('/${config.stories}', {eager: true}));
           
-          console.log('Stories: ', Array.from(storyMap.keys()));
+          // console.log('Stories: ', Array.from(storyMap.keys()));
           
           export default storyMap
         `

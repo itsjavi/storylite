@@ -1,10 +1,8 @@
-import React from 'react'
-
-import StoryFrame from '@/components/StoryFrame'
+import { CanvasIframe } from '@/components/canvas/CanvasIframe'
 import MainLayout from '@/layouts/MainLayout'
 
 export default function HomePage() {
-  return <StoryFrame />
+  return <CanvasIframe />
 }
 
 export const Layout = MainLayout
