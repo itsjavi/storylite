@@ -34,7 +34,7 @@
     "version:bump-minor": ".scripts/bump-version.sh minor && .scripts/tag-version.sh",
     "version:bump-patch": "pnpm ws:version",
     "version:publish": "pnpm run version:publish-gh-refs && pnpm run version:publish-npm",
-    "version:publish-gh-refs": "git push && git push -n --tags",
+    "version:publish-gh-refs": "git push origin main --tags",
     "version:publish-gh-releases": ".scripts/tag-release-gh.sh",
     "version:publish-npm": "pnpm -r --filter='@storylite/*' exec pnpm publish"
   },
