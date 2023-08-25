@@ -10,9 +10,11 @@ import { SLNode } from './components'
 
 export type SLAppComponentProps = {
   title: SLNode
-  icon?: SLNode
   defaultStory: string
   iframeProps?: Omit<Record<string, any>, 'src'>
+  iframeOptions?: {
+    useDefaultStyles?: boolean
+  }
   // stylesheets: string[]
   // addons: StoryAddonList
 }

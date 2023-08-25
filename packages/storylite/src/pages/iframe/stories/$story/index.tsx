@@ -1,8 +1,7 @@
 import { useParams } from 'react-router-dom'
 
 import { CanvasIframeBody } from '@/components/canvas/CanvasIframeBody'
-
-import SandboxLayout from '../../../../layouts/SandboxLayout'
+import IframeLayout from '@/components/layouts/IframeLayout'
 
 export default function StoryPage() {
   const { story } = useParams()
@@ -14,4 +13,4 @@ export default function StoryPage() {
   return <CanvasIframeBody story={story} />
 }
 
-export const Layout = SandboxLayout
+export const Layout = IframeLayout

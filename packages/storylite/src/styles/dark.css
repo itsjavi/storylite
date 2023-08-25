@@ -1,0 +1,54 @@
+/*
+DARK-THEME
+*/
+[data-sl-darkmode='true']:where(.storylite-top-frame),
+[data-sl-darkmode='true']:where(.storylite-iframe--default-styles) {
+  /* General */
+  --storylite-font-color: #dfdfd7;
+  --storylite-bg-color: #252529;
+
+  --storylite-border-color: #29292c;
+  /*--storylite-accent-color: #1fa7fd;*/
+
+  /*--storylite-font-color-title: #878787;*/
+  /*--storylite-bg-color-title: #070707;*/
+
+  /* Muted */
+  --storylite-font-color-muted: #999999;
+  --storylite-border-color-muted: #484848;
+
+  /* Panels */
+  --storylite-font-color-panel: #dfdfd7;
+  --storylite-bg-color-panel: #161618;
+
+  /* Toolbars */
+  --storylite-font-color-toolbar: #999999;
+  --storylite-bg-color-toolbar: #1e1e20;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-sl-darkmode='auto']:where(.storylite-top-frame),
+  [data-sl-darkmode='auto']:where(.storylite-iframe--default-styles) {
+    /* General */
+    --storylite-font-color: #dfdfd7;
+    --storylite-bg-color: #252529;
+
+    --storylite-border-color: #29292c;
+    /*--storylite-accent-color: #1fa7fd;*/
+
+    /*--storylite-font-color-title: #878787;*/
+    /*--storylite-bg-color-title: #070707;*/
+
+    /* Muted */
+    --storylite-font-color-muted: #999999;
+    --storylite-border-color-muted: #484848;
+
+    /* Panels */
+    --storylite-font-color-panel: #dfdfd7;
+    --storylite-bg-color-panel: #161618;
+
+    /* Toolbars */
+    --storylite-font-color-toolbar: #999999;
+    --storylite-bg-color-toolbar: #1e1e20;
+  }
+}

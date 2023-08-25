@@ -2,12 +2,13 @@ export enum SLCoreAddon {
   DarkMode = 'darkmode',
   FullScreen = 'fullscreen',
   Grid = 'grid',
+  OpenStory = 'open',
   Outline = 'outline',
   Responsive = 'responsive',
-  SourceCode = 'sourcecode',
-  Measure = 'measure',
-  Zoom = 'zoom',
-  Props = 'props',
+  Sidebar = 'sidebar',
+  // Measure = 'measure',
+  // Zoom = 'zoom',
+  // Props = 'props',
 }
 
 export enum SLPanel {

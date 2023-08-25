@@ -6,8 +6,6 @@ export default {
   priority: 100,
 } satisfies StoryMeta
 
-export const Main: StoryComponent = () => (
-  <div style={{ color: 'green', fontSize: '28px' }}>React Demo Index Page</div>
-)
+export const Main: StoryComponent = () => <div className="story-1">React Demo Index Page</div>
 
 // Main.storyTitle = 'Main Component'

@@ -27,9 +27,8 @@ export const registerWindowMessageListener = (
 
   const handleReceivedMessage = (event: MessageEvent) => {
     const eventSource = event.data?.source
-    // Verify that the message comes from the expected iframe
+    // Verify that the message comes from the expected emitter
     if (eventSource === scope) {
-      console.log('[app] Message received:', event.data)
       callback(event.data)
     }
   }

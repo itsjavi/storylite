@@ -1,88 +1,36 @@
-:root {
+:where(.storylite-top-frame),
+:where(.storylite-iframe.default-styles) {
   /* General */
-  --theme-font-color: #333;
-  --theme-bg-color: #fff;
+  --storylite-font-color: #333;
+  --storylite-bg-color: #fcfcfc;
 
-  --theme-border-color: #d2d2d2;
-  /*--theme-accent-color: #1fa7fd;*/
-  /*--theme-color-primary: #7476ea;*/
+  --storylite-border-color: #d2d2d2;
+  /*--storylite-accent-color: #1fa7fd;*/
+  /*--storylite-color-primary: #7476ea;*/
 
-  --theme-color-primary: #0e9bff;
+  --storylite-color-primary: #1fa7fd;
 
-  --theme-font-color-title: inherit;
-  --theme-bg-color-title: transparent;
+  --storylite-font-color-title: inherit;
+  --storylite-bg-color-title: transparent;
 
   /* Muted */
-  --theme-font-color-muted: rgba(0, 0, 0, 0.6);
-  --theme-border-color-muted: #e6e6e6;
+  --storylite-font-color-muted: rgba(0, 0, 0, 0.6);
+  --storylite-border-color-muted: #e6e6e6;
 
   /* Panels */
-  --theme-font-color-panel: #444;
-  --theme-bg-color-panel: #f2f3f4;
+  --storylite-font-color-panel: #444;
+  --storylite-bg-color-panel: #f7f9fc;
 
   /* Toolbars */
-  --theme-font-color-toolbar: #9c9c9c;
-  --theme-bg-color-toolbar: #f7f8f9;
+  --storylite-font-color-toolbar: #9c9c9c;
+  --storylite-bg-color-toolbar: #f0f2f4;
 
   /* Fonts */
-  --theme-font-size-base: 16px;
-  --theme-font-family-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
+  --storylite-font-size-base: 16px;
+  --storylite-font-family-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-  --theme-font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
-    'Courier New', monospace;
-}
-
-/*
-DARK-THEME
-*/
-html[data-color-scheme='dark'] {
-  /* General */
-  --theme-font-color: #dfdfd7;
-  --theme-bg-color: #252529;
-
-  --theme-border-color: #29292c;
-  /*--theme-accent-color: #1fa7fd;*/
-
-  /*--theme-font-color-title: #878787;*/
-  /*--theme-bg-color-title: #070707;*/
-
-  /* Muted */
-  --theme-font-color-muted: #999999;
-  --theme-border-color-muted: #484848;
-
-  /* Panels */
-  --theme-font-color-panel: #dfdfd7;
-  --theme-bg-color-panel: #161618;
-
-  /* Toolbars */
-  --theme-font-color-toolbar: #999999;
-  --theme-bg-color-toolbar: #1e1e20;
-}
-
-@media (prefers-color-scheme: dark) {
-  html[data-color-scheme='auto'] {
-    /* General */
-    --theme-font-color: #dfdfd7;
-    --theme-bg-color: #252529;
-
-    --theme-border-color: #29292c;
-    /*--theme-accent-color: #1fa7fd;*/
-
-    /*--theme-font-color-title: #878787;*/
-    /*--theme-bg-color-title: #070707;*/
-
-    /* Muted */
-    --theme-font-color-muted: #999999;
-    --theme-border-color-muted: #484848;
-
-    /* Panels */
-    --theme-font-color-panel: #dfdfd7;
-    --theme-bg-color-panel: #161618;
-
-    /* Toolbars */
-    --theme-font-color-toolbar: #999999;
-    --theme-bg-color-toolbar: #1e1e20;
-  }
+  --storylite-font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', 'Courier New', monospace;
 }

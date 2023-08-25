@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Maximize2, Minimize2 } from 'lucide-react'
 
@@ -6,6 +6,18 @@ import ToolbarBtn from '../ToolbarBtn'
 
 function FullScreenAddon() {
   const [isFullScreen, setIsFullScreen] = useState(false)
+
+  useEffect(() => {
+    const handleFullScreenChange = () => {
+      setIsFullScreen(document.fullscreenElement !== null)
+    }
+
+    document.addEventListener('fullscreenchange', handleFullScreenChange)
+
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullScreenChange)
+    }
+  }, [])
 
   if (!document.exitFullscreen) {
     return null
@@ -24,7 +36,7 @@ function FullScreenAddon() {
         parentDoc.exitFullscreen()
       }
     }
-    setIsFullScreen(!isFullScreen)
+    // setIsFullScreen(!isFullScreen)
   }
 
   return (

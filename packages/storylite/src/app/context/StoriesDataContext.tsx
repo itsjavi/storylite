@@ -158,9 +158,9 @@ export const StoryLiteStateProvider = ({
     setParams(newParams, persist)
   }
 
-  const windowMessageHandler = (message: CrossDocumentMessage) => {
+  const iframeWindowMessageHandler = (message: CrossDocumentMessage) => {
+    // here is where the iframe processes messages from the root
     if (message.type === CrossDocumentMessageType.UpdateParameters) {
-      console.log('consuming message on iframe:', message.payload)
       setParams(message.payload, false)
     }
   }
@@ -183,8 +183,7 @@ export const StoryLiteStateProvider = ({
 
   useEffect(() => {
     if (iframeRef?.contentWindow) {
-      console.log('tell iframe to update params')
-      // communicate changes in parameters to the iframe
+      // send a message to the iframe window, and tell it to update the parameters in its context
       sendWindowMessage(
         {
           type: CrossDocumentMessageType.UpdateParameters,
@@ -197,7 +196,7 @@ export const StoryLiteStateProvider = ({
   }, [iframeRef, iframeState, params])
 
   // If we receive a message from the root, it means we are in an iframe
-  registerWindowMessageListener(windowMessageHandler, CrossDocumentMessageSource.Root, window)
+  registerWindowMessageListener(iframeWindowMessageHandler, CrossDocumentMessageSource.Root, window)
 
   return (
     <StoryLiteStateContext.Provider

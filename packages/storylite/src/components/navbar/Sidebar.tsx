@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { Bookmark, MinusSquare, PlusSquare } from 'lucide-react'
 
 import { useStoryLiteStories } from '@/app/context/StoriesDataContext'
+import { getStoryUrl } from '@/app/navigation/urlUtils'
 import { ElementIds, StoryMeta, StoryModule, StoryModulesMapValue } from '@/types'
 
 type SidebarProps = {
@@ -22,7 +23,7 @@ export default function Sidebar({ title, ...rest }: SidebarProps) {
   const { story, export_name } = useParams()
 
   return (
-    <div id={ElementIds.Sidebar} className={'Sidebar'} data-open="true" {...rest}>
+    <div id={ElementIds.Sidebar} className={'Sidebar'} {...rest}>
       <div className={'Content'}>
         <div className={'Title'}>{title}</div>
         <SidebarNav currentStoryName={story} currentExportName={export_name} />
@@ -81,7 +82,13 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
 
     return (
       <li className={classes} title={tooltip}>
-        <Link to={`/stories/${storyName}/${exports[0]}`} className={'ListBtn'}>
+        <Link
+          to={getStoryUrl(storyName, exports[0], {
+            target: 'top',
+            hashbang: false,
+          })}
+          className={'ListBtn'}
+        >
           <i className={'Icon'}>{icon}</i>
           <span className={'Text'}>{title}</span>
         </Link>
@@ -124,7 +131,13 @@ function SidebarNestedList(props: SidebarItemBaseProps): JSX.Element {
 
           return (
             <li key={i} className={classes} title={tooltip}>
-              <Link to={`/stories/${storyName}/${exportName}`} className={'ListBtn'}>
+              <Link
+                to={getStoryUrl(storyName, exportName, {
+                  target: 'top',
+                  hashbang: false,
+                })}
+                className={'ListBtn'}
+              >
                 <i className={'Icon'}>
                   <Bookmark />
                 </i>

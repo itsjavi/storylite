@@ -1,21 +1,21 @@
 .Toolbar {
   position: relative;
   padding: 0.75rem 0.5rem;
-  background: var(--theme-bg-color-toolbar);
-  color: var(--theme-font-color-toolbar);
-  border-bottom: 1px solid var(--theme-border-color-muted);
-  font-family: var(--theme-font-family-sans);
+  background: var(--storylite-bg-color-toolbar);
+  color: var(--storylite-font-color-toolbar);
+  border-bottom: 1px solid var(--storylite-border-color-muted);
+  font-family: var(--storylite-font-family-sans);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-html[data-color-scheme='dark'] .Toolbar {
+[data-sl-darkmode='true'] .Toolbar {
   border-color: transparent;
 }
 
 @media (prefers-color-scheme: dark) {
-  html[data-color-scheme='auto'] .Toolbar {
+  [data-sl-darkmode='auto'] .Toolbar {
     border-color: transparent;
   }
 }
@@ -23,9 +23,9 @@ html[data-color-scheme='dark'] .Toolbar {
 .Toolbar .Btn,
 .Toolbar a.Btn {
   border-radius: 0;
-  /*border: 1px solid var(--theme-border-color);*/
+  /*border: 1px solid var(--storylite-border-color);*/
   border: none;
-  background: var(--theme-bg-color-toolbar);
+  background: var(--storylite-bg-color-toolbar);
   color: inherit;
   padding: 0;
   margin-left: 15px;
@@ -48,5 +48,5 @@ html[data-color-scheme='dark'] .Toolbar {
 
 .Toolbar .Btn:hover,
 .Toolbar .Active {
-  color: var(--theme-color-primary);
+  color: var(--storylite-color-primary);
 }

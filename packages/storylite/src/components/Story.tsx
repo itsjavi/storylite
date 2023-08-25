@@ -1,10 +1,9 @@
 import React from 'react'
 import { useSearchParams } from 'react-router-dom'
+import { cn } from '@r1stack/core'
 
 import { useStoryLiteStories } from '@/app/context/StoriesDataContext'
-import { ElementIds, StoryComponent, StoryMeta, StoryModule } from '@/types'
-
-import Toolbar from './Toolbar'
+import { StoryComponent, StoryMeta, StoryModule } from '@/types'
 
 export function Story({ story, exportName }: { story: string; exportName?: string }): JSX.Element {
   const stories = useStoryLiteStories()
@@ -61,9 +60,9 @@ function createStorySandboxWrapper(
   const StoryWrapper = () => {
     const stories = components.map(([, Comp], i) => {
       return (
-        <section key={i} className={'Section'}>
+        <div key={i} className={'storylite-story-section'}>
           <Comp />
-        </section>
+        </div>
       )
     })
 
@@ -78,9 +77,6 @@ function createStorySandboxWrapper(
 }
 
 export function StorySandbox({
-  story,
-  exportName,
-  metadata,
   children,
 }: {
   story: string
@@ -90,15 +86,10 @@ export function StorySandbox({
 }) {
   const [searchParams] = useSearchParams()
   const isStandalone = searchParams.has('standalone')
-  const showToolbar = !isStandalone
-  const toolbarStyles = showToolbar ? {} : { display: 'none' }
 
   return (
-    <div className={`${'Story'} ${isStandalone ? 'StandaloneStory' : ``}`}>
-      <header className={'Header'} style={toolbarStyles}>
-        <Toolbar story={story} exportName={exportName} storyMeta={metadata} />
-      </header>
-      <div id={ElementIds.StoryCanvas} className={'Canvas'}>
+    <div className={cn('storylite-story', [isStandalone, 'storylite-story--standalone'])}>
+      <div className={'storylite-story-canvas'}>
         {children === undefined && <p>Loading story...</p>}
         {children !== undefined && children}
       </div>

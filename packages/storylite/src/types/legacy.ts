@@ -57,11 +57,8 @@ export type StoryModulesMapValue = { module: StoryModule; meta: StoryMeta }
 export type StoryModulesMap = Map<string, StoryModulesMapValue>
 
 export enum ElementIds {
-  MainGlobalStyles = 'stories_mainLayoutGlobalStyles',
-  SandboxGlobalStyles = 'stories_sandboxLayoutGlobalStyles',
-  Iframe = 'stories_Iframe',
-  Sidebar = 'stories_Sidebar',
-  StoryCanvas = 'stories_Canvas',
+  Sidebar = 'storylite__sidebar',
+  StoryCanvas = 'storylite__story_canvas',
 }
 
 export enum ColorScheme {

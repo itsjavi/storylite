@@ -1,19 +1,19 @@
-#stories_Canvas[data-outlines-visible='true'] > section > * {
-  outline: 1px solid #ff8059;
+[data-sl-outline='true'] .storylite-story-section > * {
+  outline: 1px solid #ff577e;
   outline-offset: 2px;
 }
 
-#stories_Canvas[data-outlines-visible='true'] > section > * > * {
-  outline: 1px solid #70cc3a;
+[data-sl-outline='true'] .storylite-story-section > * > * {
+  outline: 1px solid #ffe609;
   outline-offset: 1px;
 }
 
-#stories_Canvas[data-outlines-visible='true'] > section > * > * > * {
-  outline: 1px solid #ef73f6;
+[data-sl-outline='true'] .storylite-story-section > * > * > * {
+  outline: 1px solid #57ee31;
   outline-offset: 0;
 }
 
-#stories_Canvas[data-outlines-visible='true'] > section > * > * > * > * {
-  outline: 1px solid #49c7de;
+[data-sl-outline='true'] .storylite-story-section > * > * > * > * {
+  outline: 1px solid #37caff;
   outline-offset: -1px;
 }

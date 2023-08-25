@@ -13,7 +13,7 @@ export type SLParametersConfig = {
 }
 
 export type SLParameters = {
-  [key: string | SLCoreAddon | `${SLCoreAddon}`]: {
+  [key: SLCoreAddon | `${SLCoreAddon}` | string]: {
     hidden?: boolean
     value: SLNativeType
   }

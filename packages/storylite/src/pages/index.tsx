@@ -1,8 +1,8 @@
 import { CanvasIframe } from '@/components/canvas/CanvasIframe'
-import MainLayout from '@/layouts/MainLayout'
+import TopFrameLayout from '@/components/layouts/TopFrameLayout'
 
 export default function HomePage() {
   return <CanvasIframe />
 }
 
-export const Layout = MainLayout
+export const Layout = TopFrameLayout

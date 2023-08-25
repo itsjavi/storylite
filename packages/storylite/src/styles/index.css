@@ -1,3 +1,11 @@
 @import './variables.css';
-@import './reset-main.css';
-@import './components.css';
+@import './dark.css';
+@import './base.css';
+@import './layouts.css';
+
+/* Components: */
+@import './components/Sidebar.css';
+@import './components/Story.css';
+@import './components/Toolbar.css';
+@import './components/GridAddon.css';
+@import './components/OutlineAddon.css';

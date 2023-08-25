@@ -1,10 +1,10 @@
 .Sidebar {
   position: relative;
   padding: 0;
-  background: var(--theme-bg-color-panel);
-  color: var(--theme-font-color-panel);
-  border-right: 1px solid var(--theme-border-color);
-  transition: width 0.2s ease-in-out;
+  background: var(--storylite-bg-color-panel);
+  color: var(--storylite-font-color-panel);
+  border-right: 1px solid var(--storylite-border-color);
+  transition: width 0.12s ease-in-out;
   transition-property: width, margin;
   width: 0;
   overflow: hidden;
@@ -13,19 +13,19 @@
   margin-right: 100px;
 }
 
-.Sidebar[data-open='true'] {
+[data-sl-sidebar='true'] .Sidebar {
   width: 220px;
   pointer-events: unset;
   margin-left: 0;
   margin-right: 0;
 }
 
-html[data-color-scheme='dark'] .Sidebar {
+[data-sl-darkmode='true'] .Sidebar {
   border-color: transparent;
 }
 
 @media (prefers-color-scheme: dark) {
-  html[data-color-scheme='auto'] .Sidebar {
+  [data-sl-darkmode='auto'] .Sidebar {
     border-color: transparent;
   }
 }
@@ -43,8 +43,8 @@ html[data-color-scheme='dark'] .Sidebar {
 .SidebarTitle {
   padding: 1.2rem 0.8rem;
   font-weight: bold;
-  color: var(--theme-font-color-SidebarTitle);
-  background-color: var(--theme-bg-color-SidebarTitle);
+  color: var(--storylite-font-color-SidebarTitle);
+  background-color: var(--storylite-bg-color-SidebarTitle);
   font-size: 1.2rem;
   line-height: 1rem;
   letter-spacing: -1px;
@@ -129,13 +129,13 @@ html[data-color-scheme='dark'] .Sidebar {
   background-color: rgba(0, 0, 0, 0.07);
 }
 
-html[data-color-scheme='dark'] .SidebarNav .ListBtn:hover {
+[data-sl-darkmode='true'] .SidebarNav .ListBtn:hover {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-html[data-color-scheme='dark'] .SidebarNav .Active .ListBtn:hover,
+[data-sl-darkmode='true'] .SidebarNav .Active .ListBtn:hover,
 .SidebarNav .Active .ListBtn {
-  background-color: var(--theme-color-primary);
+  background-color: var(--storylite-color-primary);
   text-decoration: none;
   color: #fff;
 }
@@ -145,7 +145,7 @@ html[data-color-scheme='dark'] .SidebarNav .Active .ListBtn:hover,
 }
 
 .SidebarNav .NestedList .Icon {
-  color: var(--theme-color-primary);
+  color: var(--storylite-color-primary);
 }
 
 .SidebarNav .NestedList .Active .Icon {
