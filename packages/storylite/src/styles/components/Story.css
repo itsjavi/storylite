@@ -19,9 +19,6 @@
 
 .storylite-story .storylite-story-canvas > .storylite-story-section {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding-bottom: 1rem;
-  margin-bottom: 3rem;
+  /* padding-bottom: 1rem;
+  margin-bottom: 3rem; */
 }
