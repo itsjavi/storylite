@@ -1,3 +1,23 @@
+## v0.5.0
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.4.0...v0.5.0)
+
+### 💅 Refactors
+
+- **storylite:** Define a new api almost compatible with SB CSF3 ([ee68a5f](https://github.com/itsjavi/storylite/commit/ee68a5f))
+- **ui:** Allow replacing the title entirely with the icon + other optimizations ([32632fa](https://github.com/itsjavi/storylite/commit/32632fa))
+- **ui:** Implement an event-driven bidirectional communication system between for the iframe ([afaec92](https://github.com/itsjavi/storylite/commit/afaec92))
+- **ui:** Stop using useBrowserStorage hook and use a simpler api usable with postMessage ([9867907](https://github.com/itsjavi/storylite/commit/9867907))
+- **ui:** Improve UX and redefine all classes and styles to make the iframe more isolated ([3b6303d](https://github.com/itsjavi/storylite/commit/3b6303d))
+
+### 🏡 Chore
+
+- **releases:** Scope npm publish to public packages ([504d449](https://github.com/itsjavi/storylite/commit/504d449))
+
+### ❤️ Contributors
+
+- Javi Aguilar
+
 ## v0.4.0
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.3.1...v0.4.0)
