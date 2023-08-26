@@ -1,3 +1,15 @@
+## v0.6.0
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.5.1...v0.6.0)
+
+### 💅 Refactors
+
+- **ui:** Complete rewrite of the addon API, with extensibility support, better mobile UI ([da4a900](https://github.com/itsjavi/storylite/commit/da4a900))
+
+### ❤️ Contributors
+
+- Javi Aguilar
+
 ## v0.5.1
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.5.0...v0.5.1)
