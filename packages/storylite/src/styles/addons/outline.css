@@ -1,0 +1,19 @@
+[data-sl-outline='true'] .storylite-story-section > * {
+  outline: 1px solid #ff577e !important;
+  outline-offset: 0px !important;
+}
+
+[data-sl-outline='true'] .storylite-story-section > * > * {
+  outline: 1px solid #ffe609 !important;
+  outline-offset: 0px !important;
+}
+
+[data-sl-outline='true'] .storylite-story-section > * > * > * {
+  outline: 1px solid #57ee31 !important;
+  outline-offset: 0px !important;
+}
+
+[data-sl-outline='true'] .storylite-story-section > * > * > * > * {
+  outline: 1px solid #37caff !important;
+  outline-offset: 0px !important;
+}

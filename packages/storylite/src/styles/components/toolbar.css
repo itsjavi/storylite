@@ -1,0 +1,31 @@
+.storylite-addon-toolbar {
+  position: relative;
+  background: var(--storylite-bg-color-toolbar);
+  color: var(--storylite-font-color-toolbar);
+  border-bottom: 1px solid var(--storylite-border-color-muted);
+  font-family: var(--storylite-font-family-sans);
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 0 0.65rem;
+}
+
+.storylite-addon-toolbar-group {
+  display: flex;
+  align-items: stretch;
+  gap: 0.25rem;
+}
+
+/* .storylite-addon-toolbar-group > * {
+  background: blue;
+} */
+
+[data-sl-theme='dark'] .storylite-addon-toolbar {
+  border-color: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-sl-theme='auto'] .storylite-addon-toolbar {
+    border-color: transparent;
+  }
+}

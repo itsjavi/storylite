@@ -2,7 +2,7 @@ import { ExternalLink } from 'lucide-react'
 
 import { getStoryUrl } from '@/app/navigation/urlUtils'
 
-import ToolbarBtn from '../ToolbarBtn'
+import { Btn } from '../../Btn'
 
 export default function OpenStoryAddon({
   story,
@@ -16,7 +16,7 @@ export default function OpenStoryAddon({
   }
 
   return (
-    <ToolbarBtn
+    <Btn
       title={`Open story in a new tab`}
       href={getStoryUrl(story, exportName, {
         target: 'iframe',
@@ -26,6 +26,6 @@ export default function OpenStoryAddon({
       target="_blank"
     >
       {<ExternalLink />}
-    </ToolbarBtn>
+    </Btn>
   )
 }

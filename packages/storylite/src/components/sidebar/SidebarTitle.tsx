@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 import { useStoryLiteConfig } from '@/app/context/StoriesDataContext'
 
-export default function SidebarTitle() {
+export function SidebarTitle() {
   const config = useStoryLiteConfig()
 
   return (

@@ -48,7 +48,9 @@
 :where(.storylite-top-frame) {
   position: relative;
   display: grid;
+  grid-template-areas: 'sidebar main';
   grid-template-columns: auto 1fr;
+  grid-template-rows: 100vh;
   background: var(--storylite-bg-color-panel);
   min-height: 100vh;
   /*noinspection CssInvalidPropertyValue*/

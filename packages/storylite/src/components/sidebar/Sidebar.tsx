@@ -5,7 +5,7 @@ import { Bookmark, MinusSquare, PlusSquare } from 'lucide-react'
 
 import { useStoryLiteStories } from '@/app/context/StoriesDataContext'
 import { getStoryUrl } from '@/app/navigation/urlUtils'
-import { ElementIds, StoryMeta, StoryModule, StoryModulesMapValue } from '@/types'
+import { StoryMeta, StoryModule, StoryModulesMapValue } from '@/types'
 
 type SidebarProps = {
   title: React.ReactNode
@@ -19,11 +19,11 @@ type SidebarItemBaseProps = {
   currentExportName?: string
 }
 
-export default function Sidebar({ title, ...rest }: SidebarProps) {
+export function Sidebar({ title, ...rest }: SidebarProps) {
   const { story, export_name } = useParams()
 
   return (
-    <div id={ElementIds.Sidebar} className={'Sidebar'} {...rest}>
+    <div className={'Sidebar'} {...rest}>
       <div className={'Content'}>
         <div className={'Title'}>{title}</div>
         <SidebarNav currentStoryName={story} currentExportName={export_name} />

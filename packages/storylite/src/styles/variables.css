@@ -22,8 +22,8 @@
   --storylite-bg-color-panel: #f7f9fc;
 
   /* Toolbars */
-  --storylite-font-color-toolbar: #9c9c9c;
-  --storylite-bg-color-toolbar: #f0f2f4;
+  --storylite-font-color-toolbar: #999999;
+  --storylite-bg-color-toolbar: #ffffff;
 
   /* Fonts */
   --storylite-font-size-base: 16px;
@@ -33,4 +33,8 @@
 
   --storylite-font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
+
+  /* Other */
+  --storylite-grid-line-color: rgba(130, 130, 130, 0.5);
+  --storylite-grid-line-color2: rgba(130, 130, 130, 0.25);
 }

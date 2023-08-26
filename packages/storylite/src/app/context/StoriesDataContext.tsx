@@ -2,14 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 
 import {
+  SLAddonsMap,
   SLAppComponentProps,
-  SLCoreAddon,
   SLNativeType,
   SLParameters,
   StoryMeta,
   StoryModulesMap,
 } from '../..'
 import { defaultConfig } from '../defaultConfig'
+import {
+  getDefaultToolbarAddons,
+  getToolbarAddonsAsParameters,
+  resolveToolbarAddons,
+} from '../getToolbarAddons'
 import {
   CrossDocumentMessage,
   CrossDocumentMessageSource,
@@ -29,6 +34,7 @@ export type StoryLiteStateContextType = {
   parameters: SLParameters
   setParameters: (parameters: SLParameters) => void
   setParameter: (name: string, value: SLNativeType) => void
+  addons: SLAddonsMap
   currentStory:
     | {
         story: string | undefined
@@ -89,31 +95,12 @@ export const useStoryLiteStories = (): StoryModulesMap => {
   return stories
 }
 
-const useParametersFromBrowserStorage = (): [
-  SLParameters,
-  (parameters: SLParameters, persist?: boolean) => void,
+const useParametersFromBrowserStorage = (
+  defaultParams: SLParameters,
+): [
+  parameters: SLParameters,
+  setParameters: (parameters: SLParameters, persist?: boolean) => void,
 ] => {
-  const defaultParams: SLParameters = {
-    [SLCoreAddon.DarkMode]: {
-      value: true,
-    },
-    [SLCoreAddon.FullScreen]: {
-      value: false,
-    },
-    [SLCoreAddon.Grid]: {
-      value: false,
-    },
-    [SLCoreAddon.Outline]: {
-      value: false,
-    },
-    [SLCoreAddon.Responsive]: {
-      value: null,
-    },
-    [SLCoreAddon.Sidebar]: {
-      value: true,
-    },
-  }
-
   const params = getLocalStorageItem<SLParameters>('sl_parameters', defaultParams)
 
   const setParams = (parameters: SLParameters) => {
@@ -135,10 +122,17 @@ export const StoryLiteStateProvider = ({
   stories: StoryModulesMap
   children: React.ReactNode
 }) => {
-  const mergedConfig: SLAppComponentProps = { ...defaultConfig, ...config }
+  const addons = resolveToolbarAddons(getDefaultToolbarAddons(), config?.addons)
+  const mergedConfig: SLAppComponentProps = {
+    ...defaultConfig,
+    ...config,
+    addons: Array.from(addons.entries()),
+  }
   const [iframeRef, setIframeRef] = useState<HTMLIFrameElement | null>(null)
   const [iframeState, setIframeState] = React.useState<'loading' | 'ready'>('loading')
-  const [storeParams, storeSetParams] = useParametersFromBrowserStorage()
+  const [storeParams, storeSetParams] = useParametersFromBrowserStorage(
+    getToolbarAddonsAsParameters(addons),
+  )
   const [params, _setParams] = useState<SLParameters>(storeParams)
 
   const setParams = (newParams: SLParameters, persist: boolean = true) => {
@@ -202,6 +196,7 @@ export const StoryLiteStateProvider = ({
     <StoryLiteStateContext.Provider
       value={{
         config: mergedConfig,
+        addons,
         stories,
         currentStory: undefined,
         isStandalone: false,
@@ -216,6 +211,12 @@ export const StoryLiteStateProvider = ({
       {children}
     </StoryLiteStateContext.Provider>
   )
+}
+
+export const useStoryLiteAddons = (): SLAddonsMap => {
+  const { addons } = useStoryLiteState()
+
+  return addons
 }
 
 export const useStoryLiteParameters = (): UseParamsReturnType => {

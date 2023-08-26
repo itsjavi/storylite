@@ -1,13 +1,13 @@
 import { useStoryLiteParameters, useStoryLiteState } from '@/app/context/StoriesDataContext'
 import { parametersToDataProps } from '@/app/parameters/parametersToDataProps'
 
-import Sidebar from '../navbar/Sidebar'
-import SidebarTitle from '../navbar/SidebarTitle'
-import Toolbar from '../toolbar/Toolbar'
+import { Sidebar } from '../sidebar/Sidebar'
+import { SidebarTitle } from '../sidebar/SidebarTitle'
+import { Toolbar } from '../toolbar/Toolbar'
 
 export default function TopFrameLayout({ children }: any) {
   const state = useStoryLiteState()
-  const { currentStory, isStandalone } = state
+  const { isStandalone } = state
 
   const [params] = useStoryLiteParameters()
   const paramsDataProps = parametersToDataProps(params)
@@ -18,16 +18,12 @@ export default function TopFrameLayout({ children }: any) {
       <div className={'storylite-layout-center'}>
         <div className={'storylite-layout-center--pad'}>
           {!isStandalone && (
-            <div className={'Header'}>
-              <Toolbar
-                story={currentStory?.story}
-                exportName={currentStory?.exportName}
-                storyMeta={currentStory?.meta}
-              />
+            <div className={'storylite-top-panel'}>
+              <Toolbar />
             </div>
           )}
           <main className={'storylite-main'}>{children}</main>
-          {/* <div>panel 2</div> */}
+          {/* <div>Bottom Panel here</div> */}
         </div>
       </div>
     </div>

@@ -1,34 +1,50 @@
-import { useSearchParams } from 'react-router-dom'
+import { useStoryLiteAddons } from '@/app/context/StoriesDataContext'
+import { SLAddonProps } from '@/types'
 
-import { StoryMeta } from '@/types'
+import { ToolbarAddon, ToolbarStatefulAddon } from './ToolbarAddon'
 
-import DarkModeAddon from './addons/DarkModeAddon'
-import FullScreenAddon from './addons/FullScreenAddon'
-import GridAddon from './addons/GridAddon'
-import OpenStoryAddon from './addons/OpenStoryAddon'
-import OutlineAddon from './addons/OutlineAddon'
-import ResponsiveAddon from './addons/ResponsiveAddon'
-import SidebarAddon from './addons/SidebarAddon'
+function ToolbarGroup({
+  addons,
+  placement,
+}: {
+  addons: SLAddonProps<boolean>[]
+  placement: 'left' | 'right'
+}) {
+  return (
+    <div className="storylite-addon-toolbar-group">
+      {addons
+        .filter(
+          props => props.placement === placement || (placement === 'left' && !props.placement),
+        )
+        .map((props, index) => {
+          const key = `addon-${props.id}---${props.placement || placement}-${index}`
+          if (props.stateful) {
+            return <ToolbarStatefulAddon key={key} {...(props as SLAddonProps<true>)} />
+          }
 
-type AddonToolbarProps = { story?: string; exportName?: string; storyMeta?: StoryMeta }
+          return <ToolbarAddon key={key} {...(props as SLAddonProps<false>)} />
+        })}
+    </div>
+  )
+}
 
-export default function Toolbar({ story, exportName }: AddonToolbarProps) {
-  const [searchParams] = useSearchParams()
-  const isStandalone = searchParams.has('standalone')
+export function Toolbar() {
+  const addons = Array.from(useStoryLiteAddons().values())
 
   return (
-    <div className={'Toolbar'}>
-      <section>
-        <SidebarAddon />
-        <DarkModeAddon />
-        <GridAddon />
-        <OutlineAddon />
-        {!isStandalone && <ResponsiveAddon />}
+    <div className={'storylite-addon-toolbar'}>
+      <ToolbarGroup addons={addons} placement={'left'} />
+      <ToolbarGroup addons={addons} placement={'right'} />
+      {/* <section>
+        <DarkModeAddon key={10} />
+        <GridAddon key={11} />
+        <OutlineAddon key={12} />
+        <ResponsiveAddon key={13} />
       </section>
       <section>
-        <FullScreenAddon />
-        <OpenStoryAddon story={story} exportName={exportName} />
-      </section>
+        <FullScreenAddon key={31} />
+        <OpenStoryAddon key={32} story={story} exportName={exportName} />
+      </section> */}
     </div>
   )
 }

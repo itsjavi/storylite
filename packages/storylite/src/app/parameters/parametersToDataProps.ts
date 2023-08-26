@@ -15,7 +15,7 @@ export function parametersToDataProps(parameters: SLParameters | undefined): {
           val !== undefined &&
           val !== null &&
           val !== '' &&
-          val !== false &&
+          // val !== false &&
           (valType === 'string' || valType === 'number' || valType === 'boolean')
         )
       })

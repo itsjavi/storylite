@@ -6,7 +6,7 @@
   font-family: 'Courier New', Courier, monospace;
   background: transparent;
 }
-[data-sl-darkmode='true']:where(.storylite-iframe--standalone) {
+[data-sl-theme='dark']:where(.storylite-iframe--standalone) {
   color: var(--storylite-font-color);
   background-color: var(--storylite-bg-color);
 }
@@ -14,7 +14,7 @@
 /*
 * DARK-THEME
 */
-[data-sl-darkmode='true']:where(.storylite-iframe) {
+[data-sl-theme='dark']:where(.storylite-iframe) {
   /* General */
   --storylite-font-color: #dfdfd7;
   --storylite-bg-color: #252529;
@@ -35,7 +35,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  [data-sl-darkmode='auto']:where(.storylite-iframe) {
+  [data-sl-theme='auto']:where(.storylite-iframe) {
     /* General */
     --storylite-font-color: #dfdfd7;
     --storylite-bg-color: #252529;

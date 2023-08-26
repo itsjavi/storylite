@@ -2,7 +2,7 @@ import '@storylite/storylite/styles.css'
 import './src/styles/components.css'
 import './src/styles/storylite-overrides.css'
 
-import { renderStoryLiteApp } from '@storylite/storylite'
+import { renderStoryLiteApp, SLAddonPropsWithoutId } from '@storylite/storylite'
 import stories from '@storylite/vite-plugin:stories'
 
 const rootElement = document.getElementById('root') as HTMLElement
@@ -12,10 +12,25 @@ renderStoryLiteApp(rootElement, stories, {
   defaultStory: 'index',
   iframeProps: {
     style: {
-      padding: '10px',
+      // padding: '10px',
     },
   },
   iframeOptions: {
     useDefaultStyles: false,
   },
+  addons: [
+    // ['id-of-addon-to-exclude', false],
+    [
+      'custom-addon',
+      {
+        defaultContent: <span>👋</span>,
+        stateful: false,
+        onClick: ctx => {
+          // eslint-disable-next-line no-console
+          console.log('custom-addon context', ctx)
+          alert('You clicked the custom addon!')
+        },
+      } satisfies SLAddonPropsWithoutId<false>,
+    ],
+  ],
 })

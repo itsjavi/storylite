@@ -1,0 +1,27 @@
+[data-sl-maximize='false'] .Sidebar {
+  width: 220px;
+  pointer-events: unset;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+[data-sl-theme='dark'] .Sidebar {
+  border-color: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-sl-theme='auto'] .Sidebar {
+    border-color: transparent;
+  }
+}
+
+[data-sl-theme='dark'] .SidebarNav .ListBtn:hover {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+[data-sl-theme='dark'] .SidebarNav .Active .ListBtn:hover,
+.SidebarNav .Active .ListBtn {
+  background-color: var(--storylite-color-primary);
+  text-decoration: none;
+  color: #fff;
+}

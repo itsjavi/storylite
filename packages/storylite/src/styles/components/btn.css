@@ -1,0 +1,32 @@
+.storylite-btn,
+a.storylite-btn {
+  border-radius: 0;
+  /*border: 1px solid var(--storylite-border-color);*/
+  border: none;
+  background: var(--storylite-bg-color-toolbar);
+  color: inherit;
+  padding: 0;
+  /* margin-left: 15px; */
+  /* min-width: 1.6rem;
+  min-height: 1.6rem; */
+  text-align: center;
+  box-sizing: border-box;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.12s ease-in-out;
+  padding: 0.4rem 0.4rem;
+}
+
+.storylite-btn svg {
+  width: max(1rem, 16px);
+  height: max(1rem, 16px);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+:where(.storylite-btn--hoverable).storylite-btn:hover,
+.storylite-btn--active {
+  color: var(--storylite-color-primary);
+}

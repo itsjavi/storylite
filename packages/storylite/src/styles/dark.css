@@ -1,8 +1,8 @@
 /*
 DARK-THEME
 */
-[data-sl-darkmode='true']:where(.storylite-top-frame),
-[data-sl-darkmode='true']:where(.storylite-iframe--default-styles) {
+[data-sl-theme='dark']:where(.storylite-top-frame),
+[data-sl-theme='dark']:where(.storylite-iframe--default-styles) {
   /* General */
   --storylite-font-color: #dfdfd7;
   --storylite-bg-color: #252529;
@@ -24,11 +24,15 @@ DARK-THEME
   /* Toolbars */
   --storylite-font-color-toolbar: #999999;
   --storylite-bg-color-toolbar: #1e1e20;
+
+  /* Other */
+  --storylite-grid-line-color: rgba(130, 130, 130, 0.35);
+  --storylite-grid-line-color2: rgba(130, 130, 130, 0.175);
 }
 
 @media (prefers-color-scheme: dark) {
-  [data-sl-darkmode='auto']:where(.storylite-top-frame),
-  [data-sl-darkmode='auto']:where(.storylite-iframe--default-styles) {
+  [data-sl-theme='auto']:where(.storylite-top-frame),
+  [data-sl-theme='auto']:where(.storylite-iframe--default-styles) {
     /* General */
     --storylite-font-color: #dfdfd7;
     --storylite-bg-color: #252529;
@@ -50,5 +54,9 @@ DARK-THEME
     /* Toolbars */
     --storylite-font-color-toolbar: #999999;
     --storylite-bg-color-toolbar: #1e1e20;
+
+    /* Other */
+    --storylite-grid-line-color: rgba(130, 130, 130, 0.35);
+    --storylite-grid-line-color2: rgba(130, 130, 130, 0.175);
   }
 }

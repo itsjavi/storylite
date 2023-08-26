@@ -4,7 +4,7 @@ export default {
   title: 'Demos',
 } satisfies StoryMeta
 
-const Demo1: StoryComponent = () => <div style={{ color: 'blue', fontSize: '28px' }}>It Works!</div>
+const Demo1: StoryComponent = () => <button>It Works!</button>
 Demo1.storyTitle = 'Demo 1'
 
 const Demo2: StoryComponent = () => (

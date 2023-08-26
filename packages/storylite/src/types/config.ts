@@ -1,4 +1,5 @@
 import { SLNode } from './components'
+import { SLUserDefinedAddons } from './ui'
 
 // TODO: move to vite-plugin
 // export type SLVitePluginConfig = {
@@ -15,6 +16,7 @@ export type SLAppComponentProps = {
   iframeOptions?: {
     useDefaultStyles?: boolean
   }
+  addons?: SLUserDefinedAddons
   // stylesheets: string[]
   // addons: StoryAddonList
 }

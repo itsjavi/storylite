@@ -3,29 +3,30 @@
   padding: 0;
   background: var(--storylite-bg-color-panel);
   color: var(--storylite-font-color-panel);
-  border-right: 1px solid var(--storylite-border-color);
+  /* border-right: 1px solid var(--storylite-border-color); */
   transition: width 0.12s ease-in-out;
-  transition-property: width, margin;
+  transition-property: width, height, margin;
   width: 0;
-  overflow: hidden;
+  overflow: auto;
   pointer-events: none;
   margin-left: -100px;
   margin-right: 100px;
+  grid-area: sidebar;
 }
 
-[data-sl-sidebar='true'] .Sidebar {
+[data-sl-maximize='false'] .Sidebar {
   width: 220px;
   pointer-events: unset;
   margin-left: 0;
   margin-right: 0;
 }
 
-[data-sl-darkmode='true'] .Sidebar {
+[data-sl-theme='dark'] .Sidebar {
   border-color: transparent;
 }
 
 @media (prefers-color-scheme: dark) {
-  [data-sl-darkmode='auto'] .Sidebar {
+  [data-sl-theme='auto'] .Sidebar {
     border-color: transparent;
   }
 }
@@ -129,11 +130,11 @@
   background-color: rgba(0, 0, 0, 0.07);
 }
 
-[data-sl-darkmode='true'] .SidebarNav .ListBtn:hover {
+[data-sl-theme='dark'] .SidebarNav .ListBtn:hover {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-[data-sl-darkmode='true'] .SidebarNav .Active .ListBtn:hover,
+[data-sl-theme='dark'] .SidebarNav .Active .ListBtn:hover,
 .SidebarNav .Active .ListBtn {
   background-color: var(--storylite-color-primary);
   text-decoration: none;
