@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@r1stack/core": "^0.4.3",
-    "lucide-react": "^0.269.0"
+    "lucide-react": "^0.271.0"
   },
   "devDependencies": {
     "@r1stack/coding-style": "^0.4.3",
