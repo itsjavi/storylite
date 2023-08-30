@@ -1,4 +1,5 @@
 import { useStoryLiteParameters } from '@/app/context/StoriesDataContext'
+import { useDetectTheme } from '@/app/hooks/useDetectTheme'
 import { parametersToDataProps } from '@/app/parameters/parametersToDataProps'
 
 import { Sidebar } from '../sidebar/Sidebar'
@@ -11,6 +12,8 @@ export default function TopFrameLayout({ children, ...props }: any) {
 
   const [params] = useStoryLiteParameters()
   const paramsDataProps = parametersToDataProps(params)
+  const resolvedTheme = useDetectTheme()
+  paramsDataProps['data-sl-theme'] = resolvedTheme
 
   return (
     <div className={'storylite-app storylite-top-frame'} {...paramsDataProps}>

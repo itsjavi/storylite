@@ -16,6 +16,7 @@ export type SLAppComponentProps = {
   iframeOptions?: {
     useDefaultStyles?: boolean
   }
+  themeAttribute?: string
   children?: SLNode
   addons?: SLUserDefinedAddons
   // stylesheets: string[]

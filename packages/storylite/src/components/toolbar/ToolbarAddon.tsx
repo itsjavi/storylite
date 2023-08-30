@@ -40,7 +40,9 @@ export function ToolbarAddon(props: SLAddonProps<false>) {
   }
 
   useEffect(() => {
-    onIFrameReady?.(ctx)
+    if (ctx.iframeLoadState === 'ready') {
+      onIFrameReady?.(ctx)
+    }
   }, [onIFrameReady, ctx.iframeLoadState, ctx.iframeRef])
 
   useEffect(() => {
@@ -128,7 +130,9 @@ export function ToolbarStatefulAddon(props: SLAddonProps<true>) {
   }
 
   useEffect(() => {
-    onIFrameReady?.(ctx, stateTuple)
+    if (ctx.iframeLoadState === 'ready') {
+      onIFrameReady?.(ctx, stateTuple)
+    }
   }, [onIFrameReady, ctx.iframeLoadState, ctx.iframeRef])
 
   useEffect(() => {
