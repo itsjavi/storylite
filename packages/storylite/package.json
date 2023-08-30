@@ -1,6 +1,6 @@
 {
   "name": "@storylite/storylite",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "A lightweight alternative to StoryBook, built on top of Vite⚡️. This package contains the React app.",
   "license": "MIT",
   "type": "module",

@@ -1,3 +1,23 @@
+## v0.7.1
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.7.0...v0.7.1)
+
+### 🚀 Enhancements
+
+- **ui:** Add support for auto theme mode (system preference)
+  ([7bc1833](https://github.com/itsjavi/storylite/commit/7bc1833))
+
+### 🩹 Fixes
+
+- **ui:** Some hash resolving was not working as expected
+  ([247c2b5](https://github.com/itsjavi/storylite/commit/247c2b5))
+- **ui:** UseDetectTheme not updating if it was not auto
+  ([a2c38c5](https://github.com/itsjavi/storylite/commit/a2c38c5))
+
+### ❤️ Contributors
+
+- Javi Aguilar
+
 ## v0.7.0
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.6.1...v0.7.0)
