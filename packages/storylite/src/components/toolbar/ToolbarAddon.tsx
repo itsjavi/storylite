@@ -1,12 +1,22 @@
 import { useEffect, useState } from 'react'
 
-import { useStoryLiteState } from '@/app/context/StoriesDataContext'
-import { SLAddonProps, SLAddonState, SLNativeScalarType } from '@/types'
+import { useStoryLiteStore } from '@/app/stores/global'
+import { StoryLiteParamValue, StoryLiteStore } from '@/app/stores/global.types'
+import { SLAddonContext, SLAddonProps, SLAddonState } from '@/types'
 
 import { Btn } from '../Btn'
 
+const sliceAddonContext = (state: StoryLiteStore): SLAddonContext => {
+  return {
+    parameters: state.parameters,
+    setParameter: state.setParameter,
+    currentStory: state.currentStory,
+    canvas: state.canvas,
+  }
+}
+
 export function ToolbarAddon(props: SLAddonProps<false>) {
-  const ctx = useStoryLiteState()
+  const ctx = useStoryLiteStore(sliceAddonContext)
   const {
     activeContent,
     defaultContent,
@@ -40,10 +50,10 @@ export function ToolbarAddon(props: SLAddonProps<false>) {
   }
 
   useEffect(() => {
-    if (ctx.iframeLoadState === 'ready') {
+    if (ctx.canvas.element) {
       onIFrameReady?.(ctx)
     }
-  }, [onIFrameReady, ctx.iframeLoadState, ctx.iframeRef])
+  }, [onIFrameReady, ctx.canvas.element])
 
   useEffect(() => {
     if (isActive) {
@@ -77,8 +87,7 @@ export function ToolbarAddon(props: SLAddonProps<false>) {
 }
 
 export function ToolbarStatefulAddon(props: SLAddonProps<true>) {
-  const ctx = useStoryLiteState()
-  const { parameters, setParameter } = ctx
+  const ctx = useStoryLiteStore(sliceAddonContext)
   const {
     defaultContent,
     activeContent,
@@ -97,21 +106,19 @@ export function ToolbarStatefulAddon(props: SLAddonProps<true>) {
   } = props
   const defaultNode = defaultContent ?? '⬜️'
   const activeNode = activeContent ?? defaultContent ?? `🔳`
-  const [state, setState] = useState<SLNativeScalarType | undefined>(
-    persistent ? (parameters[id].value as any) : undefined,
+  const [state, setState] = useState<StoryLiteParamValue | undefined>(
+    persistent ? (ctx.parameters[id].value as any) : undefined,
   )
 
-  const setPersistentState = (value: SLNativeScalarType | undefined) => {
-    if (persistent) {
-      setParameter(id, value)
-      setState(value)
-
-      return
-    }
+  const combinedSetState = (
+    value: Parameters<SLAddonContext['setParameter']>[1],
+    options?: Parameters<SLAddonContext['setParameter']>[2],
+  ) => {
+    ctx.setParameter(id, value, options)
     setState(value)
   }
 
-  const stateTuple: SLAddonState = [state, setPersistentState, setState]
+  const stateTuple: SLAddonState = [state, combinedSetState]
   const _visible = isVisible ? isVisible(ctx, stateTuple) : true
   const [active, setActive] = useState(isActiveFn ? isActiveFn(ctx, stateTuple) : false)
 
@@ -130,10 +137,10 @@ export function ToolbarStatefulAddon(props: SLAddonProps<true>) {
   }
 
   useEffect(() => {
-    if (ctx.iframeLoadState === 'ready') {
+    if (ctx.canvas.element) {
       onIFrameReady?.(ctx, stateTuple)
     }
-  }, [onIFrameReady, ctx.iframeLoadState, ctx.iframeRef])
+  }, [onIFrameReady, ctx.canvas.element])
 
   useEffect(() => {
     if (isActiveFn) {

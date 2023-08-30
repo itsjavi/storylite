@@ -1,4 +1,4 @@
-import { StoryLiteStateContextType } from '@/app/context/StoriesDataContext'
+import { StoryLiteParamValue, StoryLiteStore } from '@/app/stores/global.types'
 import { BtnProps } from '@/components/Btn'
 
 import { SLNode } from './components'
@@ -19,12 +19,19 @@ export enum SLCoreAddon {
 }
 
 export type SLAddonState = [
-  value: SLNativeScalarType | undefined,
-  setValueWithPersistency: (value: SLNativeScalarType | undefined) => void,
-  setValue: (value: SLNativeScalarType | undefined) => void,
+  value: StoryLiteParamValue | undefined,
+  setValue: (
+    value: Parameters<SLAddonContext['setParameter']>[1],
+    options?: Parameters<SLAddonContext['setParameter']>[2],
+  ) => void,
 ]
 
-export type SLAddonContext = StoryLiteStateContextType
+export type SLAddonContext = {
+  parameters: StoryLiteStore['parameters']
+  currentStory?: StoryLiteStore['currentStory']
+  setParameter: StoryLiteStore['setParameter']
+  canvas: StoryLiteStore['canvas']
+}
 
 /**
  * StoryLite Addons API.

@@ -1,12 +1,12 @@
 import React from 'react'
 import { cn } from '@r1stack/core'
 
-import { useStoryLiteStories } from '@/app/context/StoriesDataContext'
+import { useStoryLiteStore } from '@/app/stores/global'
 import { useSearchParamsMap } from '@/services/router/router.state'
 import { StoryComponent, StoryMeta, StoryModule } from '@/types'
 
 export function Story({ story, exportName }: { story: string; exportName?: string }): JSX.Element {
-  const stories = useStoryLiteStories()
+  const stories = useStoryLiteStore(state => state.stories)
 
   const notFound = (
     <StorySandbox story={story} exportName={exportName}>

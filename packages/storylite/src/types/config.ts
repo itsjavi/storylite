@@ -13,10 +13,9 @@ export type SLAppComponentProps = {
   title: SLNode
   defaultStory: string
   iframeProps?: Omit<Record<string, any>, 'src'>
-  iframeOptions?: {
-    useDefaultStyles?: boolean
-  }
+  useIframeStyles?: boolean
   themeAttribute?: string
+  localStorageKey?: string
   children?: SLNode
   addons?: SLUserDefinedAddons
   // stylesheets: string[]

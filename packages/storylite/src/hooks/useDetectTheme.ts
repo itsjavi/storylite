@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
 
+import { useStoryLiteStore } from '@/app/stores/global'
 import { SLColorScheme } from '@/types'
 
-import { useStoryLiteConfig, useStoryLiteParameters } from '../app/context/StoriesDataContext'
-
 export function useDetectTheme(): string {
-  const userConfig = useStoryLiteConfig()
-  const [params] = useStoryLiteParameters()
+  const [userConfig, params] = useStoryLiteStore(state => [state.config, state.parameters])
   const [detectedTheme, setDetectedTheme] = React.useState<'light' | 'dark' | 'auto'>(
     (params.theme.value as SLColorScheme) ?? 'auto',
   )

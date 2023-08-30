@@ -1,4 +1,4 @@
-import { useStoryLiteAddons } from '@/app/context/StoriesDataContext'
+import { useStoryLiteStore } from '@/app/stores/global'
 import { SLAddonProps } from '@/types'
 
 import { ToolbarAddon, ToolbarStatefulAddon } from './ToolbarAddon'
@@ -10,6 +10,8 @@ function ToolbarGroup({
   addons: SLAddonProps<boolean>[]
   placement: 'left' | 'right'
 }) {
+  console.log('ToolbarGroup', addons, placement)
+
   return (
     <div className="storylite-addon-toolbar-group">
       {addons
@@ -19,8 +21,11 @@ function ToolbarGroup({
         .map((props, index) => {
           const key = `addon-${props.id}---${props.placement || placement}-${index}`
           if (props.stateful) {
+            // return <div key={key + '-stateful'}>Stateful Addon</div>
             return <ToolbarStatefulAddon key={key} {...(props as SLAddonProps<true>)} />
           }
+
+          // return <div key={key}>Stateful Addon</div>
 
           return <ToolbarAddon key={key} {...(props as SLAddonProps<false>)} />
         })}
@@ -29,22 +34,12 @@ function ToolbarGroup({
 }
 
 export function Toolbar() {
-  const addons = Array.from(useStoryLiteAddons().values())
+  const addons = useStoryLiteStore(state => Array.from(state.addons.values()))
 
   return (
     <div className={'storylite-addon-toolbar'}>
       <ToolbarGroup addons={addons} placement={'left'} />
       <ToolbarGroup addons={addons} placement={'right'} />
-      {/* <section>
-        <DarkModeAddon key={10} />
-        <GridAddon key={11} />
-        <OutlineAddon key={12} />
-        <ResponsiveAddon key={13} />
-      </section>
-      <section>
-        <FullScreenAddon key={31} />
-        <OpenStoryAddon key={32} story={story} exportName={exportName} />
-      </section> */}
     </div>
   )
 }

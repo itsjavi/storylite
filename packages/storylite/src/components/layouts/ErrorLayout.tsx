@@ -1,8 +1,8 @@
-import { useStoryLiteParameters } from '@/app/context/StoriesDataContext'
-import { parametersToDataProps } from '@/app/parameters/parametersToDataProps'
+import { useStoryLiteStore } from '@/app/stores/global'
+import { parametersToDataProps } from '@/utility/parametersToDataProps'
 
 export default function ErrorLayout({ children }: any) {
-  const [params] = useStoryLiteParameters()
+  const params = useStoryLiteStore(state => state.parameters)
   const paramsDataProps = parametersToDataProps(params)
 
   return (

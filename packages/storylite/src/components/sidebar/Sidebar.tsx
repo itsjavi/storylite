@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 import { BookmarkIcon, MinusSquareIcon, PlusSquareIcon } from 'lucide-react'
 
-import { useStoryLiteStories } from '@/app/context/StoriesDataContext'
+import { useStoryLiteStore } from '@/app/stores/global'
 import { Link } from '@/services/router'
 import { useParams } from '@/services/router/router.state'
 import { getStoryUrl } from '@/services/router/router.utils'
@@ -40,7 +40,7 @@ function SidebarNav({
   currentStoryName?: string
   currentExportName?: string
 }): JSX.Element {
-  const stories = useStoryLiteStories()
+  const stories = useStoryLiteStore(state => state.stories)
 
   return (
     <nav className={'SidebarNav'}>

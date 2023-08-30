@@ -3,12 +3,7 @@ import { useEffect } from 'react'
 import { createStoryLiteRouter } from '../services/router/router.factory'
 import { RouterProvider } from '../services/router/router.state'
 import { SLAppComponentProps, StoryModulesMap } from '../types'
-import { StoryLiteStateProvider } from './context/StoriesDataContext'
-
-// const router = createStoryLiteRouter()
-const router = createStoryLiteRouter()
-// router.setFallback(() => <div>This is an error!</div>)
-router.add('/test', () => <div>testing...</div>)
+import { useStoryLiteStore } from './stores/global'
 
 export type StoryLiteAppProps = {
   config?: Partial<SLAppComponentProps>
@@ -16,16 +11,16 @@ export type StoryLiteAppProps = {
   children?: React.ReactNode
 }
 
+const router = createStoryLiteRouter()
+
 export const StoryLiteApp = (props: StoryLiteAppProps) => {
   const { config, stories, children } = props
+  const initialize = useStoryLiteStore(state => state.initialize)
+  initialize(config || {}, stories)
 
   useEffect(() => {
     router.refresh(window.location.hash)
   }, [])
 
-  return (
-    <StoryLiteStateProvider config={config} stories={stories}>
-      <RouterProvider router={router}>{children}</RouterProvider>
-    </StoryLiteStateProvider>
-  )
+  return <RouterProvider router={router}>{children}</RouterProvider>
 }

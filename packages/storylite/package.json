@@ -30,7 +30,6 @@
   },
   "dependencies": {
     "@r1stack/core": "^0.4.4",
-    "immer": "^10.0.2",
     "lucide-react": "^0.272.0",
     "zustand": "^4.4.1"
   },

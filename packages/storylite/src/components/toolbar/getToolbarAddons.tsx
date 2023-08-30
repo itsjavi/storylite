@@ -49,7 +49,7 @@ function getDefaultLeftToolbarAddons(): AddonSetup[] {
       persistent: true,
       defaultValue: false,
       onClick: (_, [value, setValue]) => {
-        setValue(!value)
+        setValue(!value, { persist: true })
       },
       isActive: (_, [value]) => value === true,
     },
@@ -63,33 +63,33 @@ function getDefaultLeftToolbarAddons(): AddonSetup[] {
       stateful: true,
       persistent: true,
       defaultValue: false,
-      isVisible: ctx => isNotEmpty(ctx.iframeRef),
+      isVisible: ctx => isNotEmpty(ctx.canvas.element),
       onClick: (ctx, [value, setValue]) => {
-        if (!ctx.iframeRef) {
+        if (!ctx.canvas.element) {
           return
         }
         const mobileWidth = '375px' // like an iPhone 12 Mini
 
         if (!value) {
-          ctx.iframeRef.style.width = mobileWidth
+          ctx.canvas.element.style.width = mobileWidth
           const div = document.createElement('div')
           div.className = 'sl-responsive-info'
           div.innerText = mobileWidth
-          ctx.iframeRef.parentElement?.appendChild(div)
-          setValue(mobileWidth)
+          ctx.canvas.element.parentElement?.appendChild(div)
+          setValue(mobileWidth, { persist: true })
 
           return
         }
-        ctx.iframeRef.style.width = ''
-        ctx.iframeRef.parentElement?.querySelector('.sl-responsive-info')?.remove()
-        setValue(false)
+        ctx.canvas.element.style.width = ''
+        ctx.canvas.element.parentElement?.querySelector('.sl-responsive-info')?.remove()
+        setValue(false, { persist: true })
       },
       onRender: (ctx, [value]) => {
-        if (!ctx.iframeRef) {
+        if (!ctx.canvas.element) {
           return
         }
         if (value) {
-          ctx.iframeRef.style.width = value as string
+          ctx.canvas.element.style.width = value as string
         }
       },
       isActive: (_, [value]) => isTruthy(value),
@@ -105,7 +105,7 @@ function getDefaultLeftToolbarAddons(): AddonSetup[] {
       persistent: true,
       defaultValue: false,
       onClick: (_, [value, setValue]) => {
-        setValue(!value)
+        setValue(!value, { persist: true })
       },
       isActive: (_, [value]) => value === true,
     } satisfies SLAddonPropsWithoutId<true>,
@@ -128,7 +128,7 @@ function getDefaultRightToolbarAddons(): AddonSetup[] {
       persistent: true,
       defaultValue: false,
       onClick: (_, [value, setValue]) => {
-        setValue(!value)
+        setValue(!value, { persist: true })
       },
       isActive: (_, [value]) => value === true,
     } satisfies SLAddonPropsWithoutId<true>,
@@ -172,16 +172,16 @@ function getDefaultRightToolbarAddons(): AddonSetup[] {
       onClick: (_, [value, setValue]) => {
         // Rotate between Auto -> Light -> Dark
         if (value === SLColorScheme.Light) {
-          setValue(SLColorScheme.Auto)
+          setValue(SLColorScheme.Auto, { persist: true })
 
           return
         }
         if (value === SLColorScheme.Dark) {
-          setValue(SLColorScheme.Light)
+          setValue(SLColorScheme.Light, { persist: true })
 
           return
         }
-        setValue(SLColorScheme.Dark)
+        setValue(SLColorScheme.Dark, { persist: true })
       },
       render: (_, [value]) => {
         if (value === SLColorScheme.Auto || !value) {
