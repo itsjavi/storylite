@@ -20,6 +20,7 @@ export enum SLCoreAddon {
 
 export type SLAddonState = [
   value: SLNativeScalarType | undefined,
+  setValueWithPersistency: (value: SLNativeScalarType | undefined) => void,
   setValue: (value: SLNativeScalarType | undefined) => void,
 ]
 
@@ -69,7 +70,7 @@ export type SLAddonProps<Stateful = boolean> = {
   /**
    * Default value for the state manager.
    */
-  defaultValue?: Stateful extends true ? SLNativeScalarType : never
+  defaultValue?: Stateful extends true ? SLNativeScalarType | (() => SLNativeScalarType) : never
   /**
    * Props to pass to the button element.
    */

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
 
 import {
   SLAddonsMap,
@@ -22,6 +21,7 @@ import {
   registerWindowMessageListener,
   sendWindowMessage,
 } from '../messaging'
+import { useParams, useSearchParamsMap } from '../router/router.state'
 import { getLocalStorageItem, setLocalStorageItem } from './kvStorage'
 
 export type StoryLiteStateContextType = {
@@ -65,7 +65,7 @@ export const useStoryLiteState = (): Required<StoryLiteStateContextType> => {
   const { config, stories, ...rest } = useStoryLiteStateContext()
   const { story, export_name } = useParams()
   const storyMeta = story ? stories.get(story)?.meta : {}
-  const [searchParams] = useSearchParams()
+  const searchParams = useSearchParamsMap()
   const isStandalone = searchParams.has('standalone')
 
   if (!config) {

@@ -16,6 +16,7 @@ export type SLAppComponentProps = {
   iframeOptions?: {
     useDefaultStyles?: boolean
   }
+  children?: SLNode
   addons?: SLUserDefinedAddons
   // stylesheets: string[]
   // addons: StoryAddonList

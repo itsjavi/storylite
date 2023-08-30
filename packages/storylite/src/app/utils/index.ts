@@ -1,6 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-export function __noop(...args: any[]) {
-  // do nothing
+export function __ignoreUnused(...args: any[]) {
+  // does nothing. useful to pass variables that are not used, so eslint doesn't complain :P
+  // it is helpful in some spread scenarios like: `const { a: excludeThis, ...allOtherProps } = obj`
 }
 
 // type Excluded<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>

@@ -1,8 +1,8 @@
 import React from 'react'
-import { useSearchParams } from 'react-router-dom'
 import { cn } from '@r1stack/core'
 
 import { useStoryLiteStories } from '@/app/context/StoriesDataContext'
+import { useSearchParamsMap } from '@/app/router/router.state'
 import { StoryComponent, StoryMeta, StoryModule } from '@/types'
 
 export function Story({ story, exportName }: { story: string; exportName?: string }): JSX.Element {
@@ -84,7 +84,7 @@ export function StorySandbox({
   metadata?: StoryMeta
   children?: React.ReactNode
 }) {
-  const [searchParams] = useSearchParams()
+  const searchParams = useSearchParamsMap()
   const isStandalone = searchParams.has('standalone')
 
   return (

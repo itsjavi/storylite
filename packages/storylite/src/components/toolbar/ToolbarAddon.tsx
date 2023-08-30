@@ -40,9 +40,7 @@ export function ToolbarAddon(props: SLAddonProps<false>) {
   }
 
   useEffect(() => {
-    if (onIFrameReady) {
-      onIFrameReady(ctx)
-    }
+    onIFrameReady?.(ctx)
   }, [onIFrameReady, ctx.iframeLoadState, ctx.iframeRef])
 
   useEffect(() => {
@@ -52,9 +50,7 @@ export function ToolbarAddon(props: SLAddonProps<false>) {
   }, [isActive, ctx])
 
   useEffect(() => {
-    if (onRender) {
-      return onRender(ctx)
-    }
+    onRender?.(ctx)
   }, [onRender, ctx])
 
   const _visible = isVisible ? isVisible(ctx) : true
@@ -91,7 +87,7 @@ export function ToolbarStatefulAddon(props: SLAddonProps<true>) {
     hrefTarget,
     isVisible,
     persistent,
-    isActive,
+    isActive: isActiveFn,
     render,
     id,
     tooltip,
@@ -113,9 +109,9 @@ export function ToolbarStatefulAddon(props: SLAddonProps<true>) {
     setState(value)
   }
 
-  const stateTuple: SLAddonState = [state, setPersistentState]
+  const stateTuple: SLAddonState = [state, setPersistentState, setState]
   const _visible = isVisible ? isVisible(ctx, stateTuple) : true
-  const [active, setActive] = useState(isActive ? isActive(ctx, stateTuple) : false)
+  const [active, setActive] = useState(isActiveFn ? isActiveFn(ctx, stateTuple) : false)
 
   const handleOnClick = () => {
     if (onClick) {
@@ -132,21 +128,23 @@ export function ToolbarStatefulAddon(props: SLAddonProps<true>) {
   }
 
   useEffect(() => {
-    if (onIFrameReady) {
-      onIFrameReady(ctx, stateTuple)
-    }
+    onIFrameReady?.(ctx, stateTuple)
   }, [onIFrameReady, ctx.iframeLoadState, ctx.iframeRef])
 
   useEffect(() => {
-    if (isActive) {
-      setActive(isActive(ctx, stateTuple))
+    if (isActiveFn) {
+      setActive(isActiveFn(ctx, stateTuple))
     }
-  }, [isActive, ctx])
+  }, [isActiveFn, ctx, state])
 
   useEffect(() => {
-    if (onRender) {
-      return onRender(ctx, stateTuple)
+    if (isActiveFn) {
+      setActive(isActiveFn(ctx, stateTuple))
     }
+  }, [state])
+
+  useEffect(() => {
+    return onRender?.(ctx, stateTuple)
   }, [onRender, ctx])
 
   if (!_visible) {

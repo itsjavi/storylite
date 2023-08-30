@@ -1,12 +1,11 @@
-import { useSearchParams } from 'react-router-dom'
 import { cn } from '@r1stack/core'
 
 import { useStoryLiteConfig, useStoryLiteParameters } from '@/app/context/StoriesDataContext'
 import { parametersToDataProps } from '@/app/parameters/parametersToDataProps'
 
-export default function CanvasIframeLayout({ children }: any) {
-  const [searchParams] = useSearchParams()
-  const isStandalone = searchParams.has('standalone')
+export default function CanvasIframeLayout({ children, ...props }: any) {
+  const { standalone } = props
+  const isStandalone = standalone === 'true'
   const userConfig = useStoryLiteConfig()
 
   const [params] = useStoryLiteParameters()
@@ -21,7 +20,7 @@ export default function CanvasIframeLayout({ children }: any) {
         [isStandalone, 'storylite-iframe--standalone'],
       )}
       {...paramsDataProps}
-      data-sl-standlone={isStandalone}
+      data-sl-standalone={isStandalone}
     >
       <main className={'storylite-main'}>{children}</main>
     </div>

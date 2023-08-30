@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom'
-
 import { useStoryLiteConfig } from '@/app/context/StoriesDataContext'
+import { Link } from '@/app/router/router.component'
 
 export function SidebarTitle() {
   const config = useStoryLiteConfig()

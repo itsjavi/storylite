@@ -40,7 +40,6 @@
     "publint": "^0.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.9"
@@ -51,7 +50,6 @@
     "@types/react-dom": "^18.2.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.14.2",
     "typescript": "^5.1.6"
   },
   "peerDependenciesMeta": {
@@ -59,9 +57,6 @@
       "optional": false
     },
     "react-dom": {
-      "optional": false
-    },
-    "react-router-dom": {
       "optional": false
     },
     "typescript": {

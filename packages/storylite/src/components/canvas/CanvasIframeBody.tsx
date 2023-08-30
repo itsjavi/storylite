@@ -1,6 +1,7 @@
 import { HTMLProps } from 'react'
-import { useSearchParams } from 'react-router-dom'
 import { cn } from '@r1stack/core'
+
+import { useSearchParamsMap } from '@/app/router/router.state'
 
 import { Story } from '../Story'
 
@@ -12,7 +13,7 @@ export type CanvasIframeBodyProps = {
 export function CanvasIframeBody(props: CanvasIframeBodyProps) {
   const { story, exportName, ...rest } = props
 
-  const [searchParams] = useSearchParams()
+  const searchParams = useSearchParamsMap()
   const isStandalone = searchParams.has('standalone')
 
   return (

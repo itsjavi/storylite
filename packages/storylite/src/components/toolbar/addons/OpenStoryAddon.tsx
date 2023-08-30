@@ -1,6 +1,6 @@
 import { ExternalLink } from 'lucide-react'
 
-import { getStoryUrl } from '@/app/navigation/urlUtils'
+import { getStoryUrl } from '@/app/router/router.utils'
 
 import { Btn } from '../../Btn'
 

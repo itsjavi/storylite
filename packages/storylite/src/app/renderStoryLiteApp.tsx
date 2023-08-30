@@ -12,7 +12,9 @@ export function renderStoryLiteApp(
 ) {
   ReactDOM.createRoot(root).render(
     <React.StrictMode>
-      <StoryLiteApp stories={stories} config={config} />
+      <StoryLiteApp stories={stories} config={config}>
+        {config?.children}
+      </StoryLiteApp>
     </React.StrictMode>,
   )
 }

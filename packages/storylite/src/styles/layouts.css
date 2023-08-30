@@ -26,7 +26,11 @@
 }
 
 :where(.storylite-top-frame) .storylite-main {
-  display: flex;
+  display: grid;
+  /* grid-auto-flow: row; */
+  grid-template-rows: 1fr auto;
+  gap: 0.5rem;
+  align-items: stretch;
 }
 
 :where(.storylite-top-frame) .storylite-layout-center {

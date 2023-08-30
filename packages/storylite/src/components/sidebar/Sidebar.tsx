@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
 
-import { Bookmark, MinusSquare, PlusSquare } from 'lucide-react'
+import { BookmarkIcon, MinusSquareIcon, PlusSquareIcon } from 'lucide-react'
 
 import { useStoryLiteStories } from '@/app/context/StoriesDataContext'
-import { getStoryUrl } from '@/app/navigation/urlUtils'
+import { Link } from '@/app/router'
+import { useParams } from '@/app/router/router.state'
+import { getStoryUrl } from '@/app/router/router.utils'
 import { StoryMeta, StoryModule, StoryModulesMapValue } from '@/types'
 
 type SidebarProps = {
@@ -70,8 +71,8 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
   const shouldShowSubmenu =
     hasMultipleExports && (showMenu !== undefined ? showMenu : fallbackShowMenu)
 
-  const collapsableIcon = shouldShowSubmenu ? <MinusSquare /> : <PlusSquare />
-  const defaultIcon = hasMultipleExports ? collapsableIcon : <Bookmark />
+  const collapsableIcon = shouldShowSubmenu ? <MinusSquareIcon /> : <PlusSquareIcon />
+  const defaultIcon = hasMultipleExports ? collapsableIcon : <BookmarkIcon />
   const icon = storyData.meta.icon ? storyData.meta.icon : defaultIcon
 
   if (exports.length === 1) {
@@ -139,7 +140,7 @@ function SidebarNestedList(props: SidebarItemBaseProps): JSX.Element {
                 className={'ListBtn'}
               >
                 <i className={'Icon'}>
-                  <Bookmark />
+                  <BookmarkIcon />
                 </i>
                 <span className={'Text'}>{title}</span>
               </Link>

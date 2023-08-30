@@ -19,7 +19,7 @@ import {
   SLParameters,
   SLUserDefinedAddons,
 } from '..'
-import { getStoryUrl } from './navigation/urlUtils'
+import { getStoryUrl } from './router/router.utils'
 import { isNotEmpty, isTruthy } from './utils'
 
 export function getToolbarAddonsAsParameters(addons: SLAddonsMap): SLParameters {
@@ -29,7 +29,7 @@ export function getToolbarAddonsAsParameters(addons: SLAddonsMap): SLParameters 
     .filter(([, value]) => value.stateful)
     .forEach(([key, value]) => {
       parameters[key] = {
-        value: value.defaultValue,
+        value: typeof value.defaultValue === 'function' ? value.defaultValue() : value.defaultValue,
       }
     })
 
@@ -46,6 +46,7 @@ function getDefaultLeftToolbarAddons(): AddonSetup[] {
       defaultContent: <GridIcon />,
       stateful: true,
       persistent: true,
+      defaultValue: false,
       onClick: (_, [value, setValue]) => {
         setValue(!value)
       },
@@ -60,18 +61,21 @@ function getDefaultLeftToolbarAddons(): AddonSetup[] {
       defaultContent: <MonitorSmartphoneIcon />,
       stateful: true,
       persistent: true,
+      defaultValue: false,
       isVisible: ctx => isNotEmpty(ctx.iframeRef),
       onClick: (ctx, [value, setValue]) => {
         if (!ctx.iframeRef) {
           return
         }
+        const mobileWidth = '375px' // like an iPhone 12 Mini
+
         if (!value) {
-          ctx.iframeRef.style.width = '320px'
+          ctx.iframeRef.style.width = mobileWidth
           const div = document.createElement('div')
           div.className = 'sl-responsive-info'
-          div.innerText = '320px'
+          div.innerText = mobileWidth
           ctx.iframeRef.parentElement?.appendChild(div)
-          setValue('320px')
+          setValue(mobileWidth)
 
           return
         }
@@ -98,6 +102,7 @@ function getDefaultLeftToolbarAddons(): AddonSetup[] {
       defaultContent: <BoxSelectIcon />,
       stateful: true,
       persistent: true,
+      defaultValue: false,
       onClick: (_, [value, setValue]) => {
         setValue(!value)
       },
@@ -120,6 +125,7 @@ function getDefaultRightToolbarAddons(): AddonSetup[] {
       placement,
       stateful: true,
       persistent: true,
+      defaultValue: false,
       onClick: (_, [value, setValue]) => {
         setValue(!value)
       },
@@ -162,6 +168,27 @@ function getDefaultRightToolbarAddons(): AddonSetup[] {
       placement,
       stateful: true,
       persistent: true,
+      defaultValue: SLColorScheme.Auto,
+      onRender: (ctx, [value, , setValue]) => {
+        if (value !== SLColorScheme.Auto) {
+          return
+        }
+
+        const updateColorScheme = (e: MediaQueryList | MediaQueryListEvent) => {
+          setValue(e.matches ? SLColorScheme.Dark : SLColorScheme.Light)
+        }
+
+        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+        if (mediaQuery.matches) {
+          updateColorScheme(mediaQuery)
+        }
+
+        mediaQuery.addEventListener('change', updateColorScheme)
+
+        return () => {
+          mediaQuery.removeEventListener('change', updateColorScheme)
+        }
+      },
       onClick: (_, [value, setValue]) => {
         if (value === false || value === SLColorScheme.Light) {
           setValue(SLColorScheme.Dark)
