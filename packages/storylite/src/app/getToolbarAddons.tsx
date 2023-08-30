@@ -1,5 +1,6 @@
 import {
   BoxSelectIcon,
+  ContrastIcon,
   ExpandIcon,
   ExternalLinkIcon,
   GridIcon,
@@ -161,42 +162,35 @@ function getDefaultRightToolbarAddons(): AddonSetup[] {
   const darkModeAddon: AddonSetup = [
     SLCoreAddon.ColorScheme,
     {
-      tooltip: 'Toggle Dark Mode',
+      tooltip: 'Toggle Dark/Light/Auto theme',
       defaultContent: <SunIcon />,
       activeContent: <MoonIcon />,
       placement,
       stateful: true,
       persistent: true,
       defaultValue: SLColorScheme.Auto,
-      onRender: (ctx, [value, , setValue]) => {
-        if (value !== SLColorScheme.Auto) {
-          return
-        }
-
-        const updateColorScheme = (e: MediaQueryList | MediaQueryListEvent) => {
-          setValue(e.matches ? SLColorScheme.Dark : SLColorScheme.Light)
-        }
-
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
-        if (mediaQuery.matches) {
-          updateColorScheme(mediaQuery)
-        }
-
-        mediaQuery.addEventListener('change', updateColorScheme)
-
-        return () => {
-          mediaQuery.removeEventListener('change', updateColorScheme)
-        }
-      },
       onClick: (_, [value, setValue]) => {
-        if (value === false || value === SLColorScheme.Light) {
-          setValue(SLColorScheme.Dark)
+        // Rotate between Auto -> Light -> Dark
+        if (value === SLColorScheme.Light) {
+          setValue(SLColorScheme.Auto)
 
           return
         }
-        setValue(SLColorScheme.Light)
+        if (value === SLColorScheme.Dark) {
+          setValue(SLColorScheme.Light)
+
+          return
+        }
+        setValue(SLColorScheme.Dark)
       },
-      isActive: (_, [value]) => value === SLColorScheme.Dark,
+      render: (_, [value]) => {
+        if (value === SLColorScheme.Auto || !value) {
+          return <ContrastIcon />
+        }
+
+        return value === SLColorScheme.Light ? <SunIcon /> : <MoonIcon />
+      },
+      isActive: (_, [value]) => value !== SLColorScheme.Auto,
     } satisfies SLAddonPropsWithoutId<true>,
   ]
 
