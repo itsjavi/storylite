@@ -1,3 +1,19 @@
+## v0.8.0
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.7.1...v0.8.0)
+
+### 💅 Refactors
+
+- Reorganize code files structure ([dd6c055](https://github.com/itsjavi/storylite/commit/dd6c055))
+- Replace global state manager with Zustand
+  ([a70f0a1](https://github.com/itsjavi/storylite/commit/a70f0a1))
+- Replace router context with Zustand, fixing rerenders on global state change
+  ([b9e4f4f](https://github.com/itsjavi/storylite/commit/b9e4f4f))
+
+### ❤️ Contributors
+
+- Javi Aguilar
+
 ## v0.7.1
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.7.0...v0.7.1)
