@@ -1,3 +1,16 @@
+## v0.7.0
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.6.1...v0.7.0)
+
+### 🎨 Styles
+
+- **config:** Reformat markdown files
+  ([09ed5f0](https://github.com/itsjavi/storylite/commit/09ed5f0))
+
+### ❤️ Contributors
+
+- Javi Aguilar
+
 ## v0.6.1
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.6.0...v0.6.1)
