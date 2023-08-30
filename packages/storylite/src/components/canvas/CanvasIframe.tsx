@@ -1,8 +1,9 @@
-import { HTMLProps, useRef } from 'react'
+import { HTMLProps } from 'react'
 import { cn } from '@r1stack/core'
 
 import { useStoryLiteIframe, useStoryLiteStore } from '@/app/stores/global'
 import { getStoryUrl } from '@/services/router/router.utils'
+import { parametersToDataProps } from '@/utility/parametersToDataProps'
 
 const allowList = [
   'autoplay',
@@ -28,8 +29,7 @@ export type CanvasIframeProps = {
 } & Omit<HTMLProps<HTMLIFrameElement>, 'src'>
 
 export function CanvasIframe(props: CanvasIframeProps) {
-  // const ref = useRef<HTMLIFrameElement>(null)
-  const userConfig = useStoryLiteStore(state => state.config)
+  const [userConfig, params] = useStoryLiteStore(state => [state.config, state.parameters])
   const userProps = userConfig?.iframeProps || {}
   const { className: userClassName, ...userRest } = userProps
   const { story, exportName, className, ...rest } = props
@@ -37,6 +37,7 @@ export function CanvasIframe(props: CanvasIframeProps) {
     target: 'iframe',
     standalone: false,
   })
+  const paramsDataProps = parametersToDataProps(params)
 
   const portal = useStoryLiteIframe()
 
@@ -51,6 +52,7 @@ export function CanvasIframe(props: CanvasIframeProps) {
       className={cn('storylite-iframe-element', className, userClassName)}
       allow={allowList.map(permission => `${permission} *`).join('; ')}
       {...rest}
+      {...paramsDataProps}
       {...userRest}
     />
   )

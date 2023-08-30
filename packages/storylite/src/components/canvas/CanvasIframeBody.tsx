@@ -1,7 +1,7 @@
 import { HTMLProps } from 'react'
 import { cn } from '@r1stack/core'
 
-import { useSearchParamsMap } from '@/services/router/router.state'
+import { useRouterQuery } from '@/services/router'
 
 import { Story } from '../Story'
 
@@ -13,8 +13,8 @@ export type CanvasIframeBodyProps = {
 export function CanvasIframeBody(props: CanvasIframeBodyProps) {
   const { story, exportName, ...rest } = props
 
-  const searchParams = useSearchParamsMap()
-  const isStandalone = searchParams.has('standalone')
+  const searchParams = useRouterQuery()
+  const isStandalone = searchParams.standalone ? true : false
 
   return (
     <div className={cn('SandboxLayout', [isStandalone, 'StandaloneSandboxLayout'])} {...rest}>

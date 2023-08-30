@@ -64,7 +64,6 @@ export class Router implements Iterable<Route> {
 
   constructor() {
     this.refresh(getWindowHash())
-    // console.log('Router', this._currentRoute)
   }
 
   back(): void {
@@ -80,7 +79,6 @@ export class Router implements Iterable<Route> {
   }
 
   navigate(path: string, query?: URLSearchParams | Record<string, string>, replace = false): void {
-    // console.log('navigate', path)
     const absPath = asAbsoluteHash(path)
     const relPath = asRelativeHash(path)
     const newUrl = new URL(absPath, window.location.origin)
@@ -97,7 +95,6 @@ export class Router implements Iterable<Route> {
   }
 
   refresh(path: string): void {
-    // console.log('refresh', path)
     const [pathPart, queryPart] = parseHashbangPath(path)
 
     const matches = this.getMatches(pathPart) // the last match takes precedence

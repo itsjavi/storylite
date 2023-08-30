@@ -1,4 +1,4 @@
-[data-sl-responsive*='px'] .storylite-iframe-element {
+[data-sl-responsive*='px'].storylite-iframe-element {
   border: 1px solid rgba(80, 80, 80, 0.5);
   box-shadow: 0 0 6px 1px rgba(80, 80, 80, 0.3);
   border-radius: 16px;

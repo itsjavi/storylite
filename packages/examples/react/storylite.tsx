@@ -15,9 +15,7 @@ renderStoryLiteApp(rootElement, stories, {
       // padding: '10px',
     },
   },
-  iframeOptions: {
-    useDefaultStyles: true,
-  },
+  useIframeStyles: true,
   children: <div>Extra children are rendered here</div>,
   addons: [
     // ['id-of-addon-to-exclude', false],

@@ -1,15 +1,15 @@
 import { HTMLAttributes, ReactNode } from 'react'
 
-import { useRouter } from './router.state'
+import { useRouterStore } from './router.store'
 import { CurrentRoute } from './router.types'
 import { asAbsoluteHash, parseWindowHash } from './router.utils'
 
-export type RouteComponentProps = {
+export type RouteRendererProps = {
   route?: CurrentRoute
   fallback?: React.FC
 } & HTMLAttributes<HTMLDivElement>
 
-export function RouteComponent({ route, fallback, ...rest }: RouteComponentProps): ReactNode {
+export function RouteRenderer({ route, fallback, ...rest }: RouteRendererProps): ReactNode {
   let Component: React.FC | undefined
   const _props: Record<string, any> = { ...rest }
 
@@ -38,14 +38,14 @@ export const Link = ({
   children?: React.ReactNode
   [key: string]: any
 }) => {
-  const router = useRouter()
+  const navigate = useRouterStore(state => state.navigate)
 
   return (
     <a
       href={asAbsoluteHash(to)}
       onClick={e => {
         e.preventDefault()
-        router.navigate(to)
+        navigate(to)
       }}
       {...rest}
     >

@@ -1,7 +1,6 @@
 import { useEffect } from 'react'
 
-import { createStoryLiteRouter } from '../services/router/router.factory'
-import { RouterProvider } from '../services/router/router.state'
+import { RouteRenderer, useRouterStore } from '..'
 import { SLAppComponentProps, StoryModulesMap } from '../types'
 import { useStoryLiteStore } from './stores/global'
 
@@ -11,16 +10,24 @@ export type StoryLiteAppProps = {
   children?: React.ReactNode
 }
 
-const router = createStoryLiteRouter()
-
 export const StoryLiteApp = (props: StoryLiteAppProps) => {
   const { config, stories, children } = props
   const initialize = useStoryLiteStore(state => state.initialize)
-  initialize(config || {}, stories)
+
+  const [route, getFallback, initializeRouter] = useRouterStore(state => [
+    state.route,
+    state.getFallback,
+    state.initialize,
+  ])
 
   useEffect(() => {
-    router.refresh(window.location.hash)
+    initialize(config || {}, stories)
+    initializeRouter()
   }, [])
 
-  return <RouterProvider router={router}>{children}</RouterProvider>
+  return (
+    <RouteRenderer fallback={getFallback()} route={route}>
+      {children}
+    </RouteRenderer>
+  )
 }

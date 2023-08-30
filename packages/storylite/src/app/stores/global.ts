@@ -41,10 +41,7 @@ const updateParameters = (
   options = { persist: false, crossWindow: false },
 ): StoryLiteState => {
   if (options.persist) {
-    localStorage.setItem(
-      `${state.config.localStorageKey}.parameters`,
-      JSON.stringify(state.parameters),
-    )
+    localStorage.setItem(`${state.config.localStorageKey}.parameters`, JSON.stringify(params))
   }
 
   return {
@@ -72,7 +69,6 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
     ...defaultState,
     parameters: resolveParams(),
     setAddons(addons: SLUserDefinedAddons) {
-      console.log('ZUSTAND: setAddons')
       set(state => {
         return {
           ...state,
@@ -81,7 +77,6 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
       })
     },
     setStories(stories) {
-      console.log('ZUSTAND: setStories')
       set(state => {
         return {
           ...state,
@@ -90,7 +85,6 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
       })
     },
     setConfig(config) {
-      console.log('ZUSTAND: setConfig')
       set(state => {
         return {
           ...state,
@@ -102,7 +96,6 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
       })
     },
     initialize(config, stories) {
-      console.log('ZUSTAND: initialize', config.addons, builtinAddons)
       set(state => {
         return {
           ...state,
@@ -116,7 +109,6 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
       })
     },
     setParameter(key, value, options = { persist: false, crossWindow: false }) {
-      console.log('ZUSTAND: setParameter')
       set(state =>
         updateParameters(
           state,
@@ -135,7 +127,6 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
       )
     },
     setParameters(data, options = { persist: false, crossWindow: false }) {
-      console.log('ZUSTAND: setParameters')
       set(state =>
         updateParameters(state, data, {
           persist: options.persist || false,
@@ -144,7 +135,6 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
       )
     },
     setCanvasElement(element) {
-      console.log('ZUSTAND: setCanvasElement')
       set(state => {
         return {
           ...state,

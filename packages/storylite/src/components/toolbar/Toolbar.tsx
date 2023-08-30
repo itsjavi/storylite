@@ -10,8 +10,6 @@ function ToolbarGroup({
   addons: SLAddonProps<boolean>[]
   placement: 'left' | 'right'
 }) {
-  console.log('ToolbarGroup', addons, placement)
-
   return (
     <div className="storylite-addon-toolbar-group">
       {addons

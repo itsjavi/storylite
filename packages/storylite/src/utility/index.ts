@@ -25,3 +25,9 @@ export function isNotEmpty<T>(value: T | null | undefined): value is T {
 export function isTruthy<T>(value: T | null | undefined | false): value is T {
   return value !== null && value !== undefined && value !== false
 }
+
+// type MembersOf<T> = { [K in keyof T]: T[K] }
+// type NonFunctionPropertyNames<T> = {
+//   [K in keyof T]: T[K] extends Function ? never : K
+// }[keyof T]
+// type NonFunctionProperties<T> = Pick<T, NonFunctionPropertyNames<T>>

@@ -2,8 +2,9 @@ import React from 'react'
 import { cn } from '@r1stack/core'
 
 import { useStoryLiteStore } from '@/app/stores/global'
-import { useSearchParamsMap } from '@/services/router/router.state'
 import { StoryComponent, StoryMeta, StoryModule } from '@/types'
+
+import { useRouterQuery } from '..'
 
 export function Story({ story, exportName }: { story: string; exportName?: string }): JSX.Element {
   const stories = useStoryLiteStore(state => state.stories)
@@ -84,8 +85,8 @@ export function StorySandbox({
   metadata?: StoryMeta
   children?: React.ReactNode
 }) {
-  const searchParams = useSearchParamsMap()
-  const isStandalone = searchParams.has('standalone')
+  const searchParams = useRouterQuery()
+  const isStandalone = searchParams.standalone ? true : false
 
   return (
     <div className={cn('storylite-story', [isStandalone, 'storylite-story--standalone'])}>

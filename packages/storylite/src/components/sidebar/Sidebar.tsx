@@ -3,8 +3,7 @@ import React, { useState } from 'react'
 import { BookmarkIcon, MinusSquareIcon, PlusSquareIcon } from 'lucide-react'
 
 import { useStoryLiteStore } from '@/app/stores/global'
-import { Link } from '@/services/router'
-import { useParams } from '@/services/router/router.state'
+import { Link, useRouterParams } from '@/services/router'
 import { getStoryUrl } from '@/services/router/router.utils'
 import { StoryMeta, StoryModule, StoryModulesMapValue } from '@/types'
 
@@ -21,7 +20,7 @@ type SidebarItemBaseProps = {
 }
 
 export function Sidebar({ title, ...rest }: SidebarProps) {
-  const { story, export_name } = useParams()
+  const { story, export_name } = useRouterParams()
 
   return (
     <div className={'Sidebar'} {...rest}>
