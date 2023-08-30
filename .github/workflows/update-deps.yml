@@ -62,7 +62,9 @@ jobs:
 
       - name: Create PR if not exists
         id: create_pr
-        if: ${{ steps.git_diff.outputs.has_changes == 'yes' && steps.check_open_pr.outputs.pr_number == 0 }}
+        if:
+          ${{ steps.git_diff.outputs.has_changes == 'yes' && steps.check_open_pr.outputs.pr_number
+          == 0 }}
         env:
           GH_TOKEN: ${{ github.token }} # make sure your GITHUB_TOKEN has PR creation permissions under "Workflow Permissions" of your repo Actions settings
         run: |

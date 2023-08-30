@@ -12,8 +12,8 @@ A clear and concise description of what the bug is.
 
 **Reproduction**
 
-Please, try to reproduce your issue with [Stackblitz](https://stackblitz.com/) or similar.
-Your issue will get much higher priority since it can be triaged efficiently.
+Please, try to reproduce your issue with [Stackblitz](https://stackblitz.com/) or similar. Your
+issue will get much higher priority since it can be triaged efficiently.
 
 Alternatively, create a repository reproducing the issue.
 

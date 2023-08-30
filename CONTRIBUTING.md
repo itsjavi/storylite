@@ -1,12 +1,14 @@
 # Contributing Guide
 
-Thanks for your interest to contribute to this project. Please take a moment and read through this guide:
+Thanks for your interest to contribute to this project. Please take a moment and read through this
+guide:
 
 ## Repository
 
 - We use Node v18 or v20 and the `pnpm` package manager.
 - This project is a monorepo using `turbo` and `pnpm` workspaces.
-- We use [Convention Commits](https://www.conventionalcommits.org/en/v1.0.0/) for our commit messages.
+- We use [Convention Commits](https://www.conventionalcommits.org/en/v1.0.0/) for our commit
+  messages.
 
 ## Developing
 
