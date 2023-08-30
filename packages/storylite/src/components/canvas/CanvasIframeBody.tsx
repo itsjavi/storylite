@@ -1,7 +1,7 @@
 import { HTMLProps } from 'react'
 import { cn } from '@r1stack/core'
 
-import { useSearchParamsMap } from '@/app/router/router.state'
+import { useSearchParamsMap } from '@/services/router/router.state'
 
 import { Story } from '../Story'
 

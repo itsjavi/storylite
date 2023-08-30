@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { SLColorScheme } from '@/types'
 
-import { useStoryLiteConfig, useStoryLiteParameters } from '../context/StoriesDataContext'
+import { useStoryLiteConfig, useStoryLiteParameters } from '../app/context/StoriesDataContext'
 
 export function useDetectTheme(): string {
   const userConfig = useStoryLiteConfig()

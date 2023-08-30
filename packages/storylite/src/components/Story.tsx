@@ -2,7 +2,7 @@ import React from 'react'
 import { cn } from '@r1stack/core'
 
 import { useStoryLiteStories } from '@/app/context/StoriesDataContext'
-import { useSearchParamsMap } from '@/app/router/router.state'
+import { useSearchParamsMap } from '@/services/router/router.state'
 import { StoryComponent, StoryMeta, StoryModule } from '@/types'
 
 export function Story({ story, exportName }: { story: string; exportName?: string }): JSX.Element {

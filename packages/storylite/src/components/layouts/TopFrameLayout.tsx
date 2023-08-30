@@ -1,6 +1,6 @@
 import { useStoryLiteParameters } from '@/app/context/StoriesDataContext'
-import { useDetectTheme } from '@/app/hooks/useDetectTheme'
 import { parametersToDataProps } from '@/app/parameters/parametersToDataProps'
+import { useDetectTheme } from '@/hooks/useDetectTheme'
 
 import { Sidebar } from '../sidebar/Sidebar'
 import { SidebarTitle } from '../sidebar/SidebarTitle'

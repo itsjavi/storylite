@@ -1,6 +1,6 @@
+// import all pages manually (we are not in the Vite context here; cannot use import.meta.glob)
 import TopFrameLayout from '../../components/layouts/TopFrameLayout'
 import * as Error404 from '../../pages/404'
-// import all pages manually (we are not in the Vite context here; cannot use import.meta.glob)
 import * as IndexPage from '../../pages/index'
 import * as SandboxDashboardPage from '../../pages/preview/dashboard'
 import * as SandboxStoryIndex from '../../pages/preview/stories/[story]'

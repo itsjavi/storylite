@@ -1,5 +1,5 @@
 import { useStoryLiteConfig } from '@/app/context/StoriesDataContext'
-import { Link } from '@/app/router/router.component'
+import { Link } from '@/services/router/router.component'
 
 export function SidebarTitle() {
   const config = useStoryLiteConfig()

@@ -1,4 +1,8 @@
-import { CrossDocumentMessage, CrossDocumentMessageSource, WindowMessageOrigin } from './types'
+import {
+  CrossDocumentMessage,
+  CrossDocumentMessageSource,
+  WindowMessageOrigin,
+} from './windowMessaging.types'
 
 export const sendWindowMessageToRoot = (message: CrossDocumentMessage) => {
   sendWindowMessage(message, CrossDocumentMessageSource.Iframe, window.parent)

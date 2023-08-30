@@ -8,21 +8,25 @@ import {
   StoryMeta,
   StoryModulesMap,
 } from '../..'
-import { defaultConfig } from '../defaultConfig'
 import {
   getDefaultToolbarAddons,
   getToolbarAddonsAsParameters,
   resolveToolbarAddons,
-} from '../getToolbarAddons'
+} from '../../components/toolbar/getToolbarAddons'
 import {
   CrossDocumentMessage,
   CrossDocumentMessageSource,
   CrossDocumentMessageType,
   registerWindowMessageListener,
   sendWindowMessage,
-} from '../messaging'
-import { useParams, useSearchParamsMap } from '../router/router.state'
-import { getLocalStorageItem, setLocalStorageItem } from './kvStorage'
+} from '../../services/messenger'
+import { useParams, useSearchParamsMap } from '../../services/router/router.state'
+import { getLocalStorageItem, setLocalStorageItem } from '../../services/storage/localStorage'
+
+export const defaultConfig: SLAppComponentProps = {
+  title: <> ⚡️ StoryLite</>,
+  defaultStory: 'index',
+}
 
 export type StoryLiteStateContextType = {
   config?: SLAppComponentProps

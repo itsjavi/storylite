@@ -19,9 +19,9 @@ import {
   SLCoreAddon,
   SLParameters,
   SLUserDefinedAddons,
-} from '..'
-import { getStoryUrl } from './router/router.utils'
-import { isNotEmpty, isTruthy } from './utils'
+} from '../..'
+import { getStoryUrl } from '../../services/router/router.utils'
+import { isNotEmpty, isTruthy } from '../../utility'
 
 export function getToolbarAddonsAsParameters(addons: SLAddonsMap): SLParameters {
   const parameters: SLParameters = {}

@@ -2,7 +2,7 @@ import { HTMLProps } from 'react'
 import { cn } from '@r1stack/core'
 
 import { useStoryLiteConfig, useStoryLiteIframe } from '@/app/context/StoriesDataContext'
-import { getStoryUrl } from '@/app/router/router.utils'
+import { getStoryUrl } from '@/services/router/router.utils'
 
 const allowList = [
   'autoplay',

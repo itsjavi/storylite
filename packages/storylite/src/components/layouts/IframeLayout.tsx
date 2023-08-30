@@ -1,8 +1,8 @@
 import { cn } from '@r1stack/core'
 
 import { useStoryLiteConfig, useStoryLiteParameters } from '@/app/context/StoriesDataContext'
-import { useDetectTheme } from '@/app/hooks/useDetectTheme'
 import { parametersToDataProps } from '@/app/parameters/parametersToDataProps'
+import { useDetectTheme } from '@/hooks/useDetectTheme'
 
 export default function CanvasIframeLayout({ children, ...props }: any) {
   const { standalone } = props

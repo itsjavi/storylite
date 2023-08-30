@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 import { BookmarkIcon, MinusSquareIcon, PlusSquareIcon } from 'lucide-react'
 
 import { useStoryLiteStories } from '@/app/context/StoriesDataContext'
-import { Link } from '@/app/router'
-import { useParams } from '@/app/router/router.state'
-import { getStoryUrl } from '@/app/router/router.utils'
+import { Link } from '@/services/router'
+import { useParams } from '@/services/router/router.state'
+import { getStoryUrl } from '@/services/router/router.utils'
 import { StoryMeta, StoryModule, StoryModulesMapValue } from '@/types'
 
 type SidebarProps = {

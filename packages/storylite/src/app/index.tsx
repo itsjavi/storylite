@@ -1,9 +1,9 @@
 import { useEffect } from 'react'
 
+import { createStoryLiteRouter } from '../services/router/router.factory'
+import { RouterProvider } from '../services/router/router.state'
 import { SLAppComponentProps, StoryModulesMap } from '../types'
 import { StoryLiteStateProvider } from './context/StoriesDataContext'
-import { createStoryLiteRouter } from './router/router.factory'
-import { RouterProvider } from './router/router.state'
 
 // const router = createStoryLiteRouter()
 const router = createStoryLiteRouter()
