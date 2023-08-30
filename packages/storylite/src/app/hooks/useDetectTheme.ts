@@ -19,7 +19,9 @@ export function useDetectTheme(): string {
       const isAuto = params.theme.value === 'auto' || !params.theme.value
 
       if (!isAuto) {
-        document.body.setAttribute(themeAttrName, String(params.theme.value ?? ''))
+        const value = String(params.theme.value ?? '')
+        document.body.setAttribute(themeAttrName, value)
+        setDetectedTheme(value as SLColorScheme)
 
         return
       }
@@ -35,7 +37,7 @@ export function useDetectTheme(): string {
     return () => {
       mediaQuery.removeEventListener('change', handleThemeChange)
     }
-  }, [params])
+  }, [params.theme.value, userConfig.themeAttribute])
 
   return detectedTheme
 }
