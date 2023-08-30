@@ -34,7 +34,6 @@ export function CanvasIframe(props: CanvasIframeProps) {
   const { story, exportName, className, ...rest } = props
   const iframeSrc = getStoryUrl(story, exportName, {
     target: 'iframe',
-    hashbang: true,
     standalone: false,
   })
 

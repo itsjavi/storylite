@@ -11,6 +11,14 @@ export function parseHashbangPath(path?: string): [string, URLSearchParams] {
     return ['', new URLSearchParams()]
   }
 
+  if (!path.match(/^(\/?#)|([a-z]+\:)/)) {
+    path = '/#/' + path
+  }
+
+  if (path.startsWith('/') && !path.startsWith('/#')) {
+    path = '/#' + path
+  }
+
   const url = new URL(path, window.location.origin)
   const queryFromHash = url.hash.split('?')
   if (queryFromHash.length > 1) {
@@ -85,15 +93,14 @@ export function createPatternRegex(pattern: string): RegExp {
 export function getStoryUrl(
   story: string | undefined,
   exportName: string | undefined,
-  options: { standalone?: boolean; hashbang?: boolean; target: 'top' | 'iframe' } = {
+  options: { standalone?: boolean; target: 'top' | 'iframe' } = {
     target: 'top',
     standalone: false,
-    hashbang: true,
   },
 ): string {
-  const { standalone, hashbang, target } = options
+  const { standalone, target } = options
   const targetStr = target === 'iframe' ? '/preview/' : '/'
-  const hashStr = hashbang ? '/#' : '/#'
+  const hashStr = '/#'
   const baseStr = `${hashStr}${targetStr}`.replace(/\/\//g, '/')
 
   let url =

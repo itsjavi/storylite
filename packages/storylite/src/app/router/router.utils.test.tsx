@@ -18,6 +18,7 @@ describe('Routing Utils', () => {
     windowSpy.mockImplementation(() => ({
       location: {
         hash: 'https://example.com/#/my-path?foo=bar&bar=baz',
+        origin: 'http://localhost',
       },
     }))
   })
@@ -238,32 +239,32 @@ describe('Routing Utils', () => {
 
   describe('getStoryUrl', () => {
     it('should generate a default URL for a story', () => {
-      const url = getStoryUrl('my-story', 'exportName', { target: 'top', hashbang: true })
+      const url = getStoryUrl('my-story', 'exportName', { target: 'top' })
       expect(url).toBe('/#/stories/my-story/exportName')
     })
 
     it('should generate a default URL for the dashboard', () => {
       const url = getStoryUrl(undefined, undefined, { target: 'top' })
-      expect(url).toBe('/dashboard')
+      expect(url).toBe('/#/dashboard')
     })
 
     it('should generate a standalone URL for a story', () => {
       const url = getStoryUrl('my-story', 'exportName', { target: 'top', standalone: true })
-      expect(url).toBe('/stories/my-story/exportName/?standalone=true')
+      expect(url).toBe('/#/stories/my-story/exportName/?standalone=true')
     })
 
     it('should generate an iframe URL for a story', () => {
       const url = getStoryUrl('my-story', 'exportName', { target: 'iframe' })
-      expect(url).toBe('/preview/stories/my-story/exportName')
+      expect(url).toBe('/#/preview/stories/my-story/exportName')
     })
 
     it('should generate an iframe URL for the dashboard', () => {
       const url = getStoryUrl(undefined, undefined, { target: 'iframe' })
-      expect(url).toBe('/preview/dashboard')
+      expect(url).toBe('/#/preview/dashboard')
     })
 
     it('should generate a hashbang URL', () => {
-      const url = getStoryUrl('my-story', 'exportName', { target: 'top', hashbang: true })
+      const url = getStoryUrl('my-story', 'exportName', { target: 'top' })
       expect(url).toBe('/#/stories/my-story/exportName')
     })
   })

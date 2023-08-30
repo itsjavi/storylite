@@ -20,7 +20,6 @@ export default function OpenStoryAddon({
       title={`Open story in a new tab`}
       href={getStoryUrl(story, exportName, {
         target: 'iframe',
-        hashbang: true,
         standalone: true,
       })}
       target="_blank"

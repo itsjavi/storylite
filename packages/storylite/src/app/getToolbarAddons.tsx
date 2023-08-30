@@ -144,7 +144,6 @@ function getDefaultRightToolbarAddons(): AddonSetup[] {
       getHref: ctx => {
         const urlOpts = {
           target: 'iframe',
-          hashbang: true,
           standalone: true,
         } satisfies Parameters<typeof getStoryUrl>[2]
 

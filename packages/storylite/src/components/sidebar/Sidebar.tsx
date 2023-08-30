@@ -86,7 +86,6 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
         <Link
           to={getStoryUrl(storyName, exports[0], {
             target: 'top',
-            hashbang: false,
           })}
           className={'ListBtn'}
         >
@@ -135,7 +134,6 @@ function SidebarNestedList(props: SidebarItemBaseProps): JSX.Element {
               <Link
                 to={getStoryUrl(storyName, exportName, {
                   target: 'top',
-                  hashbang: false,
                 })}
                 className={'ListBtn'}
               >
