@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - 'v*.*.*'
+      - 'v*'
 
 concurrency:
   group: publishReleases-${{ github.ref }}
