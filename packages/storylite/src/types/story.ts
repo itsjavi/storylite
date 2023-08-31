@@ -61,9 +61,8 @@ export interface Story<P extends SLObject = {}> {
    */
   title?: string | SLNode
   /**
-   * Display name of the component.
+   * Display name of the component in the UI.
    *
-   * If specified, it will replace the last segment of the `title`.
    * If not specified, the last segment of the `title` will be used as a fallback.
    */
   name?: string

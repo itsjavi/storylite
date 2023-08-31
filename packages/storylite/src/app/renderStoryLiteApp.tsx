@@ -5,6 +5,9 @@ import { SLAppComponentProps, StoryModulesMap } from '@/types'
 
 import { StoryLiteApp } from './'
 
+/**
+ * Use this method if you don't want to mount the StoryLite app component yourself.
+ */
 export function renderStoryLiteApp(
   root: HTMLElement,
   stories: StoryModulesMap,
