@@ -1,8 +1,8 @@
 name: Update dependencies
 
 env:
-  NODE_VERSION: '>=18.5.0'
-  PNPM_VERSION: 8.6
+  NODE_VERSION: '>=20.5.0'
+  PNPM_VERSION: 8.7
 
 on:
   schedule:
