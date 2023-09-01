@@ -1,3 +1,16 @@
+## v0.10.0
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.9.0...v0.10.0)
+
+### 💅 Refactors
+
+- **ui:** Better iframe isolation support. now with separate entry point
+  ([c8256ca](https://github.com/itsjavi/storylite/commit/c8256ca))
+
+### ❤️ Contributors
+
+- Javi Aguilar
+
 ## v0.9.0
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.8.0...v0.9.0)
