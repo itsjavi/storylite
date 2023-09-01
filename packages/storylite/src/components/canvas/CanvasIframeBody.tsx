@@ -16,7 +16,13 @@ export function CanvasIframeBody(props: CanvasIframeBodyProps) {
   const isStandalone = searchParams.standalone ? true : false
 
   return (
-    <div className={cn('SandboxLayout', [isStandalone, 'StandaloneSandboxLayout'])} {...rest}>
+    <div
+      className={cn('storylite-sandbox-layout', [
+        isStandalone,
+        'storylite-sandbox-layout--standalone',
+      ])}
+      {...rest}
+    >
       <Story storyId={storyId} />
     </div>
   )

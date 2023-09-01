@@ -5,7 +5,7 @@ import {
   getDefaultToolbarAddons,
   getToolbarAddonsAsParameters,
   resolveToolbarAddons,
-} from '@/components/toolbar/getToolbarAddons'
+} from '@/components/addons/getToolbarAddons'
 import { SLAddonsMap, SLParameters, SLUserDefinedAddons, StoryMap, StoryModuleMap } from '@/types'
 
 import { StoryLiteActions, StoryLiteState } from './global.types'

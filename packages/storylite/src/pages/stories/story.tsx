@@ -1,13 +1,9 @@
-import { CanvasIframe } from '@/components/canvas/CanvasIframe'
+import { CanvasRoot } from '@/components/canvas/CanvasRoot'
 import TopFrameLayout from '@/components/layouts/TopFrameLayout'
 import { SLStoryPageProps } from '@/types'
 
 export default function StoryPage({ storyId }: SLStoryPageProps) {
-  if (!storyId) {
-    return <div>Error: story route segment is empty</div>
-  }
-
-  return <CanvasIframe storyId={storyId} />
+  return <CanvasRoot storyId={storyId} />
 }
 
 export const Layout = TopFrameLayout

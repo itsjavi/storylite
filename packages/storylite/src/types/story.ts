@@ -5,7 +5,7 @@ export type SLStoryContext<P extends SLFunctionComponent = SLFunctionComponent<{
   /**
    * The basic component data.
    *
-   * NOTE: This property is not common to other CSF implementations.
+   * > 💅 This is a StoryLite-only feature.
    */
   story: BaseStory<P> & { id: string; component: P }
   args: Story<P>['args']
@@ -133,6 +133,17 @@ export interface Story<P extends SLFunctionComponent = SLFunctionComponent<{}>>
    * @see https://storybook.js.org/docs/react/api/csf
    */
   render?: (args: SLComponentProps<P>, context?: SLStoryContext<P>) => SLNode
+  /**
+   * Controls how the story is rendered inside the preview.
+   *
+   * - `root` renders the story in the same window / DOM tree as StoryLite's UI.
+   * - `iframe` renders the story in an iframe, in isolation from StoryLite's UI.
+   *
+   * > 💅 This is a StoryLite-only feature.
+   *
+   * @default 'iframe'
+   */
+  renderFrame?: 'root' | 'iframe'
   /**
    * Function to execute after the story is rendered (e.g. running tests).
    *

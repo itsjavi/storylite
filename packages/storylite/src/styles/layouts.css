@@ -85,3 +85,28 @@
   color: var(--storylite-font-color);
   background-color: var(--storylite-bg-color);
 }
+
+.storylite-iframe-element {
+  position: relative;
+  /* border: 1px solid var(--storylite-border-color-muted); */
+  border: none;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  transition: width 0.3s ease-in-out;
+  overflow: auto;
+}
+
+.storylite-canvas-root {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  background: transparent;
+  transition: width 0.3s ease-in-out;
+  overflow: auto;
+  margin: 0 auto;
+}

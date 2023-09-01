@@ -22,7 +22,7 @@ import {
   SLParameters,
   SLUserDefinedAddons,
 } from '../..'
-import { isNotEmpty, isTruthy } from '../../utility'
+import { isTruthy } from '../../utility'
 
 export function getToolbarAddonsAsParameters(addons: SLAddonsMap): SLParameters {
   const parameters: SLParameters = {}
@@ -56,6 +56,42 @@ function getDefaultLeftToolbarAddons(): AddonSetup[] {
     },
   ]
 
+  const getCanvasRoot = (): HTMLElement | null => {
+    return window.document.querySelector('.storylite-canvas-root:first-of-type')
+  }
+
+  const updateCanvasRootWidth = (rootElement: HTMLElement, newWidth: string | false) => {
+    if (!(rootElement instanceof HTMLElement)) {
+      return
+    }
+    if (!newWidth) {
+      rootElement.style.width = ''
+
+      return
+    }
+
+    rootElement.style.width = newWidth
+  }
+
+  const updateCanvasRootResponsiveInfo = (rootElement: HTMLElement, newValue: string | false) => {
+    let infoElement: HTMLDivElement | null = rootElement.querySelector(
+      '.sl-responsive-info:first-of-type',
+    )
+    if (!infoElement) {
+      infoElement = document.createElement('div')
+      infoElement.className = 'sl-responsive-info'
+      rootElement.appendChild(infoElement)
+    }
+
+    if (!newValue) {
+      infoElement.innerText = ''
+
+      return
+    }
+
+    infoElement.innerText = newValue
+  }
+
   const responsiveAddon: AddonSetup = [
     SLCoreAddon.Responsive,
     {
@@ -64,34 +100,27 @@ function getDefaultLeftToolbarAddons(): AddonSetup[] {
       stateful: true,
       persistent: true,
       defaultValue: false,
-      isVisible: ctx => isNotEmpty(ctx.canvas.element),
       onClick: (ctx, [value, setValue]) => {
-        if (!ctx.canvas.element) {
-          return
-        }
         const mobileWidth = '375px' // like an iPhone 12 Mini
+        const oppositeValue = value ? false : mobileWidth
 
-        if (!value) {
-          ctx.canvas.element.style.width = mobileWidth
-          const div = document.createElement('div')
-          div.className = 'sl-responsive-info'
-          div.innerText = mobileWidth
-          ctx.canvas.element.parentElement?.appendChild(div)
-          setValue(mobileWidth, { persist: true })
-
+        const canvasRoot = getCanvasRoot()
+        if (!canvasRoot) {
           return
         }
-        ctx.canvas.element.style.width = ''
-        ctx.canvas.element.parentElement?.querySelector('.sl-responsive-info')?.remove()
-        setValue(false, { persist: true })
+
+        updateCanvasRootWidth(canvasRoot, oppositeValue)
+        updateCanvasRootResponsiveInfo(canvasRoot, oppositeValue)
+        setValue(oppositeValue, { persist: true })
       },
       onRender: (ctx, [value]) => {
-        if (!ctx.canvas.element) {
+        const canvasRoot = getCanvasRoot()
+        if (!canvasRoot) {
           return
         }
-        if (value) {
-          ctx.canvas.element.style.width = value as string
-        }
+        const _val = value ? String(value) : false
+        updateCanvasRootWidth(canvasRoot, _val)
+        updateCanvasRootResponsiveInfo(canvasRoot, _val)
       },
       isActive: (_, [value]) => isTruthy(value),
     } satisfies SLAddonPropsWithoutId<true>,
