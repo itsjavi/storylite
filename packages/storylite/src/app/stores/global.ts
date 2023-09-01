@@ -6,7 +6,7 @@ import {
   getToolbarAddonsAsParameters,
   resolveToolbarAddons,
 } from '@/components/toolbar/getToolbarAddons'
-import { SLAddonsMap, SLParameters, SLUserDefinedAddons } from '@/types'
+import { SLAddonsMap, SLParameters, SLUserDefinedAddons, StoryMap, StoryModuleMap } from '@/types'
 
 import { StoryLiteActions, StoryLiteState } from './global.types'
 
@@ -32,7 +32,8 @@ const defaultState: StoryLiteState = {
   parameters: {},
   addons: builtinAddons,
   stories: new Map(),
-  currentStory: undefined,
+  storyModuleMap: new Map(),
+  currentStoryId: undefined,
 }
 
 const updateParameters = (
@@ -65,6 +66,18 @@ const resolveParams = (): SLParameters => {
 }
 
 export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLiteActions>(set => {
+  const createStoryMap = (moduleMap: StoryModuleMap): StoryMap => {
+    const storyMap: StoryMap = new Map()
+
+    Array.from(moduleMap.entries()).forEach(([, modules]) => {
+      Object.entries(modules).forEach(([, story]) => {
+        storyMap.set(story.id, story)
+      })
+    })
+
+    return storyMap
+  }
+
   return {
     ...defaultState,
     parameters: resolveParams(),
@@ -80,7 +93,7 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
       set(state => {
         return {
           ...state,
-          stories: new Map(stories.entries()),
+          storyModuleMap: new Map(stories.entries()),
         }
       })
     },
@@ -95,7 +108,10 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
         }
       })
     },
-    initialize(config, stories) {
+    initialize(config, storyModules) {
+      const moduleMap = new Map(storyModules.entries())
+      const storyMap = createStoryMap(moduleMap)
+
       set(state => {
         return {
           ...state,
@@ -104,7 +120,16 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
             ...config,
           },
           addons: resolveToolbarAddons(builtinAddons, config.addons),
-          stories: new Map(stories.entries()),
+          storyModuleMap: moduleMap,
+          stories: storyMap,
+        }
+      })
+    },
+    setCurrentStoryId(storyId) {
+      set(state => {
+        return {
+          ...state,
+          currentStoryId: storyId,
         }
       })
     },

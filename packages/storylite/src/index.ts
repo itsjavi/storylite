@@ -1,5 +1,5 @@
 export * from './app'
-export * from './app/renderStoryLiteApp'
+export * from './app/renderApp'
 export * from './app/stores/global'
 export * from './app/stores/global.types'
 export * from './services/router'

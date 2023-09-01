@@ -7,6 +7,7 @@ import {
   getWindowHash,
   parseHashbangPath,
   parsePathParams,
+  withInitialSlash,
 } from './router.utils'
 
 export class Router implements Iterable<Route> {
@@ -95,15 +96,16 @@ export class Router implements Iterable<Route> {
 
   refresh(path: string): void {
     const [pathPart, queryPart] = parseHashbangPath(path)
+    const pathWithSlash = withInitialSlash(pathPart)
 
-    const matches = this.getMatches(pathPart) // the last match takes precedence
+    const matches = this.getMatches(pathWithSlash) // the last match takes precedence
     if (matches.length === 0) {
       this._currentRoute = undefined
 
       return
     }
     const route = matches[matches.length - 1]
-    const params = parsePathParams(route.pattern ?? '', pathPart)
+    const params = parsePathParams(route.pattern ?? '/', pathWithSlash)
     const query = new URLSearchParams(queryPart)
 
     // assign query params to params
@@ -128,7 +130,6 @@ export class Router implements Iterable<Route> {
     handleUpdate(getWindowHash())
 
     const handleHashChangeEvent = (e: HashChangeEvent) => {
-      console.log('hashchanged!', { e })
       handleUpdate(e.newURL)
     }
 
@@ -166,8 +167,6 @@ export class Router implements Iterable<Route> {
   }
 
   getMatches(path: string): Route[] {
-    console.log('routes', { path }, this.routes)
-
     return this.routes.filter(route => {
       return route.regex.test(path)
     })

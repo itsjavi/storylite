@@ -6,19 +6,18 @@ import { useRouterQuery } from '@/services/router'
 import { Story } from '../Story'
 
 export type CanvasIframeBodyProps = {
-  story?: string
-  exportName?: string
+  storyId: string
 } & HTMLProps<HTMLDivElement>
 
 export function CanvasIframeBody(props: CanvasIframeBodyProps) {
-  const { story, exportName, ...rest } = props
+  const { storyId, ...rest } = props
 
   const searchParams = useRouterQuery()
   const isStandalone = searchParams.standalone ? true : false
 
   return (
     <div className={cn('SandboxLayout', [isStandalone, 'StandaloneSandboxLayout'])} {...rest}>
-      <Story story={story ?? 'index'} exportName={exportName ?? 'default'} />
+      <Story storyId={storyId} />
     </div>
   )
 }

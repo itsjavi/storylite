@@ -92,25 +92,6 @@ export function createPatternRegex(pattern: string): RegExp {
   return new RegExp(`^${patternRegex}$`)
 }
 
-export function getStoryUrl(
-  story: string | undefined,
-  exportName: string | undefined,
-  options: { standalone?: boolean; target: 'top' | 'iframe' } = {
-    target: 'top',
-    standalone: false,
-  },
-): string {
-  const { standalone, target } = options
-  const targetStr = target === 'iframe' ? '/preview/' : '/'
-  const hashStr = '/#'
-  const baseStr = `${hashStr}${targetStr}`.replace(/\/\//g, '/')
-
-  let url =
-    story === undefined ? `${baseStr}dashboard` : `${baseStr}stories/${story}/${exportName || ''}`
-
-  if (standalone) {
-    url += `/?standalone=true`
-  }
-
-  return url
+export function withInitialSlash(path: string): string {
+  return path.startsWith('/') ? path : '/' + path
 }

@@ -3,7 +3,6 @@ import {
   asRelativeHash,
   cleanHashBang,
   createPatternRegex,
-  getStoryUrl,
   getWindowHash,
   parseHashbangPath,
   parsePathParams,
@@ -234,38 +233,6 @@ describe('Routing Utils', () => {
       expect(regex.test('/user/123/profile/settings')).toBe(true)
       expect(regex.test('/user/456/profile')).toBe(false)
       expect(regex.test('/user/profile/about')).toBe(false)
-    })
-  })
-
-  describe('getStoryUrl', () => {
-    it('should generate a default URL for a story', () => {
-      const url = getStoryUrl('my-story', 'exportName', { target: 'top' })
-      expect(url).toBe('/#/stories/my-story/exportName')
-    })
-
-    it('should generate a default URL for the dashboard', () => {
-      const url = getStoryUrl(undefined, undefined, { target: 'top' })
-      expect(url).toBe('/#/dashboard')
-    })
-
-    it('should generate a standalone URL for a story', () => {
-      const url = getStoryUrl('my-story', 'exportName', { target: 'top', standalone: true })
-      expect(url).toBe('/#/stories/my-story/exportName/?standalone=true')
-    })
-
-    it('should generate an iframe URL for a story', () => {
-      const url = getStoryUrl('my-story', 'exportName', { target: 'iframe' })
-      expect(url).toBe('/#/preview/stories/my-story/exportName')
-    })
-
-    it('should generate an iframe URL for the dashboard', () => {
-      const url = getStoryUrl(undefined, undefined, { target: 'iframe' })
-      expect(url).toBe('/#/preview/dashboard')
-    })
-
-    it('should generate a hashbang URL', () => {
-      const url = getStoryUrl('my-story', 'exportName', { target: 'top' })
-      expect(url).toBe('/#/stories/my-story/exportName')
     })
   })
 })

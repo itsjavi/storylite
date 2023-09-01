@@ -40,3 +40,11 @@ export type SLInputType = {
 export type SLArgTypes<TArgs = SLObject> = {
   [name in keyof TArgs]: SLInputType
 }
+
+export type SLPageProps = {
+  [name: string]: any
+}
+
+export type SLStoryPageProps = {
+  storyId: string
+}

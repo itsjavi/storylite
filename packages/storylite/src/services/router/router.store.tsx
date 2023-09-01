@@ -1,7 +1,11 @@
 import { shallow } from 'zustand/shallow'
 import { createWithEqualityFn } from 'zustand/traditional'
 
-import { createStoryLiteRouter } from './router.factory'
+import { appRoutes } from '@/app/routes'
+import TopFrameLayout from '@/components/layouts/TopFrameLayout'
+import * as Error404 from '@/pages/404'
+
+import { createStoryLiteRouter } from './createStoryLiteRouter'
 import { CurrentRoute } from './router.types'
 
 type State = {
@@ -21,7 +25,7 @@ type Actions = {
   getFallback: () => React.FC | undefined
 }
 
-const router = createStoryLiteRouter()
+const router = createStoryLiteRouter(appRoutes, Error404, TopFrameLayout)
 
 export const useRouterStore = createWithEqualityFn<State & Actions>(set => {
   router.refresh(window.location.hash)

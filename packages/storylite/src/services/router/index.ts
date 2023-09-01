@@ -1,5 +1,5 @@
 export * from './router.class'
 export * from './router.component'
-export * from './router.factory'
+export * from './createStoryLiteRouter'
 export * from './router.store'
 export * from './router.types'

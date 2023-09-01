@@ -109,6 +109,7 @@
 .storylite-sidebar-nav .storylite-btn .storylite-icon svg {
   vertical-align: middle;
   display: inline-block;
+  font-style: normal;
 }
 
 .storylite-sidebar-nav .storylite-btn .storylite-text {
@@ -139,6 +140,10 @@
   background-color: var(--storylite-color-primary);
   text-decoration: none;
   color: #fff;
+}
+
+.storylite-active-children > .storylite-btn {
+  color: var(--storylite-color-primary);
 }
 
 .storylite-sidebar-nav .storylite-with-nested .storylite-nested .storylite-btn {

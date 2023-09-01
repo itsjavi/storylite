@@ -10,6 +10,8 @@ import {
   XCircleIcon,
 } from 'lucide-react'
 
+import { getStoryUrl } from '@/services/csf-api/navigation'
+
 import {
   SLAddonProps,
   SLAddonPropsWithoutId,
@@ -20,7 +22,6 @@ import {
   SLParameters,
   SLUserDefinedAddons,
 } from '../..'
-import { getStoryUrl } from '../../services/router/router.utils'
 import { isNotEmpty, isTruthy } from '../../utility'
 
 export function getToolbarAddonsAsParameters(addons: SLAddonsMap): SLParameters {
@@ -146,15 +147,9 @@ function getDefaultRightToolbarAddons(): AddonSetup[] {
         const urlOpts = {
           target: 'iframe',
           standalone: true,
-        } satisfies Parameters<typeof getStoryUrl>[2]
+        } satisfies Parameters<typeof getStoryUrl>[1]
 
-        if (!ctx.currentStory) {
-          return getStoryUrl(undefined, undefined, urlOpts)
-        }
-
-        const { story, exportName } = ctx.currentStory
-
-        return getStoryUrl(story, exportName, urlOpts)
+        return getStoryUrl(ctx.currentStoryId, urlOpts)
       },
     } satisfies SLAddonPropsWithoutId<false>,
   ]

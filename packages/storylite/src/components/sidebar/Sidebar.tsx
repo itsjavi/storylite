@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { cn } from '@r1stack/core'
 
 import { BookmarkIcon, MinusSquareIcon, PlusSquareIcon } from 'lucide-react'
 
@@ -12,76 +13,44 @@ type SidebarProps = {
 
 type SidebarItemBaseProps = {
   navNode: SLNavigationNode
-  currentStoryName?: string
-  currentExportName?: string
+  currentStoryId?: string
 }
 
 export function Sidebar({ title, ...rest }: SidebarProps) {
-  const { story, export_name } = useRouterParams()
+  const { storyId } = useRouterParams()
 
   return (
     <div className={'storylite-sidebar'} {...rest}>
       <div className={'storylite-sidebar-body'}>
         <div className={'storylite-sidebar-titleWrapper'}>{title}</div>
-        <SidebarNav currentStoryName={story} currentExportName={export_name} />
+        <SidebarNav currentStoryId={storyId} />
       </div>
     </div>
   )
 }
 
-function SidebarNav({
-  currentStoryName,
-  currentExportName,
-}: {
-  currentStoryName?: string
-  currentExportName?: string
-}): JSX.Element {
-  const stories = useStoryLiteStore(state => state.stories)
-  const navTree = getStoryNavigationTree(stories)
-  console.log('navTree', navTree)
+function SidebarNav({ currentStoryId }: { currentStoryId?: string }): JSX.Element {
+  const storyModuleMap = useStoryLiteStore(state => state.storyModuleMap)
+  const navTree = getStoryNavigationTree(storyModuleMap)
 
   return (
     <nav className={'storylite-sidebar-nav'}>
       <ul>
         {navTree.map((node, i) => {
-          return (
-            <li key={i}>
-              <SidebarListItem
-                navNode={node}
-                currentStoryName={currentStoryName}
-                currentExportName={currentExportName}
-              />
-            </li>
-          )
+          return <SidebarListItem key={i} navNode={node} currentStoryId={currentStoryId} />
         })}
-
-        {/* {Array.from<[string, StoryModulesMapValue]>(stories).map(([storyName, storyData], i) => {
-          return (
-            <SidebarListItem
-              key={i}
-              storyName={storyName}
-              storyData={storyData}
-              currentStoryName={currentStoryName}
-              currentExportName={currentExportName}
-            />
-          )
-        })} */}
       </ul>
     </nav>
   )
 }
 
-function SidebarListItemIcon(
-  props: SidebarItemBaseProps & {
-    isExpanded?: boolean
-  },
-): JSX.Element {
-  const { navNode, currentStoryName, isExpanded } = props
-  const canBeExpanded = navNode.children.length > 1
-  const fallbackShowMenu = navNode.storyId === currentStoryName // TODO rework this
-  const canBeCollapsed = canBeExpanded && (isExpanded !== undefined ? isExpanded : fallbackShowMenu)
+function SidebarListItemIcon(props: {
+  navNode: SLNavigationNode
+  canBeCollapsed: boolean
+  canBeExpanded: boolean
+}): JSX.Element {
+  const { navNode, canBeCollapsed, canBeExpanded } = props
 
-  // TODO refactor into separated component
   const collapseIcon = navNode.iconExpanded ?? navNode.icon ?? <MinusSquareIcon />
   const expandIcon = navNode.icon ?? <PlusSquareIcon />
   const expandCollapseIcon = canBeCollapsed ? collapseIcon : expandIcon
@@ -91,18 +60,27 @@ function SidebarListItemIcon(
 }
 
 function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
-  const { navNode, currentStoryName } = props
+  const { navNode, currentStoryId } = props
   const [isExpanded, setIsExpanded] = useState<undefined | boolean>(undefined)
   const canBeExpanded = navNode.children.length > 1
+  const hasActiveChildren = navNode.children.some(child => child.storyId === currentStoryId)
+  const canBeCollapsed = canBeExpanded && (isExpanded ?? hasActiveChildren)
 
-  const fallbackShowMenu = navNode.storyId === currentStoryName // TODO rework this
-  const canBeCollapsed = canBeExpanded && (isExpanded !== undefined ? isExpanded : fallbackShowMenu)
+  const icon = (
+    <SidebarListItemIcon
+      navNode={navNode}
+      canBeExpanded={canBeExpanded}
+      canBeCollapsed={canBeCollapsed}
+    />
+  )
 
-  const icon = <SidebarListItemIcon {...props} isExpanded={isExpanded} />
+  const classes = cn(
+    [navNode.storyId === currentStoryId, 'storylite-active'],
+    [hasActiveChildren, 'storylite-active-children'],
+    [navNode.children.length > 0, 'storylite-with-nested'],
+  )
 
   if (navNode.children.length === 0) {
-    const classes = [navNode.storyId === currentStoryName ? 'storylite-active' : ''].join(' ')
-
     return (
       <li className={classes} title={navNode.title}>
         <Link to={navNode.href} className={'storylite-btn'}>
@@ -114,7 +92,7 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
   }
 
   return (
-    <li className={'storylite-with-nested'} title={navNode.title}>
+    <li className={classes} title={navNode.title}>
       <button
         type="button"
         className={'storylite-btn'}
@@ -129,13 +107,12 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
 }
 
 function SidebarNestedList(props: SidebarItemBaseProps): JSX.Element {
-  const exports = undefined
-  const { currentExportName, navNode } = props
+  const { currentStoryId, navNode } = props
 
   return (
     <ul className={'storylite-nested'}>
       {navNode.children.map((childNode, i) => {
-        const classes = childNode.storyId === currentExportName ? 'storylite-active' : ''
+        const classes = childNode.storyId === currentStoryId ? 'storylite-active' : ''
 
         return (
           <li key={i} className={classes} title={childNode.title}>

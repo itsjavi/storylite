@@ -109,10 +109,13 @@ export interface Story<P extends SLObject = {}> {
   /**
    * SideBar options.
    *
-   * Icon for the story in the SideBar.
-   * The `expanded` icon is only used when the story has other nested stories.
+   * This property is not inherited by the named story exports, when defined in the default export.
    */
   navigation?: {
+    /**
+     * Icon for the story in the SideBar.
+     * The `iconExpanded` icon is only used when the story has other nested stories.
+     */
     icon?: SLNode
     iconExpanded?: SLNode
     /**
@@ -126,10 +129,18 @@ export interface Story<P extends SLObject = {}> {
      *
      * @default false
      */
-    disabled?: boolean
+    hidden?: boolean
   }
 }
 
 export interface StoryWithId<P extends SLObject = {}> extends Story<P> {
   id: string
 }
+
+export type StoryMap = Map<string, StoryWithId>
+export type StoryModuleMap = Map<
+  string,
+  {
+    [key: string]: StoryWithId<SLObject>
+  }
+>

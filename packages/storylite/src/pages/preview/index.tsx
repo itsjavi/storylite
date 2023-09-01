@@ -5,7 +5,7 @@ import IframeLayout from '@/components/layouts/IframeLayout'
 export default function StoryPage() {
   const config = useStoryLiteStore(state => state.config)
 
-  return <CanvasIframeBody story={config.defaultStory ?? 'index'} exportName="Main" />
+  return <CanvasIframeBody storyId={config.defaultStory ?? 'index'} />
 }
 
 export const Layout = IframeLayout

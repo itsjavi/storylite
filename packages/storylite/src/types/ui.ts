@@ -28,7 +28,7 @@ export type SLAddonState = [
 
 export type SLAddonContext = {
   parameters: StoryLiteStore['parameters']
-  currentStory?: StoryLiteStore['currentStory']
+  currentStoryId?: StoryLiteStore['currentStoryId']
   setParameter: StoryLiteStore['setParameter']
   canvas: StoryLiteStore['canvas']
 }

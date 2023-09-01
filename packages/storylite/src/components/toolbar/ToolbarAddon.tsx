@@ -10,7 +10,7 @@ const sliceAddonContext = (state: StoryLiteStore): SLAddonContext => {
   return {
     parameters: state.parameters,
     setParameter: state.setParameter,
-    currentStory: state.currentStory,
+    currentStoryId: state.currentStoryId,
     canvas: state.canvas,
   }
 }

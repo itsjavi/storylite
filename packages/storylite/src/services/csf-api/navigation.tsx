@@ -1,6 +1,4 @@
-// @ts-ignore
-// eslint-ignore file
-import { SLModuleMap, SLNode } from '@/types'
+import { SLNode, StoryModuleMap } from '@/types'
 import { isTruthy } from '@/utility'
 
 import { asCleanHash } from '../router/router.utils'
@@ -20,9 +18,29 @@ export function getStoryUrlHash(storyId: string): string {
   return `/#/stories/${asCleanHash(storyId)}`
 }
 
+export function getStoryUrl(
+  storyId: string | undefined,
+  options: { standalone?: boolean; target: 'top' | 'iframe' } = {
+    target: 'top',
+    standalone: false,
+  },
+): string {
+  const { standalone, target } = options
+  const targetStr = target === 'iframe' ? '/preview/' : '/'
+  const baseStr = `/#${targetStr}`.replace(/\/\//g, '/')
+
+  let url = storyId === undefined ? baseStr : `${baseStr}stories/${storyId}`
+
+  if (standalone) {
+    url += `/?standalone=true`
+  }
+
+  return url
+}
+
 // TODO: support nested levels by splitting the title on `/`
 // and creating a new navigation node for each level, similarly like StoryBook does.
-export function getStoryNavigationTree(storyModuleMap: SLModuleMap): SLTopLevelNavigation {
+export function getStoryNavigationTree(storyModuleMap: StoryModuleMap): SLTopLevelNavigation {
   const topLevelNavigation: SLTopLevelNavigation = []
 
   Array.from(storyModuleMap.entries()).forEach(([storiesFileId, stories]) => {
@@ -30,11 +48,13 @@ export function getStoryNavigationTree(storyModuleMap: SLModuleMap): SLTopLevelN
       title: stories.default?.title || storiesFileId,
       storyId: stories.default?.id || storiesFileId,
       href: getStoryUrlHash(storiesFileId),
+      icon: stories.default?.navigation?.icon,
+      iconExpanded: stories.default?.navigation?.iconExpanded,
       children: [],
     }
 
     Object.entries(stories).forEach(([exportedName, story]) => {
-      if (story.navigation?.disabled || !isTruthy(story.component)) {
+      if (story.navigation?.hidden || !isTruthy(story.component)) {
         return
       }
 

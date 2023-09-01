@@ -9,7 +9,7 @@ const rootElement = document.getElementById('root') as HTMLElement
 
 renderStoryLiteApp(rootElement, stories, {
   title: ' ⚡️ StoryLite React',
-  defaultStory: 'index',
+  defaultStory: 'index-main',
   iframeProps: {
     style: {
       // padding: '10px',
