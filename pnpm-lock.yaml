@@ -66,13 +66,44 @@ importers:
         specifier: ^5.2.2
         version: 5.2.2
 
-  packages/examples/qwik: {}
-
-  packages/examples/react:
+  packages/docs:
     dependencies:
       lucide-react:
         specifier: ^0.274.0
         version: 0.274.0(react@18.2.0)
+      react:
+        specifier: ^18.2.0
+        version: 18.2.0
+      react-dom:
+        specifier: ^18.2.0
+        version: 18.2.0(react@18.2.0)
+    devDependencies:
+      '@storylite/storylite':
+        specifier: workspace:*
+        version: link:../storylite
+      '@storylite/vite-plugin':
+        specifier: workspace:*
+        version: link:../vite-plugin
+      '@types/react':
+        specifier: ^18.2.21
+        version: 18.2.21
+      '@types/react-dom':
+        specifier: ^18.2.7
+        version: 18.2.7
+      '@vitejs/plugin-react-swc':
+        specifier: ^3.3.2
+        version: 3.3.2(vite@4.4.9)
+      typescript:
+        specifier: ^5.2.2
+        version: 5.2.2
+      vite:
+        specifier: ^4.4.9
+        version: 4.4.9(@types/node@20.5.7)
+
+  packages/examples/qwik: {}
+
+  packages/examples/react:
+    dependencies:
       react:
         specifier: ^18.2.0
         version: 18.2.0

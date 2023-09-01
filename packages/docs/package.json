@@ -1,14 +1,16 @@
 {
-  "name": "storylite-examples-react",
+  "name": "storylite-docs",
   "private": true,
-  "description": "StoryLite example integration with React",
+  "description": "StoryLite docs built with StoryLite itself and React",
   "type": "module",
   "scripts": {
     "build": "vite build",
-    "dev": "vite --port=7007 --host=0.0.0.0 --open",
-    "preview": "vite preview --port=7080 --host=0.0.0.0 --open"
+    "build:gh-pages": "vite build --base=/storylite/",
+    "dev": "vite --port=7087 --host=0.0.0.0 --open",
+    "preview": "vite preview --port=7088 --host=0.0.0.0 --open"
   },
   "dependencies": {
+    "lucide-react": "^0.274.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

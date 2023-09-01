@@ -40,9 +40,9 @@ jobs:
       - name: Build with Vite
         run: |
           pnpm -r run build:gh-pages
-          ls -la ./packages/examples/react/dist
+          ls -la ./packages/docs/dist
           echo "Moving dist to _site"
-          rm -rf _site && mv ./packages/examples/react/dist ./_site
+          rm -rf _site && mv ./packages/docs/dist ./_site
           ls -la ./_site
 
       - name: Upload artifact
