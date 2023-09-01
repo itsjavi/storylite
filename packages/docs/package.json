@@ -1,5 +1,6 @@
 {
   "name": "storylite-docs",
+  "version": "0.10.1",
   "private": true,
   "description": "StoryLite docs built with StoryLite itself and React",
   "type": "module",

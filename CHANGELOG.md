@@ -1,3 +1,37 @@
+## v0.10.1
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.10.0...v0.10.1)
+
+### 🚀 Enhancements
+
+- **ui:** Allow stories to be rendered in the main frame with the story option
+  ([d1baef9](https://github.com/itsjavi/storylite/commit/d1baef9))
+
+### 🩹 Fixes
+
+- **ui:** Allow router to work on subdirs
+  ([c0206d1](https://github.com/itsjavi/storylite/commit/c0206d1))
+- **ui:** Reset params set by de story after switching to another one
+  ([78bc46e](https://github.com/itsjavi/storylite/commit/78bc46e))
+
+### 📖 Documentation
+
+- Add separate package to host the website and docs
+  ([5efb039](https://github.com/itsjavi/storylite/commit/5efb039))
+
+### 🤖 CI
+
+- **setup:** Add workflow to deploy to GH pages
+  ([6d75ee4](https://github.com/itsjavi/storylite/commit/6d75ee4))
+- **setup:** Add workflow to deploy to GH pages
+  ([3c0e7b8](https://github.com/itsjavi/storylite/commit/3c0e7b8))
+- **setup:** Add workflow to deploy to GH pages
+  ([744127d](https://github.com/itsjavi/storylite/commit/744127d))
+
+### ❤️ Contributors
+
+- Javi Aguilar
+
 ## v0.10.0
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.9.0...v0.10.0)
