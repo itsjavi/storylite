@@ -9,7 +9,7 @@
   <a href="https://www.jsdocs.io/package/@storylite/storylite"><img src="https://img.shields.io/badge/API%20Reference-📖-blue" alt="homepage"></a>
 </p>
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/fork/github/itsjavi/storylite?startScript=dev&installDependencies=true&title=StoryLite%20Example&file=packages/examples/react/stories/index.stories.tsx)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/storylite-demo?file=stories/index.stories.tsx)
 
 StoryLite is a modern and lightweight toolkit for crafting and managing design systems and
 components with ease. Inspired by the popular StoryBook UI and powered by Vite⚡️, StoryLite offers
