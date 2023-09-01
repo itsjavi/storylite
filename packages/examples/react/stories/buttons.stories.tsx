@@ -29,7 +29,8 @@ export default {
   },
   navigation: {
     // overriden navigation options
-    hidden: true,
+    icon: <span>✨</span>,
+    hidden: true, // hidden in sub-menu
   },
 } satisfies StoryType
 

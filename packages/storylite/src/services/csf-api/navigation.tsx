@@ -26,8 +26,11 @@ export function getStoryUrl(
   },
 ): string {
   const { standalone, target } = options
-  const targetStr = target === 'iframe' ? '/preview/' : '/'
-  const baseStr = `/#${targetStr}`.replace(/\/\//g, '/')
+  const isIframe = target === 'iframe'
+
+  const targetBasePath = isIframe ? '/canvas.html#' : '/#'
+  const targetHashBasePath = isIframe ? '/preview/' : '/'
+  const baseStr = `${targetBasePath}${targetHashBasePath}`.replace(/\/\//g, '/')
 
   let url = storyId === undefined ? baseStr : `${baseStr}stories/${storyId}`
 

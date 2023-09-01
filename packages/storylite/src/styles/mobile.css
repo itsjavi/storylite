@@ -1,5 +1,5 @@
 @media (max-width: 768px) {
-  [data-sl-maximize='false'] .Sidebar {
+  [data-sl-maximize='false'] .storylite-sidebar {
     width: auto;
   }
 
@@ -15,7 +15,7 @@
     padding: 0.8rem;
   }
 
-  .Sidebar {
+  .storylite-sidebar {
     padding: 1.5rem;
     max-height: 25vh;
     height: 0;
@@ -29,7 +29,7 @@
     margin-top: -25.5vh;
   }
 
-  [data-sl-maximize='false'] .Sidebar {
+  [data-sl-maximize='false'] .storylite-sidebar {
     width: auto;
     height: auto;
     overflow: auto;

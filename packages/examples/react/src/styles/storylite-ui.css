@@ -22,6 +22,10 @@
   background-color: var(--storylite-bg-color);
 }
 
+.storylite-addon-toolbar a {
+  text-decoration: none;
+}
+
 /*
 * DARK-THEME
 */

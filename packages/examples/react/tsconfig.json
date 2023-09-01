@@ -1,6 +1,6 @@
 {
   "extends": "@r1stack/coding-style/tsconfig/base.json",
-  "include": ["stories", "src", "*.ts", "*.tsx"],
+  "include": ["*.ts", "*.tsx", "src/**/*", "stories/**/*", ".storylite/**/*"],
   "compilerOptions": {
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true,
