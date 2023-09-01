@@ -47,7 +47,9 @@ export function CanvasIframe(props: CanvasIframeProps) {
     }
 
     const story = stories.get(storyId)
-    if (story && story.parameters) {
+    const hasParams = Object.keys(story?.parameters ?? {}).length > 0
+
+    if (story && hasParams) {
       // If the story has parameters, set them when the iframe loads
       setParameters(
         {
@@ -58,7 +60,7 @@ export function CanvasIframe(props: CanvasIframeProps) {
       )
 
       return () => {
-        setParameters(currentParams)
+        setParameters(currentParams, { crossWindow: true, persist: false })
       }
     }
   }, [storyId, stories, iframeState.loaded, iframeState.iframe])
