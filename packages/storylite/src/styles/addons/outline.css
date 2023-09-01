@@ -1,19 +1,28 @@
-[data-sl-outline='true'] .storylite-story-section > * {
-  outline: 1px solid #ff577e !important;
+[data-sl-outline='true']
+  .storylite-story-component
+  :where(div, section, article, aside, header, footer, form, table, ul, ol, details) {
+  outline: 1px solid rgba(255, 87, 126, 0.5) !important;
   outline-offset: 0px !important;
 }
 
-[data-sl-outline='true'] .storylite-story-section > * > * {
-  outline: 1px solid #ffe609 !important;
+[data-sl-outline='true'] .storylite-story-component :where(a, button, input, textarea, select) {
+  outline: 1px solid rgba(255, 230, 9, 0.7) !important;
   outline-offset: 0px !important;
 }
 
-[data-sl-outline='true'] .storylite-story-section > * > * > * {
-  outline: 1px solid #57ee31 !important;
+[data-sl-outline='true']
+  .storylite-story-component
+  :where(span, i, image, svg, canvas, video, audio) {
+  outline: 1px solid rgba(87, 238, 49, 0.5) !important;
   outline-offset: 0px !important;
 }
 
-[data-sl-outline='true'] .storylite-story-section > * > * > * > * {
-  outline: 1px solid #37caff !important;
+[data-sl-outline='true'] .storylite-story-component :where(li, dt, dd, tr, th, td, summary) {
+  outline: 1px solid rgba(55, 202, 255, 0.5) !important;
+  outline-offset: 0px !important;
+}
+
+[data-sl-outline='true'] .storylite-story-component :where(h1, h2, h3, h4, h5, h6) {
+  outline: 1px solid rgba(255, 111, 0, 0.5) !important;
   outline-offset: 0px !important;
 }

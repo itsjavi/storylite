@@ -17,8 +17,6 @@
   height: 100vh;
 }
 
-.storylite-story .storylite-story-canvas > .storylite-story-section {
+.storylite-story .storylite-story-canvas > .storylite-story-component {
   position: relative;
-  /* padding-bottom: 1rem;
-  margin-bottom: 3rem; */
 }

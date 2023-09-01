@@ -1,33 +1,71 @@
-import { SLFunctionComponent, SLNode } from './components'
-import { SLArgTypes, SLObject } from './core'
-import { SLParameters, SLParametersConfig } from './parameters'
+import { SLComponentProps, SLFunctionComponent, SLNode } from './components'
+import { SLParametersConfig } from './parameters'
 
-export type SLContext<P extends SLObject = {}> = {
+export type SLStoryContext<P extends SLFunctionComponent = SLFunctionComponent<{}>> = {
   /**
-   * The component configuration.
+   * The basic component data.
+   *
+   * NOTE: This property is not common to other CSF implementations.
    */
-  meta: Story<P>
-  /**
-   * The args for the component, with any overrides from the user in the UI.
-   */
-  args: Partial<P>
-  /**
-   * The parameter values, with any overrides from the user in the UI.
-   */
-  parameters: SLParameters
+  story: BaseStory<P> & { id: string; component: P }
+  args: Story<P>['args']
+  // argTypes: Story<P>['argTypes']
+  // globals: Story<P>['globals']
+  parameters: Story<P>['parameters']
   /**
    * A map containing all data (merged), loaded asynchronously by the configured data loaders.
    */
   loaded: {
     [key: string]: any
   }
+  // hooks: { ... } // StoryLite's API hooks
+  // viewMode: 'story' | 'docs' //  StoryLite's current active window
 }
 
-export type SLRenderedContext<P extends SLObject = {}> = SLContext<P> & {
+export type SLDecoratorContext<P extends SLFunctionComponent = SLFunctionComponent<{}>> =
+  SLStoryContext<P>
+
+export type SLPlayContext<P extends SLFunctionComponent = SLFunctionComponent<{}>> =
+  SLStoryContext<P> & {
+    /**
+     * The DOM element that contains the rendered component.
+     */
+    canvasElement: HTMLElement
+  }
+
+export type SLDecorator<P extends SLFunctionComponent = SLFunctionComponent<{}>> = (
+  story: P,
+  context?: SLDecoratorContext<P>,
+) => SLNode
+
+export interface BaseStory<P extends SLFunctionComponent = SLFunctionComponent<{}>> {
+  // /**
+  //  * Unique id for the story.
+  //  */
+  // id: string
   /**
-   * The DOM element that contains the rendered component.
+   * Title and path of the story in the navigation UI.
+   * You can use "/" to organize stories into nested groups, if you provide a string.
+   *
+   * If not specified, defaults to the named export and the inferred path from the file name.
    */
-  canvasElement: HTMLElement
+  title?: string
+  /**
+   * Display name of the component in the UI.
+   *
+   * If not specified, the last segment of the `title` will be used as a fallback.
+   */
+  name?: string
+  /**
+   * The base component that this story is showcasing.
+   *
+   * This is also the component that will be used in the code examples and docs.
+   *
+   * To render more complex components in the canvas (e.g. with data fetching, state, etc),
+   * you can use the `render` function.
+   *
+   */
+  component?: P
 }
 
 /**
@@ -48,45 +86,30 @@ export type SLRenderedContext<P extends SLObject = {}> = SLContext<P> & {
  * the `title` and `name` fields are optional and will be inferred from the named export
  * if not specified.
  */
-export interface Story<P extends SLObject = {}> {
-  // /**
-  //  * Unique id for the story.
-  //  */
-  // id: string
-  /**
-   * Title and path of the story in the navigation UI.
-   * You can use "/" to organize stories into nested groups, if you provide a string.
-   *
-   * If not specified, defaults to the named export and the inferred path from the file name.
-   */
-  title?: string | SLNode
-  /**
-   * Display name of the component.
-   *
-   * If specified, it will replace the last segment of the `title`.
-   * If not specified, the last segment of the `title` will be used as a fallback.
-   */
-  name?: string
-  /**
-   * Component to render the story.
-   */
-  component?: SLFunctionComponent<P>
+export interface Story<P extends SLFunctionComponent = SLFunctionComponent<{}>>
+  extends BaseStory<P> {
   /**
    * Properties to pass to the component. The will show up in the UI knobs.
    */
-  args?: Partial<P>
+  args?: SLComponentProps<P>
   /**
    * Controls the display of knobs for the component.
    */
-  argTypes?: SLArgTypes<P>
+  //👨🏻‍💻 TODO:    argTypes?: SLArgTypes<P>
   /**
-   * Parameters used to control the behaviour of StoryLite features and addons.
+   * The story's static metadata, most commonly used to control StoryLite's
+   * behavior of features and addons.
    */
   parameters?: SLParametersConfig
   /**
+   * StoryLite-wide globals. In particular you can use the toolbars feature
+   * to allow you to change these values using StoryLite's UI.
+   */
+  //👨🏻‍💻 TODO:    globals?: SLParametersConfig
+  /**
    * Decorators to wrap the story in.
    */
-  decorators?: ((story: SLNode, context: { parameters: P }) => SLNode)[]
+  decorators?: SLDecorator<P>[]
   /**
    * Asynchronous functions which provide data for a story, through the render context.
    *
@@ -97,36 +120,61 @@ export interface Story<P extends SLObject = {}> {
    * - All results are the loaded field in the story context
    * - If there are keys that overlap, the keys defined in the story's loaders take precedence.
    */
-  loaders?: ((context: SLContext<P>) => Promise<SLObject> | SLObject)[]
+  //👨🏻‍💻 TODO:    loaders?: ((context?: SLContext<P>) => Promise<SLObject> | SLObject)[]
   /**
+   * Render functions are a framework specific feature to allow you control on how the component renders.
+   *
    * Define a custom render function for the story(ies). If not passed,
    * the default render function of the framework will be used.
+   *
+   * Render functions are useful to write complex stories that shouldn't be part of
+   * the code snippets or documentation.
+   *
+   * @see https://storybook.js.org/docs/react/api/csf
    */
-  render?: (args: Partial<P>, context: SLContext<P>) => SLNode
+  render?: (args: SLComponentProps<P>, context?: SLStoryContext<P>) => SLNode
   /**
-   * Function to execute after the story is rendered.
+   * Function to execute after the story is rendered (e.g. running tests).
+   *
+   * @see https://storybook.js.org/docs/react/api/csf#play-function
    */
-  play?: (context: SLRenderedContext<P>) => Promise<void> | void
+  //👨🏻‍💻 TODO:    play?: (context?: SLPlayContext<P>) => Promise<void> | void
   /**
    * SideBar options.
    *
-   * Icon for the story in the SideBar.
-   * The `expanded` icon is only used when the story has other nested stories.
+   * This property is not inherited by the named story exports, when defined in the default export.
    */
-  sidebar?: {
+  navigation?: {
+    /**
+     * Icon for the story in the SideBar.
+     * The `iconExpanded` icon is only used when the story has other nested stories.
+     */
     icon?: SLNode
     iconExpanded?: SLNode
     /**
      * Sorting order of the story in the SideBar.
      */
     order?: number
+
+    /**
+     * If true, the story will be hidden in the SideBar.
+     * Useful for stories that are not intended to be directly accessible.
+     *
+     * @default false
+     */
+    hidden?: boolean
   }
 }
 
-export type SLStoryIdentifier = {
+export interface StoryWithId<P extends SLFunctionComponent = SLFunctionComponent<{}>>
+  extends Story<P> {
   id: string
-  componentId: string
-  title: string
-  name: string
-  tags: string[]
 }
+
+export type StoryMap = Map<string, StoryWithId>
+export type StoryModuleMap = Map<
+  string,
+  {
+    [key: string]: StoryWithId<SLFunctionComponent<any>>
+  }
+>

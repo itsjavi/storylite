@@ -3,19 +3,13 @@ import {
   SLAppComponentProps,
   SLParameters,
   SLUserDefinedAddons,
-  StoryModulesMap,
+  StoryMap,
+  StoryModuleMap,
 } from '@/types'
 
 export type StoryLiteCanvasState = {
   element: HTMLIFrameElement | null
-  //   state: 'loading' | 'ready'
   standalone: boolean
-}
-
-export type StoryLiteCurrentStoryState = {
-  uid: string
-  story?: string
-  exportName?: string
 }
 
 export type StoryLiteParamValue = string | string[] | number | number[] | boolean | undefined | null
@@ -25,8 +19,9 @@ export type StoryLiteState = {
   canvas: StoryLiteCanvasState
   parameters: SLParameters
   addons: SLAddonsMap
-  stories: StoryModulesMap
-  currentStory?: StoryLiteCurrentStoryState
+  stories: StoryMap
+  storyModuleMap: StoryModuleMap
+  currentStoryId?: string
 }
 
 export type StoryLiteActions = {
@@ -39,10 +34,11 @@ export type StoryLiteActions = {
     data: SLParameters,
     options?: { persist?: boolean; crossWindow?: boolean },
   ) => void
+  setCurrentStoryId: (storyId: string) => void
   setAddons: (addons: SLUserDefinedAddons) => void
-  setStories: (stories: StoryModulesMap) => void
+  setStories: (stories: StoryModuleMap) => void
   setConfig: (config: Partial<SLAppComponentProps>) => void
-  initialize: (config: Partial<SLAppComponentProps>, stories: StoryModulesMap) => void
+  initialize: (config: Partial<SLAppComponentProps>, storyModules: StoryModuleMap) => void
   setCanvasElement: (element: HTMLIFrameElement | null) => void
 }
 

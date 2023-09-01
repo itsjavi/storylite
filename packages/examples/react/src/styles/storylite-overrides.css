@@ -4,8 +4,19 @@
 
 .storylite-iframe {
   font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
   background: transparent;
 }
+
+.storylite-main {
+  font-size: 1rem;
+}
+
+.storylite-main :where(h1, h2, h3, h4, h5, h6) {
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
 [data-sl-theme='dark']:where(.storylite-iframe--standalone) {
   color: var(--storylite-font-color);
   background-color: var(--storylite-bg-color);

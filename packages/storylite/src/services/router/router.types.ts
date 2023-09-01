@@ -13,7 +13,7 @@ export type CurrentRoute = Route & {
 }
 
 export type RouterPage = {
-  default?: React.FC
+  default?: React.FC<any>
   Layout?: React.FC<any>
 }
 

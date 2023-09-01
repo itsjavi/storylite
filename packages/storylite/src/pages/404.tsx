@@ -1,9 +1,14 @@
 import ErrorLayout from '@/components/layouts/ErrorLayout'
 
-export default function Error404() {
+import { SLStoryPageProps } from '..'
+
+export default function Error404(props: SLStoryPageProps) {
   return (
     <div className={'storylite-page404'}>
-      <h1>Error 404: Page Not Found 😵</h1>
+      <section>
+        <h1>Error 404: Page Not Found 😵</h1>
+        <pre>{props.storyId}</pre>
+      </section>
     </div>
   )
 }

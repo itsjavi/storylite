@@ -37,11 +37,15 @@ export function parseWindowHash(): [string, URLSearchParams] {
   return parseHashbangPath(window.location.hash)
 }
 
-export function asRelativeHash(path: string): string {
+export function asCleanHash(path: string): string {
   const [pathPart, query] = parseHashbangPath(path)
   const queryStr = query.size > 0 ? '?' + query.toString() : ''
 
-  return `#/${pathPart}${queryStr}`
+  return `${pathPart}${queryStr}`
+}
+
+export function asRelativeHash(path: string): string {
+  return `#/${asCleanHash(path)}`
 }
 
 export function asAbsoluteHash(path: string): string {
@@ -75,40 +79,19 @@ export function parsePathParams(pattern: string, path: string): URLSearchParams 
 }
 
 export function createPatternRegex(pattern: string): RegExp {
-  if (pattern === '/') {
-    return new RegExp('^/$')
-  }
-  if (pattern === '') {
-    return new RegExp('^$')
+  if (pattern === '/' || pattern === '') {
+    return new RegExp('^/?$')
   }
   const patternRegex = pattern
     .replace(/\//g, '\\/') // escape slashes
     .replace(/\*\*/g, '.*') // replace ** with .*
     .replace(/\/\*/g, '/[^/]+') // replace * with ([^/]+)
+    .replace(/\[\.\.([^/}]+)\]/g, '(.+)') // replace [..param] with (.+)
     .replace(/\[([^/}]+)\]/g, '([^/]+)') // replace [param] with ([^/]+)
 
   return new RegExp(`^${patternRegex}$`)
 }
 
-export function getStoryUrl(
-  story: string | undefined,
-  exportName: string | undefined,
-  options: { standalone?: boolean; target: 'top' | 'iframe' } = {
-    target: 'top',
-    standalone: false,
-  },
-): string {
-  const { standalone, target } = options
-  const targetStr = target === 'iframe' ? '/preview/' : '/'
-  const hashStr = '/#'
-  const baseStr = `${hashStr}${targetStr}`.replace(/\/\//g, '/')
-
-  let url =
-    story === undefined ? `${baseStr}dashboard` : `${baseStr}stories/${story}/${exportName || ''}`
-
-  if (standalone) {
-    url += `/?standalone=true`
-  }
-
-  return url
+export function withInitialSlash(path: string): string {
+  return path.startsWith('/') ? path : '/' + path
 }

@@ -6,9 +6,9 @@ Basic setup of StoryLite with React:
 
 - public/\*
 - stories/\*
-- storylite.tsx
+- src/index.tsx (storylite setup)
 - src/styles/storylite-overrides.css
-- index.html
+- index.html (Vite entry point)
 - package.json
 - tsconfig.json
 - vite.config.ts

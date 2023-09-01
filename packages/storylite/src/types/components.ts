@@ -1,11 +1,8 @@
+import { ComponentProps } from 'react'
+
 import { SLObject } from './core'
 
 // Framework-agnostic component types for StoryLite
-
-export type SLFunctionComponent<P extends SLObject = {}> = {
-  (props: P, context?: any): SLNode
-  displayName?: string | undefined
-}
 
 export type SLElement<P extends SLObject = {}> = {
   type: string
@@ -22,3 +19,8 @@ export type SLNode =
   | SLElement<any>
   | Iterable<SLNode>
 // | SLFunctionComponent<any>
+
+export type SLFunctionComponent<P extends SLObject = {}> = React.FC<P>
+export type SLComponentProps<P extends SLFunctionComponent = SLFunctionComponent<{}>> = {
+  [key in keyof ComponentProps<SLFunctionComponent<P>>]: ComponentProps<SLFunctionComponent<P>>[key]
+}

@@ -5,7 +5,7 @@ export function SidebarTitle() {
   const config = useStoryLiteStore(state => state.config)
 
   return (
-    <div className={'SidebarTitle'}>
+    <div className={'storylite-sidebar-title'}>
       <Link to={'/'}>{config.title}</Link>
     </div>
   )

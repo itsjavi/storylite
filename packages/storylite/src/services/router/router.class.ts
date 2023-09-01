@@ -3,11 +3,11 @@ import React from 'react'
 import { CurrentRoute, Route } from './router.types'
 import {
   asAbsoluteHash,
-  asRelativeHash,
   createPatternRegex,
   getWindowHash,
   parseHashbangPath,
   parsePathParams,
+  withInitialSlash,
 } from './router.utils'
 
 export class Router implements Iterable<Route> {
@@ -80,31 +80,32 @@ export class Router implements Iterable<Route> {
 
   navigate(path: string, query?: URLSearchParams | Record<string, string>, replace = false): void {
     const absPath = asAbsoluteHash(path)
-    const relPath = asRelativeHash(path)
+    // const relPath = asRelativeHash(path)
     const newUrl = new URL(absPath, window.location.origin)
     newUrl.search = new URLSearchParams(query).toString()
 
-    window.location.hash = relPath.toString()
-
     if (replace) {
       window.history.replaceState({ absPath }, '', absPath)
+      this.refresh(absPath)
 
       return
     }
     window.history.pushState({ absPath }, '', absPath)
+    this.refresh(absPath)
   }
 
   refresh(path: string): void {
     const [pathPart, queryPart] = parseHashbangPath(path)
+    const pathWithSlash = withInitialSlash(pathPart)
 
-    const matches = this.getMatches(pathPart) // the last match takes precedence
+    const matches = this.getMatches(pathWithSlash) // the last match takes precedence
     if (matches.length === 0) {
       this._currentRoute = undefined
 
       return
     }
     const route = matches[matches.length - 1]
-    const params = parsePathParams(route.pattern ?? '', pathPart)
+    const params = parsePathParams(route.pattern ?? '/', pathWithSlash)
     const query = new URLSearchParams(queryPart)
 
     // assign query params to params
