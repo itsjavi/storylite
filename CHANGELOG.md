@@ -1,3 +1,20 @@
+## v0.9.0
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.8.0...v0.9.0)
+
+### 💅 Refactors
+
+- Add initial support for Component Story Format (CSF)
+  ([#39](https://github.com/itsjavi/storylite/pull/39))
+
+### 🏡 Chore
+
+- Update badges to include pkg size ([034b01e](https://github.com/itsjavi/storylite/commit/034b01e))
+
+### ❤️ Contributors
+
+- Javi Aguilar
+
 ## v0.8.0
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.7.1...v0.8.0)
