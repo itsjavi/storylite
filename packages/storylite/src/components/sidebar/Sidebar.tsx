@@ -83,7 +83,7 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
   if (navNode.children.length === 0) {
     return (
       <li className={classes} title={navNode.title}>
-        <Link to={navNode.href} className={'storylite-btn'}>
+        <Link to={navNode.href} className={'storylite-navbtn'}>
           <i className={'storylite-icon'}>{icon}</i>
           <span className={'storylite-text'}>{navNode.title}</span>
         </Link>
@@ -95,7 +95,7 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
     <li className={classes} title={navNode.title}>
       <button
         type="button"
-        className={'storylite-btn'}
+        className={'storylite-navbtn'}
         onClick={() => setIsExpanded(!canBeCollapsed)}
       >
         <i className={'storylite-icon'}>{icon}</i>
@@ -116,7 +116,7 @@ function SidebarNestedList(props: SidebarItemBaseProps): JSX.Element {
 
         return (
           <li key={i} className={classes} title={childNode.title}>
-            <Link to={childNode.href} className={'storylite-btn'}>
+            <Link to={childNode.href} className={'storylite-navbtn'}>
               <i className={'storylite-icon'}>{childNode.icon ?? <BookmarkIcon />}</i>
               <span className={'storylite-text'}>{childNode.title}</span>
             </Link>

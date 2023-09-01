@@ -91,7 +91,7 @@
   flex-direction: column;
 }
 
-.storylite-sidebar-nav .storylite-btn {
+.storylite-sidebar-nav .storylite-navbtn {
   all: unset;
   appearance: none;
   padding: 0.5rem 1rem;
@@ -104,49 +104,49 @@
   cursor: pointer;
 }
 
-.storylite-sidebar-nav .storylite-btn .storylite-text,
-.storylite-sidebar-nav .storylite-btn .storylite-icon,
-.storylite-sidebar-nav .storylite-btn .storylite-icon svg {
+.storylite-sidebar-nav .storylite-navbtn .storylite-text,
+.storylite-sidebar-nav .storylite-navbtn .storylite-icon,
+.storylite-sidebar-nav .storylite-navbtn .storylite-icon svg {
   vertical-align: middle;
   display: inline-block;
   font-style: normal;
 }
 
-.storylite-sidebar-nav .storylite-btn .storylite-text {
+.storylite-sidebar-nav .storylite-navbtn .storylite-text {
   white-space: nowrap; /* Prevents the text from breaking into multiple lines */
   overflow: hidden; /* Hides any overflowing text */
   text-overflow: ellipsis; /* Shows an ellipsis at the end of the block */
 }
 
-.storylite-sidebar-nav .storylite-btn .storylite-icon {
+.storylite-sidebar-nav .storylite-navbtn .storylite-icon {
   margin-right: 5px;
 }
 
-.storylite-sidebar-nav .storylite-btn .storylite-icon svg {
+.storylite-sidebar-nav .storylite-navbtn .storylite-icon svg {
   width: 12px;
   height: 12px;
 }
 
-.storylite-sidebar-nav .storylite-btn:hover {
+.storylite-sidebar-nav .storylite-navbtn:hover {
   background-color: rgba(0, 0, 0, 0.07);
 }
 
-[data-sl-theme='dark'] .storylite-sidebar-nav .storylite-btn:hover {
+[data-sl-theme='dark'] .storylite-sidebar-nav .storylite-navbtn:hover {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-[data-sl-theme='dark'] .storylite-sidebar-nav .storylite-active .storylite-btn:hover,
-.storylite-sidebar-nav .storylite-active .storylite-btn {
+[data-sl-theme='dark'] .storylite-sidebar-nav .storylite-active .storylite-navbtn:hover,
+.storylite-sidebar-nav .storylite-active .storylite-navbtn {
   background-color: var(--storylite-color-primary);
   text-decoration: none;
   color: #fff;
 }
 
-.storylite-active-children > .storylite-btn {
+.storylite-active-children > .storylite-navbtn {
   color: var(--storylite-color-primary);
 }
 
-.storylite-sidebar-nav .storylite-with-nested .storylite-nested .storylite-btn {
+.storylite-sidebar-nav .storylite-with-nested .storylite-nested .storylite-navbtn {
   padding-left: 2rem;
 }
 

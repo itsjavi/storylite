@@ -6,7 +6,7 @@
 }
 
 [data-sl-outline='true'] .storylite-story-component :where(a, button, input, textarea, select) {
-  outline: 1px solid rgba(255, 230, 9, 0.5) !important;
+  outline: 1px solid rgba(255, 230, 9, 0.7) !important;
   outline-offset: 0px !important;
 }
 

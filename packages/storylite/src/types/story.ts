@@ -1,5 +1,5 @@
 import { SLFunctionComponent, SLNode } from './components'
-import { SLArgTypes, SLObject } from './core'
+import { SLObject } from './core'
 import { SLParameters, SLParametersConfig } from './parameters'
 
 export type SLContext<P extends SLObject = {}> = {
@@ -22,6 +22,12 @@ export type SLContext<P extends SLObject = {}> = {
     [key: string]: any
   }
 }
+
+export type SLDecorator<P extends SLObject = {}> = (
+  story: SLFunctionComponent<P | Partial<P>>,
+  context: SLDecoratorContext<P>,
+) => SLNode
+export type SLDecoratorContext<P extends SLObject = {}> = Omit<Story<P>, 'decorators'>
 
 export type SLRenderedContext<P extends SLObject = {}> = SLContext<P> & {
   /**
@@ -77,7 +83,7 @@ export interface Story<P extends SLObject = {}> {
   /**
    * Controls the display of knobs for the component.
    */
-  argTypes?: SLArgTypes<P>
+  //👨🏻‍💻 TODO:    argTypes?: SLArgTypes<P>
   /**
    * Parameters used to control the behaviour of StoryLite features and addons.
    */
@@ -85,7 +91,7 @@ export interface Story<P extends SLObject = {}> {
   /**
    * Decorators to wrap the story in.
    */
-  decorators?: ((story: SLNode, context: { parameters: P }) => SLNode)[]
+  decorators?: SLDecorator<P>[]
   /**
    * Asynchronous functions which provide data for a story, through the render context.
    *
@@ -96,16 +102,16 @@ export interface Story<P extends SLObject = {}> {
    * - All results are the loaded field in the story context
    * - If there are keys that overlap, the keys defined in the story's loaders take precedence.
    */
-  loaders?: ((context: SLContext<P>) => Promise<SLObject> | SLObject)[]
+  //👨🏻‍💻 TODO:    loaders?: ((context: SLContext<P>) => Promise<SLObject> | SLObject)[]
   /**
    * Define a custom render function for the story(ies). If not passed,
    * the default render function of the framework will be used.
    */
-  render?: (args: Partial<P>, context: SLContext<P>) => SLNode
+  render?: (args: P | Partial<P>, context: SLContext<P>) => SLNode
   /**
    * Function to execute after the story is rendered.
    */
-  play?: (context: SLRenderedContext<P>) => Promise<void> | void
+  //👨🏻‍💻 TODO:    play?: (context: SLRenderedContext<P>) => Promise<void> | void
   /**
    * SideBar options.
    *

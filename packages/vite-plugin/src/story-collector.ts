@@ -33,6 +33,10 @@ function modulesToStories(
   const defaultExport: BaseStoryWithId = {
     id: fileId,
     ...modules.default,
+    navigation: {
+      hidden: true,
+      ...modules.default?.navigation,
+    },
   }
 
   // Recreates the modules object, but as story objects, with the default export merged into each
@@ -65,14 +69,18 @@ function modulesToStories(
           // defaultExport.title ??
           exportName
 
+        // don't inherit navigation from default export
+        const inheritedNavigation = exportName === 'default' ? defaultExport.navigation : {}
         const fullStory: BaseStoryWithId = {
           // we also merge default export's properties,
           // which are shared across all stories unless overridden
           ...defaultExport,
           id: storyId,
-          title: camelToTitleCase(titleizeFilename(storyTitle)),
-          navigation: {}, // don't inherit navigation from default export
+          navigation: {
+            ...inheritedNavigation,
+          },
           ...story,
+          title: camelToTitleCase(titleizeFilename(storyTitle)),
         }
 
         if (exportName !== 'default' && !('component' in fullStory)) {
