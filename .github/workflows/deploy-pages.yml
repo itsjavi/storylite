@@ -39,7 +39,7 @@ jobs:
 
       - name: Build with Vite
         run: |
-          pnpm run build
+          pnpm -r run build:gh-pages
           ls -la ./packages/examples/react/dist
           echo "Moving dist to _site"
           rm -rf _site && mv ./packages/examples/react/dist ./_site
