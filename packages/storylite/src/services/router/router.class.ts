@@ -2,7 +2,6 @@ import React from 'react'
 
 import { CurrentRoute, Route } from './router.types'
 import {
-  asAbsoluteHash,
   createPatternRegex,
   getWindowHash,
   parseHashbangPath,
@@ -79,7 +78,7 @@ export class Router implements Iterable<Route> {
   }
 
   navigate(path: string, query?: URLSearchParams | Record<string, string>, replace = false): void {
-    const absPath = asAbsoluteHash(path)
+    const absPath = path // asAbsoluteHash(path)
     // const relPath = asRelativeHash(path)
     const newUrl = new URL(absPath, window.location.origin)
     newUrl.search = new URLSearchParams(query).toString()

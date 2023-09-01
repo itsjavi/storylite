@@ -15,6 +15,7 @@ const builtinAddons: SLAddonsMap = new Map(
 )
 
 const defaultState: StoryLiteState = {
+  basePath: import.meta.env.BASE_URL,
   canvas: {
     element: null,
     standalone: false,

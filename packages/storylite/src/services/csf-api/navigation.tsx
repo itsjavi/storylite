@@ -1,7 +1,7 @@
 import { SLNode, StoryModuleMap } from '@/types'
 import { isTruthy } from '@/utility'
 
-import { asCleanHash } from '../router/router.utils'
+import { STORYLITE_BASE_PATH } from '../router'
 
 export type SLNavigationNode = {
   title: string
@@ -14,10 +14,6 @@ export type SLNavigationNode = {
 
 type SLTopLevelNavigation = SLNavigationNode[]
 
-export function getStoryUrlHash(storyId: string): string {
-  return `/#/stories/${asCleanHash(storyId)}`
-}
-
 export function getStoryUrl(
   storyId: string | undefined,
   options: { standalone?: boolean; target: 'top' | 'iframe' } = {
@@ -28,17 +24,19 @@ export function getStoryUrl(
   const { standalone, target } = options
   const isIframe = target === 'iframe'
 
-  const targetBasePath = isIframe ? '/canvas.html#' : '/#'
-  const targetHashBasePath = isIframe ? '/preview/' : '/'
-  const baseStr = `${targetBasePath}${targetHashBasePath}`.replace(/\/\//g, '/')
+  const targetBasePath = isIframe ? '/canvas.html#' : '#'
+  const targetHashBasePath = isIframe ? 'preview/' : ''
+  const baseStr = [STORYLITE_BASE_PATH, targetBasePath, targetHashBasePath]
+    .join('')
+    .replace(/\/\//g, '/')
 
-  let url = storyId === undefined ? baseStr : `${baseStr}stories/${storyId}`
+  let url = storyId === undefined ? baseStr : `${baseStr}/stories/${storyId}`
 
   if (standalone) {
     url += `/?standalone=true`
   }
 
-  return url
+  return url.replace(/\/\//g, '/')
 }
 
 // TODO: support nested levels by splitting the title on `/`
@@ -50,7 +48,7 @@ export function getStoryNavigationTree(storyModuleMap: StoryModuleMap): SLTopLev
     const topNode: SLNavigationNode = {
       title: stories.default?.title || storiesFileId,
       storyId: stories.default?.id || storiesFileId,
-      href: getStoryUrlHash(storiesFileId),
+      href: getStoryUrl(storiesFileId, { target: 'top', standalone: false }),
       icon: stories.default?.navigation?.icon,
       iconExpanded: stories.default?.navigation?.iconExpanded,
       children: [],
@@ -64,7 +62,7 @@ export function getStoryNavigationTree(storyModuleMap: StoryModuleMap): SLTopLev
       const childNode: SLNavigationNode = {
         title: story.title || exportedName,
         storyId: story.id,
-        href: getStoryUrlHash(story.id),
+        href: getStoryUrl(story.id, { target: 'top', standalone: false }),
         icon: story.navigation?.icon,
         iconExpanded: story.navigation?.iconExpanded,
         children: [], // TODO: support nested levels in a future implementation

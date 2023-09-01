@@ -1,5 +1,15 @@
 export function cleanHashBang(path: string): string {
-  return path
+  const parts = path.split('#', 2)
+  if (parts.length === 1) {
+    return parts[0]
+  }
+  if (parts.length === 0) {
+    return ''
+  }
+
+  const hash = parts[1]
+
+  return hash
     .replace(/(^#|^\/#)/, '')
     .replace(/(^\/+|\/+$)/, '')
     .replace(/\/+/g, '/')
@@ -11,15 +21,17 @@ export function parseHashbangPath(path?: string): [string, URLSearchParams] {
     return ['', new URLSearchParams()]
   }
 
-  if (!path.match(/^(\/?#)|([a-z]+\:)/)) {
-    path = '/#/' + path
+  let cleanPath = cleanHashBang(path)
+
+  if (!cleanPath.match(/^(\/?#)|([a-z]+\:)/)) {
+    cleanPath = '/#/' + cleanPath
   }
 
-  if (path.startsWith('/') && !path.startsWith('/#')) {
-    path = '/#' + path
+  if (cleanPath.startsWith('#') && !cleanPath.startsWith('#/')) {
+    cleanPath = '#/' + cleanPath
   }
 
-  const url = new URL(path, window.location.origin)
+  const url = new URL(cleanPath, window.location.origin)
   const queryFromHash = url.hash.split('?')
   if (queryFromHash.length > 1) {
     url.search = queryFromHash[1]

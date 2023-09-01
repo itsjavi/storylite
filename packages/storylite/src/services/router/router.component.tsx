@@ -2,7 +2,7 @@ import { HTMLAttributes, ReactNode } from 'react'
 
 import { useRouterStore } from './router.store'
 import { CurrentRoute } from './router.types'
-import { asAbsoluteHash, parseWindowHash } from './router.utils'
+import { parseWindowHash } from './router.utils'
 
 export type RouteRendererProps = {
   route?: CurrentRoute
@@ -42,7 +42,7 @@ export const Link = ({
 
   return (
     <a
-      href={asAbsoluteHash(to)}
+      href={to}
       onClick={e => {
         e.preventDefault()
         navigate(to)

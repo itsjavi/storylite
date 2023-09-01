@@ -15,6 +15,7 @@ export type StoryLiteCanvasState = {
 export type StoryLiteParamValue = string | string[] | number | number[] | boolean | undefined | null
 
 export type StoryLiteState = {
+  basePath: string
   config: Required<SLAppComponentProps>
   canvas: StoryLiteCanvasState
   parameters: SLParameters
