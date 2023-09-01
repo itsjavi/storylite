@@ -40,7 +40,10 @@ jobs:
       - name: Build with Vite
         run: |
           pnpm run build
-          mv ./packages/examples/react/dist ./_site
+          ls -la ./packages/examples/react/dist
+          echo "Moving dist to _site"
+          rm -rf _site && mv ./packages/examples/react/dist ./_site
+          ls -la ./_site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
