@@ -23,29 +23,23 @@ export function createStoryLiteRouter(): Router {
 
   // const pages = import.meta.glob('./pages/**/*.tsx', { eager: true }) as Record<string, RouterPage>
   const pages: Record<string, RouterPage> = {
-    './pages/index.tsx': IndexPage,
-    './pages/preview/dashboard.tsx': SandboxDashboardPage,
-    './pages/preview/stories/[story]/[export_name].tsx': SandboxExportedStory,
-    './pages/preview/stories/[story]/index.tsx': SandboxStoryIndex,
-    './pages/stories/[story]/[export_name].tsx': ExportedStory,
+    '/': IndexPage,
+    '/preview/dashboard': SandboxDashboardPage,
+    '/preview/stories/[storyFileId]/[..storyId]': SandboxExportedStory,
+    '/preview/stories/[storyFileId]': SandboxStoryIndex,
+    '/stories/[storyFileId]/[..storyId]': ExportedStory,
   }
 
-  for (const path of Object.keys(pages)) {
-    const routePattern = path.match(/\.\/pages\/(.*)\.tsx$/)?.[1]
-    if (!routePattern) {
-      continue
-    }
-
-    const page = pages[path]
+  for (const pattern of Object.keys(pages)) {
+    const page = pages[pattern]
     if (!page || !page.default) {
-      throw new Error(`Page ${path} does not have a default JSX.Element export.`)
+      throw new Error(`Page with route '${pattern}' does not have a default JSX.Element export.`)
     }
 
-    const normalizedPattern = routePattern.replace(/\/index$/, '').replace(/^index$/, '')
     const LayoutFc = page.Layout ?? TopFrameLayout
     const PageFc = page.default
 
-    router.add(normalizedPattern, (props: any) => {
+    router.add(pattern, (props: any) => {
       return (
         <LayoutFc {...props}>
           <PageFc {...props} />

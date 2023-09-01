@@ -59,7 +59,7 @@ export interface Story<P extends SLObject = {}> {
    *
    * If not specified, defaults to the named export and the inferred path from the file name.
    */
-  title?: string | SLNode
+  title?: string
   /**
    * Display name of the component in the UI.
    *
@@ -112,20 +112,24 @@ export interface Story<P extends SLObject = {}> {
    * Icon for the story in the SideBar.
    * The `expanded` icon is only used when the story has other nested stories.
    */
-  sidebar?: {
+  navigation?: {
     icon?: SLNode
     iconExpanded?: SLNode
     /**
      * Sorting order of the story in the SideBar.
      */
     order?: number
+
+    /**
+     * If true, the story will be hidden in the SideBar.
+     * Useful for stories that are not intended to be directly accessible.
+     *
+     * @default false
+     */
+    disabled?: boolean
   }
 }
 
-export type SLStoryIdentifier = {
+export interface StoryWithId<P extends SLObject = {}> extends Story<P> {
   id: string
-  componentId: string
-  title: string
-  name: string
-  tags: string[]
 }

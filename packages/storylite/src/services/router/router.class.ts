@@ -3,7 +3,6 @@ import React from 'react'
 import { CurrentRoute, Route } from './router.types'
 import {
   asAbsoluteHash,
-  asRelativeHash,
   createPatternRegex,
   getWindowHash,
   parseHashbangPath,
@@ -80,18 +79,18 @@ export class Router implements Iterable<Route> {
 
   navigate(path: string, query?: URLSearchParams | Record<string, string>, replace = false): void {
     const absPath = asAbsoluteHash(path)
-    const relPath = asRelativeHash(path)
+    // const relPath = asRelativeHash(path)
     const newUrl = new URL(absPath, window.location.origin)
     newUrl.search = new URLSearchParams(query).toString()
 
-    window.location.hash = relPath.toString()
-
     if (replace) {
       window.history.replaceState({ absPath }, '', absPath)
+      this.refresh(absPath)
 
       return
     }
     window.history.pushState({ absPath }, '', absPath)
+    this.refresh(absPath)
   }
 
   refresh(path: string): void {
@@ -129,6 +128,7 @@ export class Router implements Iterable<Route> {
     handleUpdate(getWindowHash())
 
     const handleHashChangeEvent = (e: HashChangeEvent) => {
+      console.log('hashchanged!', { e })
       handleUpdate(e.newURL)
     }
 
@@ -166,6 +166,8 @@ export class Router implements Iterable<Route> {
   }
 
   getMatches(path: string): Route[] {
+    console.log('routes', { path }, this.routes)
+
     return this.routes.filter(route => {
       return route.regex.test(path)
     })

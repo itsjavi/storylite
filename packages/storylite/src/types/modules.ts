@@ -3,7 +3,8 @@ The new version of the API, provides a set of interoperable features with Storyb
 such as: decorators, args, parameters, play function, loaders, and more.
 */
 
-import { Story } from './story'
+import { SLObject } from './core'
+import { StoryWithId } from './story'
 
 // /**
 //  * StoryLite Story Metadata object for default exports.
@@ -22,12 +23,10 @@ import { Story } from './story'
 // will be converted to:
 // My Component
 
-export type SLModuleExport = Story<any> | any
+export type SLModuleExport<P extends SLObject = {}> = StoryWithId<P>
 
-export type SLModule = {
-  [key: string]: SLModuleExport
-} & {
-  default?: SLModuleExport
-}
+export type SLModule<P extends SLObject = {}> = {
+  default?: SLModuleExport<P>
+} & Record<string, SLModuleExport<P>>
 
-export type SLModuleMap = Map<string, SLModule>
+export type SLModuleMap<P extends SLObject = {}> = Map<string, SLModule<P>>

@@ -1,4 +1,4 @@
-.Sidebar {
+.storylite-sidebar {
   position: relative;
   padding: 0;
   background: var(--storylite-bg-color-panel);
@@ -14,34 +14,34 @@
   grid-area: sidebar;
 }
 
-[data-sl-maximize='false'] .Sidebar {
+[data-sl-maximize='false'] .storylite-sidebar {
   width: 220px;
   pointer-events: unset;
   margin-left: 0;
   margin-right: 0;
 }
 
-[data-sl-theme='dark'] .Sidebar {
+[data-sl-theme='dark'] .storylite-sidebar {
   border-color: transparent;
 }
 
 @media (prefers-color-scheme: dark) {
-  [data-sl-theme='auto'] .Sidebar {
+  [data-sl-theme='auto'] .storylite-sidebar {
     border-color: transparent;
   }
 }
 
-.Sidebar .Content {
+.storylite-sidebar-body {
   position: relative;
   min-width: 220px;
 }
 
-.Sidebar .Title {
+.storylite-sidebar-titleWrapper {
   position: relative;
 }
 
 /* TITLE */
-.SidebarTitle {
+.storylite-sidebar-title {
   padding: 1.2rem 0.8rem;
   font-weight: bold;
   color: var(--storylite-font-color-SidebarTitle);
@@ -52,21 +52,21 @@
   text-align: left;
 }
 
-.SidebarTitle svg {
+.storylite-sidebar-title svg {
   width: 1.5rem;
   height: 1.5rem;
 }
 
-.SidebarTitle h1,
-.SidebarTitle h2,
-.SidebarTitle h3 {
+.storylite-sidebar-title h1,
+.storylite-sidebar-title h2,
+.storylite-sidebar-title h3 {
   font-size: inherit;
   color: inherit;
   padding: 0;
   margin: 0;
 }
 
-.SidebarTitle a {
+.storylite-sidebar-title a {
   color: inherit;
   display: block;
   text-decoration: none;
@@ -77,8 +77,8 @@
 
 /* MENU NAV */
 
-.SidebarNav ul,
-.SidebarNav li {
+.storylite-sidebar-nav ul,
+.storylite-sidebar-nav li {
   position: relative;
   display: block;
   list-style: none;
@@ -86,12 +86,12 @@
   margin: 0;
 }
 
-.SidebarNav li {
+.storylite-sidebar-nav li {
   display: flex;
   flex-direction: column;
 }
 
-.SidebarNav .ListBtn {
+.storylite-sidebar-nav .storylite-btn {
   all: unset;
   appearance: none;
   padding: 0.5rem 1rem;
@@ -104,51 +104,51 @@
   cursor: pointer;
 }
 
-.SidebarNav .ListBtn .Text,
-.SidebarNav .ListBtn .Icon,
-.SidebarNav .ListBtn .Icon svg {
+.storylite-sidebar-nav .storylite-btn .storylite-text,
+.storylite-sidebar-nav .storylite-btn .storylite-icon,
+.storylite-sidebar-nav .storylite-btn .storylite-icon svg {
   vertical-align: middle;
   display: inline-block;
 }
 
-.SidebarNav .ListBtn .Text {
+.storylite-sidebar-nav .storylite-btn .storylite-text {
   white-space: nowrap; /* Prevents the text from breaking into multiple lines */
   overflow: hidden; /* Hides any overflowing text */
   text-overflow: ellipsis; /* Shows an ellipsis at the end of the block */
 }
 
-.SidebarNav .ListBtn .Icon {
+.storylite-sidebar-nav .storylite-btn .storylite-icon {
   margin-right: 5px;
 }
 
-.SidebarNav .ListBtn .Icon svg {
+.storylite-sidebar-nav .storylite-btn .storylite-icon svg {
   width: 12px;
   height: 12px;
 }
 
-.SidebarNav .ListBtn:hover {
+.storylite-sidebar-nav .storylite-btn:hover {
   background-color: rgba(0, 0, 0, 0.07);
 }
 
-[data-sl-theme='dark'] .SidebarNav .ListBtn:hover {
+[data-sl-theme='dark'] .storylite-sidebar-nav .storylite-btn:hover {
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-[data-sl-theme='dark'] .SidebarNav .Active .ListBtn:hover,
-.SidebarNav .Active .ListBtn {
+[data-sl-theme='dark'] .storylite-sidebar-nav .storylite-active .storylite-btn:hover,
+.storylite-sidebar-nav .storylite-active .storylite-btn {
   background-color: var(--storylite-color-primary);
   text-decoration: none;
   color: #fff;
 }
 
-.SidebarNav .WithNestedList .NestedList .ListBtn {
+.storylite-sidebar-nav .storylite-with-nested .storylite-nested .storylite-btn {
   padding-left: 2rem;
 }
 
-.SidebarNav .NestedList .Icon {
+.storylite-sidebar-nav .storylite-nested .storylite-icon {
   color: var(--storylite-color-primary);
 }
 
-.SidebarNav .NestedList .Active .Icon {
+.storylite-sidebar-nav .storylite-nested .storylite-active .storylite-icon {
   color: inherit;
 }

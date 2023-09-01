@@ -1,6 +1,7 @@
 import {
   SLAddonsMap,
   SLAppComponentProps,
+  SLModuleMap,
   SLParameters,
   SLUserDefinedAddons,
   StoryModulesMap,
@@ -25,7 +26,7 @@ export type StoryLiteState = {
   canvas: StoryLiteCanvasState
   parameters: SLParameters
   addons: SLAddonsMap
-  stories: StoryModulesMap
+  stories: SLModuleMap
   currentStory?: StoryLiteCurrentStoryState
 }
 

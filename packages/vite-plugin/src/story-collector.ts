@@ -35,12 +35,14 @@ function modulesToStories(
     ...modules.default,
   }
 
+  // Recreates the modules object, but as story objects, with the default export merged into each
   return Object.fromEntries(
     Object.entries(modules).map(([exportName, exportedValue]: [string, any]) => {
       let story: Partial<BaseStoryWithId> = exportedValue
 
       if (typeof story === 'function') {
-        // Support for old StoryLite story format ( in versions =< v0.8.* )
+        // Support for stories that are exporting just a component, without any metadata
+        // Then, all metadata will be inferred from the default export (if available)
         story = { component: exportedValue }
       }
 
@@ -52,7 +54,12 @@ function modulesToStories(
       }
 
       // Title resolution: .name -> .title -> .component.displayName -> exportName
-      const storyTitle = story.name ?? story.title ?? story.component?.displayName ?? exportName
+      const storyTitle =
+        story.name ??
+        story.title ??
+        story.component?.displayName ??
+        // defaultExport.title ??
+        exportName
 
       const fullStory: BaseStoryWithId = {
         // we also merge default export's properties,
@@ -82,10 +89,10 @@ export function createStoryFilesMap(storyFiles: StoryFiles): StoryFilesMap {
   Object.entries(storyFiles)
     // sort story files alphabetically by path
     .sort(([aPath], [bPath]) => aPath.localeCompare(bPath))
-    // sort story files by the sidebar.order property defined in the default export
+    // sort story files by the navigation.order property defined in the default export
     .sort(([, modulesA], [, modulesB]) => {
-      const aOrder = modulesA?.default?.sidebar?.order || 0
-      const bOrder = modulesB?.default?.sidebar?.order || 0
+      const aOrder = modulesA?.default?.navigation?.order || 0
+      const bOrder = modulesB?.default?.navigation?.order || 0
 
       return bOrder - aOrder
     })
@@ -104,11 +111,7 @@ export function createStoryFilesMap(storyFiles: StoryFiles): StoryFilesMap {
 
       const fileStories = modulesToStories(storiesFileId, modules)
 
-      storyFileMap.set(storiesFileId, {
-        // TODO: set(storiesFileId, fileStories) directly
-        module: fileStories,
-        meta: { title: '[meta.title is DEPRECATED]' },
-      } as any)
+      storyFileMap.set(storiesFileId, fileStories)
     })
 
   return storyFileMap
