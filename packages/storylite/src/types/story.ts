@@ -1,8 +1,7 @@
-import { SLFunctionComponent, SLNode } from './components'
-import { SLObject } from './core'
+import { SLComponentProps, SLFunctionComponent, SLNode } from './components'
 import { SLParameters, SLParametersConfig } from './parameters'
 
-export type SLContext<P extends SLObject = {}> = {
+export type SLContext<P extends SLFunctionComponent = SLFunctionComponent<{}>> = {
   /**
    * The component configuration.
    */
@@ -10,7 +9,7 @@ export type SLContext<P extends SLObject = {}> = {
   /**
    * The args for the component, with any overrides from the user in the UI.
    */
-  args: Partial<P>
+  args: SLComponentProps<P>
   /**
    * The parameter values, with any overrides from the user in the UI.
    */
@@ -23,18 +22,22 @@ export type SLContext<P extends SLObject = {}> = {
   }
 }
 
-export type SLDecorator<P extends SLObject = {}> = (
-  story: SLFunctionComponent<P | Partial<P>>,
+export type SLDecorator<P extends SLFunctionComponent = SLFunctionComponent<{}>> = (
+  story: P,
   context: SLDecoratorContext<P>,
 ) => SLNode
-export type SLDecoratorContext<P extends SLObject = {}> = Omit<Story<P>, 'decorators'>
+export type SLDecoratorContext<P extends SLFunctionComponent = SLFunctionComponent<{}>> = Omit<
+  Story<P>,
+  'decorators'
+>
 
-export type SLRenderedContext<P extends SLObject = {}> = SLContext<P> & {
-  /**
-   * The DOM element that contains the rendered component.
-   */
-  canvasElement: HTMLElement
-}
+export type SLRenderedContext<P extends SLFunctionComponent = SLFunctionComponent<{}>> =
+  SLContext<P> & {
+    /**
+     * The DOM element that contains the rendered component.
+     */
+    canvasElement: HTMLElement
+  }
 
 /**
  * StoryLite Story Metadata object, *almost fully* compatible
@@ -54,7 +57,7 @@ export type SLRenderedContext<P extends SLObject = {}> = SLContext<P> & {
  * the `title` and `name` fields are optional and will be inferred from the named export
  * if not specified.
  */
-export interface Story<P extends SLObject = {}> {
+export interface Story<P extends SLFunctionComponent = SLFunctionComponent<{}>> {
   // /**
   //  * Unique id for the story.
   //  */
@@ -75,11 +78,11 @@ export interface Story<P extends SLObject = {}> {
   /**
    * Component to render the story.
    */
-  component?: SLFunctionComponent<P>
+  component?: P
   /**
    * Properties to pass to the component. The will show up in the UI knobs.
    */
-  args?: Partial<P>
+  args?: SLComponentProps<P>
   /**
    * Controls the display of knobs for the component.
    */
@@ -107,7 +110,7 @@ export interface Story<P extends SLObject = {}> {
    * Define a custom render function for the story(ies). If not passed,
    * the default render function of the framework will be used.
    */
-  render?: (args: P | Partial<P>, context: SLContext<P>) => SLNode
+  render?: (args: SLComponentProps<P>, context: SLContext<P>) => SLNode
   /**
    * Function to execute after the story is rendered.
    */
@@ -139,7 +142,8 @@ export interface Story<P extends SLObject = {}> {
   }
 }
 
-export interface StoryWithId<P extends SLObject = {}> extends Story<P> {
+export interface StoryWithId<P extends SLFunctionComponent = SLFunctionComponent<{}>>
+  extends Story<P> {
   id: string
 }
 
@@ -147,6 +151,6 @@ export type StoryMap = Map<string, StoryWithId>
 export type StoryModuleMap = Map<
   string,
   {
-    [key: string]: StoryWithId<SLObject>
+    [key: string]: StoryWithId<SLFunctionComponent<any>>
   }
 >

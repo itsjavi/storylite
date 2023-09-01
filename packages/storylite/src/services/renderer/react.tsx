@@ -1,6 +1,6 @@
 import { SLDecorator, SLDecoratorContext, SLFunctionComponent, StoryWithId } from '@/types'
 
-const defaultDecorator: SLDecorator = (Story, context) => {
+const defaultDecorator: SLDecorator<any> = (Story, context) => {
   // apply args
   return <Story {...context.args} />
 }
@@ -19,10 +19,10 @@ function applyDecorators(
   )
 }
 
-export function renderStory(storyComponent: SLFunctionComponent, story: StoryWithId) {
+export function renderStory(storyComponent: React.FC, story: StoryWithId) {
   // TODO: add support for a custom render function
 
-  const decoratorContext: SLDecoratorContext = {
+  const decoratorContext: SLDecoratorContext<any> = {
     ...story,
     args: {
       ...story.args,

@@ -4,9 +4,7 @@ import { LinkableBtn } from '../src/components/LinkableBtn'
 
 import '../src/styles/components.css'
 
-import { ComponentProps } from 'react'
-
-type StoryType = Story<ComponentProps<typeof LinkableBtn>>
+type StoryType = Story<typeof LinkableBtn>
 
 // all properties (except navigation) defined in the 'default' export are inherited by
 // all other stories in this file
