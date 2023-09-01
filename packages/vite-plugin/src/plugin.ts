@@ -29,34 +29,11 @@ const storylitePlugin = (userConfig?: StoryLitePluginConfig): Plugin => {
         // the returned code can only be JS
         return `
           import { createStoryFilesMap } from '@storylite/vite-plugin'
+
+          const exportsByFile = import.meta.glob('/${config.stories}', {eager: true})
+          const storiesByFile = createStoryFilesMap(exportsByFile);
           
-          const legacyCreateStoryMap = (stories) => {
-            const sortedStories = Object.entries(stories)
-              // sort stories alphabetically by path
-              .sort(([aName], [bName]) => aName.localeCompare(bName))
-              // sort stories by priority
-              .sort(([, { default: aStory }], [, { default: bStory }]) => {
-                const aPriority = aStory?.priority || 0;
-                const bPriority = bStory?.priority || 0;
-                return bPriority - aPriority;
-              });
-          
-            const storyMap = new Map(sortedStories.map(([path, module]) => {
-              const baseName = path.split('/').pop().replace(/\.stories\.tsx$/, '');
-              const meta = module.default || { title: baseName.split('_').join(' ') };
-              return [baseName, { module, meta }];
-            }));
-          
-            return storyMap;
-          };
-          
-          const storyFiles = import.meta.glob('/${config.stories}', {eager: true})
-          const storyMap = legacyCreateStoryMap(storyFiles); // legacy
-          const csfStoryMap = createStoryFilesMap(storyFiles);
-          
-          console.log('StoryLite CSF story map', csfStoryMap)
-          
-          export default csfStoryMap
+          export default storiesByFile
         `
       }
 

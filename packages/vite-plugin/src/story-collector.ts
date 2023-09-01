@@ -37,49 +37,68 @@ function modulesToStories(
 
   // Recreates the modules object, but as story objects, with the default export merged into each
   return Object.fromEntries(
-    Object.entries(modules).map(([exportName, exportedValue]: [string, any]) => {
-      let story: Partial<BaseStoryWithId> = exportedValue
+    Object.entries(modules)
+      .map(([exportName, exportedValue]: [string, any]): [string, BaseStoryWithId] => {
+        let story: Partial<BaseStoryWithId> = exportedValue
 
-      if (typeof story === 'function') {
-        // Support for stories that are exporting just a component, without any metadata
-        // Then, all metadata will be inferred from the default export (if available)
-        story = { component: exportedValue }
-      }
+        if (typeof story === 'function') {
+          // Support for stories that are exporting just a component, without any metadata
+          // Then, all metadata will be inferred from the default export (if available)
+          story = { component: exportedValue }
+        }
 
-      if (typeof story !== 'object') {
-        throw new Error(
-          `Invalid story: ${exportName}. Story exported modules should exclusively be objects ` +
-            `following the StoryLite's Component Story Format (SL-CSF).`,
-        )
-      }
+        if (typeof story !== 'object') {
+          throw new Error(
+            `Invalid story: ${exportName}. Story exported modules should exclusively be objects ` +
+              `following the StoryLite's Component Story Format (SL-CSF).`,
+          )
+        }
 
-      // Title resolution: .name -> .title -> .component.displayName -> exportName
-      const storyTitle =
-        story.name ??
-        story.title ??
-        story.component?.displayName ??
-        // defaultExport.title ??
-        exportName
+        const storyIdPrefix = fileId.replace(/^[\\\/]/g, '').replace(/[\\\/]/g, '-')
+        const storyId = `${storyIdPrefix}-${exportName}`.toLowerCase()
 
-      const fullStory: BaseStoryWithId = {
-        // we also merge default export's properties,
-        // which are shared across all stories unless overridden
-        ...defaultExport,
-        id: `${fileId}/${exportName}`,
-        title: camelToTitleCase(titleizeFilename(storyTitle)),
-        ...story,
-      }
+        // Title resolution: .name -> .title -> .component.displayName -> exportName
+        const storyTitle =
+          story.name ??
+          story.title ??
+          story.component?.displayName ??
+          // defaultExport.title ??
+          exportName
 
-      if (exportName !== 'default' && !('component' in fullStory)) {
-        // combined with the default export, the resulting story object should have defined a component
-        throw new Error(
-          `Invalid story: ${exportName}. Non-default exports must define a "component" in the ` +
-            `story object.`,
-        )
-      }
+        const fullStory: BaseStoryWithId = {
+          // we also merge default export's properties,
+          // which are shared across all stories unless overridden
+          ...defaultExport,
+          id: storyId,
+          title: camelToTitleCase(titleizeFilename(storyTitle)),
+          navigation: {}, // don't inherit navigation from default export
+          ...story,
+        }
 
-      return [exportName, fullStory]
-    }),
+        if (exportName !== 'default' && !('component' in fullStory)) {
+          // combined with the default export, the resulting story object should have defined a component
+          throw new Error(
+            `Invalid story: ${exportName}. Non-default exports must define a "component" in the ` +
+              `story object.`,
+          )
+        }
+
+        return [exportName, fullStory]
+      })
+      // first sort alphabetically by title or export name
+      .sort(([exportNameA, a], [exportNameB, b]) => {
+        const aVal = a?.navigation?.title || a?.title || exportNameA
+        const bVal = b?.navigation?.title || b?.title || exportNameB
+
+        return aVal.localeCompare(bVal)
+      })
+      // then sort by navigation.order if defined
+      .sort(([, a], [, b]) => {
+        const aOrder = a?.navigation?.order ?? Infinity
+        const bOrder = b?.navigation?.order ?? Infinity
+
+        return aOrder - bOrder
+      }),
   )
 }
 
@@ -91,10 +110,10 @@ export function createStoryFilesMap(storyFiles: StoryFiles): StoryFilesMap {
     .sort(([aPath], [bPath]) => aPath.localeCompare(bPath))
     // sort story files by the navigation.order property defined in the default export
     .sort(([, modulesA], [, modulesB]) => {
-      const aOrder = modulesA?.default?.navigation?.order || 0
-      const bOrder = modulesB?.default?.navigation?.order || 0
+      const aOrder = modulesA?.default?.navigation?.order ?? Infinity
+      const bOrder = modulesB?.default?.navigation?.order ?? Infinity
 
-      return bOrder - aOrder
+      return aOrder - bOrder
     })
     .forEach(entry => {
       const [filePath, modules] = entry
