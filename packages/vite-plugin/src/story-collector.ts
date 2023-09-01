@@ -71,6 +71,14 @@ function modulesToStories(
 
         // don't inherit navigation from default export
         const inheritedNavigation = exportName === 'default' ? defaultExport.navigation : {}
+
+        // named exports should inherit the default export's decorators as well and apply them
+        // first, then apply their own decorators.
+        const mergedDecorators =
+          exportName === 'default'
+            ? defaultExport.decorators ?? []
+            : [...(defaultExport.decorators ?? []), ...(story.decorators ?? [])]
+
         const fullStory: BaseStoryWithId = {
           // we also merge default export's properties,
           // which are shared across all stories unless overridden
@@ -81,6 +89,7 @@ function modulesToStories(
           },
           ...story,
           title: camelToTitleCase(titleizeFilename(storyTitle)),
+          decorators: mergedDecorators,
         }
 
         if (exportName !== 'default' && !('component' in fullStory)) {

@@ -15,23 +15,11 @@ export default {
     (Story, context) => {
       return (
         <div style={{ padding: 20, borderRadius: '8px', background: '#ddd' }}>
-          <Story {...context.args} />
+          <Story {...context?.args} />
         </div>
       )
     },
   ],
-  render: (args, ctx) => {
-    const Story = ctx.meta.component!
-
-    return (
-      <div style={{ padding: 20, borderRadius: '8px', background: '#ccc', color: '#000' }}>
-        <h1>{ctx.meta.title}</h1>
-        <Story {...args} />
-        <div>Rendered with custom render. Context:</div>
-        <pre>{JSON.stringify(ctx, null, 2)}</pre>
-      </div>
-    )
-  },
   args: {
     // default args
     children: 'My Button',
@@ -53,16 +41,14 @@ export const WithComponentProps: StoryType = {
     primary: true,
     children: 'Primary Button',
   },
-  render: undefined, // turn off the inherited render
 }
 
-export const WithGridOn: StoryType = {
+export const WithGridAddonOn: StoryType = {
   args: {
     hoverable: true,
     primary: false,
-    children: 'My Button',
+    children: 'With Grid Addon ON',
   },
-  render: undefined, // turn off the inherited render
   parameters: {
     [SLCoreAddon.Grid]: {
       value: true, // Turns on the grid for this story
@@ -74,21 +60,20 @@ export const WithCustomDecorators: StoryType = {
   args: {
     hoverable: true,
     primary: false,
-    children: 'My Button',
+    children: 'With Custom Decorators',
   },
-  render: undefined, // turn off the inherited render
   decorators: [
     (Story, context) => {
       return (
         <div style={{ padding: 20, borderRadius: '8px', background: '#aaa' }}>
-          <Story {...context.args} />
+          <Story {...context?.args} />
         </div>
       )
     },
     (Story, context) => {
       return (
         <div style={{ padding: 20, borderRadius: '8px', background: '#ccc' }}>
-          <Story {...context.args} />
+          <Story {...context?.args} />
         </div>
       )
     },
@@ -99,7 +84,18 @@ export const WithCustomRender: StoryType = {
   args: {
     hoverable: true,
     primary: false,
-    children: 'My Button',
+    children: 'With Custom Render Function',
   },
-  // render: undefined, // keep the inherited render
+  render: args => {
+    const Story = LinkableBtn
+
+    return (
+      <div style={{ padding: 20, borderRadius: '8px', background: '#ccc', color: '#000' }}>
+        <Story {...args} />
+        <br />
+        <div>Rendered with a custom render. Args:</div>
+        <pre>{JSON.stringify(args, null, 2)}</pre>
+      </div>
+    )
+  },
 }
