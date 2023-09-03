@@ -1,5 +1,4 @@
-import { SLAddonPropsWithoutId, SLAppComponentProps } from '@storylite/storylite'
-import { BoxIcon, GithubIcon, ZapIcon } from 'lucide-react'
+import { Icon, SLAddonPropsWithoutId, SLAppComponentProps } from '@storylite/storylite'
 
 const config: SLAppComponentProps = {
   title: ' ⚡️ StoryLite',
@@ -16,7 +15,7 @@ const config: SLAppComponentProps = {
       {
         defaultContent: (
           <span className="ext-link ext-link-github">
-            <GithubIcon />
+            <Icon icon={'github'} />
           </span>
         ),
         tooltip: 'Github Repository',
@@ -33,7 +32,7 @@ const config: SLAppComponentProps = {
       {
         defaultContent: (
           <span className="ext-link ext-link-npm">
-            <BoxIcon />
+            <Icon icon={'box'} />
           </span>
         ),
         placement: 'right',
@@ -50,7 +49,7 @@ const config: SLAppComponentProps = {
       {
         defaultContent: (
           <span className="ext-link ext-link-stackblitz">
-            <ZapIcon />
+            <Icon icon={'zap'} />
           </span>
         ),
         placement: 'right',

@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import { cn } from '@r1stack/core'
 
-import { BookmarkIcon, MinusSquareIcon, PlusSquareIcon } from 'lucide-react'
-
 import { useStoryLiteStore } from '@/app/stores/global'
 import { getStoryNavigationTree, SLNavigationNode } from '@/services/csf-api/navigation'
+import { Icon } from '@/services/icon'
 import { Link, useRouterParams } from '@/services/router'
 
 type SidebarProps = {
@@ -51,10 +50,10 @@ function SidebarListItemIcon(props: {
 }): JSX.Element {
   const { navNode, canBeCollapsed, canBeExpanded } = props
 
-  const collapseIcon = navNode.iconExpanded ?? navNode.icon ?? <MinusSquareIcon />
-  const expandIcon = navNode.icon ?? <PlusSquareIcon />
+  const collapseIcon = navNode.iconExpanded ?? navNode.icon ?? <Icon icon={'minusSquare'} />
+  const expandIcon = navNode.icon ?? <Icon icon={'plusSquare'} />
   const expandCollapseIcon = canBeCollapsed ? collapseIcon : expandIcon
-  const defaultIcon = navNode.icon ?? <BookmarkIcon />
+  const defaultIcon = navNode.icon ?? <Icon icon={'bookmark'} />
 
   return canBeExpanded ? <>{expandCollapseIcon}</> : <>{defaultIcon}</>
 }
@@ -117,7 +116,7 @@ function SidebarNestedList(props: SidebarItemBaseProps): JSX.Element {
         return (
           <li key={i} className={classes} title={childNode.title}>
             <Link to={childNode.href} className={'storylite-navbtn'}>
-              <i className={'storylite-icon'}>{childNode.icon ?? <BookmarkIcon />}</i>
+              <i className={'storylite-icon'}>{childNode.icon ?? <Icon icon={'bookmark'} />}</i>
               <span className={'storylite-text'}>{childNode.title}</span>
             </Link>
           </li>
