@@ -1,4 +1,5 @@
 import { useStoryLiteStore } from '@/app/stores/global'
+import { STORYLITE_BASE_PATH } from '@/services/router'
 import { Link } from '@/services/router/router.component'
 
 export function SidebarTitle() {
@@ -6,7 +7,7 @@ export function SidebarTitle() {
 
   return (
     <div className={'storylite-sidebar-title'}>
-      <Link to={'/'}>{config.title}</Link>
+      <Link to={STORYLITE_BASE_PATH}>{config.title}</Link>
     </div>
   )
 }
