@@ -44,8 +44,8 @@
     "vite": "^4.4.9"
   },
   "devDependencies": {
-    "@r1stack/coding-style": "^0.4.4",
-    "@types/node": "^20.5.7",
+    "@r1stack/coding-style": "^0.4.5",
+    "@types/node": "^20.5.9",
     "publint": "^0.2.2",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"

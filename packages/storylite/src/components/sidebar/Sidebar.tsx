@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { cn } from '@r1stack/core'
+import { cn } from '@r1stack/cn'
 
 import { BookmarkIcon, MinusSquareIcon, PlusSquareIcon } from 'lucide-react'
 

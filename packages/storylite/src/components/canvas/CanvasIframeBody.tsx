@@ -1,5 +1,5 @@
 import { HTMLProps } from 'react'
-import { cn } from '@r1stack/core'
+import { cn } from '@r1stack/cn'
 
 import { useRouterQuery } from '@/services/router'
 

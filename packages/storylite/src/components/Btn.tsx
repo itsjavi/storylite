@@ -1,5 +1,5 @@
 import { HTMLAttributes } from 'react'
-import { cn } from '@r1stack/core'
+import { cn } from '@r1stack/cn'
 
 export type BtnProps = {
   isActive?: boolean

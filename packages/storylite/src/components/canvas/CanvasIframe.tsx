@@ -1,5 +1,5 @@
 import { HTMLProps, useEffect } from 'react'
-import { cn } from '@r1stack/core'
+import { cn } from '@r1stack/cn'
 
 import { useStoryLiteIframe, useStoryLiteStore } from '@/app/stores/global'
 import { getStoryUrl } from '@/services/csf-api/navigation'

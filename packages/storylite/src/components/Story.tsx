@@ -1,5 +1,5 @@
 import React from 'react'
-import { cn } from '@r1stack/core'
+import { cn } from '@r1stack/cn'
 
 import { useStoryLiteStore } from '@/app/stores/global'
 import { renderStory } from '@/services/renderer/react'
