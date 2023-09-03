@@ -1,7 +1,7 @@
 import { SLAddonPropsWithoutId, SLAppComponentProps } from '@storylite/storylite'
 import { BoxIcon, GithubIcon, ZapIcon } from 'lucide-react'
 
-const config: SLAppComponentProps = {
+const config: Partial<SLAppComponentProps> = {
   title: ' ⚡️ StoryLite',
   defaultStory: 'index-default',
   useIframeStyles: false,

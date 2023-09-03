@@ -13,9 +13,8 @@ export default {
   renderFrame: 'root',
   component: () => (
     <div>
-      <img src="logo.svg" alt="StoryLite Logo" />
-      <h1>⚡️ StoryLite,</h1>
-      <h3>a lightweight alternative to StoryBook.</h3>
+      <img src="logo.svg" width={64} height={64} alt="StoryLite Logo" />
+      <h1>StoryLite, a lightweight alternative to StoryBook.</h1>
       <p>
         <b>StoryLite</b> is a modern and lightweight toolkit for crafting and managing design
         systems and components with ease. Inspired by the popular StoryBook UI and powered by

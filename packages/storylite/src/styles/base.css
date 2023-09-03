@@ -73,3 +73,8 @@
 :where(.storylite-iframe:not(.storylite-iframe--default-styles)) {
   background: transparent;
 }
+
+.storylite-inlinehtml {
+  display: inline-block;
+  vertical-align: middle;
+}

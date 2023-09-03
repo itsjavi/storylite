@@ -8,6 +8,7 @@ import {
 } from '@/components/addons/getToolbarAddons'
 import { SLAddonsMap, SLParameters, SLUserDefinedAddons, StoryMap, StoryModuleMap } from '@/types'
 
+import { getDefaultTitle } from './DefaultTitle'
 import { StoryLiteActions, StoryLiteState } from './global.types'
 
 const builtinAddons: SLAddonsMap = new Map(
@@ -21,7 +22,7 @@ const defaultState: StoryLiteState = {
     standalone: false,
   },
   config: {
-    title: 'Story Lite',
+    title: getDefaultTitle(),
     defaultStory: 'index',
     iframeProps: {},
     useIframeStyles: true,

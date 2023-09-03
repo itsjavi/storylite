@@ -18,10 +18,11 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
+      "@/assets/*": ["./assets/*"],
       "@/": ["./src/"],
       "@/*": ["./src/*"]
     },
     "types": ["node", "jest", "react", "react-dom"]
   },
-  "include": ["src", "*.ts"]
+  "include": ["src", "assets", "*.ts"]
 }

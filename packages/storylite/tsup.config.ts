@@ -29,6 +29,9 @@ export default defineConfig([
         types: ['node'],
       },
     },
+    loader: {
+      '.svg': 'text',
+    },
     sourcemap: true,
     splitting: true,
     minify: false,

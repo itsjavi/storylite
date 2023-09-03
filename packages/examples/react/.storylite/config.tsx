@@ -1,6 +1,6 @@
 import { SLAddonPropsWithoutId, SLAppComponentProps } from '@storylite/storylite'
 
-const config: SLAppComponentProps = {
+const config: Partial<SLAppComponentProps> = {
   title: ' ⚡️ StoryLite React',
   defaultStory: 'index-default',
   useIframeStyles: false,
