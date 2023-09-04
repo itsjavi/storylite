@@ -1,3 +1,22 @@
+## v0.10.2
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.10.1...v0.10.2)
+
+### 🩹 Fixes
+
+- **ui:** Logo link and dark theme flikering
+  ([3d40a7c](https://github.com/itsjavi/storylite/commit/3d40a7c))
+
+### 💅 Refactors
+
+- Replace r1stack/core with r1stack/cn
+  ([cf6ecb8](https://github.com/itsjavi/storylite/commit/cf6ecb8))
+- Add simple SVG file loader ([cff5373](https://github.com/itsjavi/storylite/commit/cff5373))
+
+### ❤️ Contributors
+
+- Javi Aguilar
+
 ## v0.10.1
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.10.0...v0.10.1)
