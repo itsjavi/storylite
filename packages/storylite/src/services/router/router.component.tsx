@@ -2,7 +2,6 @@ import { HTMLAttributes, ReactNode } from 'react'
 
 import { useRouterStore } from './router.store'
 import { CurrentRoute } from './router.types'
-import { parseWindowHash } from './router.utils'
 
 export type RouteRendererProps = {
   route?: CurrentRoute
@@ -23,7 +22,7 @@ export function RouteRenderer({ route, fallback, ...rest }: RouteRendererProps):
   }
 
   if (!Component) {
-    throw new Error(`No route found for path ${parseWindowHash()}`)
+    throw new Error(`No route found for current path`)
   }
 
   return <Component {..._props} />

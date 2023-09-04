@@ -1,13 +1,7 @@
 import React from 'react'
 
+import { createPatternRegex, getWindowHash, parsePathParams, parseUri } from './router.parser'
 import { CurrentRoute, Route } from './router.types'
-import {
-  createPatternRegex,
-  getWindowHash,
-  parseHashbangPath,
-  parsePathParams,
-  withInitialSlash,
-} from './router.utils'
 
 export class Router implements Iterable<Route> {
   [Symbol.iterator](): Iterator<Route, any, undefined> {
@@ -27,7 +21,9 @@ export class Router implements Iterable<Route> {
       return undefined
     }
 
-    const url = new URL(this._currentRoute.path, window.location.origin)
+    const urlStr = `${this._currentRoute.basePath || '/'}#${this._currentRoute.hashPath}`
+
+    const url = new URL(urlStr, window.location.origin)
     url.search = this._currentRoute.query.toString()
 
     return url
@@ -38,7 +34,7 @@ export class Router implements Iterable<Route> {
       return undefined
     }
 
-    return this._currentRoute.path
+    return this._currentRoute.hashPath
   }
 
   get params(): URLSearchParams | undefined {
@@ -78,53 +74,49 @@ export class Router implements Iterable<Route> {
   }
 
   navigate(path: string, query?: URLSearchParams | Record<string, string>, replace = false): void {
-    const absPath = path // asAbsoluteHash(path)
-    // const relPath = asRelativeHash(path)
-    const newUrl = new URL(absPath, window.location.origin)
+    const newUrl = new URL(path, window.location.origin)
     newUrl.search = new URLSearchParams(query).toString()
 
     if (replace) {
-      window.history.replaceState({ absPath }, '', absPath)
-      this.refresh(absPath)
+      window.history.replaceState({ absPath: path }, '', path)
+      this.refresh(path)
 
       return
     }
-    window.history.pushState({ absPath }, '', absPath)
-    this.refresh(absPath)
+    window.history.pushState({ absPath: path }, '', path)
+    this.refresh(path)
   }
 
   refresh(path: string): void {
-    const [pathPart, queryPart] = parseHashbangPath(path)
-    const pathWithSlash = withInitialSlash(pathPart)
+    const parsedPath = parseUri(path)
 
-    const matches = this.getMatches(pathWithSlash) // the last match takes precedence
+    const matches = this.getMatches(parsedPath.hashPath) // the last match takes precedence
     if (matches.length === 0) {
       this._currentRoute = undefined
 
       return
     }
     const route = matches[matches.length - 1]
-    const params = parsePathParams(route.pattern ?? '/', pathWithSlash)
-    const query = new URLSearchParams(queryPart)
+    const params = parsePathParams(route.pattern ?? '/', parsedPath.hashPath)
 
     // assign query params to params
-    Array.from(query.entries()).forEach(([key, value]) => {
+    Array.from(parsedPath.query.entries()).forEach(([key, value]) => {
       params.set(key, value)
     })
 
     this._currentRoute = {
+      ...parsedPath,
       ...route,
-      // component: route.component,
-      path: path,
+      hashPath: path,
       params,
-      query,
+      query: parsedPath.query,
     }
   }
 
   register(onUpdate?: (router: Router) => void): () => void {
     const handleUpdate = (value: string) => {
       this.refresh(value)
-      onUpdate?.(this) // re-enable to refresh the Children components
+      onUpdate?.(this)
     }
     handleUpdate(getWindowHash())
 

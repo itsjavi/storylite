@@ -6,11 +6,14 @@ export type Route = {
   component: React.FC
 }
 
-export type CurrentRoute = Route & {
-  path: string
+export type ParsedUri = {
+  basePath?: string
+  hashPath: string
   params: URLSearchParams
   query: URLSearchParams
 }
+
+export type CurrentRoute = Route & ParsedUri
 
 export type RouterPage = {
   default?: React.FC<any>

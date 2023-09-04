@@ -1,13 +1,10 @@
 import {
-  asAbsoluteHash,
-  asRelativeHash,
-  cleanHashBang,
+  cleanHashPath,
   createPatternRegex,
   getWindowHash,
-  parseHashbangPath,
   parsePathParams,
-  parseWindowHash,
-} from './router.utils'
+  parseUri,
+} from './router.parser'
 
 describe('Routing Utils', () => {
   let windowSpy: jest.SpyInstance | undefined
@@ -28,94 +25,56 @@ describe('Routing Utils', () => {
 
   describe('cleanHashBang', () => {
     it('should remove hashbang characters at the beginning', () => {
-      const cleaned = cleanHashBang('/#/path')
-      expect(cleaned).toBe('path')
+      const cleaned = cleanHashPath('/#/path')
+      expect(cleaned).toBe('/path')
     })
 
     it('should remove hashbang characters at the beginning and slashes at the end', () => {
-      const cleaned = cleanHashBang('#/path///')
-      expect(cleaned).toBe('path')
+      const cleaned = cleanHashPath('#/path///')
+      expect(cleaned).toBe('/path')
     })
 
     it('should remove hashbang characters at the beginning and multiple slashes at the end', () => {
-      const cleaned = cleanHashBang('/#path/////')
-      expect(cleaned).toBe('path')
+      const cleaned = cleanHashPath('/#path/////')
+      expect(cleaned).toBe('/path')
     })
 
     it('should not remove hashbang characters within the path', () => {
-      const cleaned = cleanHashBang('/#/pa/th')
-      expect(cleaned).toBe('pa/th')
+      const cleaned = cleanHashPath('/#/pa/th')
+      expect(cleaned).toBe('/pa/th')
     })
 
     it('should not remove hashbang characters within the path and remove slashes at the end', () => {
-      const cleaned = cleanHashBang('/#/pa/th/////')
-      expect(cleaned).toBe('pa/th')
+      const cleaned = cleanHashPath('/#/pa/th/////')
+      expect(cleaned).toBe('/pa/th')
     })
   })
 
-  describe('parseHashbangPath', () => {
-    it('should parse hashbang path and query params', () => {
-      const [path, query] = parseHashbangPath('/#/route?key=value')
-      expect(path).toBe('route')
-      expect(query.get('key')).toBe('value')
+  describe('parseUri', () => {
+    it('should parse empty uri', () => {
+      const parsed = parseUri('')
+      expect(parsed.basePath).toBe('/')
+      expect(parsed.hashPath).toBe('/')
+      expect(parsed.query.size).toBe(0)
+      expect(parsed.params.size).toBeFalsy()
     })
 
-    it('should parse hashbang path with no query params', () => {
-      const [path, query] = parseHashbangPath('/#/route')
-      expect(path).toBe('route')
-      expect(query.toString()).toBe('')
+    it('should parse uri with base path, hashbang and query params', () => {
+      const parsed = parseUri('/demos/#/route?key=value')
+      expect(parsed.basePath).toBe('/demos/')
+      expect(parsed.hashPath).toBe('/route')
+      expect(parsed.params.get('key')).toBe('value')
+      expect(parsed.query.get('key')).toBe('value')
     })
 
-    it('should parse hashbang path with multiple query params', () => {
-      const [path, query] = parseHashbangPath('/#/route?key1=value1&key2=value2')
-      expect(path).toBe('route')
-      expect(query.get('key1')).toBe('value1')
-      expect(query.get('key2')).toBe('value2')
-    })
-
-    it('should handle empty string', () => {
-      const [path, query] = parseHashbangPath('')
-      expect(path).toBe('')
-      expect(query.toString()).toBe('')
-    })
-
-    it('should handle undefined input', () => {
-      const [path, query] = parseHashbangPath(undefined)
-      expect(path).toBe('')
-      expect(query.toString()).toBe('')
-    })
-  })
-
-  describe('parseWindowHash', () => {
-    it('should parse window location hash', () => {
-      const [path, query] = parseWindowHash()
-      expect(path).toBe('my-path')
-      expect(query.get('foo')).toBe('bar')
-      expect(query.get('bar')).toBe('baz')
-    })
-  })
-
-  describe('asRelativeHash', () => {
-    it('should convert path to relative hash format', () => {
-      const relativeHash = asRelativeHash('/route')
-      expect(relativeHash).toBe('#/route')
-    })
-
-    it('should clean path and convert it to relative hash format', () => {
-      const relativeHash = asRelativeHash('/#/route///')
-      expect(relativeHash).toBe('#/route')
-    })
-  })
-
-  describe('asAbsoluteHash', () => {
-    it('should convert path to absolute hash format', () => {
-      const absoluteHash = asAbsoluteHash('/route')
-      expect(absoluteHash).toBe('/#/route')
-    })
-
-    it('should clean path and convert it to absolute hash format', () => {
-      const absoluteHash = asAbsoluteHash('#/route///')
-      expect(absoluteHash).toBe('/#/route')
+    it('should parse uri with base path, hashbang and query params before and after hashbang', () => {
+      const parsed = parseUri('/demos/?key1=value1#/route?key2=value2')
+      expect(parsed.basePath).toBe('/demos/')
+      expect(parsed.hashPath).toBe('/route')
+      expect(parsed.params.get('key1')).toBe('value1')
+      expect(parsed.params.get('key2')).toBe('value2')
+      expect(parsed.query.get('key1')).toBe('value1')
+      expect(parsed.query.get('key2')).toBe('value2')
     })
   })
 
@@ -150,6 +109,14 @@ describe('Routing Utils', () => {
       const params = parsePathParams(pattern, path)
 
       expect(params.get('id')).toBe('123')
+    })
+
+    it('should handle patterns with rest params', () => {
+      const pattern = '/user/[...ids]'
+      const path = '/user/123/456/789'
+      const params = parsePathParams(pattern, path)
+
+      expect(params.get('ids')).toBe('123/456/789')
     })
 
     it('should handle empty pattern and path', () => {
@@ -233,6 +200,15 @@ describe('Routing Utils', () => {
       expect(regex.test('/user/123/profile/settings')).toBe(true)
       expect(regex.test('/user/456/profile')).toBe(false)
       expect(regex.test('/user/profile/about')).toBe(false)
+    })
+
+    it('should create a regex for a rest pattern like [...params]', () => {
+      const pattern = '/user/[id]/posts/[...postIds]'
+      const regex = createPatternRegex(pattern)
+      expect(String(regex)).toBe('/^\\/user\\/([^/]+)\\/posts\\/(.+)$/')
+      expect(regex.test('/user/456/posts')).toBe(false)
+      expect(regex.test('/user/456/posts/1')).toBe(true)
+      expect(regex.test('/user/123/posts/1/2/3')).toBe(true)
     })
   })
 })

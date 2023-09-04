@@ -7,7 +7,7 @@
   "scripts": {
     "build": "vite build",
     "build:gh-pages": "vite build --base=/storylite/",
-    "dev": "vite --port=7087 --host=0.0.0.0 --open",
+    "dev": "vite --base=/storylite/ --port=7087 --host=0.0.0.0 --open",
     "preview": "vite preview --port=7088 --host=0.0.0.0 --open"
   },
   "dependencies": {
