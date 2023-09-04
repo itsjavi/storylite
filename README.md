@@ -1,9 +1,11 @@
-# storylite
+# StoryLite
+
+<a href="https://itsjavi.com/storylite" target="_blank"><img src="https://raw.githubusercontent.com/itsjavi/storylite/main/packages/storylite/assets/logo.svg" width="64" height="64" /></a>
 
 <p>
   <a href="https://npmjs.com/package/@storylite/storylite"><img src="https://img.shields.io/npm/v/@storylite/storylite.svg" alt="npm package"></a>
   <a href="https://bundlephobia.com/package/@storylite/storylite"><img src="https://img.shields.io/bundlephobia/min/@storylite/storylite?label=@storylite/storylite" alt="bundlephobia" /></a>
-  <a href="https://bundlephobia.com/package/@storylite/vite-plugin"><img src="https://img.shields.io/bundlephobia/min/@storylite/vite-plugin?label=@storylite/vite-plugin" alt="bundlephobia" /></a>
+  <a href="https://bundlephobia.com/package/@storylite/vite-plugin"><img src="https://img.shields.io/bundlephobia/min/@storylite/vite-plugin?label=@storylite/vite-plugin" alt="bundlephobia" /></a><br />
   <a href="https://github.com/itsjavi/storylite/actions/workflows/quality.yml"><img src="https://github.com/itsjavi/storylite/actions/workflows/quality.yml/badge.svg?branch=main" alt="build status"></a>
   <a href="https://app.codecov.io/gh/itsjavi/storylite"><img src="https://img.shields.io/codecov/c/github/itsjavi/storylite" alt="code coverage"></a>
   <a href="https://www.jsdocs.io/package/@storylite/storylite"><img src="https://img.shields.io/badge/API%20Reference-📖-blue" alt="homepage"></a>
