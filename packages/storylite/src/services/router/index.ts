@@ -1,5 +1,5 @@
-export * from './constants'
 export * from './createStoryLiteRouter'
+export * from './getStoryLiteBasePath'
 export * from './router.class'
 export * from './router.component'
 export * from './router.store'

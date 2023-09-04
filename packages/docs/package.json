@@ -5,10 +5,9 @@
   "description": "StoryLite docs built with StoryLite itself and React",
   "type": "module",
   "scripts": {
-    "build": "vite build",
-    "build:gh-pages": "vite build --base=/storylite/",
+    "build": "vite build --base=/storylite/",
     "dev": "vite --base=/storylite/ --port=7087 --host=0.0.0.0 --open",
-    "preview": "vite preview --port=7088 --host=0.0.0.0 --open"
+    "preview": "vite --base=/storylite/ preview --port=7088 --host=0.0.0.0 --open"
   },
   "dependencies": {
     "lucide-react": "^0.274.0",
