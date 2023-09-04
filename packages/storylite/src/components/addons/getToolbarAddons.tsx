@@ -7,9 +7,10 @@ import {
   MonitorSmartphoneIcon,
   MoonIcon,
   SunIcon,
-  XCircleIcon,
 } from 'lucide-react'
 
+import xCircleIcon from '@/assets/lucide/svg/x-circle.svg'
+import { InlineHtml } from '@/components/InlineHtml'
 import { getStoryUrl } from '@/services/csf-api/navigation'
 
 import {
@@ -152,7 +153,7 @@ function getDefaultRightToolbarAddons(): AddonSetup[] {
     {
       tooltip: 'Toggle maximized view',
       defaultContent: <ExpandIcon />,
-      activeContent: <XCircleIcon />,
+      activeContent: <InlineHtml>{xCircleIcon}</InlineHtml>,
       placement,
       stateful: true,
       persistent: true,
