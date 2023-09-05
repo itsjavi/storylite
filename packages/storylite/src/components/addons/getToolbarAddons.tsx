@@ -1,14 +1,11 @@
-import {
-  BoxSelectIcon,
-  ContrastIcon,
-  ExpandIcon,
-  ExternalLinkIcon,
-  GridIcon,
-  MonitorSmartphoneIcon,
-  MoonIcon,
-  SunIcon,
-} from 'lucide-react'
-
+import boxSelectIcon from '@/assets/lucide/svg/box-select.svg'
+import contrastIcon from '@/assets/lucide/svg/contrast.svg'
+import expandIcon from '@/assets/lucide/svg/expand.svg'
+import externalLinkIcon from '@/assets/lucide/svg/external-link.svg'
+import gridIcon from '@/assets/lucide/svg/grid-3x3.svg'
+import monitorSmartphoneIcon from '@/assets/lucide/svg/monitor-smartphone.svg'
+import moonIcon from '@/assets/lucide/svg/moon.svg'
+import sunIcon from '@/assets/lucide/svg/sun.svg'
 import xCircleIcon from '@/assets/lucide/svg/x-circle.svg'
 import { InlineHtml } from '@/components/InlineHtml'
 import { getStoryUrl } from '@/services/csf-api/navigation'
@@ -46,7 +43,7 @@ function getDefaultLeftToolbarAddons(): AddonSetup[] {
     SLCoreAddon.Grid,
     {
       tooltip: 'Toggle grid',
-      defaultContent: <GridIcon />,
+      defaultContent: <InlineHtml>{gridIcon}</InlineHtml>,
       stateful: true,
       persistent: true,
       defaultValue: false,
@@ -97,7 +94,7 @@ function getDefaultLeftToolbarAddons(): AddonSetup[] {
     SLCoreAddon.Responsive,
     {
       tooltip: 'Toggle mobile view',
-      defaultContent: <MonitorSmartphoneIcon />,
+      defaultContent: <InlineHtml>{monitorSmartphoneIcon}</InlineHtml>,
       stateful: true,
       persistent: true,
       defaultValue: false,
@@ -131,7 +128,7 @@ function getDefaultLeftToolbarAddons(): AddonSetup[] {
     SLCoreAddon.Outline,
     {
       tooltip: 'Toggle outlines',
-      defaultContent: <BoxSelectIcon />,
+      defaultContent: <InlineHtml>{boxSelectIcon}</InlineHtml>,
       stateful: true,
       persistent: true,
       defaultValue: false,
@@ -152,7 +149,7 @@ function getDefaultRightToolbarAddons(): AddonSetup[] {
     SLCoreAddon.Maximize,
     {
       tooltip: 'Toggle maximized view',
-      defaultContent: <ExpandIcon />,
+      defaultContent: <InlineHtml>{expandIcon}</InlineHtml>,
       activeContent: <InlineHtml>{xCircleIcon}</InlineHtml>,
       placement,
       stateful: true,
@@ -169,7 +166,7 @@ function getDefaultRightToolbarAddons(): AddonSetup[] {
     SLCoreAddon.OpenStory,
     {
       tooltip: 'View story in a new tab',
-      defaultContent: <ExternalLinkIcon />,
+      defaultContent: <InlineHtml>{externalLinkIcon}</InlineHtml>,
       placement,
       stateful: false,
       hrefTarget: '_blank',
@@ -188,8 +185,8 @@ function getDefaultRightToolbarAddons(): AddonSetup[] {
     SLCoreAddon.ColorScheme,
     {
       tooltip: 'Toggle Dark/Light/Auto theme',
-      defaultContent: <SunIcon />,
-      activeContent: <MoonIcon />,
+      defaultContent: <InlineHtml>{sunIcon}</InlineHtml>,
+      activeContent: <InlineHtml>{moonIcon}</InlineHtml>,
       placement,
       stateful: true,
       persistent: true,
@@ -210,10 +207,14 @@ function getDefaultRightToolbarAddons(): AddonSetup[] {
       },
       render: (_, [value]) => {
         if (value === SLColorScheme.Auto || !value) {
-          return <ContrastIcon />
+          return <InlineHtml>{contrastIcon}</InlineHtml>
         }
 
-        return value === SLColorScheme.Light ? <SunIcon /> : <MoonIcon />
+        return value === SLColorScheme.Light ? (
+          <InlineHtml>{sunIcon}</InlineHtml>
+        ) : (
+          <InlineHtml>{moonIcon}</InlineHtml>
+        )
       },
       isActive: (_, [value]) => value !== SLColorScheme.Auto,
     } satisfies SLAddonPropsWithoutId<true>,

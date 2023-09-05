@@ -30,7 +30,6 @@
   },
   "dependencies": {
     "@r1stack/cn": "^0.4.5",
-    "lucide-react": "^0.274.0",
     "zustand": "^4.4.1"
   },
   "devDependencies": {

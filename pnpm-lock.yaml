@@ -144,9 +144,6 @@ importers:
       '@r1stack/cn':
         specifier: ^0.4.5
         version: 0.4.5
-      lucide-react:
-        specifier: ^0.274.0
-        version: 0.274.0(react@18.2.0)
       zustand:
         specifier: ^4.4.1
         version: 4.4.1(@types/react@18.2.21)(react@18.2.0)

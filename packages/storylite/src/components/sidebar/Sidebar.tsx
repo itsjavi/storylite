@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { cn } from '@r1stack/cn'
 
-import { BookmarkIcon, MinusSquareIcon, PlusSquareIcon } from 'lucide-react'
-
 import { useStoryLiteStore } from '@/app/stores/global'
+import bookmarkIcon from '@/assets/lucide/svg/bookmark.svg'
+import minusSquareIcon from '@/assets/lucide/svg/minus-square.svg'
+import plusSquareIcon from '@/assets/lucide/svg/plus-square.svg'
+import { InlineHtml } from '@/components/InlineHtml'
 import { getStoryNavigationTree, SLNavigationNode } from '@/services/csf-api/navigation'
 import { Link, useRouterParams } from '@/services/router'
 
@@ -51,10 +53,12 @@ function SidebarListItemIcon(props: {
 }): JSX.Element {
   const { navNode, canBeCollapsed, canBeExpanded } = props
 
-  const collapseIcon = navNode.iconExpanded ?? navNode.icon ?? <MinusSquareIcon />
-  const expandIcon = navNode.icon ?? <PlusSquareIcon />
+  const collapseIcon = navNode.iconExpanded ?? navNode.icon ?? (
+    <InlineHtml>{minusSquareIcon}</InlineHtml>
+  )
+  const expandIcon = navNode.icon ?? <InlineHtml>{plusSquareIcon}</InlineHtml>
   const expandCollapseIcon = canBeCollapsed ? collapseIcon : expandIcon
-  const defaultIcon = navNode.icon ?? <BookmarkIcon />
+  const defaultIcon = navNode.icon ?? <InlineHtml>{bookmarkIcon}</InlineHtml>
 
   return canBeExpanded ? <>{expandCollapseIcon}</> : <>{defaultIcon}</>
 }
@@ -117,7 +121,9 @@ function SidebarNestedList(props: SidebarItemBaseProps): JSX.Element {
         return (
           <li key={i} className={classes} title={childNode.title}>
             <Link to={childNode.href} className={'storylite-navbtn'}>
-              <i className={'storylite-icon'}>{childNode.icon ?? <BookmarkIcon />}</i>
+              <i className={'storylite-icon'}>
+                {childNode.icon ?? <InlineHtml>{bookmarkIcon}</InlineHtml>}
+              </i>
               <span className={'storylite-text'}>{childNode.title}</span>
             </Link>
           </li>
