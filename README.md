@@ -28,7 +28,8 @@ StoryLite provides an intuitive UI that's customizable to your unique needs.
 
 ## Features
 
-- **Lightweight**, with few dependencies, specially tailored for Single-Page Apps.
+- **Lightweight** (36 KB minified, 10KB minified + gzipped), with few dependencies, specially
+  tailored for Single-Page Apps.
 - **Mobile-friendly** UI
 - **Full control**: You decide where to mount the StoryLite React app and how to run it with plain
   Vite. No custom servers or other uncontrolled moving parts.
