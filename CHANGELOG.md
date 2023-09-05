@@ -1,3 +1,21 @@
+## v0.11.0
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.10.2...v0.11.0)
+
+### 💅 Refactors
+
+- Use individial lucide icons ([#44](https://github.com/itsjavi/storylite/pull/44))
+- **ui:** Simplify router parser with fixes and more tests
+  ([b45ea8c](https://github.com/itsjavi/storylite/commit/b45ea8c))
+- **ui:** Remove vite as dev dependency of the ui
+  ([4f3c187](https://github.com/itsjavi/storylite/commit/4f3c187))
+- Add more lucide icons, remove lucide-react ([#46](https://github.com/itsjavi/storylite/pull/46))
+
+### ❤️ Contributors
+
+- Jrson
+- Javi Aguilar
+
 ## v0.10.2
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.10.1...v0.10.2)
