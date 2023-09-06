@@ -75,6 +75,6 @@
 }
 
 .storylite-inlinehtml {
-  display: inline-block;
+  display: inline-flex;
   vertical-align: middle;
 }

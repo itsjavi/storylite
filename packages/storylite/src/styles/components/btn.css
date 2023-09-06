@@ -19,11 +19,17 @@ a.storylite-btn {
   padding: 0.4rem 0.4rem;
 }
 
-.storylite-btn svg {
+/** All toolbar addon icons */
+:where(.storylite-btn span) svg {
   width: max(1rem, 16px);
   height: max(1rem, 16px);
-  display: inline-block;
   vertical-align: middle;
+}
+
+/** Custom toolbar addon icons (right side) */
+:where(.storylite-btn) span:not(.storylite-inlinehtml) {
+  display: inline-flex;
+  line-height: 16px;
 }
 
 :where(.storylite-btn--hoverable).storylite-btn:hover,
