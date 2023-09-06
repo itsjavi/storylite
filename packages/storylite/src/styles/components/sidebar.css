@@ -98,7 +98,8 @@
   font-size: 0.8rem;
   line-height: 1rem;
   color: inherit;
-  display: flex;
+  display: inline-flex;
+  align-items: center;
   text-decoration: none;
   transition: background-color 0.2s linear;
   cursor: pointer;
@@ -119,6 +120,7 @@
 }
 
 .storylite-sidebar-nav .storylite-navbtn .storylite-icon {
+  line-height: 12px;
   margin-right: 5px;
 }
 
