@@ -1,3 +1,16 @@
+## v0.11.1
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.11.0...v0.11.1)
+
+### 🩹 Fixes
+
+- **ui:** Fix and improve svg styles ([#53](https://github.com/itsjavi/storylite/pull/53))
+- **ui:** Fix iframe height styles ([#56](https://github.com/itsjavi/storylite/pull/56))
+
+### ❤️ Contributors
+
+- Jrson
+
 ## v0.11.0
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.10.2...v0.11.0)
