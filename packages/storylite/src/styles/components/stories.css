@@ -14,7 +14,7 @@
 }
 
 .storylite-story--standalone .storylite-story-canvas {
-  height: 100vh;
+  height: 100%;
 }
 
 .storylite-story .storylite-story-canvas > .storylite-story-component {

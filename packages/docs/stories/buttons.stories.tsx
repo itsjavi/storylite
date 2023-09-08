@@ -100,3 +100,26 @@ export const WithCustomRender: StoryType = {
     )
   },
 }
+
+export const WithScrollbar: StoryType = {
+  args: {
+    hoverable: true,
+    primary: true,
+    children: 'Primary Button',
+  },
+  decorators: [
+    (Story, context) => {
+      return (
+        <div
+          style={{
+            background: '#ddd',
+            height: '1200px',
+            borderBlockEnd: '6px solid #1fa7fd',
+          }}
+        >
+          <Story {...context?.args} />
+        </div>
+      )
+    },
+  ],
+}
