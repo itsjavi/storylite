@@ -1,3 +1,16 @@
+## v0.12.0
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.11.1...v0.12.0)
+
+### 🚀 Enhancements
+
+- **vite-plugin:** Add initial MDX and frontmatter support
+  ([ca0c54b](https://github.com/itsjavi/storylite/commit/ca0c54b))
+
+### ❤️ Contributors
+
+- Javi Aguilar
+
 ## v0.11.1
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.11.0...v0.11.1)
