@@ -35,6 +35,7 @@
     "version:bump-patch": "pnpm version:bump",
     "version:publish": "pnpm run version:publish-github && pnpm run version:publish-npm",
     "version:publish-github": "git push --no-verify && git push --no-verify --tags",
+    "version:publish-github-releases": ".scripts/tag-release-gh.sh",
     "version:publish-npm": "pnpm -r --filter='@storylite/*' exec pnpm publish"
   },
   "lint-staged": {
