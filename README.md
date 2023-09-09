@@ -46,7 +46,7 @@ StoryLite provides an intuitive UI that's customizable to your unique needs.
   tab, etc.
 - **HMR (Hot Module Reload)** support when story files (or any module they use) change.
 - **SSG (Static Site Generation)** support thanks to Vite.
-- **Markdown and MDX** support out via Vite plugins.
+- **Markdown and MDX** support via Vite plugins.
 
 ## Installation
 
