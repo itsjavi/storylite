@@ -32,9 +32,9 @@
     "version:bump": ".scripts/bump-version.sh patch && .scripts/tag-version.sh",
     "version:bump-major": ".scripts/bump-version.sh major && .scripts/tag-version.sh",
     "version:bump-minor": ".scripts/bump-version.sh minor && .scripts/tag-version.sh",
-    "version:bump-patch": "pnpm ws:version",
-    "version:publish": "pnpm run version:publish-gh-refs && pnpm run version:publish-npm",
-    "version:publish-gh-refs": "git push && git push --tags",
+    "version:bump-patch": "pnpm version:bump",
+    "version:publish": "pnpm run version:publish-github && pnpm run version:publish-npm",
+    "version:publish-github": "git push --no-verify && git push --no-verify --tags",
     "version:publish-npm": "pnpm -r --filter='@storylite/*' exec pnpm publish"
   },
   "lint-staged": {
