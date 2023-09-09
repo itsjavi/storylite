@@ -46,6 +46,7 @@ StoryLite provides an intuitive UI that's customizable to your unique needs.
   tab, etc.
 - **HMR (Hot Module Reload)** support when story files (or any module they use) change.
 - **SSG (Static Site Generation)** support thanks to Vite.
+- **Markdown and MDX** support out via Vite plugins.
 
 ## Installation
 
@@ -66,6 +67,27 @@ pnpm add -D @storylite/storylite vite @storylite/vite-plugin
 For the next steps, please check the
 [example React](https://github.com/itsjavi/storylite/tree/main/packages/examples/react) directory to
 learn how to integrate it in your project.
+
+## Adding MDX support
+
+Check the `docs` package to see how to add MDX support to your project:
+
+- [vite.config.ts](https://github.com/itsjavi/storylite/tree/main/packages/docs/vite.config.ts)
+- [stories/index.stories.mdx](https://github.com/itsjavi/storylite/tree/main/packages/docs/stories/index.stories.mdx)
+
+With this setup you can:
+
+- Import modules from JS and JSX files.
+- Define the default story metadata in the MDX's frontmatter block. The body of the MDX will be used
+  as the default story component.
+- You can import other MD/MDX files in your stories, they will be ready to be used as JSX
+  components.
+- You can export JSX components to define new story variants.
+
+You currently can't:
+
+- You cannot import TS/TSX files in your MDXs. This is a limitation of Vite's MDX plugin.
+- You currently cannot export Story objects, instead you can only export JSX components.
 
 ## Current Focus and Future
 

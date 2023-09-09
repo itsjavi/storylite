@@ -1,10 +1,11 @@
-import { BaseStoryWithId, StoryFiles, StoryFilesMap } from './types'
+import { BaseStory, BaseStoryWithId, StoryFiles, StoryFilesMap } from './types'
 
 function filenameToId(filename: string) {
   return (
     '/' +
     filename
       .replace(/\.[jt]sx?$/, '')
+      .replace(/\.mdx?$/, '')
       .replace(/\.(stories|story)$/, '')
       .replace(/^\//g, '')
       .split('/')
@@ -26,22 +27,50 @@ function camelToTitleCase(str: string) {
   })
 }
 
+function resolveDefaultExport(modules: any): BaseStory {
+  const frontmatter: BaseStory = modules?.frontmatter ?? {}
+  const defaultExport = modules?.default ?? undefined
+
+  if (typeof defaultExport === 'function') {
+    return {
+      ...frontmatter,
+      component: defaultExport,
+      navigation: {
+        hidden: true,
+        ...frontmatter?.navigation,
+      },
+    }
+  }
+
+  if (typeof defaultExport === 'object') {
+    return {
+      ...frontmatter,
+      ...defaultExport,
+      navigation: {
+        hidden: true,
+        ...frontmatter?.navigation,
+        ...defaultExport?.navigation,
+      },
+    }
+  }
+
+  return frontmatter
+}
+
 function modulesToStories(
   fileId: string,
   modules: { [key: string]: any },
 ): { [key: string]: BaseStoryWithId } {
-  const defaultExport: BaseStoryWithId = {
+  const _resolvedDefaultStoryWithoutId = resolveDefaultExport(modules)
+  const _resolvedDefaultStory: BaseStoryWithId = {
     id: fileId,
-    ...modules.default,
-    navigation: {
-      hidden: true,
-      ...modules.default?.navigation,
-    },
+    ..._resolvedDefaultStoryWithoutId,
   }
 
   // Recreates the modules object, but as story objects, with the default export merged into each
   return Object.fromEntries(
     Object.entries(modules)
+      .filter(([exportName]) => exportName !== 'frontmatter')
       .map(([exportName, exportedValue]: [string, any]): [string, BaseStoryWithId] => {
         let story: Partial<BaseStoryWithId> = exportedValue
 
@@ -60,29 +89,38 @@ function modulesToStories(
 
         const storyIdPrefix = fileId.replace(/^[\\\/]/g, '').replace(/[\\\/]/g, '-')
         const storyId = `${storyIdPrefix}-${exportName}`.toLowerCase()
+        // console.log(storyId)
+
+        if (exportName === 'default') {
+          story = {
+            ..._resolvedDefaultStory,
+            ...story,
+            id: storyId,
+          }
+        }
 
         // Title resolution: .name -> .title -> .component.displayName -> exportName
         const storyTitle =
           story.name ??
           story.title ??
           story.component?.displayName ??
-          // defaultExport.title ??
+          // _resolvedDefaultStory.title ??
           exportName
 
         // don't inherit navigation from default export
-        const inheritedNavigation = exportName === 'default' ? defaultExport.navigation : {}
+        const inheritedNavigation = exportName === 'default' ? _resolvedDefaultStory.navigation : {}
 
         // named exports should inherit the default export's decorators as well and apply them
         // first, then apply their own decorators.
         const mergedDecorators =
           exportName === 'default'
-            ? defaultExport.decorators ?? []
-            : [...(defaultExport.decorators ?? []), ...(story.decorators ?? [])]
+            ? _resolvedDefaultStory.decorators ?? []
+            : [...(_resolvedDefaultStory.decorators ?? []), ...(story.decorators ?? [])]
 
         const fullStory: BaseStoryWithId = {
           // we also merge default export's properties,
           // which are shared across all stories unless overridden
-          ...defaultExport,
+          ..._resolvedDefaultStory,
           id: storyId,
           navigation: {
             ...inheritedNavigation,
@@ -127,8 +165,10 @@ export function createStoryFilesMap(storyFiles: StoryFiles): StoryFilesMap {
     .sort(([aPath], [bPath]) => aPath.localeCompare(bPath))
     // sort story files by the navigation.order property defined in the default export
     .sort(([, modulesA], [, modulesB]) => {
-      const aOrder = modulesA?.default?.navigation?.order ?? Infinity
-      const bOrder = modulesB?.default?.navigation?.order ?? Infinity
+      const defaultA = resolveDefaultExport(modulesA)
+      const defaultB = resolveDefaultExport(modulesB)
+      const aOrder = defaultA.navigation?.order ?? Infinity
+      const bOrder = defaultB.navigation?.order ?? Infinity
 
       return aOrder - bOrder
     })

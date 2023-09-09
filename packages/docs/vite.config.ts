@@ -1,14 +1,17 @@
 /// <reference types="vite/client" />
 import { resolve } from 'path'
 
+import mdx from '@mdx-js/rollup'
+import storylite from '@storylite/vite-plugin'
+import react from '@vitejs/plugin-react-swc'
+import remarkFrontmatter from 'remark-frontmatter'
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+import { defineConfig } from 'vite'
+
 /**
  * @see https://vitejs.dev/config
  * @see https://vitejs.dev/guide/build.html#multi-page-app
  */
-
-import storylitePlugin from '@storylite/vite-plugin'
-import react from '@vitejs/plugin-react-swc'
-import { defineConfig } from 'vite'
 
 export default defineConfig({
   build: {
@@ -20,8 +23,14 @@ export default defineConfig({
     },
   },
   plugins: [
-    storylitePlugin({
-      stories: 'stories/**/*.stories.tsx', // relative to process.cwd()
+    {
+      enforce: 'pre', // this ensures that .md/mdx files are processed before react & storylite plugins
+      ...mdx({
+        remarkPlugins: [remarkFrontmatter, remarkMdxFrontmatter],
+      }),
+    },
+    storylite({
+      stories: 'stories/**/*.stories.{tsx,md,mdx}', // relative to process.cwd()
     }),
     react(),
   ],
