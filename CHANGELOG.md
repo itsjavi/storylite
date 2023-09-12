@@ -1,3 +1,22 @@
+## v0.12.1
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.12.0...v0.12.1)
+
+### 🩹 Fixes
+
+- Rename and optimize versioning scripts
+  ([a912d73](https://github.com/itsjavi/storylite/commit/a912d73))
+- **ui:** Fix sidebar not visible ([#63](https://github.com/itsjavi/storylite/pull/63))
+
+### 🤖 CI
+
+- Fix release script ([d7205e7](https://github.com/itsjavi/storylite/commit/d7205e7))
+
+### ❤️ Contributors
+
+- Jrson
+- Javi Aguilar
+
 ## v0.12.0
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.11.1...v0.12.0)
