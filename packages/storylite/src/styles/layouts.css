@@ -3,7 +3,6 @@
   position: relative;
   box-sizing: border-box;
   height: 100%;
-  max-height: 100vh;
 }
 
 .storylite-layout-center {
@@ -84,12 +83,6 @@
 [data-sl-theme='dark'] :where(.storylite-iframe--default-styles.storylite-iframe--standalone) {
   color: var(--storylite-font-color);
   background-color: var(--storylite-bg-color);
-}
-
-.storylite-app,
-.storylite-main,
-.storylite-sandbox-layout {
-  height: 100%;
 }
 
 .storylite-iframe-element {
