@@ -71,5 +71,10 @@
   "packageManager": "pnpm@8.6.12",
   "engines": {
     "node": ">=18.5.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "esbuild": "0.19.2"
+    }
   }
 }
