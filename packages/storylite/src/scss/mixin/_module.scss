@@ -1,0 +1,9 @@
+@use '../config' as *;
+@use '../element' as *;
+@use '../function' as *;
+
+@mixin generate-modules {
+  @if map-deep-get($settings, 'modules', 'reset') {
+    @include generate-reset;
+  }
+}

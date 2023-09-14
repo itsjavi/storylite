@@ -1,0 +1,19 @@
+@use 'sass:map';
+
+/// Map deep get.
+/// https://www.sitepoint.com/warnings-and-errors-in-sass/
+/// @param {Map} $map - The map.
+/// @param {Arglist} $keys - The key chain.
+/// @return {*} - The desired value.
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map.get($map, $key);
+
+    // If `$map` does not contain the next key, return `null`
+    @if type-of($map) == 'null' {
+      @return $map;
+    }
+  }
+
+  @return $map;
+}

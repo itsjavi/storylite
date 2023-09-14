@@ -1,0 +1,8 @@
+@use 'storylite' as * with (
+  $settings: (
+    'css-custom-properties': true,
+  ),
+);
+
+// Generate all modules
+@include generate-modules;

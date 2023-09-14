@@ -36,3 +36,5 @@ generated/
 *.min.json
 *.min.js
 *.min.css
+*.scss
+*.sass

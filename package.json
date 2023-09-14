@@ -12,7 +12,7 @@
     "build": "turbo build",
     "clear-cache": "rm -rf packages/*/.turbo && rm -rf packages/*/.next && jest --clearCache",
     "dev": "turbo run build && turbo run dev --no-deps --no-cache --parallel --concurrency 20",
-    "format": "pnpm lint-fix && pnpm prettier-fix",
+    "format": "pnpm lint-fix && pnpm prettier-fix && pnpm stylelint-fix",
     "hooks:pre-commit": "pnpm lint-staged",
     "hooks:pre-push": "pnpm run quality-checks",
     "postinstall": "pnpm lint-staged || echo 'postinstall failed'",
@@ -25,6 +25,8 @@
     "preview": "pnpm build && npx -y http-server ./packages/examples/react/dist",
     "publint": "turbo publint-check",
     "quality-checks": "pnpm prettier-check && pnpm type-check && pnpm lint && pnpm build && pnpm publint && pnpm test:ci",
+    "stylelint-check": "stylelint \"./packages/**/*.scss\" -f verbose --color",
+    "stylelint-fix": "stylelint \"./packages/**/*.scss\" --fix",
     "test": "jest",
     "test:ci": "jest --ci --coverage",
     "test:coverage": "jest --coverage",
@@ -42,8 +44,11 @@
     "*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}": [
       "prettier --ignore-unknown --write"
     ],
-    "*.{json,yml,yaml,css,scss,sass,less,md,mdx}": [
+    "*.{json,yml,yaml,css,md,mdx}": [
       "prettier --ignore-unknown --write"
+    ],
+    "*.{scss,sass}": [
+      "stylelint --fix"
     ]
   },
   "prettier": "@r1stack/coding-style/prettier",
@@ -65,6 +70,9 @@
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.3",
     "semver": "^7.5.4",
+    "stylelint": "^15.10.3",
+    "stylelint-config-property-sort-order-smacss": "^9.1.0",
+    "stylelint-config-standard-scss": "^11.0.0",
     "turbo": "^1.10.13",
     "typescript": "^5.2.2"
   },
