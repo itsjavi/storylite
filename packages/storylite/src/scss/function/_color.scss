@@ -1,0 +1,20 @@
+@use 'sass:string';
+@use '../config' as *;
+@use 'map-deep-get' as *;
+@use 'config' as *;
+
+@function color(
+  $key,
+  $theme: 'light',
+  $map: $colors,
+) {
+  @if not map-has-key($map, $theme, $key) {
+    @error 'The key `#{$key}` is not associated with map `#{$map}`.';
+  }
+
+  $themes: config($settings, 'themes');
+  $prefix: '#{config($settings, 'property-prefix')}-';
+  $color-var: string.unquote('var(--#{$prefix}color-#{$key})');
+
+  @return $color-var;
+}

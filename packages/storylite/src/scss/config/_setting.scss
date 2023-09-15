@@ -1,0 +1,14 @@
+@use 'sass:map';
+
+$settings: () !default;
+$settings: map.merge(
+  (
+    'themes': ['light', 'dark'],
+    'property-prefix': 'storylite',
+    'custom-properties': true,
+    'modules': (
+      'reset': true,
+    )
+  ),
+  $settings
+);

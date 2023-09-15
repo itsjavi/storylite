@@ -1,0 +1,60 @@
+@use 'sass:map';
+
+$colors: () !default;
+$colors: map.merge(
+  (
+    'light': (
+      /* General */
+      'font-color': #333,
+      'bg-color': #fcfcfc,
+
+      'border-color': #d2d2d2,
+      'color-primary': #1fa7fd,
+
+      'font-color-title': inherit,
+      'bg-color-title': transparent,
+
+      /* Muted */
+      'font-color-muted': rgb(0 0 0 / 60%),
+      'border-color-muted': #e6e6e6,
+
+      /* Panels */
+      'font-color-panel': #444,
+      'bg-color-panel': #f7f9fc,
+
+      /* Toolbars */
+      'font-color-toolbar': #999,
+      'bg-color-toolbar': #fff,
+
+      'grid-line-color': rgb(130 130 130 / 50%),
+      'grid-line-color2': rgb(130 130 130 / 25%),
+    ),
+    'dark': (
+      /* General */
+      'font-color': #dfdfd7,
+      'bg-color': #252529,
+
+      'border-color': #29292c,
+      'color-primary': #1fa7fd,
+
+      'font-color-title': inherit,
+      'bg-color-title': transparent,
+
+      /* Muted */
+      'font-color-muted': #999,
+      'border-color-muted': #484848,
+
+      /* Panels */
+      'font-color-panel': #dfdfd7,
+      'bg-color-panel': #161618,
+
+      /* Toolbars */
+      'font-color-toolbar': #999,
+      'bg-color-toolbar': #1e1e20,
+
+      'grid-line-color': rgb(130 130 130 / 35%),
+      'grid-line-color2': rgb(130 130 130 / 17.5%),
+    ),
+  ),
+  $colors
+);

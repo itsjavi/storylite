@@ -5,6 +5,7 @@
     "dbaeumer.vscode-eslint",
     "yoavbls.pretty-ts-errors",
     "orta.vscode-jest",
-    "github.vscode-github-actions"
+    "github.vscode-github-actions",
+    "stylelint.vscode-stylelint"
   ]
 }

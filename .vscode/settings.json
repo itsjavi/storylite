@@ -21,7 +21,8 @@
   "editor.codeActionsOnSave": {
     "source.addMissingImports": true,
     "source.organizeImports": true,
-    "source.fixAll.eslint": true
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
   },
   "[markdown]": {
     "editor.fontSize": 14,
@@ -35,5 +36,14 @@
       "other": "on"
     },
     "editor.minimap.enabled": true
+  },
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.enable": true,
+  "stylelint.stylelintPath": "./node_modules/stylelint",
+  "stylelint.validate": ["scss"],
+  "[scss]": {
+    "editor.defaultFormatter": "stylelint.vscode-stylelint"
   }
 }

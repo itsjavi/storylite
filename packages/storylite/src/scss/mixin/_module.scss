@@ -1,0 +1,15 @@
+@use 'sass:map';
+@use 'color' as *;
+@use '../config' as *;
+@use '../element' as *;
+@use '../function' as *;
+
+@mixin generate-modules {
+  @if map-deep-get($settings, 'modules', 'reset') {
+    @include generate-reset;
+  }
+
+  @if map.get($settings, 'custom-properties') {
+    @include generate-color-properties;
+  }
+}
