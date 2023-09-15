@@ -1,10 +1,12 @@
 @forward 'config';
 @forward 'function';
-
-// todo
-// @forward 'mixin';
+@forward 'mixin';
 @forward 'mixin/module';
 @forward 'element';
 
 // Still keep old styles for development
-@import '../styles/index.css';
+// @import '../styles/index.css';
+
+:root {
+  --storylite-test: red;
+}

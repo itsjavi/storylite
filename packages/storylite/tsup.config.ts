@@ -42,7 +42,7 @@ export default defineConfig([
   },
   {
     entry: {
-      index: './src/scss/main.scss',
+      index: './src/scss/styles.scss',
     },
     outDir: './dist',
     format: ['esm'],

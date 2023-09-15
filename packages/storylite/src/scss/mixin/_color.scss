@@ -1,0 +1,37 @@
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:string';
+@use '../function' as *;
+@use '../config' as *;
+
+/// Generate custom color properties.
+/// @param {map} $colors - The colors map.
+/// @param {string} $selector - The selector.
+/// @return {string} - The generated custom color properties.
+@mixin generate-color-properties(
+    $colors: $colors,
+    $selector: ':root'
+  ) {
+  $themes: config($settings, 'themes');
+  $prefix: '#{config($settings, 'property-prefix')}-';
+
+  @each $theme, $color in $colors {
+    @if type-of($color) == 'map' {
+      @if list.index($themes, $theme) {
+        @media (prefers-color-scheme: #{$theme}) {
+          #{$selector} {
+            color-scheme: #{$theme};
+
+            @each $key, $subcolor in $color {
+              @if $subcolor {
+                --#{$prefix}color-#{$key}: #{$subcolor};
+              }
+            }
+          }
+        }
+      }
+    } @else if type-of($color) == 'color' {
+      --#{$color-prefix}color-#{$name}: $color;
+    }
+  }
+}
