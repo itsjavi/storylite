@@ -4,7 +4,7 @@
   "editor.fontSize": 14,
   "files.autoSave": "onFocusChange",
   "testing.automaticallyOpenPeekView": "failureInVisibleDocument",
-  "jest.jestCommandLine": "npx jest",
+  "jest.jestCommandLine": "pnpx jest",
   "jest.disabledWorkspaceFolders": ["packages"],
   "files.exclude": {
     "*/*/node_modules": false,
