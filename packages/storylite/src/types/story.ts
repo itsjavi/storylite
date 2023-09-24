@@ -1,17 +1,17 @@
-import { SLComponentProps, SLFunctionComponent, SLNode } from './components'
-import { SLParametersConfig } from './parameters'
+import type { SLComponentProps, SLFunctionComponent, SLNode } from './components'
+import type { SLParametersConfig } from './parameters'
 
-export type SLStoryContext<P extends SLFunctionComponent = SLFunctionComponent<{}>> = {
+export type SLStoryContext<F extends SLFunctionComponent = SLFunctionComponent<{}>> = {
   /**
    * The basic component data.
    *
    * > 💅 This is a StoryLite-only feature.
    */
-  story: BaseStory<P> & { id: string; component: P }
-  args: Story<P>['args']
-  // argTypes: Story<P>['argTypes']
-  // globals: Story<P>['globals']
-  parameters: Story<P>['parameters']
+  story: BaseStory<F> & { id: string; component: F }
+  args: Story<F>['args']
+  // argTypes: Story<F>['argTypes']
+  // globals: Story<F>['globals']
+  parameters: Story<F>['parameters']
   /**
    * A map containing all data (merged), loaded asynchronously by the configured data loaders.
    */
@@ -22,23 +22,23 @@ export type SLStoryContext<P extends SLFunctionComponent = SLFunctionComponent<{
   // viewMode: 'story' | 'docs' //  StoryLite's current active window
 }
 
-export type SLDecoratorContext<P extends SLFunctionComponent = SLFunctionComponent<{}>> =
-  SLStoryContext<P>
+export type SLDecoratorContext<F extends SLFunctionComponent = SLFunctionComponent<{}>> =
+  SLStoryContext<F>
 
-export type SLPlayContext<P extends SLFunctionComponent = SLFunctionComponent<{}>> =
-  SLStoryContext<P> & {
+export type SLPlayContext<F extends SLFunctionComponent = SLFunctionComponent<{}>> =
+  SLStoryContext<F> & {
     /**
      * The DOM element that contains the rendered component.
      */
     canvasElement: HTMLElement
   }
 
-export type SLDecorator<P extends SLFunctionComponent = SLFunctionComponent<{}>> = (
-  story: P,
-  context?: SLDecoratorContext<P>,
+export type SLDecorator<F extends SLFunctionComponent = SLFunctionComponent<{}>> = (
+  story: F,
+  context?: SLDecoratorContext<F>,
 ) => SLNode
 
-export interface BaseStory<P extends SLFunctionComponent = SLFunctionComponent<{}>> {
+export interface BaseStory<F extends SLFunctionComponent = SLFunctionComponent<{}>> {
   // /**
   //  * Unique id for the story.
   //  */
@@ -65,7 +65,7 @@ export interface BaseStory<P extends SLFunctionComponent = SLFunctionComponent<{
    * you can use the `render` function.
    *
    */
-  component?: P
+  component?: F
 }
 
 /**
@@ -86,16 +86,16 @@ export interface BaseStory<P extends SLFunctionComponent = SLFunctionComponent<{
  * the `title` and `name` fields are optional and will be inferred from the named export
  * if not specified.
  */
-export interface Story<P extends SLFunctionComponent = SLFunctionComponent<{}>>
-  extends BaseStory<P> {
+export interface Story<F extends SLFunctionComponent = SLFunctionComponent<{}>>
+  extends BaseStory<F> {
   /**
    * Properties to pass to the component. The will show up in the UI knobs.
    */
-  args?: SLComponentProps<P>
+  args?: SLComponentProps<F>
   /**
    * Controls the display of knobs for the component.
    */
-  //👨🏻‍💻 TODO:    argTypes?: SLArgTypes<P>
+  //👨🏻‍💻 TODO:    argTypes?: SLArgTypes<F>
   /**
    * The story's static metadata, most commonly used to control StoryLite's
    * behavior of features and addons.
@@ -109,7 +109,7 @@ export interface Story<P extends SLFunctionComponent = SLFunctionComponent<{}>>
   /**
    * Decorators to wrap the story in.
    */
-  decorators?: SLDecorator<P>[]
+  decorators?: SLDecorator<F>[]
   /**
    * Asynchronous functions which provide data for a story, through the render context.
    *
@@ -120,7 +120,7 @@ export interface Story<P extends SLFunctionComponent = SLFunctionComponent<{}>>
    * - All results are the loaded field in the story context
    * - If there are keys that overlap, the keys defined in the story's loaders take precedence.
    */
-  //👨🏻‍💻 TODO:    loaders?: ((context?: SLContext<P>) => Promise<SLObject> | SLObject)[]
+  //👨🏻‍💻 TODO:    loaders?: ((context?: SLContext<F>) => Promise<SLObject> | SLObject)[]
   /**
    * Render functions are a framework specific feature to allow you control on how the component renders.
    *
@@ -132,7 +132,7 @@ export interface Story<P extends SLFunctionComponent = SLFunctionComponent<{}>>
    *
    * @see https://storybook.js.org/docs/react/api/csf
    */
-  render?: (args: SLComponentProps<P>, context?: SLStoryContext<P>) => SLNode
+  render?: (args: SLComponentProps<F>, context?: SLStoryContext<F>) => SLNode
   /**
    * Controls how the story is rendered inside the preview.
    *
@@ -149,7 +149,7 @@ export interface Story<P extends SLFunctionComponent = SLFunctionComponent<{}>>
    *
    * @see https://storybook.js.org/docs/react/api/csf#play-function
    */
-  //👨🏻‍💻 TODO:    play?: (context?: SLPlayContext<P>) => Promise<void> | void
+  //👨🏻‍💻 TODO:    play?: (context?: SLPlayContext<F>) => Promise<void> | void
   /**
    * SideBar options.
    *
@@ -177,8 +177,8 @@ export interface Story<P extends SLFunctionComponent = SLFunctionComponent<{}>>
   }
 }
 
-export interface StoryWithId<P extends SLFunctionComponent = SLFunctionComponent<{}>>
-  extends Story<P> {
+export interface StoryWithId<F extends SLFunctionComponent = SLFunctionComponent<{}>>
+  extends Story<F> {
   id: string
 }
 

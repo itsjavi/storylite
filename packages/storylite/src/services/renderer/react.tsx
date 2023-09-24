@@ -1,4 +1,6 @@
-import { SLDecorator, SLDecoratorContext, SLFunctionComponent, StoryWithId } from '@/types'
+import type { FunctionComponent, ReactNode } from 'react'
+
+import type { SLDecorator, SLDecoratorContext, StoryWithId } from '@/types'
 
 const defaultDecorator: SLDecorator<any> = (Story, context) => {
   // apply args
@@ -6,20 +8,20 @@ const defaultDecorator: SLDecorator<any> = (Story, context) => {
 }
 
 function applyDecorators(
-  StoryComponent: React.FC,
+  StoryComponent: FunctionComponent,
   decorators: SLDecorator[],
   context: SLDecoratorContext,
-) {
+): FunctionComponent {
   return decorators.reduce(
-    (DecoratedStory, decorator) =>
-      function DecoratedWithDecorator() {
-        return decorator(DecoratedStory as SLFunctionComponent, context)
+    (DecoratedStory, decorator): FunctionComponent =>
+      function DecoratedWithDecorator(): ReactNode {
+        return decorator(DecoratedStory as FunctionComponent, context)
       },
     StoryComponent,
-  )
+  ) as FunctionComponent
 }
 
-export function renderStory(storyComponent: SLFunctionComponent, story: StoryWithId) {
+export function renderStory(storyComponent: FunctionComponent, story: StoryWithId) {
   const loadedData = {} // TODO: This should be a map with the result of the loaders
   // const resolvedGlobals = {}
   const resolvedParams = story.parameters ?? {}
@@ -42,7 +44,11 @@ export function renderStory(storyComponent: SLFunctionComponent, story: StoryWit
   }
 
   const storyDecorators = story.decorators ?? [defaultDecorator]
-  const DecoratedStory = applyDecorators(storyComponent, storyDecorators, decoratorContext)
+  const DecoratedStory: FunctionComponent = applyDecorators(
+    storyComponent,
+    storyDecorators,
+    decoratorContext,
+  )
 
   if (story.render) {
     const renderContext = {

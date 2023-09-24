@@ -1,33 +1,12 @@
-import { ComponentProps } from 'react'
+import React, { type ComponentProps, type JSXElementConstructor } from 'react'
 
-import { SLObject } from './core'
+// Component type aliases for StoryLite, to abstract the underlying framework
 
-// Framework-agnostic component types for StoryLite
+export type SLElement = React.ReactElement<any, any>
 
-export type SLElement<P extends SLObject = {}> = {
-  type: string
-  props: P
-  key: string | number | null
-}
+export type SLNode = React.ReactNode
 
-export type SLNode =
-  | null
-  | undefined
-  | string
-  | number
-  | boolean
-  | SLElement<any>
-  | Iterable<SLNode>
-// | SLFunctionComponent<any>
+export type SLFunctionComponent<P = {}> = React.FC<P>
 
-export type SLFunctionComponent<P extends SLObject = {}> = React.FC<P>
-
-export type SLComponentProps<T> = T extends
-  | React.ComponentType<infer P extends SLObject>
-  | React.Component<infer P extends SLObject>
-  ? {
-      [key in keyof ComponentProps<SLFunctionComponent<P>>]: ComponentProps<
-        SLFunctionComponent<P>
-      >[key]
-    }
-  : never
+export type SLComponentProps<T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>> =
+  ComponentProps<T>
