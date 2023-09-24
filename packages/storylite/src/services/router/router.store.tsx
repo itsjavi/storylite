@@ -6,7 +6,7 @@ import TopFrameLayout from '@/components/layouts/TopFrameLayout'
 import * as Error404 from '@/pages/404'
 
 import { createStoryLiteRouter } from './createStoryLiteRouter'
-import { CurrentRoute } from './router.types'
+import type { CurrentRoute } from './router.types'
 
 type State = {
   route?: CurrentRoute

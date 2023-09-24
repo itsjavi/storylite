@@ -1,7 +1,7 @@
 import {
-  CrossDocumentMessage,
   CrossDocumentMessageSource,
   WindowMessageOrigin,
+  type CrossDocumentMessage,
 } from './windowMessaging.types'
 
 export const sendWindowMessageToRoot = (message: CrossDocumentMessage) => {

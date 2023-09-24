@@ -1,4 +1,4 @@
-import { SLParameters } from '@/types'
+import type { SLParameters } from '@/types'
 
 export function parametersToDataProps(parameters: SLParameters | undefined): {
   [key: `data-sl-${string}`]: any

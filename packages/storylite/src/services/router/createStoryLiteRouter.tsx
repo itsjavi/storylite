@@ -1,5 +1,5 @@
 import { Router } from './router.class'
-import { RouterPage } from './router.types'
+import type { RouterPage } from './router.types'
 
 export function createStoryLiteRouter(
   appRoutes: Record<string, RouterPage>,

@@ -1,4 +1,4 @@
-import { SLDecorator, SLDecoratorContext, SLFunctionComponent, StoryWithId } from '@/types'
+import type { SLDecorator, SLDecoratorContext, SLFunctionComponent, StoryWithId } from '@/types'
 
 const defaultDecorator: SLDecorator<any> = (Story, context) => {
   // apply args

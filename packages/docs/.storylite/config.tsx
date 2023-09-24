@@ -1,4 +1,4 @@
-import { SLAddonPropsWithoutId, SLAppComponentProps } from '@storylite/storylite'
+import type { SLAddonPropsWithoutId, SLAppComponentProps } from '@storylite/storylite'
 import { BoxIcon, GithubIcon, ZapIcon } from 'lucide-react'
 
 const config: Partial<SLAppComponentProps> = {

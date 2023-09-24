@@ -1,4 +1,4 @@
-import { HTMLProps, useEffect } from 'react'
+import { useEffect, type HTMLProps } from 'react'
 import { cn } from '@r1stack/cn'
 
 import { useStoryLiteIframe, useStoryLiteStore } from '@/app/stores/global'

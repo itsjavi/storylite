@@ -1,5 +1,5 @@
-import { SLNativeType } from './core'
-import { SLCoreAddon } from './ui'
+import type { SLNativeType } from './core'
+import type { SLCoreAddon } from './ui'
 
 export type SLParametersConfig = {
   [key: SLCoreAddon | `${SLCoreAddon}` | string]: {

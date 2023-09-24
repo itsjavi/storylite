@@ -7,7 +7,7 @@ import * as IndexPage from '@/pages/index'
 import * as SandboxIndexPage from '@/pages/preview/index'
 import * as SandboxStoryPage from '@/pages/preview/story'
 import * as StoryPage from '@/pages/stories/story'
-import { RouterPage } from '@/services/router/router.types'
+import type { RouterPage } from '@/services/router/router.types'
 
 const appRoutes: Record<string, RouterPage> = {
   '/': IndexPage,

@@ -1,4 +1,4 @@
-import { SLAddonPropsWithoutId, SLAppComponentProps } from '@storylite/storylite'
+import type { SLAddonPropsWithoutId, SLAppComponentProps } from '@storylite/storylite'
 
 const config: Partial<SLAppComponentProps> = {
   title: ' ⚡️ StoryLite React',

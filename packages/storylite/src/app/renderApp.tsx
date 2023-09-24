@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-import { SLAppComponentProps, StoryModuleMap } from '@/types'
+import type { SLAppComponentProps, StoryModuleMap } from '@/types'
 
 import { StoryLiteApp } from '.'
 

@@ -6,10 +6,16 @@ import {
   getToolbarAddonsAsParameters,
   resolveToolbarAddons,
 } from '@/components/addons/getToolbarAddons'
-import { SLAddonsMap, SLParameters, SLUserDefinedAddons, StoryMap, StoryModuleMap } from '@/types'
+import type {
+  SLAddonsMap,
+  SLParameters,
+  SLUserDefinedAddons,
+  StoryMap,
+  StoryModuleMap,
+} from '@/types'
 
 import { getDefaultTitle } from './DefaultTitle'
-import { StoryLiteActions, StoryLiteState } from './global.types'
+import type { StoryLiteActions, StoryLiteState } from './global.types'
 
 const builtinAddons: SLAddonsMap = new Map(
   Array.from(getDefaultToolbarAddons().entries()).map(([id, addon]) => [id, { ...addon, id }]),

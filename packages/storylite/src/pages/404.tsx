@@ -1,6 +1,6 @@
 import ErrorLayout from '@/components/layouts/ErrorLayout'
 
-import { SLStoryPageProps } from '..'
+import type { SLStoryPageProps } from '..'
 
 export default function Error404(props: SLStoryPageProps) {
   return (

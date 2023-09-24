@@ -1,4 +1,4 @@
-import { SLNode, StoryModuleMap } from '@/types'
+import type { SLNode, StoryModuleMap } from '@/types'
 import { isTruthy } from '@/utility'
 
 import { getStoryLiteBasePath } from '../router/getStoryLiteBasePath'

@@ -1,4 +1,4 @@
-import { Story } from '@storylite/storylite'
+import type { Story } from '@storylite/storylite'
 
 import '../src/styles/components.css'
 

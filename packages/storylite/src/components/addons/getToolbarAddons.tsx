@@ -11,14 +11,14 @@ import { InlineHtml } from '@/components/InlineHtml'
 import { getStoryUrl } from '@/services/csf-api/navigation'
 
 import {
-  SLAddonProps,
-  SLAddonPropsWithoutId,
-  SLAddonsMap,
-  SLAddonsMapWithoutId,
   SLColorScheme,
   SLCoreAddon,
-  SLParameters,
-  SLUserDefinedAddons,
+  type SLAddonProps,
+  type SLAddonPropsWithoutId,
+  type SLAddonsMap,
+  type SLAddonsMapWithoutId,
+  type SLParameters,
+  type SLUserDefinedAddons,
 } from '../..'
 import { isTruthy } from '../../utility'
 

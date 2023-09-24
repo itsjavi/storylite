@@ -1,6 +1,6 @@
 import { CanvasRoot } from '@/components/canvas/CanvasRoot'
 import TopFrameLayout from '@/components/layouts/TopFrameLayout'
-import { SLStoryPageProps } from '@/types'
+import type { SLStoryPageProps } from '@/types'
 
 export default function StoryPage({ storyId }: SLStoryPageProps) {
   return <CanvasRoot storyId={storyId} />

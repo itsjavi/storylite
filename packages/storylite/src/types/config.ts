@@ -1,5 +1,5 @@
-import { SLNode } from './components'
-import { SLUserDefinedAddons } from './ui'
+import type { SLNode } from './components'
+import type { SLUserDefinedAddons } from './ui'
 
 // TODO: move to vite-plugin
 // export type SLVitePluginConfig = {

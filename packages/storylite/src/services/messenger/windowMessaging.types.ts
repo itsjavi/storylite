@@ -1,4 +1,4 @@
-import { SLParameters } from '@/types'
+import type { SLParameters } from '@/types'
 
 export enum WindowMessageOrigin {
   Same = '/',

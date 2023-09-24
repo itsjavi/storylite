@@ -1,4 +1,4 @@
-import { SLCoreAddon, Story } from '@storylite/storylite'
+import { SLCoreAddon, type Story } from '@storylite/storylite'
 
 import { LinkableBtn } from '../src/components/LinkableBtn'
 

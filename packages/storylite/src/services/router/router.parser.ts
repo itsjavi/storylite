@@ -1,4 +1,4 @@
-import { ParsedUri } from './router.types'
+import type { ParsedUri } from './router.types'
 
 export function parseUri(uri: string): ParsedUri {
   const parsedUri = new URL(uri ?? '', window.location.origin)

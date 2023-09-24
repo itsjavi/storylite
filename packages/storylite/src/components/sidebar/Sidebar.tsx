@@ -6,7 +6,7 @@ import bookmarkIcon from '@/assets/lucide/svg/bookmark.svg'
 import minusSquareIcon from '@/assets/lucide/svg/minus-square.svg'
 import plusSquareIcon from '@/assets/lucide/svg/plus-square.svg'
 import { InlineHtml } from '@/components/InlineHtml'
-import { getStoryNavigationTree, SLNavigationNode } from '@/services/csf-api/navigation'
+import { getStoryNavigationTree, type SLNavigationNode } from '@/services/csf-api/navigation'
 import { Link, useRouterParams } from '@/services/router'
 
 type SidebarProps = {

@@ -1,7 +1,7 @@
-import React from 'react'
+import type React from 'react'
 
 import { createPatternRegex, getWindowHash, parsePathParams, parseUri } from './router.parser'
-import { CurrentRoute, Route } from './router.types'
+import type { CurrentRoute, Route } from './router.types'
 
 export class Router implements Iterable<Route> {
   [Symbol.iterator](): Iterator<Route, any, undefined> {

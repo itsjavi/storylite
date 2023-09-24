@@ -1,8 +1,8 @@
-import { StoryLiteParamValue, StoryLiteStore } from '@/app/stores/global.types'
-import { BtnProps } from '@/components/Btn'
+import type { StoryLiteParamValue, StoryLiteStore } from '@/app/stores/global.types'
+import type { BtnProps } from '@/components/Btn'
 
-import { SLNode } from './components'
-import { SLNativeScalarType } from './core'
+import type { SLNode } from './components'
+import type { SLNativeScalarType } from './core'
 
 export enum SLCoreAddon {
   Grid = 'grid',

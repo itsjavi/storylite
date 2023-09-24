@@ -1,4 +1,4 @@
-import { Router } from './router.class'
+import type { Router } from './router.class'
 
 export type Route = {
   pattern: string

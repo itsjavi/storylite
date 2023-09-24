@@ -1,5 +1,5 @@
-import { SLComponentProps, SLFunctionComponent, SLNode } from './components'
-import { SLParametersConfig } from './parameters'
+import type { SLComponentProps, SLFunctionComponent, SLNode } from './components'
+import type { SLParametersConfig } from './parameters'
 
 export type SLStoryContext<P extends SLFunctionComponent = SLFunctionComponent<{}>> = {
   /**

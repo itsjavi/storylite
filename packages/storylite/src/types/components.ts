@@ -1,6 +1,6 @@
-import { ComponentProps } from 'react'
+import type { ComponentProps } from 'react'
 
-import { SLObject } from './core'
+import type { SLObject } from './core'
 
 // Framework-agnostic component types for StoryLite
 

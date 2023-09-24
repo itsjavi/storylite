@@ -1,4 +1,4 @@
-import { HTMLProps } from 'react'
+import type { HTMLProps } from 'react'
 import { cn } from '@r1stack/cn'
 
 import { useRouterQuery } from '@/services/router'

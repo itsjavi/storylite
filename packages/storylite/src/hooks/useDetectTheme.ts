@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 
 import { useStoryLiteStore } from '@/app/stores/global'
-import { SLColorScheme } from '@/types'
+import type { SLColorScheme } from '@/types'
 
 export function useDetectTheme(): string {
   const [userConfig, params] = useStoryLiteStore(state => [state.config, state.parameters])

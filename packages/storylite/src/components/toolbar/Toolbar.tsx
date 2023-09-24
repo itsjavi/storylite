@@ -1,5 +1,5 @@
 import { useStoryLiteStore } from '@/app/stores/global'
-import { SLAddonProps } from '@/types'
+import type { SLAddonProps } from '@/types'
 
 import { ToolbarAddon, ToolbarStatefulAddon } from './ToolbarAddon'
 

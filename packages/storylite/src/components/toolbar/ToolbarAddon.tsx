@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 
 import { useStoryLiteStore } from '@/app/stores/global'
-import { StoryLiteParamValue, StoryLiteStore } from '@/app/stores/global.types'
-import { SLAddonContext, SLAddonProps, SLAddonState } from '@/types'
+import type { StoryLiteParamValue, StoryLiteStore } from '@/app/stores/global.types'
+import type { SLAddonContext, SLAddonProps, SLAddonState } from '@/types'
 
 import { Btn } from '../Btn'
 

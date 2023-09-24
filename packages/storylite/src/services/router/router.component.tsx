@@ -1,7 +1,7 @@
-import { HTMLAttributes, ReactNode } from 'react'
+import type { HTMLAttributes, ReactNode } from 'react'
 
 import { useRouterStore } from './router.store'
-import { CurrentRoute } from './router.types'
+import type { CurrentRoute } from './router.types'
 
 export type RouteRendererProps = {
   route?: CurrentRoute

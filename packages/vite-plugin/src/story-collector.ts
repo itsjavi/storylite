@@ -1,4 +1,4 @@
-import { BaseStory, BaseStoryWithId, StoryFiles, StoryFilesMap } from './types'
+import type { BaseStory, BaseStoryWithId, StoryFiles, StoryFilesMap } from './types'
 
 function filenameToId(filename: string) {
   return (

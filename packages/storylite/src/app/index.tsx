@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
 import { RouteRenderer, useRouterStore } from '..'
-import { SLAppComponentProps, StoryModuleMap } from '../types'
+import type { SLAppComponentProps, StoryModuleMap } from '../types'
 import { useStoryLiteStore } from './stores/global'
 
 export type StoryLiteAppProps = {
