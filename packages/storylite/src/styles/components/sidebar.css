@@ -94,9 +94,9 @@
 .storylite-sidebar-nav .storylite-navbtn {
   all: unset;
   appearance: none;
-  padding: 0.5rem 1rem;
+  padding: 0.46rem 1rem;
   font-size: 0.8rem;
-  line-height: 1rem;
+  line-height: 1.1rem;
   color: inherit;
   display: inline-flex;
   align-items: center;
