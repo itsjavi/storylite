@@ -1,5 +1,5 @@
 {
-  "extends": "@r1stack/coding-style/tsconfig/base.json",
+  "extends": "../../../tsconfig.json",
   "include": ["*.ts", "*.tsx", "src/**/*", "stories/**/*", ".storylite/**/*"],
   "compilerOptions": {
     "jsx": "react-jsx",

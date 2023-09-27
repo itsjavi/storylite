@@ -5,8 +5,7 @@ const path = require('node:path')
  */
 module.exports = {
   root: true,
-  // This tells ESLint to load the config from the package `eslint-config-custom`
-  extends: [require.resolve('@r1stack/coding-style/eslint')],
+  extends: [require.resolve('./.eslintrc.base.js')],
   rules: {
     '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/ban-types': 'off',

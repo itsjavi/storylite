@@ -2,7 +2,7 @@ name: Publish Releases
 
 env:
   NODE_VERSION: '>=20.5.0'
-  PNPM_VERSION: 8.7
+  PNPM_VERSION: 8.8
 
 on:
   workflow_dispatch:
@@ -28,4 +28,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          pnpm version:publish-github-releases
+          pnpm version:publish-notes
