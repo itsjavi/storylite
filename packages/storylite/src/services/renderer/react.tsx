@@ -6,17 +6,17 @@ const defaultDecorator: SLDecorator<any> = (Story, context) => {
 }
 
 function applyDecorators(
-  StoryComponent: React.FC,
+  StoryComponent: SLFunctionComponent,
   decorators: SLDecorator[],
   context: SLDecoratorContext,
-) {
+): SLFunctionComponent {
   return decorators.reduce(
     (DecoratedStory, decorator) =>
       function DecoratedWithDecorator() {
         return decorator(DecoratedStory as SLFunctionComponent, context)
       },
     StoryComponent,
-  )
+  ) as SLFunctionComponent
 }
 
 export function renderStory(storyComponent: SLFunctionComponent, story: StoryWithId) {

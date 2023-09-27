@@ -31,7 +31,7 @@ module.exports = {
     ],
     // 'scope-empty': [2, 'never'],
     'scope-enum': [
-      2,
+      1,
       'always',
       [
         'general',
