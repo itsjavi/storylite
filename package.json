@@ -30,7 +30,7 @@
     "test:coverage": "jest --coverage",
     "type-check": "turbo type-check",
     "version:bump": "semver-release version:bump",
-    "version:publish": "semver-release version:release --npm --filter '@supeffective/*'",
+    "version:publish": "semver-release version:release --npm --filter '@storylite/*'",
     "version:publish-notes": "semver-release version:release --github"
   },
   "lint-staged": {
