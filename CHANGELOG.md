@@ -1,3 +1,37 @@
+## v0.13.0
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.12.1...v0.13.0)
+
+### 🩹 Fixes
+
+- Add forwardref support ([#74](https://github.com/itsjavi/storylite/pull/74))
+- **ui:** Fix sidebar menu items too small ([#69](https://github.com/itsjavi/storylite/pull/69))
+- **types:** Typing issues on DTS generation
+  ([f3865c9](https://github.com/itsjavi/storylite/commit/f3865c9))
+
+### 💅 Refactors
+
+- Replace coding-style package and versioning scripts
+  ([57edd7e](https://github.com/itsjavi/storylite/commit/57edd7e))
+
+### 🏡 Chore
+
+- Fix jest path to use pnpx command ([#71](https://github.com/itsjavi/storylite/pull/71))
+
+### 🎨 Styles
+
+- Enforce the use of top-level import type qualifier
+  ([7f4340a](https://github.com/itsjavi/storylite/commit/7f4340a))
+
+### 🤖 CI
+
+- Fix setup project ([f923ecf](https://github.com/itsjavi/storylite/commit/f923ecf))
+
+### ❤️ Contributors
+
+- Javi Aguilar
+- Jrson
+
 ## v0.12.1
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.12.0...v0.12.1)
