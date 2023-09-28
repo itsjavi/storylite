@@ -7,7 +7,7 @@ export function parametersToDataProps(parameters: SLParameters | undefined): {
 
   if (parameters) {
     Object.keys(parameters)
-      .filter(key => {
+      .filter((key) => {
         const val = parameters[key].value
         const valType = typeof val
 
@@ -19,7 +19,7 @@ export function parametersToDataProps(parameters: SLParameters | undefined): {
           (valType === 'string' || valType === 'number' || valType === 'boolean')
         )
       })
-      .forEach(key => {
+      .forEach((key) => {
         dataProps[`data-sl-${key}`] = String(parameters[key].value)
       })
   }

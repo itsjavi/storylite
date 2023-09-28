@@ -13,7 +13,7 @@ export default function TopFrameLayout({ children, ...props }: any) {
   const { standalone } = props
   const isStandalone = standalone === 'true'
 
-  const params = useStoryLiteStore(state => state.parameters)
+  const params = useStoryLiteStore((state) => state.parameters)
   const paramsDataProps = parametersToDataProps(params)
   const resolvedTheme = useDetectTheme()
   paramsDataProps['data-sl-theme'] = resolvedTheme

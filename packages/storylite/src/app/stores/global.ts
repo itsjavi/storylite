@@ -72,7 +72,7 @@ const resolveParams = (): SLParameters => {
   return resolvedParams
 }
 
-export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLiteActions>(set => {
+export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLiteActions>((set) => {
   const createStoryMap = (moduleMap: StoryModuleMap): StoryMap => {
     const storyMap: StoryMap = new Map()
 
@@ -89,7 +89,7 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
     ...defaultState,
     parameters: resolveParams(),
     setAddons(addons: SLUserDefinedAddons) {
-      set(state => {
+      set((state) => {
         return {
           ...state,
           addons: resolveToolbarAddons(builtinAddons, addons),
@@ -97,7 +97,7 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
       })
     },
     setStories(stories) {
-      set(state => {
+      set((state) => {
         return {
           ...state,
           storyModuleMap: new Map(stories.entries()),
@@ -105,7 +105,7 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
       })
     },
     setConfig(config) {
-      set(state => {
+      set((state) => {
         return {
           ...state,
           config: {
@@ -119,7 +119,7 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
       const moduleMap = new Map(storyModules.entries())
       const storyMap = createStoryMap(moduleMap)
 
-      set(state => {
+      set((state) => {
         return {
           ...state,
           config: {
@@ -133,7 +133,7 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
       })
     },
     setCurrentStoryId(storyId) {
-      set(state => {
+      set((state) => {
         return {
           ...state,
           currentStoryId: storyId,
@@ -141,7 +141,7 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
       })
     },
     setParameter(key, value, options = { persist: false, crossWindow: false }) {
-      set(state =>
+      set((state) =>
         updateParameters(
           state,
           {
@@ -159,7 +159,7 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
       )
     },
     setParameters(data, options = { persist: false, crossWindow: false }) {
-      set(state =>
+      set((state) =>
         updateParameters(state, data, {
           persist: options.persist || false,
           crossWindow: options.crossWindow || false,
@@ -167,7 +167,7 @@ export const useStoryLiteStore = createWithEqualityFn<StoryLiteState & StoryLite
       )
     },
     setCanvasElement(element) {
-      set(state => {
+      set((state) => {
         return {
           ...state,
           canvas: {
@@ -187,7 +187,7 @@ export const useStoryLiteIframe = (): {
   window: Window | null
   document: Document | null
 } => {
-  const [canvas, setElement] = useStoryLiteStore(state => [state.canvas, state.setCanvasElement])
+  const [canvas, setElement] = useStoryLiteStore((state) => [state.canvas, state.setCanvasElement])
 
   if (!canvas.element) {
     return {

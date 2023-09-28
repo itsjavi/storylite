@@ -18,24 +18,16 @@
   "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
-      "*": [
-        "dist/index.d.ts"
-      ],
-      "virtual": [
-        "dist/virtual-modules.d.ts"
-      ]
+      "*": ["dist/index.d.ts"],
+      "virtual": ["dist/virtual-modules.d.ts"]
     }
   },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
+  "files": ["dist", "README.md", "LICENSE"],
   "scripts": {
     "build": "tsup --clean",
     "dev": "tsup --watch",
-    "lint": "eslint --max-warnings=10 .",
-    "lint-fix": "eslint --fix .",
+    "lint": "biome lint .",
+    "lint-fix": "biome lint --apply .",
     "prepublishOnly": "pnpm run build",
     "publint-check": "pnpm run build && pnpm publint",
     "type-check": "tsc --noEmit"

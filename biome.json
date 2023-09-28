@@ -1,0 +1,80 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.2.2/schema.json",
+  "organizeImports": {
+    "enabled": true
+  },
+  "formatter": {
+    "enabled": true,
+    "formatWithErrors": false,
+    "indentSize": 2,
+    "indentStyle": "space",
+    "lineWidth": 100,
+    "ignore": [
+      "!.*.js",
+      "**/node_modules/**",
+      "**/.next/**",
+      "**/.turbo/**",
+      "**/dist/**",
+      "packages/*/dist/**",
+      "**/public/**",
+      "**/coverage/**",
+      "**/.coverage/**"
+    ]
+  },
+  "json": {
+    "parser": {
+      "allowComments": true
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "quoteProperties": "asNeeded",
+      "semicolons": "asNeeded",
+      "trailingComma": "all"
+    }
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true,
+      "a11y": {
+        "useAltText": "error",
+        "useKeyWithClickEvents": "off",
+        "useValidAnchor": "off"
+      },
+      "correctness": {
+        "noUnusedVariables": "warn",
+        "noVoidTypeReturn": "off"
+      },
+      "nursery": {
+        "useGroupedTypeImport": "error"
+      },
+      "complexity": {
+        "noBannedTypes": "off"
+      },
+      "security": {
+        "noDangerouslySetInnerHtml": "off"
+      },
+      "suspicious": {
+        "noArrayIndexKey": "off",
+        "noConsoleLog": "off",
+        "noExplicitAny": "off"
+      },
+      "style": {
+        "all": false
+      }
+    },
+    "ignore": [
+      "!.*.js",
+      "**/node_modules/**",
+      "**/.next/**",
+      "**/.turbo/**",
+      "**/dist/**",
+      "packages/*/dist/**",
+      "**/public/**",
+      "**/coverage/**",
+      "**/.coverage/**"
+    ]
+  }
+}

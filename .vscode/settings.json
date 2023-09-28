@@ -20,10 +20,11 @@
   },
   "editor.codeActionsOnSave": {
     "source.addMissingImports": true,
-    "source.organizeImports": true,
-    "source.fixAll.eslint": true
+    "source.organizeImports.biome": true,
+    "quickfix.biome": true
   },
   "[markdown]": {
+    "editor.defaultFormatter": "vscode.markdown-language-features",
     "editor.fontSize": 14,
     "editor.lineHeight": 18,
     "editor.wordWrap": "off",
@@ -35,5 +36,23 @@
       "other": "on"
     },
     "editor.minimap.enabled": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "vscode.css-language-features"
   }
 }

@@ -142,7 +142,7 @@ export class Router implements Iterable<Route> {
   }
 
   remove(pattern: string): void {
-    this.routes = this.routes.filter(route => route.pattern !== pattern)
+    this.routes = this.routes.filter((route) => route.pattern !== pattern)
   }
 
   setFallback(component: React.FC): void {
@@ -154,11 +154,11 @@ export class Router implements Iterable<Route> {
   }
 
   matches(path: string): boolean {
-    return this.routes.some(route => route.regex.test(path))
+    return this.routes.some((route) => route.regex.test(path))
   }
 
   getMatches(path: string): Route[] {
-    return this.routes.filter(route => {
+    return this.routes.filter((route) => {
       return route.regex.test(path)
     })
   }

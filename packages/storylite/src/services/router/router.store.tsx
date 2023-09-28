@@ -27,7 +27,7 @@ type Actions = {
 
 const router = createStoryLiteRouter(appRoutes, Error404, TopFrameLayout)
 
-export const useRouterStore = createWithEqualityFn<State & Actions>(set => {
+export const useRouterStore = createWithEqualityFn<State & Actions>((set) => {
   router.refresh(window.location.hash)
 
   const buildState = (): State => {
@@ -64,11 +64,11 @@ export const useRouterStore = createWithEqualityFn<State & Actions>(set => {
 export function useRouterParams(): {
   [key: string]: string | undefined
 } {
-  return useRouterStore(state => state.params)
+  return useRouterStore((state) => state.params)
 }
 
 export function useRouterQuery(): {
   [key: string]: string | undefined
 } {
-  return useRouterStore(state => state.query)
+  return useRouterStore((state) => state.query)
 }

@@ -16,8 +16,7 @@ const config: Partial<SLAppComponentProps> = {
       {
         defaultContent: <span>👋</span>,
         stateful: false,
-        onClick: ctx => {
-          // eslint-disable-next-line no-console
+        onClick: (ctx) => {
           console.log('custom-addon context', ctx)
           alert('You clicked the custom addon!')
         },

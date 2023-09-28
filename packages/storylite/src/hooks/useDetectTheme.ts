@@ -4,7 +4,7 @@ import { useStoryLiteStore } from '@/app/stores/global'
 import type { SLColorScheme } from '@/types'
 
 export function useDetectTheme(): string {
-  const [userConfig, params] = useStoryLiteStore(state => [state.config, state.parameters])
+  const [userConfig, params] = useStoryLiteStore((state) => [state.config, state.parameters])
   const [detectedTheme, setDetectedTheme] = React.useState<'light' | 'dark' | 'auto'>(
     (params.theme.value as SLColorScheme) ?? 'auto',
   )

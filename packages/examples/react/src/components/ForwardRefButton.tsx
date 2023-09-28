@@ -1,4 +1,4 @@
-import { ComponentPropsWithRef, forwardRef } from 'react'
+import { type ComponentPropsWithRef, forwardRef } from 'react'
 
 export interface ButtonProps extends ComponentPropsWithRef<'button'> {
   variant?: 'red' | 'green'
@@ -9,7 +9,7 @@ const ForwardRefButton = forwardRef<HTMLButtonElement, ButtonProps>(function For
   ref,
 ) {
   return (
-    <button ref={ref} style={{ color: variant }} {...rest}>
+    <button ref={ref} style={{ color: variant }} type="button" {...rest}>
       {children}
     </button>
   )

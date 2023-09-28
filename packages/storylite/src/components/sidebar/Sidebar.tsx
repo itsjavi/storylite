@@ -32,7 +32,7 @@ export function Sidebar({ title, ...rest }: SidebarProps) {
 }
 
 function SidebarNav({ currentStoryId }: { currentStoryId?: string }): JSX.Element {
-  const storyModuleMap = useStoryLiteStore(state => state.storyModuleMap)
+  const storyModuleMap = useStoryLiteStore((state) => state.storyModuleMap)
   const navTree = getStoryNavigationTree(storyModuleMap)
 
   return (
@@ -67,7 +67,7 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
   const { navNode, currentStoryId } = props
   const [isExpanded, setIsExpanded] = useState<undefined | boolean>(undefined)
   const canBeExpanded = navNode.children.length > 1
-  const hasActiveChildren = navNode.children.some(child => child.storyId === currentStoryId)
+  const hasActiveChildren = navNode.children.some((child) => child.storyId === currentStoryId)
   const canBeCollapsed = canBeExpanded && (isExpanded ?? hasActiveChildren)
 
   const icon = (

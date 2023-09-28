@@ -19,7 +19,7 @@ function StoryWrapper({ children }: { children: React.ReactNode }) {
 }
 
 export function Story({ storyId }: { storyId: string }): JSX.Element {
-  const stories = useStoryLiteStore(state => state.stories)
+  const stories = useStoryLiteStore((state) => state.stories)
   const story = stories.get(storyId)
 
   if (!story) {
