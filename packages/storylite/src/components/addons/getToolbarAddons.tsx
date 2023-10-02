@@ -11,12 +11,12 @@ import { InlineHtml } from '@/components/InlineHtml'
 import { getStoryUrl } from '@/services/csf-api/navigation'
 
 import {
-  SLColorScheme,
-  SLCoreAddon,
   type SLAddonProps,
   type SLAddonPropsWithoutId,
   type SLAddonsMap,
   type SLAddonsMapWithoutId,
+  SLColorScheme,
+  SLCoreAddon,
   type SLParameters,
   type SLUserDefinedAddons,
 } from '../..'
@@ -98,7 +98,7 @@ function getDefaultLeftToolbarAddons(): AddonSetup[] {
       stateful: true,
       persistent: true,
       defaultValue: false,
-      onClick: (ctx, [value, setValue]) => {
+      onClick: (_ctx, [value, setValue]) => {
         const mobileWidth = '375px' // like an iPhone 12 Mini
         const oppositeValue = value ? false : mobileWidth
 
@@ -111,7 +111,7 @@ function getDefaultLeftToolbarAddons(): AddonSetup[] {
         updateCanvasRootResponsiveInfo(canvasRoot, oppositeValue)
         setValue(oppositeValue, { persist: true })
       },
-      onRender: (ctx, [value]) => {
+      onRender: (_ctx, [value]) => {
         const canvasRoot = getCanvasRoot()
         if (!canvasRoot) {
           return
@@ -170,7 +170,7 @@ function getDefaultRightToolbarAddons(): AddonSetup[] {
       placement,
       stateful: false,
       hrefTarget: '_blank',
-      getHref: ctx => {
+      getHref: (ctx) => {
         const urlOpts = {
           target: 'iframe',
           standalone: true,

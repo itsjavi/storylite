@@ -10,7 +10,7 @@ export default function CanvasIframeLayout({ children, ...props }: any) {
 
   const { standalone } = props
   const isStandalone = standalone === 'true'
-  const [userConfig, params] = useStoryLiteStore(state => [state.config, state.parameters])
+  const [userConfig, params] = useStoryLiteStore((state) => [state.config, state.parameters])
   const paramsDataProps = parametersToDataProps(params)
 
   const resolvedTheme = useDetectTheme()

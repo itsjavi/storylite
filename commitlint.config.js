@@ -2,7 +2,7 @@ const fs = require('fs')
 
 const folderNamesUnderPackages = fs
   .readdirSync('./packages')
-  .filter(file => fs.statSync(`./packages/${file}`).isDirectory())
+  .filter((file) => fs.statSync(`./packages/${file}`).isDirectory())
 
 /**
  * @type {import('@commitlint/types').UserConfig}
@@ -50,5 +50,5 @@ module.exports = {
       ],
     ],
   },
-  ignores: [commit => commit.includes('update deps')],
+  ignores: [(commit) => commit.includes('update deps')],
 }

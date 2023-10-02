@@ -38,13 +38,13 @@ pnpm test:coverage
 # Lint
 pnpm lint
 
-# Format (prettier + eslint --fix)
+# Format (format + lint --fix)
 pnpm format
 
 # Type check
 pnpm type-check
 
-# Run all quality checks (prettier-check, type-check, lint, build, publint, test)
+# Run all quality checks (formatter-check, type-check, lint, build, publint, test)
 pnpm quality-checks
 
 ```

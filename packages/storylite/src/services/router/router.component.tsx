@@ -37,12 +37,12 @@ export const Link = ({
   children?: React.ReactNode
   [key: string]: any
 }) => {
-  const navigate = useRouterStore(state => state.navigate)
+  const navigate = useRouterStore((state) => state.navigate)
 
   return (
     <a
       href={to}
-      onClick={e => {
+      onClick={(e) => {
         e.preventDefault()
         navigate(to)
       }}

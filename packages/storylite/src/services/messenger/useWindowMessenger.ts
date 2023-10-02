@@ -10,7 +10,7 @@ import {
 } from './windowMessaging.types'
 
 export function useWindowMessenger() {
-  const [canvas, params, setParams] = useStoryLiteStore(state => [
+  const [canvas, params, setParams] = useStoryLiteStore((state) => [
     state.canvas,
     state.parameters,
     state.setParameters,

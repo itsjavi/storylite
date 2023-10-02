@@ -17,7 +17,7 @@ function filenameToId(filename: string) {
 function titleizeFilename(filename: string) {
   return filename
     .split(/[_-]/)
-    .map(w => ((w[0] ?? '').toUpperCase() + (w.slice(1) ?? '')).trim())
+    .map((w) => ((w[0] ?? '').toUpperCase() + (w.slice(1) ?? '')).trim())
     .join(' ')
 }
 
@@ -172,7 +172,7 @@ export function createStoryFilesMap(storyFiles: StoryFiles): StoryFilesMap {
 
       return aOrder - bOrder
     })
-    .forEach(entry => {
+    .forEach((entry) => {
       const [filePath, modules] = entry
       const baseName = filePath //.split('/').pop() // get the base filename
       if (!baseName) {

@@ -5,7 +5,7 @@ import { CanvasIframe } from './CanvasIframe'
 import { CanvasIframeBody } from './CanvasIframeBody'
 
 export function CanvasRoot({ storyId }: { storyId?: string }) {
-  const [stories, defaultStory, currentParams] = useStoryLiteStore(state => [
+  const [stories, defaultStory, currentParams] = useStoryLiteStore((state) => [
     state.stories,
     state.config.defaultStory,
     state.parameters,

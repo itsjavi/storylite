@@ -1,10 +1,10 @@
 name: 'Check code quality'
-description: 'Checks code quality: prettier, linters, build and test'
+description: 'Checks code quality: formatter, linters, build and test'
 runs:
   using: 'composite'
   steps:
     - shell: bash
-      run: pnpm prettier-check
+      run: pnpm formatter-check
 
     - shell: bash
       run: pnpm type-check

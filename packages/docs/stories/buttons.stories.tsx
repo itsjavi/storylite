@@ -87,7 +87,7 @@ export const WithCustomRender: StoryType = {
     primary: false,
     children: 'With Custom Render Function',
   },
-  render: args => {
+  render: (args) => {
     const Story = LinkableBtn
 
     return (

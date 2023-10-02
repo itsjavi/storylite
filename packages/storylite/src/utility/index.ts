@@ -1,6 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// biome-ignore lint/correctness/noUnusedVariables: spread syntax
 export function __ignoreUnused(...args: any[]) {
-  // does nothing. useful to pass variables that are not used, so eslint doesn't complain :P
+  // does nothing. useful to pass variables that are not used, so /biome doesn't complain :P
   // it is helpful in some spread scenarios like: `const { a: excludeThis, ...allOtherProps } = obj`
 }
 
@@ -9,7 +9,7 @@ export type SimplifyObj<T> = { [K in keyof T]: T[K] }
 
 export function excluded<T, K extends keyof T>(obj: T, keys: K[]): SimplifyObj<Omit<T, K>> {
   const result = { ...obj }
-  keys.forEach(key => delete result[key])
+  keys.forEach((key) => delete result[key])
 
   return result
 }

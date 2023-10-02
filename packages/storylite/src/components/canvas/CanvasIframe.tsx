@@ -30,7 +30,7 @@ export type CanvasIframeProps = {
 export function CanvasIframe(props: CanvasIframeProps) {
   const { storyId, className, ...rest } = props
   const iframeState = useStoryLiteIframe()
-  const [userConfig, stories, currentParams, setParameters] = useStoryLiteStore(state => [
+  const [userConfig, stories, currentParams, setParameters] = useStoryLiteStore((state) => [
     state.config,
     state.stories,
     state.parameters,
@@ -80,7 +80,7 @@ export function CanvasIframe(props: CanvasIframeProps) {
       onLoad={onIframeLoad}
       title="StoryLite Canvas"
       className={cn('storylite-iframe-element', className, userClassName)}
-      allow={allowList.map(permission => `${permission} *`).join('; ')}
+      allow={allowList.map((permission) => `${permission} *`).join('; ')}
       {...rest}
       {...paramsDataProps}
       {...userRest}

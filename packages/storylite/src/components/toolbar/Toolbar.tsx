@@ -14,7 +14,7 @@ function ToolbarGroup({
     <div className="storylite-addon-toolbar-group">
       {addons
         .filter(
-          props => props.placement === placement || (placement === 'left' && !props.placement),
+          (props) => props.placement === placement || (placement === 'left' && !props.placement),
         )
         .map((props, index) => {
           const key = `addon-${props.id}---${props.placement || placement}-${index}`
@@ -32,7 +32,7 @@ function ToolbarGroup({
 }
 
 export function Toolbar() {
-  const addons = useStoryLiteStore(state => Array.from(state.addons.values()))
+  const addons = useStoryLiteStore((state) => Array.from(state.addons.values()))
 
   return (
     <div className={'storylite-addon-toolbar'}>
