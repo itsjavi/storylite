@@ -38,7 +38,7 @@ export type SLInputType = {
 }
 
 export type SLArgTypes<TArgs = SLObject> = {
-  [name in keyof TArgs]: SLInputType
+  [_name in keyof TArgs]: SLInputType
 }
 
 export type SLPageProps = {

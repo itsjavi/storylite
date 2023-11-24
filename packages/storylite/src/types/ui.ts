@@ -120,18 +120,18 @@ export type SLAddonProps<Stateful = boolean> = {
    * This is the place where you can change the state, if the addon is stateful.
    */
   onClick?: Stateful extends true
-    ? (context: SLAddonContext, state: SLAddonState) => void | (() => void)
-    : (context: SLAddonContext) => void | (() => void)
+    ? (context: SLAddonContext, state: SLAddonState) => undefined | (() => void)
+    : (context: SLAddonContext) => undefined | (() => void)
   /**
    * Function to call when the iframe is ready and its window loaded.
    */
   onIFrameReady?: Stateful extends true
-    ? (context: SLAddonContext, state: SLAddonState) => void | (() => void)
-    : (context: SLAddonContext) => void | (() => void)
+    ? (context: SLAddonContext, state: SLAddonState) => undefined | (() => void)
+    : (context: SLAddonContext) => undefined | (() => void)
 
   onRender?: Stateful extends true
-    ? (context: SLAddonContext, state: SLAddonState) => void | (() => void)
-    : (context: SLAddonContext) => void | (() => void)
+    ? (context: SLAddonContext, state: SLAddonState) => undefined | (() => void)
+    : (context: SLAddonContext) => undefined | (() => void)
 }
 
 export type SLAddonPropsWithoutId<T extends boolean> = Omit<SLAddonProps<T>, 'id'>
