@@ -2,6 +2,8 @@ export type BaseStory = {
   title?: string
   name?: string
   component?: { (props?: any): any; displayName?: string }
+  _isDefault?: boolean
+  _moduleId?: string
   [key: string]: any
 }
 

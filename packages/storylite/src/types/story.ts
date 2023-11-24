@@ -66,6 +66,20 @@ export interface BaseStory<P extends SLFunctionComponent = SLFunctionComponent<{
    *
    */
   component?: P
+
+  /**
+   * If true, represents the default export of the story file.
+   *
+   * This value should not be set manually, it is set by StoryLite's story collector.
+   */
+  readonly _isDefault?: boolean
+
+  /**
+   * The module ID of the story file.
+   *
+   * This value should not be set manually, it is set by StoryLite's story collector.
+   */
+  readonly _moduleId?: string
 }
 
 /**

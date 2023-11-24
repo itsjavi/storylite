@@ -22,7 +22,7 @@ export default {
   ],
   args: {
     // default args
-    children: 'My Button',
+    children: 'Default Button children',
   },
   parameters: {
     // overriden addon parameters
@@ -34,8 +34,27 @@ export default {
   },
 } satisfies StoryType
 
+export const WithInheritedDefaultArgs: StoryType = {
+  title: 'With Inherited Defaults',
+  args: {
+    hoverable: true,
+    primary: true,
+    // children is inherited from the default export args
+  },
+  decorators: [
+    (Story, context) => {
+      return (
+        <div style={{ padding: '16px', borderRadius: '8px', border: '1px solid #888' }}>
+          <p>This story inherits the default args from the default export.</p>
+          <Story {...context?.args} />
+        </div>
+      )
+    },
+  ],
+}
+
 export const WithComponentProps: StoryType = {
-  title: 'This title is overriden by "name"',
+  title: '---This title is overriden by "name"---',
   name: 'With Args',
   args: {
     hoverable: true,

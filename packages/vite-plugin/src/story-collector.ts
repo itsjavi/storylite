@@ -125,7 +125,18 @@ function modulesToStories(
           navigation: {
             ...inheritedNavigation,
           },
+          name: exportName,
+          _moduleId: storyIdPrefix,
+          _isDefault: exportName === 'default',
           ...story,
+          args: {
+            ..._resolvedDefaultStory.args,
+            ...story.args,
+          },
+          parameters: {
+            ..._resolvedDefaultStory.parameters,
+            ...story.parameters,
+          },
           title: camelToTitleCase(titleizeFilename(storyTitle)),
           decorators: mergedDecorators,
         }

@@ -41,7 +41,8 @@ export function renderStory(storyComponent: SLFunctionComponent, story: StoryWit
     loaded: loadedData,
   }
 
-  const storyDecorators = story.decorators ?? [defaultDecorator]
+  const storyDecorators =
+    story.decorators && story.decorators.length > 0 ? story.decorators : [defaultDecorator]
   const DecoratedStory = applyDecorators(storyComponent, storyDecorators, decoratorContext)
 
   if (story.render) {
