@@ -31,6 +31,7 @@
     "type-check": "turbo type-check",
     "version:bump": "semver-release version:bump",
     "version:publish": "semver-release version:release --tags --npm --filter '@storylite/*'",
+    "version:release": "pnpm version:publish",
     "version:publish-notes": "semver-release version:release --github"
   },
   "lint-staged": {
