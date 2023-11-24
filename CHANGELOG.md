@@ -1,3 +1,32 @@
+
+
+## v0.14.0
+
+[compare changes](https://github.com/itsjavi/storylite/compare/v0.13.0...v0.14.0)
+
+### 🩹 Fixes
+
+- Publish script ([ca5026a](https://github.com/itsjavi/storylite/commit/ca5026a))
+- Publish script ([4efec23](https://github.com/itsjavi/storylite/commit/4efec23))
+- Props component props could not be required in stories. closes #72 ([#72](https://github.com/itsjavi/storylite/issues/72))
+- Empty decorator array not rendering component properly. fix args inheritance. closes #76 ([#76](https://github.com/itsjavi/storylite/issues/76))
+
+### 💅 Refactors
+
+- Use clsx instead of r1stack/cn ([08842da](https://github.com/itsjavi/storylite/commit/08842da))
+
+### 🏡 Chore
+
+- Replace eslint & prettier with biome ([#78](https://github.com/itsjavi/storylite/pull/78))
+- Upgrade dependencies and fix linter issues ([7794c4a](https://github.com/itsjavi/storylite/commit/7794c4a))
+
+### ❤️ Contributors
+
+- Javi Aguilar 
+- Jrson
+
+
+
 ## v0.13.0
 
 [compare changes](https://github.com/itsjavi/storylite/compare/v0.12.1...v0.13.0)
