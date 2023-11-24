@@ -12,7 +12,7 @@ export type SLElement<P extends SLObject = {}> = {
 
 export type SLNode = ReactNode
 
-export type SLFunctionComponent<P = {}> = React.FC<P>
+export type SLFunctionComponent<P = any> = React.FC<P>
 
 export type SLComponentProps<T> =
   | (T extends React.ComponentType<infer P extends SLObject>
