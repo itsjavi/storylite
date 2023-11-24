@@ -1,8 +1,7 @@
-import { cn } from '@r1stack/cn'
-
 import { useStoryLiteStore } from '@/app/stores/global'
 import { useDetectTheme } from '@/hooks/useDetectTheme'
 import { useWindowMessenger } from '@/services/messenger/useWindowMessenger'
+import { cn } from '@/utility'
 import { parametersToDataProps } from '@/utility/parametersToDataProps'
 
 export default function CanvasIframeLayout({ children, ...props }: any) {
@@ -18,12 +17,10 @@ export default function CanvasIframeLayout({ children, ...props }: any) {
 
   return (
     <div
-      className={cn(
-        'storylite-app',
-        'storylite-iframe',
-        [userConfig.useIframeStyles ?? true, 'storylite-iframe--default-styles'],
-        [isStandalone, 'storylite-iframe--standalone'],
-      )}
+      className={cn('storylite-app', 'storylite-iframe', {
+        'storylite-iframe--default-styles': userConfig.useIframeStyles ?? true,
+        'storylite-iframe--standalone': isStandalone,
+      })}
       {...paramsDataProps}
       data-sl-standalone={isStandalone}
     >

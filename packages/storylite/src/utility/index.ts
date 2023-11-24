@@ -1,3 +1,5 @@
+import clsx from 'clsx'
+
 // biome-ignore lint/correctness/noUnusedVariables: spread syntax
 export function __ignoreUnused(...args: any[]) {
   // does nothing. useful to pass variables that are not used, so /biome doesn't complain :P
@@ -26,8 +28,6 @@ export function isTruthy<T>(value: T | null | undefined | false): value is T {
   return value !== null && value !== undefined && value !== false
 }
 
-// type MembersOf<T> = { [K in keyof T]: T[K] }
-// type NonFunctionPropertyNames<T> = {
-//   [K in keyof T]: T[K] extends Function ? never : K
-// }[keyof T]
-// type NonFunctionProperties<T> = Pick<T, NonFunctionPropertyNames<T>>
+export function cn(...values: clsx.ClassValue[]): string {
+  return clsx(...values)
+}

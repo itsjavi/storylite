@@ -51,7 +51,7 @@ an appointed representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the community
-leaders responsible for enforcement via private message on Twitter to @itsjavidotcom.
+leaders responsible for enforcement via private message on Twitter/X to @itsjavidotcom.
 
 All complaints will be reviewed and investigated promptly and fairly.
 

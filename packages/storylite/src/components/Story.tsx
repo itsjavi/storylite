@@ -1,16 +1,16 @@
 import React from 'react'
-import { cn } from '@r1stack/cn'
 
 import { useStoryLiteStore } from '@/app/stores/global'
 import { renderStory } from '@/services/renderer/react'
 import { useRouterQuery } from '@/services/router'
+import { cn } from '@/utility'
 
 function StoryWrapper({ children }: { children: React.ReactNode }) {
   const searchParams = useRouterQuery()
   const isStandalone = searchParams.standalone ? true : false
 
   return (
-    <div className={cn('storylite-story', [isStandalone, 'storylite-story--standalone'])}>
+    <div className={cn('storylite-story', { 'storylite-story--standalone': isStandalone })}>
       <div className={'storylite-story-canvas'}>
         <div className={'storylite-story-component'}>{children}</div>
       </div>

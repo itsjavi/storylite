@@ -1,8 +1,8 @@
-import { useEffect, type HTMLProps } from 'react'
-import { cn } from '@r1stack/cn'
+import { type HTMLProps, useEffect } from 'react'
 
 import { useStoryLiteIframe, useStoryLiteStore } from '@/app/stores/global'
 import { getStoryUrl } from '@/services/csf-api/navigation'
+import { cn } from '@/utility'
 import { parametersToDataProps } from '@/utility/parametersToDataProps'
 
 const allowList = [

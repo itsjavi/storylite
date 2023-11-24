@@ -147,9 +147,9 @@ importers:
 
   packages/storylite:
     dependencies:
-      '@r1stack/cn':
-        specifier: ^0.5.0
-        version: 0.5.0
+      clsx:
+        specifier: ^2.0.0
+        version: 2.0.0
       zustand:
         specifier: ^4.4.6
         version: 4.4.6(@types/react@18.2.38)(react@18.2.0)
@@ -1310,10 +1310,6 @@ packages:
       fastq: 1.15.0
     dev: true
 
-  /@r1stack/cn@0.5.0:
-    resolution: {integrity: sha512-pwy8+Jh0+m3yJEx7/HoDID87E+7/ryPp2C9g9H1r5bV00dq5vGiyjIYmbErnIMe5Kszlzpl9jzWw6VHlhh7mTQ==}
-    dev: false
-
   /@rollup/pluginutils@5.0.5(rollup@4.5.1):
     resolution: {integrity: sha512-6aEYR910NyP73oHiJglti74iRyOwgFU4x3meH/H8OJx6Ry0j6cOVZ5X/wTvub7G7Ao6qaHBEaNsV3GLJkSsF+Q==}
     engines: {node: '>=14.0.0'}
@@ -2339,6 +2335,11 @@ packages:
       strip-ansi: 6.0.1
       wrap-ansi: 7.0.0
     dev: true
+
+  /clsx@2.0.0:
+    resolution: {integrity: sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==}
+    engines: {node: '>=6'}
+    dev: false
 
   /co@4.6.0:
     resolution: {integrity: sha512-QVb0dM5HvG+uaxitm8wONl7jltx8dqhfU33DcqtOZcLSVIKSDDLDi7+0LbAKiyI8hD9u42m2YxXSkMGWThaecQ==}

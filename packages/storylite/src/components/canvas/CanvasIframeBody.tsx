@@ -1,8 +1,8 @@
 import type { HTMLProps } from 'react'
-import { cn } from '@r1stack/cn'
 
 import { useRouterQuery } from '@/services/router'
 
+import { cn } from '@/utility'
 import { Story } from '../Story'
 
 export type CanvasIframeBodyProps = {
@@ -17,10 +17,9 @@ export function CanvasIframeBody(props: CanvasIframeBodyProps) {
 
   return (
     <div
-      className={cn('storylite-sandbox-layout', [
-        isStandalone,
-        'storylite-sandbox-layout--standalone',
-      ])}
+      className={cn('storylite-sandbox-layout', {
+        'storylite-sandbox-layout--standalone': isStandalone,
+      })}
       {...rest}
     >
       <Story storyId={storyId} />

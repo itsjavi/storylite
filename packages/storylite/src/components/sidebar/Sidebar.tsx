@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import { cn } from '@r1stack/cn'
 
 import { useStoryLiteStore } from '@/app/stores/global'
 import bookmarkIcon from '@/assets/lucide/svg/bookmark.svg'
 import minusSquareIcon from '@/assets/lucide/svg/minus-square.svg'
 import plusSquareIcon from '@/assets/lucide/svg/plus-square.svg'
 import { InlineHtml } from '@/components/InlineHtml'
-import { getStoryNavigationTree, type SLNavigationNode } from '@/services/csf-api/navigation'
+import { type SLNavigationNode, getStoryNavigationTree } from '@/services/csf-api/navigation'
 import { Link, useRouterParams } from '@/services/router'
+import { cn } from '@/utility'
 
 type SidebarProps = {
   title: React.ReactNode
@@ -78,11 +78,11 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
     />
   )
 
-  const classes = cn(
-    [navNode.storyId === currentStoryId, 'storylite-active'],
-    [hasActiveChildren, 'storylite-active-children'],
-    [navNode.children.length > 0, 'storylite-with-nested'],
-  )
+  const classes = cn({
+    'storylite-active': navNode.storyId === currentStoryId,
+    'storylite-active-children': hasActiveChildren,
+    'storylite-with-nested': navNode.children.length > 0,
+  })
 
   if (navNode.children.length === 0) {
     return (

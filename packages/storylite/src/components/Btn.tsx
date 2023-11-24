@@ -1,5 +1,5 @@
+import { cn } from '@/utility'
 import type { HTMLAttributes } from 'react'
-import { cn } from '@r1stack/cn'
 
 export type BtnProps = {
   isActive?: boolean
@@ -11,8 +11,10 @@ export type BtnProps = {
 export function Btn({ className, isActive, hoverable, children, href, target, ...rest }: BtnProps) {
   const classNames = cn(
     'storylite-btn',
-    [isActive, 'storylite-btn--active'],
-    [hoverable, 'storylite-btn--hoverable'],
+    {
+      'storylite-btn--active': isActive,
+      'storylite-btn--hoverable': hoverable,
+    },
     className,
   )
 

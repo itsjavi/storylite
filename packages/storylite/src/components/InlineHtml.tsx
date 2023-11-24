@@ -1,5 +1,5 @@
+import { cn } from '@/utility'
 import type { HTMLProps } from 'react'
-import { cn } from '@r1stack/cn'
 
 type InlineHtmlProps = {
   children: string
