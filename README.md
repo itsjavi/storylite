@@ -68,7 +68,10 @@ For the next steps, please check the
 [example React](https://github.com/itsjavi/storylite/tree/main/examples/react) directory to
 learn how to integrate it in your project.
 
-## Adding MDX support
+> While all examples here show how to integrate it with Vite, StoryLite can be used with any bundler
+> since it is a client-side React app that can be mounted anywhere in your project.
+
+### Adding MDX support
 
 Check the `docs` package to see how to add MDX support to your project:
 

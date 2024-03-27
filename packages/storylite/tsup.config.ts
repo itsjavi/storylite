@@ -38,6 +38,11 @@ export default defineConfig([
     skipNodeModulesBundle: true,
     external: ['node_modules'],
     onSuccess: ['cp ../../README.md ./README.md'].join(' && '),
+    esbuildOptions(options) {
+      options.banner = {
+        js: '"use client"',
+      }
+    },
   },
   {
     entry: {
