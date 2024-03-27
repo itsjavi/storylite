@@ -1,4 +1,9 @@
+import { getStoryLiteState } from '@/app/stores/global'
+
 export function getStoryLiteBasePath() {
-  // @ts-ignore
-  return import.meta.env.BASE_URL ?? '/m/'
+  return getStoryLiteState().config.basePath
+}
+
+export function getStoryLiteBaseCanvasPath() {
+  return getStoryLiteState().config.canvasPath
 }

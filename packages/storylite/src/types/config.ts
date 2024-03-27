@@ -11,6 +11,8 @@ import type { SLUserDefinedAddons } from './ui'
 
 export type SLAppComponentProps = {
   title: SLNode
+  basePath?: string
+  canvasPath?: string
   defaultStory: string
   iframeProps?: Omit<Record<string, any>, 'src'>
   useIframeStyles?: boolean

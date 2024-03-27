@@ -1,7 +1,7 @@
 import type { SLNode, StoryModuleMap } from '@/types'
 import { isTruthy } from '@/utility'
 
-import { getStoryLiteBasePath } from '../router/getStoryLiteBasePath'
+import { getStoryLiteBaseCanvasPath, getStoryLiteBasePath } from '../router/getStoryLiteBasePath'
 
 export type SLNavigationNode = {
   title: string
@@ -24,7 +24,7 @@ export function getStoryUrl(
   const { standalone, target } = options
   const isIframe = target === 'iframe'
 
-  const targetBasePath = isIframe ? '/canvas.html#' : '#'
+  const targetBasePath = isIframe ? getStoryLiteBaseCanvasPath() + '#' : '#'
   const targetHashBasePath = isIframe ? 'preview/' : ''
   const baseStr = [getStoryLiteBasePath(), targetBasePath, targetHashBasePath].join('').replace(/\/\//g, '/')
 

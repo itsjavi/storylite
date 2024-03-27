@@ -15,6 +15,9 @@ const builtinAddons: SLAddonsMap = new Map(
   Array.from(getDefaultToolbarAddons().entries()).map(([id, addon]) => [id, { ...addon, id }]),
 )
 
+// @ts-ignore
+const basePath = import.meta?.env?.BASE_URL ? import.meta.env.BASE_URL : '/'
+
 const defaultState: StoryLiteState = {
   canvas: {
     element: null,
@@ -22,6 +25,8 @@ const defaultState: StoryLiteState = {
   },
   config: {
     title: getDefaultTitle(),
+    basePath: basePath,
+    canvasPath: `${basePath}/canvas.html`.replace(/[\/]+/g, '/'),
     defaultStory: 'index',
     iframeProps: {},
     useIframeStyles: true,
@@ -199,4 +204,11 @@ export const useStoryLiteIframe = (): {
     window: win,
     document: doc,
   }
+}
+
+/**
+ * Returns a non-reactive fresh state of the store.
+ */
+export function getStoryLiteState() {
+  return useStoryLiteStore.getState()
 }
