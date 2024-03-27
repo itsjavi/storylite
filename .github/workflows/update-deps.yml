@@ -20,7 +20,7 @@ jobs:
     outputs:
       has_changes: ${{ steps.git_diff.outputs.has_changes }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0 # fetch all history so that git diff can compare against HEAD~1
 
