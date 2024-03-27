@@ -1,6 +1,6 @@
 {
   "name": "@storylite/storylite",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "description": "A lightweight alternative to StoryBook, built on top of Vite⚡️. This package contains the React app.",
   "license": "MIT",
   "type": "module",
@@ -14,7 +14,11 @@
   },
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
-  "files": ["dist", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsup --clean",
     "dev": "tsup --watch",
