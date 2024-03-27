@@ -6,7 +6,7 @@ guide:
 ## Repository
 
 - We use Node v18 or v20 and the `pnpm` package manager.
-- This project is a monorepo using `turbo` and `pnpm` workspaces.
+- This project is a monorepo using `pnpm` workspaces.
 - We use [Convention Commits](https://www.conventionalcommits.org/en/v1.0.0/) for our commit
   messages.
 
