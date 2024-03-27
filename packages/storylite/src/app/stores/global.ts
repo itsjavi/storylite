@@ -6,13 +6,7 @@ import {
   getToolbarAddonsAsParameters,
   resolveToolbarAddons,
 } from '@/components/addons/getToolbarAddons'
-import type {
-  SLAddonsMap,
-  SLParameters,
-  SLUserDefinedAddons,
-  StoryMap,
-  StoryModuleMap,
-} from '@/types'
+import type { SLAddonsMap, SLParameters, SLUserDefinedAddons, StoryMap, StoryModuleMap } from '@/types'
 
 import { getDefaultTitle } from './DefaultTitle'
 import type { StoryLiteActions, StoryLiteState } from './global.types'
@@ -59,15 +53,11 @@ const updateParameters = (
 }
 
 const resolveParams = (): SLParameters => {
-  const localStorageParams = localStorage.getItem(
-    `${defaultState.config.localStorageKey}.parameters`,
-  )
+  const localStorageParams = localStorage.getItem(`${defaultState.config.localStorageKey}.parameters`)
 
   const builtinAddonParameters = getToolbarAddonsAsParameters(builtinAddons)
 
-  const resolvedParams: SLParameters = localStorageParams
-    ? JSON.parse(localStorageParams)
-    : builtinAddonParameters
+  const resolvedParams: SLParameters = localStorageParams ? JSON.parse(localStorageParams) : builtinAddonParameters
 
   return resolvedParams
 }

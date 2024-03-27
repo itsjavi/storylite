@@ -1,9 +1,3 @@
 {
-  "recommendations": [
-    "biomejs.biome",
-    "vsls-contrib.codetour",
-    "yoavbls.pretty-ts-errors",
-    "orta.vscode-jest",
-    "github.vscode-github-actions"
-  ]
+  "recommendations": ["biomejs.biome"]
 }

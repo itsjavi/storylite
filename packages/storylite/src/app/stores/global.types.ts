@@ -30,10 +30,7 @@ export type StoryLiteActions = {
     value: StoryLiteParamValue,
     options?: { persist?: boolean; crossWindow?: boolean },
   ) => void
-  setParameters: (
-    data: SLParameters,
-    options?: { persist?: boolean; crossWindow?: boolean },
-  ) => void
+  setParameters: (data: SLParameters, options?: { persist?: boolean; crossWindow?: boolean }) => void
   setCurrentStoryId: (storyId: string) => void
   setAddons: (addons: SLUserDefinedAddons) => void
   setStories: (stories: StoryModuleMap) => void

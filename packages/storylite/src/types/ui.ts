@@ -141,10 +141,7 @@ export type SLAddonsMapWithoutId = Map<SLCoreAddon | string, SLAddonPropsWithout
 
 export type SLAddonsMap = Map<SLCoreAddon | string, SLAddonProps<boolean>>
 
-export type SLUserDefinedAddons = [
-  id: SLCoreAddon | string,
-  config: Omit<SLAddonProps<boolean>, 'id'> | false,
-][]
+export type SLUserDefinedAddons = [id: SLCoreAddon | string, config: Omit<SLAddonProps<boolean>, 'id'> | false][]
 
 export enum SLPanel {
   Sidebar = 'sidebar', // left sidebar

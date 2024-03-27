@@ -22,9 +22,7 @@ function titleizeFilename(filename: string) {
 }
 
 function camelToTitleCase(str: string) {
-  return str.replace(/([A-Z])/g, ' $1').replace(/^./, function (str) {
-    return str.toUpperCase()
-  })
+  return str.replace(/([A-Z])/g, ' $1').replace(/^./, (str) => str.toUpperCase())
 }
 
 function resolveDefaultExport(modules: any): BaseStory {
@@ -57,10 +55,7 @@ function resolveDefaultExport(modules: any): BaseStory {
   return frontmatter
 }
 
-function modulesToStories(
-  fileId: string,
-  modules: { [key: string]: any },
-): { [key: string]: BaseStoryWithId } {
+function modulesToStories(fileId: string, modules: { [key: string]: any }): { [key: string]: BaseStoryWithId } {
   const _resolvedDefaultStoryWithoutId = resolveDefaultExport(modules)
   const _resolvedDefaultStory: BaseStoryWithId = {
     id: fileId,
@@ -144,8 +139,7 @@ function modulesToStories(
         if (exportName !== 'default' && !('component' in fullStory)) {
           // combined with the default export, the resulting story object should have defined a component
           throw new Error(
-            `Invalid story: ${exportName}. Non-default exports must define a "component" in the ` +
-              `story object.`,
+            `Invalid story: ${exportName}. Non-default exports must define a "component" in the ` + `story object.`,
           )
         }
 

@@ -12,10 +12,7 @@ export type StoryLiteAppProps = {
 
 export const StoryLiteApp = (props: StoryLiteAppProps) => {
   const { config, stories, children } = props
-  const [initialize, setCurrentStoryId] = useStoryLiteStore((state) => [
-    state.initialize,
-    state.setCurrentStoryId,
-  ])
+  const [initialize, setCurrentStoryId] = useStoryLiteStore((state) => [state.initialize, state.setCurrentStoryId])
 
   const [route, getFallback, initializeRouter, routeParams] = useRouterStore((state) => [
     state.route,

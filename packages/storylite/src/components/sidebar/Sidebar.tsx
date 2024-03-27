@@ -53,9 +53,7 @@ function SidebarListItemIcon(props: {
 }): JSX.Element {
   const { navNode, canBeCollapsed, canBeExpanded } = props
 
-  const collapseIcon = navNode.iconExpanded ?? navNode.icon ?? (
-    <InlineHtml>{minusSquareIcon}</InlineHtml>
-  )
+  const collapseIcon = navNode.iconExpanded ?? navNode.icon ?? <InlineHtml>{minusSquareIcon}</InlineHtml>
   const expandIcon = navNode.icon ?? <InlineHtml>{plusSquareIcon}</InlineHtml>
   const expandCollapseIcon = canBeCollapsed ? collapseIcon : expandIcon
   const defaultIcon = navNode.icon ?? <InlineHtml>{bookmarkIcon}</InlineHtml>
@@ -70,13 +68,7 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
   const hasActiveChildren = navNode.children.some((child) => child.storyId === currentStoryId)
   const canBeCollapsed = canBeExpanded && (isExpanded ?? hasActiveChildren)
 
-  const icon = (
-    <SidebarListItemIcon
-      navNode={navNode}
-      canBeExpanded={canBeExpanded}
-      canBeCollapsed={canBeCollapsed}
-    />
-  )
+  const icon = <SidebarListItemIcon navNode={navNode} canBeExpanded={canBeExpanded} canBeCollapsed={canBeCollapsed} />
 
   const classes = cn({
     'storylite-active': navNode.storyId === currentStoryId,
@@ -97,11 +89,7 @@ function SidebarListItem(props: SidebarItemBaseProps): JSX.Element {
 
   return (
     <li className={classes} title={navNode.title}>
-      <button
-        type="button"
-        className={'storylite-navbtn'}
-        onClick={() => setIsExpanded(!canBeCollapsed)}
-      >
+      <button type="button" className={'storylite-navbtn'} onClick={() => setIsExpanded(!canBeCollapsed)}>
         <i className={'storylite-icon'}>{icon}</i>
         <span className={'storylite-text'}>{navNode.title}</span>
       </button>
@@ -121,9 +109,7 @@ function SidebarNestedList(props: SidebarItemBaseProps): JSX.Element {
         return (
           <li key={i} className={classes} title={childNode.title}>
             <Link to={childNode.href} className={'storylite-navbtn'}>
-              <i className={'storylite-icon'}>
-                {childNode.icon ?? <InlineHtml>{bookmarkIcon}</InlineHtml>}
-              </i>
+              <i className={'storylite-icon'}>{childNode.icon ?? <InlineHtml>{bookmarkIcon}</InlineHtml>}</i>
               <span className={'storylite-text'}>{childNode.title}</span>
             </Link>
           </li>

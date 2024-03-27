@@ -17,15 +17,11 @@ export type SLFunctionComponent<P = any> = React.FC<P>
 export type SLComponentProps<T> =
   | (T extends React.ComponentType<infer P extends SLObject>
       ? {
-          [key in keyof ComponentProps<SLFunctionComponent<P>>]: ComponentProps<
-            SLFunctionComponent<P>
-          >[key]
+          [key in keyof ComponentProps<SLFunctionComponent<P>>]: ComponentProps<SLFunctionComponent<P>>[key]
         }
       : never)
   | (T extends React.Component<infer P extends SLObject>
       ? {
-          [key in keyof ComponentProps<SLFunctionComponent<P>>]: ComponentProps<
-            SLFunctionComponent<P>
-          >[key]
+          [key in keyof ComponentProps<SLFunctionComponent<P>>]: ComponentProps<SLFunctionComponent<P>>[key]
         }
       : never)

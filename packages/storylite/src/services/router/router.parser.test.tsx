@@ -1,10 +1,4 @@
-import {
-  cleanHashPath,
-  createPatternRegex,
-  getWindowHash,
-  parsePathParams,
-  parseUri,
-} from './router.parser'
+import { cleanHashPath, createPatternRegex, getWindowHash, parsePathParams, parseUri } from './router.parser'
 
 describe('Routing Utils', () => {
   let windowSpy: jest.SpyInstance | undefined

@@ -26,9 +26,7 @@ export function getStoryUrl(
 
   const targetBasePath = isIframe ? '/canvas.html#' : '#'
   const targetHashBasePath = isIframe ? 'preview/' : ''
-  const baseStr = [getStoryLiteBasePath(), targetBasePath, targetHashBasePath]
-    .join('')
-    .replace(/\/\//g, '/')
+  const baseStr = [getStoryLiteBasePath(), targetBasePath, targetHashBasePath].join('').replace(/\/\//g, '/')
 
   let url = storyId === undefined ? baseStr : `${baseStr}/stories/${storyId}`
 

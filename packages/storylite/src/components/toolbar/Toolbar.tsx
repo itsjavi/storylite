@@ -13,9 +13,7 @@ function ToolbarGroup({
   return (
     <div className="storylite-addon-toolbar-group">
       {addons
-        .filter(
-          (props) => props.placement === placement || (placement === 'left' && !props.placement),
-        )
+        .filter((props) => props.placement === placement || (placement === 'left' && !props.placement))
         .map((props, index) => {
           const key = `addon-${props.id}---${props.placement || placement}-${index}`
           if (props.stateful) {

@@ -72,9 +72,7 @@ function getDefaultLeftToolbarAddons(): AddonSetup[] {
   }
 
   const updateCanvasRootResponsiveInfo = (rootElement: HTMLElement, newValue: string | false) => {
-    let infoElement: HTMLDivElement | null = rootElement.querySelector(
-      '.sl-responsive-info:first-of-type',
-    )
+    let infoElement: HTMLDivElement | null = rootElement.querySelector('.sl-responsive-info:first-of-type')
     if (!infoElement) {
       infoElement = document.createElement('div')
       infoElement.className = 'sl-responsive-info'
@@ -210,11 +208,7 @@ function getDefaultRightToolbarAddons(): AddonSetup[] {
           return <InlineHtml>{contrastIcon}</InlineHtml>
         }
 
-        return value === SLColorScheme.Light ? (
-          <InlineHtml>{sunIcon}</InlineHtml>
-        ) : (
-          <InlineHtml>{moonIcon}</InlineHtml>
-        )
+        return value === SLColorScheme.Light ? <InlineHtml>{sunIcon}</InlineHtml> : <InlineHtml>{moonIcon}</InlineHtml>
       },
       isActive: (_, [value]) => value !== SLColorScheme.Auto,
     } satisfies SLAddonPropsWithoutId<true>,

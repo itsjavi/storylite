@@ -22,16 +22,14 @@ export type SLStoryContext<P extends SLFunctionComponent = SLFunctionComponent<{
   // viewMode: 'story' | 'docs' //  StoryLite's current active window
 }
 
-export type SLDecoratorContext<P extends SLFunctionComponent = SLFunctionComponent<{}>> =
-  SLStoryContext<P>
+export type SLDecoratorContext<P extends SLFunctionComponent = SLFunctionComponent<{}>> = SLStoryContext<P>
 
-export type SLPlayContext<P extends SLFunctionComponent = SLFunctionComponent<{}>> =
-  SLStoryContext<P> & {
-    /**
-     * The DOM element that contains the rendered component.
-     */
-    canvasElement: HTMLElement
-  }
+export type SLPlayContext<P extends SLFunctionComponent = SLFunctionComponent<{}>> = SLStoryContext<P> & {
+  /**
+   * The DOM element that contains the rendered component.
+   */
+  canvasElement: HTMLElement
+}
 
 export type SLDecorator<P extends SLFunctionComponent = SLFunctionComponent<{}>> = (
   story: P,
@@ -100,8 +98,7 @@ export interface BaseStory<P extends SLFunctionComponent = SLFunctionComponent<{
  * the `title` and `name` fields are optional and will be inferred from the named export
  * if not specified.
  */
-export interface Story<P extends SLFunctionComponent = SLFunctionComponent<{}>>
-  extends BaseStory<P> {
+export interface Story<P extends SLFunctionComponent = SLFunctionComponent<{}>> extends BaseStory<P> {
   /**
    * Properties to pass to the component. The will show up in the UI knobs.
    */
@@ -191,8 +188,7 @@ export interface Story<P extends SLFunctionComponent = SLFunctionComponent<{}>>
   }
 }
 
-export interface StoryWithId<P extends SLFunctionComponent = SLFunctionComponent<{}>>
-  extends Story<P> {
+export interface StoryWithId<P extends SLFunctionComponent = SLFunctionComponent<{}>> extends Story<P> {
   id: string
 }
 

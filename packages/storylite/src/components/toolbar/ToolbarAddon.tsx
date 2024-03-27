@@ -73,14 +73,7 @@ export function ToolbarAddon(props: SLAddonProps<false>) {
   const href = getHref ? getHref(ctx) : undefined
 
   return (
-    <Btn
-      title={tooltip}
-      isActive={active}
-      href={href}
-      target={hrefTarget}
-      {...buttonProps}
-      onClick={handleOnClick}
-    >
+    <Btn title={tooltip} isActive={active} href={href} target={hrefTarget} {...buttonProps} onClick={handleOnClick}>
       {handleRender()}
     </Btn>
   )
@@ -165,14 +158,7 @@ export function ToolbarStatefulAddon(props: SLAddonProps<true>) {
   const href = getHref ? getHref(ctx, stateTuple) : undefined
 
   return (
-    <Btn
-      title={tooltip}
-      isActive={active}
-      href={href}
-      target={hrefTarget}
-      {...buttonProps}
-      onClick={handleOnClick}
-    >
+    <Btn title={tooltip} isActive={active} href={href} target={hrefTarget} {...buttonProps} onClick={handleOnClick}>
       {handleRender()}
     </Btn>
   )

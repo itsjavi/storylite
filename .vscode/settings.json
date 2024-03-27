@@ -1,11 +1,9 @@
 {
-  "editor.wordWrapColumn": 100,
-  "editor.rulers": [100],
+  "editor.wordWrapColumn": 120,
+  "editor.rulers": [120],
   "editor.fontSize": 14,
   "files.autoSave": "onFocusChange",
   "testing.automaticallyOpenPeekView": "failureInVisibleDocument",
-  "jest.jestCommandLine": "pnpx jest",
-  "jest.disabledWorkspaceFolders": ["packages"],
   "files.exclude": {
     "*/*/node_modules": false,
     "**/.git": true,
@@ -19,9 +17,9 @@
     "**/dist": false
   },
   "editor.codeActionsOnSave": {
-    "source.addMissingImports": true,
-    "source.organizeImports.biome": true,
-    "quickfix.biome": true
+    "source.addMissingImports": "explicit",
+    "source.organizeImports.biome": "explicit",
+    "quickfix.biome": "explicit"
   },
   "[markdown]": {
     "editor.defaultFormatter": "vscode.markdown-language-features",
@@ -38,7 +36,7 @@
     "editor.minimap.enabled": true
   },
   "[json]": {
-    "editor.defaultFormatter": "biomejs.biome"
+    "editor.defaultFormatter": "vscode.json-language-features"
   },
   "[javascript]": {
     "editor.defaultFormatter": "biomejs.biome"

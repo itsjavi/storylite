@@ -60,7 +60,7 @@ export function parsePathParams(pattern: string, path: string): URLSearchParams 
 
 export function createPatternRegex(pattern: string): RegExp {
   if (pattern === '/' || pattern === '') {
-    return new RegExp('^/?$')
+    return /^\/?$/
   }
   const patternRegex = pattern
     .replace(/\//g, '\\/') // escape slashes

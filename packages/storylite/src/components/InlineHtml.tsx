@@ -7,10 +7,6 @@ type InlineHtmlProps = {
 
 export function InlineHtml({ children, className, ...rest }: InlineHtmlProps): JSX.Element {
   return (
-    <span
-      className={cn('storylite-inlinehtml', className)}
-      dangerouslySetInnerHTML={{ __html: children }}
-      {...rest}
-    />
+    <span className={cn('storylite-inlinehtml', className)} dangerouslySetInnerHTML={{ __html: children }} {...rest} />
   )
 }
