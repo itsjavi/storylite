@@ -4,9 +4,9 @@ import { useStoryLiteStore } from '@/app/stores/global'
 
 import { registerWindowMessageListener, sendWindowMessage } from './windowMessaging'
 import {
+  type CrossDocumentMessage,
   CrossDocumentMessageSource,
   CrossDocumentMessageType,
-  type CrossDocumentMessage,
 } from './windowMessaging.types'
 
 export function useWindowMessenger() {

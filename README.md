@@ -65,7 +65,7 @@ pnpm add -D @storylite/storylite vite @storylite/vite-plugin
 ```
 
 For the next steps, please check the
-[example React](https://github.com/itsjavi/storylite/tree/main/packages/examples/react) directory to
+[example React](https://github.com/itsjavi/storylite/tree/main/examples/react) directory to
 learn how to integrate it in your project.
 
 ## Adding MDX support

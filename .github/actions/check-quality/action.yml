@@ -4,9 +4,6 @@ runs:
   using: 'composite'
   steps:
     - shell: bash
-      run: pnpm format-check
-
-    - shell: bash
       run: pnpm type-check
 
     - shell: bash

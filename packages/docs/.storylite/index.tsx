@@ -3,8 +3,8 @@ import '../src/styles/storylite-ui.css'
 
 // import other StoryLite UI styles here
 
-import { renderStoryLiteApp } from '@storylite/storylite'
 import stories from '@storylite/vite-plugin:stories'
+import { renderStoryLiteApp } from '@storylite/storylite'
 
 import config from './config'
 

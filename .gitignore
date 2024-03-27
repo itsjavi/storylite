@@ -45,3 +45,4 @@ build
 .history/
 
 .vscode/pinned-files.json
+.nx/cache
