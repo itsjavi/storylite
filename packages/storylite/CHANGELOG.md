@@ -5,12 +5,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 # [0.15.0](https://github.com/itsjavi/storylite/compare/v0.14.2...v0.15.0) (2024-03-27)
 
-**Note:** Version bump only for package @storylite/vite-plugin
 
+### Features
 
-
-
-
-## [0.14.2](https://github.com/itsjavi/storylite/compare/v0.14.1...v0.14.2) (2024-03-27)
-
-**Note:** Version bump only for package @storylite/vite-plugin
+* add support for React Server Components ([410ef23](https://github.com/itsjavi/storylite/commit/410ef234adfb33f161dd35ecb0228312d3ee15f1))
