@@ -27,7 +27,7 @@
     "test:ci": "jest --ci --coverage",
     "test:coverage": "jest --coverage",
     "type-check": "lerna run type-check",
-    "version:bump": "lerna version --no-private",
+    "version:bump": "lerna version --no-private --conventional-commits --create-release github",
     "version:publish": "lerna publish --no-private",
     "version:release": "pnpm version:publish"
   },
