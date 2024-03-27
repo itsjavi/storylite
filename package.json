@@ -22,7 +22,6 @@
     "lint-fix": "pnpm format-pkg && pnpm lint-biome-fix",
     "pre-versioning": "pnpm type-check && pnpm lint && pnpm build && pnpm publint && pnpm test:ci",
     "prepare": "pnpm format-pkg",
-    "prepublishOnly": "pnpm quality-checks",
     "pretty": "pnpm run format",
     "preview": "pnpm build && http-server ./examples/react/dist",
     "publint": "lerna run publint-check",
