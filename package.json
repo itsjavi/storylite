@@ -14,6 +14,9 @@
     "dev": "lerna run dev --parallel",
     "format": "pnpm lint-fix",
     "format-pkg": "pnpm sort-package-json package.json packages/*/package.json examples/*/package.json",
+    "lerna-publish": "pnpm quality-checks && lerna publish --no-private",
+    "lerna-release": "pnpm lerna-publish",
+    "lerna-version": "lerna version --no-private --conventional-commits --create-release github",
     "lint": "pnpm lint-biome",
     "lint-biome": "biome lint . --max-diagnostics 50",
     "lint-biome-fix": "biome check --max-diagnostics 50 --apply .",
@@ -26,10 +29,7 @@
     "test": "jest",
     "test:ci": "jest --ci --coverage",
     "test:coverage": "jest --coverage",
-    "type-check": "lerna run type-check",
-    "version:bump": "lerna version --no-private --conventional-commits --create-release github",
-    "version:publish": "lerna publish --no-private",
-    "version:release": "pnpm version:publish"
+    "type-check": "lerna run type-check"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.6.3",
