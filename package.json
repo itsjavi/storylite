@@ -1,5 +1,5 @@
 {
-  "version": "0.14.0",
+  "version": "0.0.0",
   "private": true,
   "homepage": "https://github.com/itsjavi/storylite#readme",
   "bugs": {
@@ -14,7 +14,7 @@
     "dev": "lerna run dev --parallel",
     "format": "pnpm lint-fix",
     "format-pkg": "pnpm sort-package-json package.json packages/*/package.json examples/*/package.json",
-    "lerna-publish": "pnpm quality-checks && lerna publish --no-private",
+    "lerna-publish": "lerna publish --no-private",
     "lerna-release": "pnpm lerna-publish",
     "lerna-version": "lerna version --no-private --conventional-commits --create-release github",
     "lint": "pnpm lint-biome",
@@ -22,6 +22,7 @@
     "lint-biome-fix": "biome check --max-diagnostics 50 --apply .",
     "lint-fix": "pnpm format-pkg && pnpm lint-biome-fix",
     "prepare": "pnpm format-pkg",
+    "prepublishOnly": "pnpm quality-checks",
     "pretty": "pnpm run format",
     "preview": "pnpm build && http-server ./examples/react/dist",
     "publint": "lerna run publint-check",
