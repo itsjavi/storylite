@@ -23,7 +23,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   plugins: [
     storylite({
-      stories: 'stories/**/*.stories.tsx', // relative to process.cwd()
+      stories: 'stories/**/*.stories.tsx', // should be relative to process.cwd()
     }),
   ],
 })
