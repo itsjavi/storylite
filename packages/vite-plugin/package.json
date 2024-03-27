@@ -1,6 +1,6 @@
 {
   "name": "@storylite/vite-plugin",
-  "version": "0.14.1",
+  "version": "0.14.2",
   "description": "A lightweight alternative to StoryBook. This package contains the Vite plugin.",
   "license": "MIT",
   "type": "module",
