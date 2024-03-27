@@ -18,19 +18,11 @@
   "types": "./dist/index.d.ts",
   "typesVersions": {
     "*": {
-      "*": [
-        "dist/index.d.ts"
-      ],
-      "virtual": [
-        "dist/virtual-modules.d.ts"
-      ]
+      "*": ["dist/index.d.ts"],
+      "virtual": ["dist/virtual-modules.d.ts"]
     }
   },
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
+  "files": ["dist", "README.md", "LICENSE"],
   "scripts": {
     "build": "tsup --clean",
     "dev": "tsup --watch",
@@ -41,12 +33,12 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "vite": "^5.0.2"
+    "vite": "^5.2.6"
   },
   "devDependencies": {
-    "@types/node": "^20.9.4",
-    "publint": "^0.2.5",
-    "tsup": "^8.0.1",
-    "typescript": "^5.3.2"
+    "@types/node": "^20.11.30",
+    "publint": "^0.2.7",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.3"
   }
 }

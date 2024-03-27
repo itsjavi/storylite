@@ -14,11 +14,7 @@
   },
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist",
-    "README.md",
-    "LICENSE"
-  ],
+  "files": ["dist", "README.md", "LICENSE"],
   "scripts": {
     "build": "tsup --clean",
     "dev": "tsup --watch",
@@ -29,18 +25,18 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "clsx": "^2.0.0",
-    "zustand": "^4.4.6"
+    "clsx": "^2.1.0",
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
-    "@types/node": "^20.9.4",
-    "@types/react": "^18.2.38",
-    "@types/react-dom": "^18.2.17",
-    "publint": "^0.2.5",
+    "@types/node": "^20.11.30",
+    "@types/react": "^18.2.72",
+    "@types/react-dom": "^18.2.22",
+    "publint": "^0.2.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "tsup": "^8.0.1",
-    "typescript": "^5.3.2"
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.3"
   },
   "peerDependencies": {
     "@types/node": "^20.4.9",

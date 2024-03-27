@@ -4,7 +4,7 @@ runs:
   using: 'composite'
   steps:
     - shell: bash
-      run: pnpm formatter-check
+      run: pnpm format-check
 
     - shell: bash
       run: pnpm type-check
