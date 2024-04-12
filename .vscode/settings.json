@@ -22,7 +22,7 @@
     "quickfix.biome": "explicit"
   },
   "[markdown]": {
-    "editor.defaultFormatter": "vscode.markdown-language-features",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.fontSize": 14,
     "editor.lineHeight": 18,
     "editor.wordWrap": "off",

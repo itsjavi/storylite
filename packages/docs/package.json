@@ -10,7 +10,7 @@
     "preview": "vite --base=/storylite/ preview --port=7088 --host=0.0.0.0 --open"
   },
   "dependencies": {
-    "lucide-react": "^0.363.0",
+    "lucide-react": "^0.367.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -18,12 +18,12 @@
     "@mdx-js/rollup": "^3.0.1",
     "@storylite/storylite": "workspace:*",
     "@storylite/vite-plugin": "workspace:*",
-    "@types/react": "^18.2.72",
-    "@types/react-dom": "^18.2.22",
+    "@types/react": "^18.2.77",
+    "@types/react-dom": "^18.2.25",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "remark-frontmatter": "^5.0.0",
     "remark-mdx-frontmatter": "^4.0.0",
-    "typescript": "^5.4.3",
-    "vite": "^5.2.6"
+    "typescript": "^5.4.5",
+    "vite": "^5.2.8"
   }
 }

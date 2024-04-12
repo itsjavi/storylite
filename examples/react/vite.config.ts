@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
-import { resolve } from 'path'
+import { resolve } from 'node:path'
 
 /**
  * @see https://vitejs.dev/config

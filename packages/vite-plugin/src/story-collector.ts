@@ -1,17 +1,14 @@
 import type { BaseStory, BaseStoryWithId, StoryFiles, StoryFilesMap } from './types'
 
 function filenameToId(filename: string) {
-  return (
-    '/' +
-    filename
-      .replace(/\.[jt]sx?$/, '')
-      .replace(/\.mdx?$/, '')
-      .replace(/\.(stories|story)$/, '')
-      .replace(/^\//g, '')
-      .split('/')
-      .slice(1) // remove the first segment, which is most probably the top-level directory name
-      .join('/')
-  )
+  return `/${filename
+    .replace(/\.[jt]sx?$/, '')
+    .replace(/\.mdx?$/, '')
+    .replace(/\.(stories|story)$/, '')
+    .replace(/^\//g, '')
+    .split('/')
+    .slice(1) // remove the first segment, which is most probably the top-level directory name
+    .join('/')}`
 }
 
 function titleizeFilename(filename: string) {
@@ -77,8 +74,7 @@ function modulesToStories(fileId: string, modules: { [key: string]: any }): { [k
 
         if (typeof story !== 'object') {
           throw new Error(
-            `Invalid story: ${exportName}. Story exported modules should exclusively be objects ` +
-              `following the StoryLite's Component Story Format (SL-CSF).`,
+            `Invalid story: ${exportName}. Story exported modules should exclusively be objects following the StoryLite\`s Component Story Format (SL-CSF).`,
           )
         }
 
@@ -139,7 +135,7 @@ function modulesToStories(fileId: string, modules: { [key: string]: any }): { [k
         if (exportName !== 'default' && !('component' in fullStory)) {
           // combined with the default export, the resulting story object should have defined a component
           throw new Error(
-            `Invalid story: ${exportName}. Non-default exports must define a "component" in the ` + `story object.`,
+            `Invalid story: ${exportName}. Non-default exports must define a "component" in the story object.`,
           )
         }
 
@@ -154,8 +150,8 @@ function modulesToStories(fileId: string, modules: { [key: string]: any }): { [k
       })
       // then sort by navigation.order if defined
       .sort(([, a], [, b]) => {
-        const aOrder = a?.navigation?.order ?? Infinity
-        const bOrder = b?.navigation?.order ?? Infinity
+        const aOrder = a?.navigation?.order ?? Number.POSITIVE_INFINITY
+        const bOrder = b?.navigation?.order ?? Number.POSITIVE_INFINITY
 
         return aOrder - bOrder
       }),
@@ -172,8 +168,8 @@ export function createStoryFilesMap(storyFiles: StoryFiles): StoryFilesMap {
     .sort(([, modulesA], [, modulesB]) => {
       const defaultA = resolveDefaultExport(modulesA)
       const defaultB = resolveDefaultExport(modulesB)
-      const aOrder = defaultA.navigation?.order ?? Infinity
-      const bOrder = defaultB.navigation?.order ?? Infinity
+      const aOrder = defaultA.navigation?.order ?? Number.POSITIVE_INFINITY
+      const bOrder = defaultB.navigation?.order ?? Number.POSITIVE_INFINITY
 
       return aOrder - bOrder
     })

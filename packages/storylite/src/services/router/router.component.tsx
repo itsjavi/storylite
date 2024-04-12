@@ -22,7 +22,7 @@ export function RouteRenderer({ route, fallback, ...rest }: RouteRendererProps):
   }
 
   if (!Component) {
-    throw new Error(`No route found for current path`)
+    throw new Error('No route found for current path')
   }
 
   return <Component {..._props} />

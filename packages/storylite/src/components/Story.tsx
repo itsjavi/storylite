@@ -1,4 +1,4 @@
-import React from 'react'
+import type React from 'react'
 
 import { useStoryLiteStore } from '@/app/stores/global'
 import { renderStory } from '@/services/renderer/react'

@@ -14,14 +14,14 @@
 [![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/storylite-demo?file=stories/index.stories.tsx)
 
 StoryLite is a modern and lightweight toolkit for crafting and managing design systems and
-components with ease. Inspired by the popular StoryBook UI and powered by Vite⚡️, StoryLite offers
+React components with ease. Inspired by the popular StoryBook UI and powered by Vite⚡️, StoryLite offers
 a streamlined and familiar developer experience, thanks to the story format compatible with
 [Component Story Format (CSF) 3.0](https://storybook.js.org/docs/react/api/csf).
 
-With StoryLite, you can quickly create, test, and refine UI components in isolation, ensuring that
+With StoryLite, you can quickly create, test, and refine React-based UI components in isolation, ensuring that
 your application maintains a consistent look and feel.
 
-Tailored for smaller projects that crave simplicity without the overhead of a full StoryBook setup,
+Tailored for smaller React projects that crave simplicity without the overhead of a full StoryBook setup,
 StoryLite provides an intuitive UI that's customizable to your unique needs.
 
 ![StoryLite](https://raw.githubusercontent.com/itsjavi/storylite/main/packages/storylite/screenshot.png)
@@ -101,11 +101,11 @@ looking to:
 - Better story interoperability with StoryBook.
 - Better extensibility and configuration options.
 - Expand addons to support multiple resizable viewports, and tools for zoom, accessibility, etc.
-- Extend examples to frameworks like Vue, Svelte, Solid, and Qwik.
 - Ability to generate code snippets for each story.
 - Ability to edit component props and state in the UI.
 - Improve documentation and mobile experience of the UI.
 - Full test coverage.
+- Study the possibility of supporting other frameworks (Vue, Svelte, Solid, etc.)
 
 ## Contributing
 

@@ -18,16 +18,13 @@ export function parseUri(uri: string): ParsedUri {
 }
 
 export function cleanHashPath(hashPath: string): string {
-  return (
-    '/' +
-    hashPath
-      .trim()
-      .replace(/^(\/?#\/?)/g, '')
-      .replace(/\/$/g, '')
-      .split('/')
-      .filter(Boolean)
-      .join('/')
-  )
+  return `/${hashPath
+    .trim()
+    .replace(/^(\/?#\/?)/g, '')
+    .replace(/\/$/g, '')
+    .split('/')
+    .filter(Boolean)
+    .join('/')}`
 }
 
 export function parsePathParams(pattern: string, path: string): URLSearchParams {

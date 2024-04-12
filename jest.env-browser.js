@@ -15,18 +15,18 @@ class BrowserEnvironment extends JSDOMEnvironment {
     this.global.Response = Response
 
     // TextEncoder and TextDecoder are not available in JSDOM
-    const commonJsUtils = require('util')
+    const commonJsUtils = require('node:util')
     this.global.TextEncoder = commonJsUtils.TextEncoder
     this.global.TextDecoder = commonJsUtils.TextDecoder
 
     // Some stream classes are different in JSDOM
-    const commonJsBuffer = require('buffer')
+    const commonJsBuffer = require('node:buffer')
     this.global.ArrayBuffer = ArrayBuffer
     this.global.Blob = commonJsBuffer.Blob
     this.global.File = commonJsBuffer.File
 
     // URL implementation is different in JSDOM
-    this.global.URL = require('url').URL
+    this.global.URL = require('node:url').URL
 
     // Match Crypto implementation in Node.js
     // globalThis.crypto = require('crypto').webcrypto

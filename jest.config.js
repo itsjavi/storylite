@@ -11,7 +11,7 @@ module.exports = {
     {
       displayName: 'DOM',
       coveragePathIgnorePatterns,
-      testEnvironment: __dirname + '/jest.env-browser.js',
+      testEnvironment: `${__dirname}/jest.env-browser.js`,
       testMatch: ['**/*.test.ts', '**/*.test.tsx'],
       testPathIgnorePatterns: ['/node_modules/', '/.local/', '/.ignore/', '/dist/'],
       // setupFilesAfterEnv: ['./jest.setup-browser.js'],

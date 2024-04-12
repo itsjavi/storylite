@@ -24,14 +24,14 @@ export function getStoryUrl(
   const { standalone, target } = options
   const isIframe = target === 'iframe'
 
-  const targetBasePath = isIframe ? getStoryLiteBaseCanvasPath() + '#' : '#'
+  const targetBasePath = isIframe ? `${getStoryLiteBaseCanvasPath()}#` : '#'
   const targetHashBasePath = isIframe ? 'preview/' : ''
   const baseStr = [getStoryLiteBasePath(), targetBasePath, targetHashBasePath].join('').replace(/\/\//g, '/')
 
   let url = storyId === undefined ? baseStr : `${baseStr}/stories/${storyId}`
 
   if (standalone) {
-    url += `/?standalone=true`
+    url += '/?standalone=true'
   }
 
   return url.replace(/\/\//g, '/')

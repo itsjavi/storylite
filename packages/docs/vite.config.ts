@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
-import { resolve } from 'path'
+import { resolve } from 'node:path'
 
 import mdx from '@mdx-js/rollup'
 import storylite from '@storylite/vite-plugin'

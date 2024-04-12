@@ -33,7 +33,7 @@ export function ToolbarAddon(props: SLAddonProps<false>) {
   } = props
   const [active, setActive] = useState(isActive ? isActive(ctx) : false)
   const defaultNode = defaultContent ?? '⬜️'
-  const activeNode = activeContent ?? defaultContent ?? `🔳`
+  const activeNode = activeContent ?? defaultContent ?? '🔳'
 
   const handleOnClick = () => {
     if (onClick) {
@@ -98,7 +98,7 @@ export function ToolbarStatefulAddon(props: SLAddonProps<true>) {
     buttonProps,
   } = props
   const defaultNode = defaultContent ?? '⬜️'
-  const activeNode = activeContent ?? defaultContent ?? `🔳`
+  const activeNode = activeContent ?? defaultContent ?? '🔳'
   const [state, setState] = useState<StoryLiteParamValue | undefined>(
     persistent ? (ctx.parameters[id].value as any) : undefined,
   )
