@@ -1,5 +1,7 @@
 # StoryLite
 
+> **Project Status** (2025-02-01): I currently have no buffer to work on this project. If you'd like to contribute, feel free to open a pull request. Thank you for your understanding!
+
 <a href="https://itsjavi.com/storylite" target="_blank"><img src="https://raw.githubusercontent.com/itsjavi/storylite/main/packages/storylite/assets/logo.svg" width="64" height="64" /></a>
 
 <p>
