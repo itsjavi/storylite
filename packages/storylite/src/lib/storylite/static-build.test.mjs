@@ -1,10 +1,12 @@
-import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
+import { mkdir, mkdtemp, readFile, realpath, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createServer } from 'vite'
 import { describe, expect, it } from 'vitest'
 import {
+  collectImportedStoryCssFiles,
   emitManagerShell,
+  loadImportedStoryCss,
   loadCss,
   rewritePublicAssetUrls,
   staticPreviewSetupScript,
@@ -121,6 +123,78 @@ describe('storylite static build', () => {
 
     try {
       await expect(loadCss(server, [cssFile])).resolves.toContain('color: transformed')
+    } finally {
+      await server.close()
+      await rm(root, { force: true, recursive: true })
+    }
+  })
+
+  it('loads css imported through story modules for static pages', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'storylite-static-imported-css-'))
+    const srcDir = join(root, 'src')
+    await mkdir(srcDir)
+
+    const storyFile = join(srcDir, 'button.stories.ts')
+    const componentFile = join(srcDir, 'button.ts')
+    const cssFile = join(srcDir, 'button.css')
+
+    await writeFile(
+      storyFile,
+      `
+        import { renderButton } from './button'
+
+        export default { title: 'Demo' }
+        export const Button = { render: renderButton }
+      `,
+    )
+    await writeFile(
+      componentFile,
+      `
+        import './button.css'
+
+        export function renderButton() {
+          return '<button class="imported-button">Save</button>'
+        }
+      `,
+    )
+    await writeFile(cssFile, '.imported-button { color: __TOKEN__; }')
+
+    const server = await createServer({
+      configFile: false,
+      root,
+      appType: 'custom',
+      plugins: [
+        {
+          name: 'test-static-imported-css-transform',
+          transform(code, id) {
+            if (id.includes('button.css')) {
+              return code.replace('__TOKEN__', 'transformed')
+            }
+
+            return null
+          },
+        },
+      ],
+      server: {
+        middlewareMode: true,
+        hmr: false,
+        ws: false,
+      },
+      optimizeDeps: {
+        entries: [],
+        noDiscovery: true,
+      },
+    })
+
+    try {
+      await server.ssrLoadModule(`/@fs${storyFile}`)
+
+      await expect(realpath(cssFile)).resolves.toBe(
+        collectImportedStoryCssFiles(server, [storyFile])[0],
+      )
+      await expect(loadImportedStoryCss(server, [storyFile])).resolves.toContain(
+        'color: transformed',
+      )
     } finally {
       await server.close()
       await rm(root, { force: true, recursive: true })

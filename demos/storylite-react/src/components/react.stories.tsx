@@ -6,6 +6,7 @@ import type {
 import { ReactButton } from './ReactButton'
 import { ReactCard } from './ReactCard'
 import { ReactField } from './ReactField'
+import { ReactImportedCssCard } from './ReactImportedCssCard'
 import { ReactLayout } from './ReactLayout'
 
 type ButtonArgs = {
@@ -29,6 +30,11 @@ type LayoutArgs = {
   first: string
   second: string
   third: string
+}
+
+type ImportedCssArgs = {
+  label: string
+  detail: string
 }
 
 const parameters: StoryLiteParameters = {
@@ -81,3 +87,12 @@ export const Layout = {
   },
   render: (args) => <ReactLayout first={args.first} second={args.second} third={args.third} />,
 } satisfies StoryLiteStoryDefinition<LayoutArgs>
+
+export const ImportedCss = {
+  name: 'Imported CSS',
+  args: {
+    label: 'Side-effect CSS import',
+    detail: 'This card is styled by CSS imported inside the React component.',
+  },
+  render: (args) => <ReactImportedCssCard label={args.label} detail={args.detail} />,
+} satisfies StoryLiteStoryDefinition<ImportedCssArgs>

@@ -61,6 +61,7 @@ declare module 'virtual:storylite/project' {
   export const storyModuleExportNames: Record<string, readonly string[]>
   export const storySourceMetadata: StorySourceMetadataByImportPath
   export const globalCss: readonly string[]
+  export const importedCss: readonly string[]
   export const setupPreview: ((window: Window) => void) | undefined
   export const storyIdResolver: StoryIdResolver | undefined
   export const rendererClientLoaders: Record<string, () => Promise<StoryLiteClientRendererModule>>

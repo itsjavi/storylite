@@ -25,6 +25,7 @@
     readonly activeArgs: StoryArgs
     readonly reloadNonce: number
     readonly globalCss: readonly string[]
+    readonly importedCss: readonly string[]
     readonly previewHtml: PreviewHtmlOptions
     readonly setupPreview: ((window: Window) => void) | undefined
     readonly home: HomePage
@@ -41,6 +42,7 @@
     activeArgs,
     reloadNonce,
     globalCss,
+    importedCss,
     previewHtml,
     setupPreview,
     home,
@@ -89,6 +91,7 @@
       theme: storyliteSettings.previewTheme,
       background: storyliteSettings.background,
       globalCss,
+      importedCss,
       html: previewHtml,
       setupPreview,
     }
@@ -158,6 +161,7 @@
       mountedStory = null
       const renderedStory = renderStoryIntoDocument(document, currentCanvas, activeStory, args, {
         globalCss,
+        importedCss,
         setupPreview,
         rendererClientLoaders,
       })

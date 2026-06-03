@@ -1,0 +1,22 @@
+.imported-css-demo {
+  display: grid;
+  gap: 8px;
+  max-inline-size: 440px;
+  padding: 18px;
+  border: 2px solid oklch(58% 0.16 150);
+  border-radius: 10px;
+  background: oklch(95% 0.05 150);
+  color: oklch(25% 0.05 155);
+}
+
+.imported-css-demo strong {
+  font-size: 1.1rem;
+}
+
+.imported-css-demo p {
+  margin: 0;
+}
+
+.brand__content {
+  background: oklch(58% 0.16 150);
+}

@@ -6,6 +6,7 @@ import process from 'node:process'
 import { parseArgs } from 'node:util'
 import { createServer, build, preview } from 'vite'
 import { transformBuiltManagerHtml } from './customization.mjs'
+import { storyliteImportedCssBridgePlugin } from './imported-css-bridge.mjs'
 import { isBareImportSpecifier } from '../src/lib/storylite/utils.js'
 import {
   createProjectGraph,
@@ -70,6 +71,7 @@ if (command === 'dev') {
     publicDir: manifest.publicDir,
     plugins: [
       ...vitePlugins,
+      storyliteImportedCssBridgePlugin(),
       storylitePlugin(projectRoot, graph, {
         managerDistDir,
         serveManager: true,

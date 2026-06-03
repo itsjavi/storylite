@@ -12,6 +12,7 @@ import {
   resolvePublicDir,
   resolveStoryliteProjectPlugins,
   storyPagePath,
+  virtualImportedCssId,
 } from '../../../bin/project-graph.mjs'
 
 describe('storylite project graph', () => {
@@ -446,6 +447,31 @@ export const Card = {}`,
       await server.close()
       await rm(root, { force: true, recursive: true })
     }
+  })
+
+  it('imports the css runtime before story modules in dev mode', () => {
+    const manifest = {
+      projectRoot: '/project',
+      storyFiles: ['/project/src/button.stories.ts'],
+      cssFiles: [],
+      publicDir: false,
+      setupFile: null,
+      rendererAdapters: [],
+      storyExportNamesByFile: {},
+      storySourceMetadataByFile: {},
+      storyIdResolverSource: null,
+      ui: {},
+      preview: {},
+      manager: {},
+      home: null,
+    }
+    const moduleCode = generateProjectModuleCode(manifest, { serveManager: true })
+    const cssRuntimeImport = `import { storyliteImportedCss } from ${JSON.stringify(virtualImportedCssId)};`
+    const storyImport = 'import * as storyModule0 from "/@fs/project/src/button.stories.ts";'
+
+    expect(moduleCode.indexOf(cssRuntimeImport)).toBeGreaterThanOrEqual(0)
+    expect(moduleCode.indexOf(cssRuntimeImport)).toBeLessThan(moduleCode.indexOf(storyImport))
+    expect(moduleCode).toContain('export const importedCss = storyliteImportedCss.toArray();')
   })
 
   it('rejects renderer adapters that override built-in renderers', async () => {

@@ -21,6 +21,7 @@ export type PreviewOptions = {
   readonly background: string
   readonly theme: 'light' | 'dark'
   readonly globalCss?: readonly string[]
+  readonly importedCss?: readonly string[]
   readonly html?: PreviewHtmlOptions
   readonly setupPreview?: (window: Window) => void
   readonly rendererClientLoaders?: StoryLiteRendererClientLoaders
@@ -28,6 +29,7 @@ export type PreviewOptions = {
 
 export type CanvasRenderOptions = {
   readonly globalCss?: readonly string[]
+  readonly importedCss?: readonly string[]
   readonly setupPreview?: (window: Window) => void
   readonly rendererClientLoaders?: StoryLiteRendererClientLoaders
 }
@@ -56,7 +58,7 @@ export function preparePreview(
 
   options.setupPreview?.(parts.document.defaultView ?? iframe.contentWindow ?? window)
 
-  const css = [...(options.globalCss ?? []), collectCss(story)].filter(Boolean).join('\n\n')
+  const css = collectPreviewCss(options, story)
   applyBundle(iframe, {
     'tokens.css': previewBaseCss(options),
     'components.css': css,
@@ -94,10 +96,7 @@ export function renderStoryIntoDocument(
 ): Promise<MountedStory> {
   const win = document.defaultView ?? window
   options.setupPreview?.(win)
-  applyInlinePreviewCss(
-    document,
-    [...(options.globalCss ?? []), collectCss(story)].filter(Boolean).join('\n\n'),
-  )
+  applyInlinePreviewCss(document, collectPreviewCss(options, story))
   document.documentElement.dataset.theme = 'light'
 
   return renderStoryIntoCanvas(
@@ -238,6 +237,15 @@ function collectCss(story: StoryLiteStory): string {
   const css = story.parameters.css
 
   return typeof css === 'string' ? css : (css?.join('\n\n') ?? '')
+}
+
+export function collectPreviewCss(
+  options: Pick<PreviewOptions, 'globalCss' | 'importedCss'>,
+  story: StoryLiteStory,
+): string {
+  return [...(options.globalCss ?? []), ...(options.importedCss ?? []), collectCss(story)]
+    .filter(Boolean)
+    .join('\n\n')
 }
 
 function applyInlinePreviewCss(document: Document, css: string): void {

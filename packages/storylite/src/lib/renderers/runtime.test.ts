@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { applyArgsToElement, renderStoryIntoCanvas } from './runtime'
+import { applyArgsToElement, collectPreviewCss, renderStoryIntoCanvas } from './runtime'
 
 describe('applyArgsToElement', () => {
   it('assigns properties and mirrors primitive values to attributes', () => {
@@ -65,5 +65,35 @@ describe('renderStoryIntoCanvas', () => {
         },
       ),
     ).rejects.toThrow('no matching renderer adapter is registered')
+  })
+})
+
+describe('collectPreviewCss', () => {
+  it('orders configured, imported, and story css', () => {
+    expect(
+      collectPreviewCss(
+        {
+          globalCss: ['.global { color: red; }'],
+          importedCss: ['.imported { color: green; }'],
+        },
+        {
+          id: 'demo--custom',
+          importPath: 'src/demo.stories.ts',
+          exportName: 'Custom',
+          title: 'Demo',
+          name: 'Custom',
+          args: {},
+          argTypes: {},
+          parameters: {
+            css: '.story { color: blue; }',
+          },
+          renderer: 'html',
+        },
+      ),
+    ).toBe(
+      ['.global { color: red; }', '.imported { color: green; }', '.story { color: blue; }'].join(
+        '\n\n',
+      ),
+    )
   })
 })

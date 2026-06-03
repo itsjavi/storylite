@@ -1,6 +1,7 @@
 import {
   globalCss,
   home,
+  importedCss,
   isStaticBuild,
   managerHtml,
   previewHtml,
@@ -26,6 +27,7 @@ export const storyIdCollisions = normalizedStories.idCollisions
 export {
   globalCss,
   home,
+  importedCss,
   isStaticBuild,
   managerHtml,
   previewHtml,

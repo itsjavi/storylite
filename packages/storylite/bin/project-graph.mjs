@@ -11,6 +11,8 @@ import { isBareImportSpecifier, isRecord } from '../src/lib/storylite/utils.js'
 
 export const virtualProjectId = 'virtual:storylite/project'
 export const resolvedVirtualProjectId = `\0${virtualProjectId}`
+export const virtualImportedCssId = 'virtual:storylite/imported-css'
+export const resolvedVirtualImportedCssId = `\0${virtualImportedCssId}`
 export const projectModulePath = '/project.js'
 
 const defaultConfig = { stories: ['./src/**/*.stories.{ts,tsx,js,jsx}'], css: [] }
@@ -146,6 +148,14 @@ export async function resolveStoryliteProjectPlugins(
 
 export function generateProjectModuleCode(manifest, options = {}) {
   const useStaticStoryMetadata = options.includeStoryModules === 'metadata'
+  const includeImportedCssRuntime =
+    options.includeImportedCssRuntime ??
+    Boolean(
+      options.serveManager && options.includeStoryModules !== false && !useStaticStoryMetadata,
+    )
+  const importedCssRuntimeImport = includeImportedCssRuntime
+    ? `import { storyliteImportedCss } from ${JSON.stringify(virtualImportedCssId)};`
+    : ''
   const storyImports =
     options.includeStoryModules === false
       ? ''
@@ -189,7 +199,8 @@ export function generateProjectModuleCode(manifest, options = {}) {
   const storySourceMetadata = JSON.stringify(manifest.storySourceMetadataByFile ?? {})
   const isStaticBuild = options.isStaticBuild ?? !options.serveManager
 
-  return `${storyImports}
+  return `${importedCssRuntimeImport}
+${storyImports}
 ${cssImports}
 ${setupImport}
 
@@ -200,6 +211,7 @@ ${storyMap}
 export const storyModuleExportNames = ${storyModuleExportNames};
 export const storySourceMetadata = ${storySourceMetadata};
 export const globalCss = [${cssList}];
+export const importedCss = ${includeImportedCssRuntime ? 'storyliteImportedCss.toArray()' : '[]'};
 export const setupPreview = importedSetupPreview;
 export const storyIdResolver = ${formatFunctionExport(manifest.storyIdResolverSource)};
 export const rendererClientLoaders = {

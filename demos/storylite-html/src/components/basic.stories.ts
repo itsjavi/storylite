@@ -8,6 +8,7 @@ import badgeHtml from './badge.html?raw'
 import buttonHtml from './button.html?raw'
 import cardHtml from './card.html?raw'
 import fieldHtml from './field.html?raw'
+import { renderImportedCssDemo } from './imported-css-demo'
 import layoutHtml from './layout.html?raw'
 import css from '../styles.css?raw'
 
@@ -39,6 +40,11 @@ type LayoutArgs = {
   first: string
   second: string
   third: string
+}
+
+type ImportedCssArgs = {
+  label: string
+  detail: string
 }
 
 const parameters: StoryLiteParameters = { css }
@@ -97,6 +103,15 @@ export const Layout = {
   },
   render: template(layoutHtml),
 } satisfies StoryLiteStoryDefinition<LayoutArgs>
+
+export const ImportedCss = {
+  name: 'Imported CSS',
+  args: {
+    label: 'Side-effect CSS import',
+    detail: 'This card is styled by CSS imported from its helper module.',
+  },
+  render: renderImportedCssDemo,
+} satisfies StoryLiteStoryDefinition<ImportedCssArgs>
 
 function template<TArgs extends TemplateArgs>(html: string) {
   return ((args: TArgs) =>

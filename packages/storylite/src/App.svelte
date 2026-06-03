@@ -17,6 +17,7 @@
   import {
     globalCss,
     home,
+    importedCss,
     isStaticBuild,
     previewHtml,
     projectUi,
@@ -207,6 +208,7 @@
       {activeArgs}
       {reloadNonce}
       {globalCss}
+      {importedCss}
       {previewHtml}
       {setupPreview}
       {home}

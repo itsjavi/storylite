@@ -16,6 +16,7 @@ import {
 } from '../src/lib/storylite/utils.js'
 
 const reservedExports = new Set(['default', '__esModule'])
+const cssRequestRE = /\.(css|less|sass|scss|styl|stylus|pcss|postcss)(?:$|\?)/
 
 export async function emitManagerShell({ managerDistDir, outDir, manager, app }) {
   await cp(managerDistDir, outDir, { recursive: true })
@@ -64,6 +65,7 @@ export async function emitStaticStoryPages({
     }
 
     const css = await loadCss(server, manifest.cssFiles)
+    const importedCss = await loadImportedStoryCss(server, manifest.storyFiles)
 
     await Promise.all(
       stories.map(async (story) => {
@@ -71,6 +73,7 @@ export async function emitStaticStoryPages({
           story,
           manifest,
           css,
+          importedCss,
           base,
           staticRenderers,
           publicAssetPaths,
@@ -126,10 +129,68 @@ export async function loadCss(server, files) {
   return contents.join('\n\n')
 }
 
+export async function loadImportedStoryCss(server, storyFiles) {
+  return loadCss(server, collectImportedStoryCssFiles(server, storyFiles))
+}
+
+export function collectImportedStoryCssFiles(server, storyFiles) {
+  const cssFiles = new Set()
+  const seenModules = new Set()
+
+  for (const file of storyFiles) {
+    const modules = server.moduleGraph.getModulesByFile(file) ?? []
+
+    for (const module of modules) {
+      collectImportedCssFiles(module, cssFiles, seenModules)
+    }
+  }
+
+  return Array.from(cssFiles)
+}
+
+function collectImportedCssFiles(module, cssFiles, seenModules) {
+  if (!module || seenModules.has(module)) {
+    return
+  }
+
+  seenModules.add(module)
+
+  const cssFile = cssFileForModule(module)
+  if (cssFile) {
+    cssFiles.add(cssFile)
+  }
+
+  for (const importedModule of module.importedModules ?? []) {
+    collectImportedCssFiles(importedModule, cssFiles, seenModules)
+  }
+}
+
+function cssFileForModule(module) {
+  const file = module.file ?? filePathFromModuleId(module.id)
+  return file && cssRequestRE.test(file) ? file : null
+}
+
+function filePathFromModuleId(id) {
+  const path = cleanModuleId(id)
+
+  if (path.startsWith('/@fs/')) {
+    return path.slice('/@fs'.length)
+  }
+
+  return null
+}
+
+function cleanModuleId(id) {
+  return String(id ?? '')
+    .replace(/^\0/, '')
+    .split('?')[0]
+}
+
 async function renderStaticStoryPage(
   story,
   manifest,
   globalCss,
+  importedCss,
   base,
   staticRenderers,
   publicAssetPaths = new Set(),
@@ -173,6 +234,12 @@ async function renderStaticStoryPage(
     base,
     publicAssetFallbackBase,
   )
+  const previewImportedCss = rewritePublicAssetUrls(
+    importedCss,
+    publicAssetPaths,
+    base,
+    publicAssetFallbackBase,
+  )
   const previewSetupScript = staticPreviewSetupScript(
     manifest,
     base,
@@ -193,6 +260,7 @@ async function renderStaticStoryPage(
     <style>
       ${previewBaseCss()}
       ${previewGlobalCss}
+      ${previewImportedCss}
       ${storyCss}
       .sl-static-warning {
         margin: 0 0 1rem;
