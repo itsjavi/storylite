@@ -1,8 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import {
-  createImportedCssRuntimeCode,
-  rewriteImportedCssModule,
-} from '../../../bin/imported-css-bridge.mjs'
+import { createImportedCssRuntimeCode, rewriteImportedCssModule } from './imported-css-bridge.mjs'
 
 describe('storylite imported css bridge', () => {
   it('rewrites vite css style injection to the StoryLite registry', () => {

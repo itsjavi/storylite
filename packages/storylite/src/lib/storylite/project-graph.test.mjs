@@ -4,6 +4,7 @@ import { join } from 'node:path'
 import { createServer } from 'vite'
 import { describe, expect, it } from 'vitest'
 import {
+  createProjectGraph,
   extractStoryExportNames,
   extractStorySourceMetadata,
   generateProjectModuleCode,
@@ -16,6 +17,15 @@ import {
 } from '../../../bin/project-graph.mjs'
 
 describe('storylite project graph', () => {
+  it('treats css preprocessor files as project files for reloads', () => {
+    const graph = createProjectGraph('/project')
+
+    expect(graph.isProjectFile('/project/src/button.css')).toBe(true)
+    expect(graph.isProjectFile('/project/src/button.scss')).toBe(true)
+    expect(graph.isProjectFile('/project/src/button.less')).toBe(true)
+    expect(graph.isProjectFile('/project/src/button.styl')).toBe(true)
+  })
+
   it('extracts story export names in source order', async () => {
     expect(
       await extractStoryExportNames(

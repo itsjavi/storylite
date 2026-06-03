@@ -18,6 +18,7 @@ export const projectModulePath = '/project.js'
 const defaultConfig = { stories: ['./src/**/*.stories.{ts,tsx,js,jsx}'], css: [] }
 const builtinRenderers = new Set(['html', 'web-components'])
 const reservedExports = new Set(['default', '__esModule'])
+const cssFileRE = /\.(css|less|sass|scss|styl|stylus|pcss|postcss)$/
 const conventionFileNames = [
   'manager-head.html',
   'manager-body-start.html',
@@ -540,7 +541,7 @@ function isProjectFile(root, file) {
     normalized.startsWith('.storylite/') ||
     normalized.includes('.stories.') ||
     normalized.endsWith('.md') ||
-    normalized.endsWith('.css') ||
+    cssFileRE.test(normalized) ||
     normalized.endsWith('.html') ||
     normalized.endsWith('.tsx') ||
     normalized.endsWith('.ts')
