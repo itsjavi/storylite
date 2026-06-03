@@ -36,11 +36,11 @@
     "pkg:version": "node ./scripts/pkg-version.mjs"
   },
   "devDependencies": {
-    "oxfmt": "^0.52.0",
+    "oxfmt": "^0.53.0",
     "publint": "^0.3.21",
     "tsdown": "^0.22.1",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.7"
+    "vitest": "^4.1.8"
   },
   "engines": {
     "node": ">=24"

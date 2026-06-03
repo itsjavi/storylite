@@ -13,14 +13,14 @@
   "dependencies": {
     "@storylite/renderer-svelte": "workspace:*",
     "@storylite/storylite": "workspace:*",
-    "svelte": "^5.56.0"
+    "svelte": "^5.56.1"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^7.1.2",
     "@tailwindcss/vite": "^4.3.0",
-    "svelte-check": "^4.4.8",
+    "svelte-check": "^4.5.0",
     "tailwindcss": "^4.3.0",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.7"
+    "vitest": "^4.1.8"
   }
 }

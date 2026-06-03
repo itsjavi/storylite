@@ -13,15 +13,15 @@
   "dependencies": {
     "@storylite/renderer-react": "workspace:*",
     "@storylite/storylite": "workspace:*",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6"
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.0",
-    "@types/react": "^19.2.15",
+    "@types/react": "^19.2.16",
     "@types/react-dom": "^19.2.3",
     "tailwindcss": "^4.3.0",
     "typescript": "^6.0.3",
-    "vitest": "^4.1.7"
+    "vitest": "^4.1.8"
   }
 }
