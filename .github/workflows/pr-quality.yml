@@ -48,3 +48,69 @@ jobs:
 
       - name: Test
         run: pnpm test
+
+  e2e:
+    name: Playwright E2E
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+          show-progress: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v5
+        with:
+          path: ~/.cache/ms-playwright
+          key:
+            ${{ runner.os }}-playwright-${{ hashFiles('apps/e2e/package.json', 'pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-playwright-
+
+      - name: Install Playwright Chromium
+        run: pnpm -F @storylite/e2e exec playwright install --with-deps chromium
+
+      - name: Run Playwright tests
+        run: pnpm -F @storylite/e2e run e2e
+
+      - name: Upload Playwright report
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v5
+        with:
+          name: playwright-report-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            apps/e2e/playwright-report
+            apps/e2e/test-results
+          retention-days: 30
+          if-no-files-found: warn
+
+      - name: Publish Playwright summary
+        if: ${{ always() }}
+        run: |
+          {
+            echo "### Playwright E2E"
+            echo ""
+            echo "| Item | Value |"
+            echo "| --- | --- |"
+            echo "| Workflow run | [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) |"
+            echo "| Browser cache | ${{ steps.playwright-cache.outputs.cache-hit == 'true' && 'hit' || 'miss' }} |"
+            echo "| Report artifact | playwright-report-${{ github.run_id }}-${{ github.run_attempt }} |"
+          } >> "$GITHUB_STEP_SUMMARY"
