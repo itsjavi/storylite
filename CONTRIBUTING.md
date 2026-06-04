@@ -5,7 +5,7 @@ Thanks for taking the time to contribute.
 ## Requirements
 
 - Node.js 24 or newer.
-- pnpm 11.2.2. The exact version is recorded in `package.json`.
+- pnpm 11 or greater. The exact version is recorded in `package.json`.
 
 Install dependencies from the repository root:
 
@@ -73,6 +73,61 @@ Run package-specific scripts with pnpm filters when you only need one workspace:
 pnpm -F @storylite/web run test
 pnpm -F @storylite/storylite run typecheck
 ```
+
+## Testing Local Package Changes in Consumer Projects
+
+Use packed tarballs when you need someone to test a branch in their own app before publishing a
+StoryLite release. This is closer to the published package shape than `pnpm link` because it uses
+the same `files`, `bin`, `exports`, and built `dist` output that npm receives.
+
+From this repository:
+
+```sh
+pnpm install
+pnpm build:packages
+
+rm -rf /tmp/storylite-local-packages
+mkdir -p /tmp/storylite-local-packages
+
+for package in contracts preview-host storylite renderer-react; do
+  (cd "packages/$package" && pnpm pack --pack-destination /tmp/storylite-local-packages)
+done
+```
+
+Pack `renderer-preact`, `renderer-svelte`, `renderer-vue`, or `renderer-solid` instead of
+`renderer-react` when the consumer app uses one of those adapters.
+
+In the consumer project, install the tarballs and force StoryLite transitive dependencies to the
+same local build. Use absolute `file:` paths. The `<version>` placeholder in this example is the
+current version from each package's `package.json`:
+
+```yaml
+# pnpm-workspace.yaml
+overrides:
+  '@storylite/contracts': file:/tmp/storylite-local-packages/storylite-contracts-<version>.tgz
+  '@storylite/preview-host': file:/tmp/storylite-local-packages/storylite-preview-host-<version>.tgz
+  '@storylite/storylite': file:/tmp/storylite-local-packages/storylite-storylite-<version>.tgz
+  '@storylite/renderer-react': file:/tmp/storylite-local-packages/storylite-renderer-react-<version>.tgz
+```
+
+Then install and run the consumer project's normal StoryLite commands:
+
+```sh
+pnpm install --force
+pnpm storylite
+pnpm storylite:build
+```
+
+If the consumer app does not already depend on the renderer adapter, add the same tarball as a dev
+dependency:
+
+```sh
+pnpm add -D file:/tmp/storylite-local-packages/storylite-renderer-react-<version>.tgz
+```
+
+After changing this repository again, rebuild and repack the tarballs, then rerun
+`pnpm install --force` in the consumer project so pnpm refreshes packages with the same version
+number.
 
 ## Publishing
 
