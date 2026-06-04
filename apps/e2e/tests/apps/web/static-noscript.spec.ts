@@ -11,7 +11,8 @@ test('static build sidebar links open materialized story pages without JavaScrip
   const sidebar = page.getByRole('complementary', { name: 'Stories' })
   await expect(sidebar).toBeVisible()
   await expect(sidebar.getByText('Component Stories', { exact: true })).toBeVisible()
-  await expect(sidebar.getByRole('button', { name: /CSS Demos/ })).toBeVisible()
+  await expect(sidebar.getByRole('button', { name: /^Examples\b/ })).toBeVisible()
+  await expect(sidebar.getByRole('button', { name: /^Pure CSS\b/ })).toBeVisible()
 
   const buttonStory = sidebar.getByRole('link', { name: 'Button', exact: true })
   await expect(buttonStory).toBeVisible()

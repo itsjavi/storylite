@@ -1,5 +1,5 @@
 import { expect, test } from './fixtures.ts'
-import { expectHomeReady, openStory } from './test-utils.ts'
+import { expectHomeReady, expandPureCssStories, openStory } from './test-utils.ts'
 import { expectHash, expectNoPageOverflow } from '../../shared/test-utils.ts'
 
 test('home page renders StoryLite project information and sidebar stories', async ({ page }) => {
@@ -17,7 +17,8 @@ test('home page renders StoryLite project information and sidebar stories', asyn
   await expectHomeReady(page)
   const sidebar = page.getByRole('complementary', { name: 'Stories' })
   await expect(sidebar.getByText('Component Stories', { exact: true })).toBeVisible()
-  await expect(sidebar.getByRole('button', { name: /CSS Demos/ })).toBeVisible()
+  await expect(sidebar.getByRole('button', { name: /^Examples\b/ })).toBeVisible()
+  await expandPureCssStories(page)
   for (const story of ['Button', 'Card', 'Field', 'Badge', 'Layout']) {
     await expect(sidebar.getByRole('link', { name: story, exact: true })).toBeVisible()
   }

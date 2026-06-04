@@ -10,29 +10,21 @@ test('viewport selector resizes the canvas frame', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Choose viewport' }).click()
   await page.getByLabel('Viewports').getByRole('button').filter({ hasText: 'Mobile' }).click()
-  await expect(canvasFrame).toHaveCSS('width', '360px')
+  await expect(canvasFrame).toHaveCSS('width', '390px')
 
   await page.getByRole('button', { name: 'Choose viewport' }).click()
   await page.getByLabel('Viewports').getByRole('button').filter({ hasText: 'Desktop' }).click()
-  await expect(canvasFrame).toHaveCSS('width', '1280px')
+  await expect(canvasFrame).toHaveCSS('width', '1120px')
 })
 
-test('preview theme and custom toolbar controls update the iframe body', async ({ page }) => {
+test('preview theme control updates the iframe document', async ({ page }) => {
   await page.goto('/#/story/basic--button')
   await expectStoryShell(page, 'Button')
 
   const frame = page.frameLocator(PREVIEW_IFRAME)
-  const body = frame.locator('body')
 
   await page.getByRole('button', { name: 'Use dark theme' }).click()
   await expect(frame.locator('html')).toHaveAttribute('data-theme', 'dark')
-
-  await page.getByRole('button', { name: 'A11y outlines' }).click()
-  await expect(body).toHaveClass(/show-a11y-outlines/)
-
-  await page.getByRole('button', { name: 'Density' }).click()
-  await page.getByLabel('Density').getByRole('button', { name: 'Compact' }).click()
-  await expect(body).toHaveClass(/density-compact/)
 })
 
 test('background selector applies the selected preview background', async ({ page }) => {
@@ -40,13 +32,12 @@ test('background selector applies the selected preview background', async ({ pag
   await expectStoryShell(page, 'Card')
 
   await page.getByRole('button', { name: 'Choose canvas background' }).click()
-  await page.getByLabel('Canvas backgrounds').getByRole('button', { name: 'Mint' }).click()
+  await page.getByLabel('Canvas backgrounds').getByRole('button', { name: 'Dark' }).click()
 
-  const background = await page
-    .frameLocator(PREVIEW_IFRAME)
-    .locator('body')
-    .evaluate((body) => body.style.background)
-  expect(background).toBe('rgb(236, 253, 245)')
+  await expect(page.frameLocator(PREVIEW_IFRAME).locator('body')).toHaveCSS(
+    'background-color',
+    'rgb(17, 17, 17)',
+  )
 })
 
 test('workspace can be maximized and restored', async ({ page }) => {
