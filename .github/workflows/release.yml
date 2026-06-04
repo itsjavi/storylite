@@ -1,0 +1,169 @@
+name: Release
+
+on:
+  pull_request_target:
+    types: [closed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Exact release version to create, for example 1.5.4.'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.event.pull_request.base.ref || github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    if: >-
+      ${{
+        github.event_name == 'workflow_dispatch' ||
+        (
+          github.event.pull_request.merged == true &&
+          (
+            contains(github.event.pull_request.labels.*.name, 'release-minor') ||
+            contains(github.event.pull_request.labels.*.name, 'release-patch')
+          )
+        )
+      }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Resolve release
+        id: release
+        shell: bash
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          MANUAL_VERSION: ${{ inputs.version || '' }}
+          HAS_MINOR_LABEL: ${{ contains(github.event.pull_request.labels.*.name, 'release-minor') }}
+          HAS_PATCH_LABEL: ${{ contains(github.event.pull_request.labels.*.name, 'release-patch') }}
+          TARGET_REF: ${{ github.event.pull_request.base.ref || github.ref_name }}
+        run: |
+          semver_re='^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$'
+
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            release_argument="$MANUAL_VERSION"
+
+            if [[ ! "$release_argument" =~ $semver_re ]]; then
+              echo "::error title=Invalid release version::Expected an exact semver version like 1.5.4, got '$release_argument'."
+              exit 1
+            fi
+          else
+            if [[ "$HAS_MINOR_LABEL" == "true" && "$HAS_PATCH_LABEL" == "true" ]]; then
+              echo "::error title=Ambiguous release labels::Use only one of release-minor or release-patch."
+              exit 1
+            elif [[ "$HAS_MINOR_LABEL" == "true" ]]; then
+              release_argument="minor"
+            elif [[ "$HAS_PATCH_LABEL" == "true" ]]; then
+              release_argument="patch"
+            else
+              echo "::error title=Missing release label::Merged release PRs need release-minor or release-patch."
+              exit 1
+            fi
+          fi
+
+          echo "argument=$release_argument" >> "$GITHUB_OUTPUT"
+          echo "target-ref=$TARGET_REF" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ steps.release.outputs.target-ref }}
+          fetch-depth: 0
+          persist-credentials: true
+          show-progress: false
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Configure git author
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Bump package versions
+        run: pnpm pkg:release "${{ steps.release.outputs.argument }}"
+
+      - name: Create release commit and tag
+        id: version
+        shell: bash
+        run: |
+          semver_re='^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$'
+          version="$(node -p "JSON.parse(require('node:fs').readFileSync('packages/storylite/package.json', 'utf8')).version")"
+
+          if [[ ! "$version" =~ $semver_re ]]; then
+            echo "::error title=Invalid resolved version::Expected an exact semver version like 1.5.4, got '$version'."
+            exit 1
+          fi
+
+          if git rev-parse --verify --quiet "refs/tags/$version"; then
+            echo "::error title=Tag already exists::Tag '$version' already exists."
+            exit 1
+          fi
+
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "::error title=No release changes::Version bump did not produce any changes."
+            exit 1
+          fi
+
+          git commit -m "chore(release): $version"
+          git tag "$version"
+
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Push release commit and tag
+        run: |
+          git push origin "HEAD:${{ steps.release.outputs.target-ref }}"
+          git push origin "${{ steps.version.outputs.version }}"
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          previous_tag="$(git describe --tags --abbrev=0 "$RELEASE_VERSION^" 2>/dev/null || true)"
+
+          if [[ -n "$previous_tag" ]]; then
+            compare_url="${{ github.server_url }}/${{ github.repository }}/compare/$previous_tag...$RELEASE_VERSION"
+          else
+            compare_url="${{ github.server_url }}/${{ github.repository }}/commits/$RELEASE_VERSION"
+          fi
+
+          {
+            echo "StoryLite $RELEASE_VERSION is now available."
+            echo ""
+            echo "[Compare changes]($compare_url)"
+          } > release-notes.md
+
+          gh release create "$RELEASE_VERSION" \
+            --title "v$RELEASE_VERSION" \
+            --notes-file release-notes.md
+
+      - name: Publish summary
+        run: |
+          {
+            echo "### Release"
+            echo ""
+            echo "| Item | Value |"
+            echo "| --- | --- |"
+            echo "| Version | ${{ steps.version.outputs.version }} |"
+            echo "| Target branch | ${{ steps.release.outputs.target-ref }} |"
+            echo "| GitHub Release | ${{ github.server_url }}/${{ github.repository }}/releases/tag/${{ steps.version.outputs.version }} |"
+            echo "| Trigger | ${{ github.event_name }} |"
+          } >> "$GITHUB_STEP_SUMMARY"

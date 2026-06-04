@@ -32,7 +32,7 @@
     "test:full-qa": "pnpm typecheck && pnpm format:check && pnpm build && pnpm test && pnpm test:e2e",
     "typecheck": "pnpm -r --if-present --parallel --stream run typecheck",
     "update-deps": "pnpm -r update --latest && sleep 2 && pnpm install",
-    "pkg:release": "pnpm -r --filter \"./packages/*\" publish --access public --provenance --no-git-checks",
+    "pkg:release": "node ./scripts/pkg-release.mjs",
     "pkg:version": "node ./scripts/pkg-version.mjs"
   },
   "devDependencies": {
