@@ -477,8 +477,9 @@ export const ReadyState = {
 ### Markdown Documentation Stories
 
 StoryLite stories can render Markdown files when your StoryLite Vite pipeline transforms Markdown
-imports into HTML strings. The example below uses Satteri through `vite-plugin-satteri`, but any Vite
-plugin works as long as importing a Markdown file returns plain HTML that an HTML story can render.
+imports into HTML strings. The example below uses Satteri through `vite-plugin-satteri`, but any
+Vite plugin works as long as importing a Markdown file returns plain HTML that an HTML story can
+render.
 
 Configure the Markdown plugin in `.storylite/config.ts`:
 
