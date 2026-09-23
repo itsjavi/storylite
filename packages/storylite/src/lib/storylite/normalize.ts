@@ -340,6 +340,8 @@ export function inferControlType(argType: StoryArgType | undefined, value: unkno
       return 'boolean'
     case 'number':
       return 'number'
+    case 'object':
+      return 'json'
     default:
       return 'text'
   }

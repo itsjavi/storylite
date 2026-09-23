@@ -6,6 +6,7 @@
   import { inferControlType } from '../storylite/normalize'
   import { resolveStorySource } from '../storylite/source'
   import type { StoryArgType, StoryArgs, StoryLiteStory } from '../storylite/types'
+  import JsonControl from './JsonControl.svelte'
 
   type Props = {
     readonly activeStory: StoryLiteStory | undefined
@@ -132,6 +133,12 @@
                 <option value={String(option)}>{String(option)}</option>
               {/each}
             </select>
+          {:else if type === 'json'}
+            <JsonControl
+              {name}
+              value={activeArgs[name]}
+              updateArg={(data) => onUpdateArg(name, data)}
+            />
           {:else}
             <span>{name}</span>
             <input
