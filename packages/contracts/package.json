@@ -1,6 +1,6 @@
 {
   "name": "@storylite/contracts",
-  "version": "1.5.4",
+  "version": "1.6.0",
   "description": "Shared StoryLite contracts for the app, renderer adapters, and downstream projects.",
   "homepage": "https://itsjavi.com/storylite",
   "bugs": {
