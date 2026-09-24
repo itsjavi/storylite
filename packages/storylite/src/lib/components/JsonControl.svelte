@@ -1,5 +1,13 @@
 <script lang="ts">
-  const { name = '', value = {}, updateArg = null } = $props()
+  const {
+    name = '',
+    value = {},
+    updateArg = undefined,
+  }: {
+    name: string
+    value: unknown
+    updateArg?: (data: unknown) => void
+  } = $props()
 
   let invalidJson = $state(false)
 
@@ -14,12 +22,12 @@
     }
   })
 
-  const handleInput = (event) => {
+  const handleInput = (event: { currentTarget: { value: string } }) => {
     invalidJson = false
 
     try {
       const data = JSON.parse(event.currentTarget.value)
-      return updateArg(data)
+      return updateArg?.(data)
     } catch (e) {
       invalidJson = true
     }
