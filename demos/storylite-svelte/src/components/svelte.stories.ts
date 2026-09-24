@@ -39,6 +39,21 @@ export const Card = {
   },
 } satisfies StoryLiteStoryDefinition
 
+const sampleArgs = {
+  eyebrow: 'Adapter',
+  title: 'Svelte renderer',
+  body: 'Svelte components mount through a project-registered adapter.',
+}
+
+export const CardAsJson = {
+  component: SvelteCard,
+  args: {
+    asJson: sampleArgs,
+  },
+  render: () => (internal: any, props: { asJson: typeof sampleArgs }) =>
+    SvelteCard(internal, props.asJson),
+} satisfies StoryLiteStoryDefinition
+
 export const Stat = {
   component: SvelteStat,
   args: {
