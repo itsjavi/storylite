@@ -1,6 +1,6 @@
 import type { MountedStory, StoryArgs, StoryContext, StoryLiteStory } from '@storylite/contracts'
 import type { Component, JSX } from 'solid-js'
-import { createComponent, render } from 'solid-js/web'
+import { clearDelegatedEvents, createComponent, delegateEvents, render } from 'solid-js/web'
 
 export function renderStory(
   story: StoryLiteStory,
@@ -10,12 +10,15 @@ export function renderStory(
   const mountPoint = context.document.createElement('div')
   mountPoint.className = 'sl-solid-root'
   context.canvas.replaceChildren(mountPoint)
+  
+  delegateEvents(['click'], context.document)
 
   const dispose = render(() => resolveOutput(story, args, context), mountPoint)
 
   return {
     cleanup: () => {
       dispose()
+      clearDelegatedEvents(context.document)
       context.canvas.replaceChildren()
     },
   }
