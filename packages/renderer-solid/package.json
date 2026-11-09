@@ -44,13 +44,15 @@
     "build": "tsdown",
     "typecheck": "tsc --noEmit",
     "publint": "publint",
-    "prepublishOnly": "pnpm typecheck && pnpm build && pnpm publint"
+    "prepublishOnly": "pnpm typecheck && pnpm build && pnpm publint",
+    "test": "vitest run"
   },
   "dependencies": {
     "@storylite/contracts": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^25.9.1",
+    "jsdom": "^31.0.0",
     "solid-js": "^1.9.13",
     "vite-plugin-solid": "2.11.12"
   },

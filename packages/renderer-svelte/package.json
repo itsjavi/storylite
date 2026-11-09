@@ -44,13 +44,15 @@
     "build": "tsdown",
     "typecheck": "tsc --noEmit",
     "publint": "publint",
-    "prepublishOnly": "pnpm typecheck && pnpm build && pnpm publint"
+    "prepublishOnly": "pnpm typecheck && pnpm build && pnpm publint",
+    "test": "vitest run"
   },
   "dependencies": {
     "@storylite/contracts": "workspace:*",
     "@sveltejs/vite-plugin-svelte": "^7.1.2"
   },
   "devDependencies": {
+    "jsdom": "^31.0.0",
     "svelte": "^5.56.1"
   },
   "peerDependencies": {

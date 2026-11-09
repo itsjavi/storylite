@@ -44,7 +44,8 @@
     "build": "tsdown",
     "typecheck": "tsc --noEmit",
     "publint": "publint",
-    "prepublishOnly": "pnpm typecheck && pnpm build && pnpm publint"
+    "prepublishOnly": "pnpm typecheck && pnpm build && pnpm publint",
+    "test": "vitest run"
   },
   "dependencies": {
     "@storylite/contracts": "workspace:*"
@@ -52,6 +53,7 @@
   "devDependencies": {
     "@types/react": "^19.2.16",
     "@types/react-dom": "^19.2.3",
+    "jsdom": "^31.0.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },
