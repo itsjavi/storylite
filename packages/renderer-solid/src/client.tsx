@@ -1,6 +1,6 @@
 import type { MountedStory, StoryArgs, StoryContext, StoryLiteStory } from '@storylite/contracts'
 import type { Component, JSX } from 'solid-js'
-import { clearDelegatedEvents, createComponent, delegateEvents, render } from 'solid-js/web'
+import { createComponent, DelegatedEvents, delegateEvents, render } from 'solid-js/web'
 
 export function renderStory(
   story: StoryLiteStory,
@@ -10,15 +10,18 @@ export function renderStory(
   const mountPoint = context.document.createElement('div')
   mountPoint.className = 'sl-solid-root'
   context.canvas.replaceChildren(mountPoint)
-  
-  delegateEvents(['click'], context.document)
+
+  // Compiled Solid JSX delegates events (onClick, onInput...) to the document that loaded the
+  // module, which is the manager page, not the preview iframe. Register them on the story's
+  // document too. Never clear them: that document may be the manager's own (canvas route) or
+  // shared with a newer render, and delegateEvents is idempotent per document.
+  delegateEvents([...DelegatedEvents], context.document)
 
   const dispose = render(() => resolveOutput(story, args, context), mountPoint)
 
   return {
     cleanup: () => {
       dispose()
-      clearDelegatedEvents(context.document)
       context.canvas.replaceChildren()
     },
   }
