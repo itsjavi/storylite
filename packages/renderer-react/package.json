@@ -1,6 +1,6 @@
 {
   "name": "@storylite/renderer-react",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "React renderer for StoryLite",
   "homepage": "https://itsjavi.com/storylite",
   "bugs": {

@@ -1,6 +1,6 @@
 {
   "name": "@storylite/renderer-vue",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Vue renderer for StoryLite",
   "homepage": "https://itsjavi.com/storylite",
   "bugs": {

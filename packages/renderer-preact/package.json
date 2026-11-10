@@ -1,6 +1,6 @@
 {
   "name": "@storylite/renderer-preact",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Preact renderer for StoryLite",
   "homepage": "https://itsjavi.com/storylite",
   "bugs": {

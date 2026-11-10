@@ -1,6 +1,6 @@
 {
   "name": "@storylite/renderer-svelte",
-  "version": "1.6.0",
+  "version": "1.6.1",
   "description": "Svelte renderer for StoryLite",
   "homepage": "https://itsjavi.com/storylite",
   "bugs": {
